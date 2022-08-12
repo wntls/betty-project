@@ -20,9 +20,6 @@ import com.zaxxer.hikari.HikariDataSource;
 @MapperScan(basePackages = { "com.koreate.betty.domain" })
 public class DBConfig {
 
-	@Autowired
-	ApplicationContext context;
-
 	@Bean
 	public DataSource dataSource() {
 		HikariConfig config = new HikariConfig("/database.properties");
@@ -30,7 +27,7 @@ public class DBConfig {
 	}
 	
 	@Bean
-	public SqlSessionFactory fac(DataSource ds) throws Exception {
+	public SqlSessionFactory sqlSessionFactory(DataSource ds) throws Exception {
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
 		
 		Configuration config = new Configuration();
@@ -38,8 +35,7 @@ public class DBConfig {
 		bean.setConfiguration(config);
 		
 		bean.setDataSource(ds);
-		bean.setTypeAliasesPackage("com.jaemin.template.vo");
-		bean.setMapperLocations(context.getResources("classpath:mybatis/*.xml"));
+		bean.setTypeAliasesPackage("com.koreate.betty.domain");
 		return bean.getObject();
 	}
 
