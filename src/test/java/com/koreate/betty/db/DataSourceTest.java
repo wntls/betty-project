@@ -15,11 +15,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.koreate.betty.config.AppConfig;
-import com.koreate.betty.config.DBConfig;
-import com.koreate.betty.config.WebConfig;
-import com.koreate.betty.domain.temp.Temp;
-import com.koreate.betty.domain.temp.repo.TempRepository;
+import com.koreate.betty.domain.temp.dao.TempRepository;
+import com.koreate.betty.domain.temp.vo.Temp;
+import com.koreate.betty.global.config.AppConfig;
+import com.koreate.betty.global.config.DBConfig;
+import com.koreate.betty.global.config.WebConfig;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 

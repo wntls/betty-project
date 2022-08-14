@@ -19,9 +19,9 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.koreate.betty.config.AppConfig;
-import com.koreate.betty.config.RootConfig;
-import com.koreate.betty.config.WebConfig;
+import com.koreate.betty.global.config.AppConfig;
+import com.koreate.betty.global.config.RootConfig;
+import com.koreate.betty.global.config.WebConfig;
 
 import lombok.extern.slf4j.Slf4j;
 
