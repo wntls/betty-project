@@ -19,9 +19,9 @@ import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
-import com.koreate.betty.domain.member.resolver.MemberLoginArgumentResolver;
-import com.koreate.betty.domain.temp.interceptor.TempInterceptor;
-import com.koreate.betty.domain.temp.typeconverter.TempFormatter;
+import com.koreate.betty.domain.member.resolver.LoginArgumentResolver;
+import com.koreate.betty.example.TempFormatter;
+import com.koreate.betty.example.TempInterceptor;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -62,7 +62,7 @@ public class AppConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-		 resolvers.add(new MemberLoginArgumentResolver());
+		 resolvers.add(new LoginArgumentResolver());
 	}
 
 	@Override
