@@ -15,12 +15,9 @@ local.properties
 .recommenders
 target/*
 META-INF/*
-<<<<<<< HEAD
-.springBeans
-=======
 log4j.xml
 **/database.properties
->>>>>>> 4311970acf694808f03f78538e40f35c807ac848
+
 
 # External tool builders
 .externalToolBuilders/
@@ -73,12 +70,10 @@ log4j.xml
 .classpath
 
 ### Eclipse Patch ###
-<<<<<<< HEAD
-=======
+
 # Eclipse Core
 .project
 
->>>>>>> 4311970acf694808f03f78538e40f35c807ac848
 # Spring Boot Tooling
 .sts4-cache/
 
