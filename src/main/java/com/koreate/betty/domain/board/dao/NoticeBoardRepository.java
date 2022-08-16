@@ -1,5 +1,8 @@
 package com.koreate.betty.domain.board.dao;
 
-public interface NoticeBoardRepository {
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
+public interface NoticeBoardRepository {
+	
 }
