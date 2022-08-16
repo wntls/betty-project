@@ -1,3 +1,4 @@
+
 package com.koreate.betty.domain.board.vo;
 
 import java.sql.Timestamp;
@@ -9,16 +10,15 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @Builder
-@EqualsAndHashCode
 public class FreeBoard {
 
-	private int bno;
-	private String memberId;
-	private String tag;
-	private String title;
-	private String content;
-	private Timestamp regdate;
-	private int viewcnt;
-	private char showboard;
+	private final int bno;
+	private final String memberId;
+	private final String tag;
+	private final String title;
+	private final String content;
+	private final Timestamp regdate;
+	private final int viewcnt;
+	private final char showboard;
 	
 }

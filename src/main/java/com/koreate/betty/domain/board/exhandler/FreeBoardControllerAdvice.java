@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.koreate.betty.domain.board.controller.FreeBoardController;
+import com.koreate.betty.domain.model.ErrorResult;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,8 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 public class FreeBoardControllerAdvice {
 
 	@ExceptionHandler
-	public void invalidMemberId(SQLIntegrityConstraintViolationException ex) {
+	public ErrorResult invalidMemberId(SQLIntegrityConstraintViolationException ex) {
 		log.error("중복된 아이디 오류 ={}",ex);
+		return new ErrorResult("", "중복된 아이디입니다.");
 	}
 	
 }

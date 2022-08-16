@@ -1,6 +1,7 @@
-package com.koreate.betty.domain.board.dto;
+package com.koreate.betty.domain.board.dto.form;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.koreate.betty.domain.board.vo.FreeBoard;
 
@@ -11,16 +12,20 @@ public class FreeBoardForm {
 	
 	@NotBlank
 	private String memberId;
+	
+	@Size(max = 50)
 	@NotBlank
 	private String tag;
+	
+	@Size(max = 50)
 	@NotBlank
 	private String title;
+	
 	@NotBlank
 	private String content;
 
 	// image
 	
-	// 순수 vo 는 Builder 를 사용해서 setter 막기.
 	public FreeBoard createFreeBoard() {
 		return FreeBoard.builder()
 				.memberId(memberId)

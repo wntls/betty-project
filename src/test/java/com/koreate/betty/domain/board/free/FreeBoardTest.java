@@ -1,21 +1,25 @@
 package com.koreate.betty.domain.board.free;
 
-import java.sql.SQLIntegrityConstraintViolationException;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.koreate.betty.domain.board.dto.FreeBoardForm;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.koreate.betty.domain.board.dto.FreeBoardDto;
+import com.koreate.betty.domain.board.dto.form.FreeBoardForm;
 import com.koreate.betty.domain.board.service.FreeBoardService;
-import com.koreate.betty.domain.board.vo.FreeBoard;
 import com.koreate.betty.global.config.AppConfig;
 import com.koreate.betty.global.config.RootConfig;
 import com.koreate.betty.global.config.WebConfig;
@@ -29,13 +33,13 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 public class FreeBoardTest {
 
-	@Autowired
-	private WebApplicationContext wc;
-
-	private MockMvc mvc;
+	@Autowired private WebApplicationContext wc;
 	
-	@Autowired
-	FreeBoardService freeBoardService;
+	private MockMvc mockMvc;
+	
+	private ObjectMapper objectMapper = new ObjectMapper();
+	
+	@Autowired private FreeBoardService freeBoardService;
 	
 	FreeBoardForm form1;
 	FreeBoardForm form2;
@@ -44,6 +48,9 @@ public class FreeBoardTest {
 	
 	@Before
 	public void init_data() {
+		
+		mockMvc = MockMvcBuilders.webAppContextSetup(wc).build();
+		
 		form1 = new FreeBoardForm();
 		form1.setMemberId("id001");
 		form1.setTag("자유");
@@ -63,7 +70,7 @@ public class FreeBoardTest {
 		form3.setContent("내용 003");
 		
 		ex = new FreeBoardForm();
-		ex.setMemberId("exception");
+		ex.setMemberId("none");
 		ex.setTag("tag");
 		ex.setTitle("title");
 		ex.setContent("content");
@@ -75,37 +82,35 @@ public class FreeBoardTest {
 		log.info("complete");
 	}
 	
-	@Test
+	//@Test
 	public void DAO_SAVE_AND_USE_GENERATED_KEY() {
 		
-		FreeBoard board1 = form1.createFreeBoard();
-		FreeBoard board2 = form2.createFreeBoard();
-		FreeBoard board3 = form3.createFreeBoard();
-		
-		int first = freeBoardService.write(board1);
-		int second = freeBoardService.write(board2);
-		int third = freeBoardService.write(board3);
+		int first = freeBoardService.write(form1);
+		int second = freeBoardService.write(form2);
+		int third = freeBoardService.write(form3);
 		
 		log.info("first={}, second={}, third={}",first,second,third);
 	}
 	
-	//@Test
-	public void DAO_SAVE_EXCEPTION () {
-		FreeBoard exBoard = ex.createFreeBoard();
-		int num = 0;
-		try {
-			num = freeBoardService.write(exBoard);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			log.info("num={}", num);
-		}
+	@Test // 실패
+	public void 사이즈_예외_터뜨리기() throws Exception {
+		log.info("WebApplicationContext wc = {}", wc);
+		log.info("MockMvc mvc = {}", mockMvc);
 		
-		// SQLIntegrityConstraintViolationException
-		// Blank와 NULL이 이미 차단된 상태.
-		// 발생할 수 있는 제약 위반은 id가 없는 거 이외엔 없다.
+		FreeBoardDto dto = new FreeBoardDto();
+		dto.setMemberId("id001");
+		dto.setTitle("제목");
+		dto.setTag("0123456789 0123456789 0123456789 0123456789 0123456789 0123456789 ");
+		dto.setContent("에러");
+		
+		String dtoToJson = objectMapper.writeValueAsString(dto);
+		
+		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/boards/free/new")
+								.contentType(MediaType.APPLICATION_JSON)
+								.content(dtoToJson))
+								.andReturn();
+		System.out.println("*****************"+result.getResponse().getContentAsString());
+		
 		
 	}
-	
-	
 }

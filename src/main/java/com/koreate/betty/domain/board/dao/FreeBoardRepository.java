@@ -11,7 +11,6 @@ import com.koreate.betty.domain.board.vo.FreeBoard;
 public interface FreeBoardRepository {
 
 	@InsertProvider(type=FreeBoardProvider.class, method="save")
-	// insert 후 자동 생성된 key 값을 반환함.
 	@Options(useGeneratedKeys = true , keyProperty = "bno")
 	public void save(FreeBoard board);
 	
