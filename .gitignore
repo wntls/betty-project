@@ -18,6 +18,7 @@ META-INF/*
 log4j.xml
 **/database.properties
 
+
 # External tool builders
 .externalToolBuilders/
 
@@ -69,6 +70,7 @@ log4j.xml
 .classpath
 
 ### Eclipse Patch ###
+
 # Eclipse Core
 .project
 
