@@ -15,8 +15,8 @@ local.properties
 .recommenders
 target/*
 META-INF/*
-log4j.xml
-**/database.properties
+##### log4j.xml
+##### **/database.properties
 
 
 # External tool builders
@@ -92,7 +92,7 @@ log4j.xml
 .mtj.tmp/
 
 # Package Files #
-*.jar
+##### *.jar
 *.war
 *.nar
 *.ear
