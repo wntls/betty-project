@@ -1,5 +1,8 @@
 package com.koreate.betty.domain.member.dao;
 
-public class MemberRepository {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface MemberRepository {
 
 }
