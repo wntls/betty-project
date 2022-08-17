@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 
-import com.koreate.betty.domain.board.dao.provider.FreeBoardProvider;
+import com.koreate.betty.domain.board.provider.FreeBoardProvider;
 import com.koreate.betty.domain.board.vo.FreeBoard;
 
 @Mapper

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.koreate.betty.domain.board.dto.FreeBoardDto;
-import com.koreate.betty.domain.board.dto.form.FreeBoardForm;
+import com.koreate.betty.domain.board.dto.form.FreeBoardWriteForm;
 import com.koreate.betty.domain.board.service.FreeBoardService;
 import com.koreate.betty.domain.board.vo.FreeBoard;
 

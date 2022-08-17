@@ -1,4 +1,4 @@
-package com.koreate.betty.domain.inquiry;
+package com.koreate.betty.domain.inquiry.dao;
 
 import org.springframework.stereotype.Repository;
 

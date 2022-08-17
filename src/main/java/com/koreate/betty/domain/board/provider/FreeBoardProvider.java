@@ -1,4 +1,4 @@
-package com.koreate.betty.domain.board.dao.provider;
+package com.koreate.betty.domain.board.provider;
 
 import org.apache.ibatis.jdbc.SQL;
 

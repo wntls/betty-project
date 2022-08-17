@@ -8,12 +8,15 @@ import com.koreate.betty.domain.board.vo.FreeBoard;
 import lombok.Data;
 
 @Data
-public class FreeBoardForm {
+public class FreeBoardWriteForm {
+	// 존재하지 않는 아이디의 경우 예외 발생. (외래키 제약 위반)
 	
 	@NotBlank
 	private String memberId;
 	
+	// 한글,숫자,영문 상관없이 글자 수 50개까지만 통과
 	@Size(max = 50)
+	// "", null 모두 검증
 	@NotBlank
 	private String tag;
 	

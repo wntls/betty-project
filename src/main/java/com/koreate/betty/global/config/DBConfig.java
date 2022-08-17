@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @DatabaseConfiguration
 @Slf4j
-@MapperScan(basePackages = { "com.koreate.betty.domain" })
+@MapperScan(basePackages = { "com.koreate.betty.domain.*.dao" })
 public class DBConfig {
 
 	@Bean
@@ -39,7 +39,7 @@ public class DBConfig {
 		bean.setConfiguration(config);
 		
 		bean.setDataSource(ds);
-		bean.setTypeAliasesPackage("com.koreate.betty.domain");
+		// bean.setTypeAliasesPackage("com.koreate.betty.domain");
 		return bean.getObject();
 	}
 

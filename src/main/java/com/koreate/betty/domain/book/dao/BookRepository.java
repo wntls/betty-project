@@ -1,8 +1,8 @@
 package com.koreate.betty.domain.book.dao;
 
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
-@Repository
-public class BookRepository {
+@Mapper
+public interface BookRepository {
 
 }

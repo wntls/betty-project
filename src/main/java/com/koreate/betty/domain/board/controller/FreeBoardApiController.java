@@ -1,19 +1,23 @@
 package com.koreate.betty.domain.board.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreate.betty.domain.board.dto.FreeBoardListDto;
-import com.koreate.betty.domain.board.dto.form.FreeBoardForm;
+import com.koreate.betty.domain.board.dto.form.FreeBoardWriteForm;
 import com.koreate.betty.domain.board.service.FreeBoardService;
-import com.koreate.betty.domain.board.vo.FreeBoard;
+import com.koreate.betty.domain.model.ErrorResult;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 @RequestMapping("/boards/free/")
 public class FreeBoardApiController {
@@ -30,19 +34,25 @@ public class FreeBoardApiController {
 	
 	// 게시글 등록 요청
 	@PostMapping("new")
-	public void freeBoardNewReq(@Validated FreeBoardForm form, BindingResult bindingResult){
+	public Object freeBoardNewReq(@RequestBody @Valid FreeBoardWriteForm form, BindingResult bindingResult){
 		if(bindingResult.hasErrors()) {
 			// form error logic
-			return;
+			log.info("*************************************************");
+			log.info("exception occured");
+			log.info("form = {}", form);
+			log.info("form tag.length = {}", form.getTag().length());
+			log.info("form title.length = {}", form.getTitle().length());
+			return bindingResult.getAllErrors();
 		}
+		log.info("form = {}", form);
 		
 		int result = freeBoardService.write(form);
 		
 		if(result == 0) {
 			// insert error logic
-			return;
+			return new ErrorResult("success", "good");
 		}
-		
+		return new ErrorResult("success", "good");
 		// complete : location 이동
 		// redirect:/boards/free/bno
 	}

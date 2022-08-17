@@ -7,12 +7,12 @@ import org.springframework.web.servlet.ModelAndView;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@ControllerAdvice
+//@ControllerAdvice
 public class TempExceptionHandler {
 
 	@ExceptionHandler(Exception.class)
 	public ModelAndView exceptionHandler(Exception ex) {
-		log.error("Exception ex", ex);
+		ex.printStackTrace();
 		return new ModelAndView();
 	}
 
