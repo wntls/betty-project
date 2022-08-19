@@ -3,12 +3,23 @@
 <html>
 <head>
 	<title>Home</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="/resources/ckeditor/ckeditor.js"></script>
+	<script>
+		var ckeditor_config = {
+				resize_enable : false,
+				enterMode : CKEDITOR.ENTER_BR,
+				shiftEnterMode : CKEDITOR.ENTER_P,
+				filebrowserUploadUrl : "/common/ckUpload"
+		};
+	</script>
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
+<h1>HOME</h1>
+<textarea name="bookIntro" id="bookIntro_textarea"></textarea>
+<script>
+	CKEDITOR.replace("bookIntro_textarea", ckeditor_config);
+</script>
 
-<P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>

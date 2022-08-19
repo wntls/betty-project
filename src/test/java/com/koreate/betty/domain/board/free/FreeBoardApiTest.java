@@ -102,6 +102,6 @@ public class FreeBoardApiTest {
 								.andReturn();
 		String messageBody = result.getResponse().getContentAsString();
 		log.info("MockMvc response HTTP Message Body = {}", messageBody);
+		
 	}
-	
 }
