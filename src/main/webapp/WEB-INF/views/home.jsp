@@ -3,12 +3,10 @@
 <html>
 <head>
 	<title>Home</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
+<h1>HOME</h1>
 
-<P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>

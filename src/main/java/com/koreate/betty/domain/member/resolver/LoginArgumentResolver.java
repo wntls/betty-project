@@ -25,14 +25,12 @@ public class LoginArgumentResolver implements HandlerMethodArgumentResolver {
 		return hasTestAnnotation && hasMemberType;
 	}
 	
-
 	@Override
 	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
 			NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 		log.info("**Call** class = {}, method = {}",getClass().getName(),"resolveArgument");
 		HttpServletRequest request = (HttpServletRequest)webRequest.getNativeRequest();
-		Member vo = new Member();
+		Member vo = Member.builder().build();
 		return vo;
 	}
-
 }
