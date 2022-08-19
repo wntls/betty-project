@@ -21,4 +21,5 @@ public class FreeBoard {
 	private final int viewcnt;
 	private final char showboard;
 	
+	
 }
