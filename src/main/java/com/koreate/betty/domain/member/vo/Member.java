@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 @Builder
 public class Member {
-
+	
 	private final String id;
 	private final String pw;
 	private final String nickname;

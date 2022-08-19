@@ -22,7 +22,7 @@ public class MemberProvider {
 	public String login(String id, String pw) {
 		return new SQL().SELECT("*")
 				.FROM(MEMBER_TBL)
-				.WHERE("id = #{id}")
+				.WHERE("id = #{id}").WHERE("pw = #{pw}")
 				.toString();
 	}
 	
