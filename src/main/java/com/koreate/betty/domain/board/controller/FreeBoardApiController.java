@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.koreate.betty.domain.board.dto.FreeBoardListDto;
 import com.koreate.betty.domain.board.dto.form.FreeBoardWriteForm;
 import com.koreate.betty.domain.board.service.FreeBoardService;
-import com.koreate.betty.domain.model.ErrorResult;
+import com.koreate.betty.global.error.ErrorResult;
 
 import lombok.extern.slf4j.Slf4j;
 
