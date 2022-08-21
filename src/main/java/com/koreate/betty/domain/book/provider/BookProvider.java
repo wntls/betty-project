@@ -1,0 +1,134 @@
+package com.koreate.betty.domain.book.provider;
+
+import static com.koreate.betty.domain.model.TableConst.BOOK_TBL;
+
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.jdbc.SQL;
+
+import com.koreate.betty.domain.book.vo.Book;
+
+public class BookProvider {
+
+	// 신규 도서 등록
+	public String bookRegister(Book book) {
+		return new SQL().INSERT_INTO(BOOK_TBL)
+				.INTO_VALUES("#{code}, #{title}, #{auth}, #{pub}, #{pub_date}, #{page}, #{genre}, #{img}, #{intro}")
+				.toString();
+	}
+	
+	// 도서 정보 전체 검색
+	public String bookList() {
+		return new SQL().SELECT("*")
+				.FROM(BOOK_TBL)
+				.ORDER_BY("code")
+				.toString();
+	}
+	
+	// 도서 정보 검색(code)
+	public String bookSearchByCode(String code) {
+		return new SQL().SELECT("*")
+				.FROM(BOOK_TBL)
+				.WHERE("code LIKE '%#{code}%'")
+				.ORDER_BY("code")
+				.toString();
+	}
+	
+	// 도서 정보 검색(title)
+	public String bookSearchByTitle(String title) {
+		return new SQL().SELECT("*")
+				.FROM(BOOK_TBL)
+				.WHERE("title LIKE '%#{title}%'")
+				.ORDER_BY("code")
+				.toString();
+	}
+	
+	// 도서 정보 검색(auth)
+	public String bookSearchByAuth(String auth) {
+		return new SQL().SELECT("*")
+				.FROM(BOOK_TBL)
+				.WHERE("auth LIKE '%#{auth}%'")
+				.ORDER_BY("code")
+				.toString();
+	}
+	
+	// 도서 정보 검색(genre)
+	public String bookSearchByGenre(String genre) {
+		return new SQL().SELECT("*")
+				.FROM(BOOK_TBL)
+				.WHERE("genre LIKE '%#{genre}%'")
+				.ORDER_BY("code")
+				.toString();
+	}
+	
+	// 도서 정보 변경 (변경할 책 코드, 들어갈 정보)
+	// 코드가 반드시 일치하는 한권이어야 하고, 모든 필수 정보가 들어있어야 합니다
+	public String bookUpdate(@Param("targetBookCode") String targetBookCode, @Param("book") Book book) {
+		return new SQL().UPDATE(BOOK_TBL)
+				.SET("code = #{book.code}")
+				.SET("title = #{book.title}")
+				.SET("auth = #{book.auth}")
+				.SET("pub = #{book.pub}")
+				.SET("pub_date = #{book.pubDate}")
+				.SET("page = #{book.page}")
+				.SET("genre = #{book.genre}")
+				.SET("img = #{book.img}")
+				.SET("intro = #{book.intro}")
+				.WHERE("code = #{targetBookCode}")
+				.toString();
+	}
+	
+	
+	/* 	
+	 * jBooks : book + bookSingle 조인 
+	 * 이하의 코드는 Join을 사용하여 책의 정보와 책의 권수를 함께 다룸
+	*/
+	
+	// 도서 전체 검색
+	public String jBooksList() {
+		return new SQL().SELECT("*")
+				.FROM(BOOK_TBL)
+				.ORDER_BY("code")
+				.toString();
+	}
+		
+	// 도서 검색(code) -> (같은 이름의 책이 여러개 나올 수 있음)
+	public String jBooksSearchByCode(String code) {
+		return new SQL().SELECT("*")
+				.FROM(BOOK_TBL)
+				.WHERE("code LIKE '%#{code}%'")
+				.ORDER_BY("code")
+				.ORDER_BY("num")
+				.toString();
+	}
+	
+	// 도서 검색(title)
+	public String jBooksSearchByTitle(String title) {
+		return new SQL().SELECT("*")
+				.FROM(BOOK_TBL)
+				.WHERE("title LIKE '%#{title}%'")
+				.ORDER_BY("code")
+				.ORDER_BY("num")
+				.toString();
+	}
+	
+	
+	// 도서 정보 검색(auth)
+	public String jBookSearchByAuth(String auth) {
+		return new SQL().SELECT("*")
+				.FROM(BOOK_TBL)
+				.WHERE("auth LIKE '%#{auth}%'")
+				.ORDER_BY("code")
+				.toString();
+	}
+	
+	// 도서 정보 검색(genre)
+	public String jBookSearchByGenre(String genre) {
+		return new SQL().SELECT("*")
+				.FROM(BOOK_TBL)
+				.WHERE("genre LIKE '%#{genre}%'")
+				.ORDER_BY("code")
+				.toString();
+	}
+	
+	
+}
