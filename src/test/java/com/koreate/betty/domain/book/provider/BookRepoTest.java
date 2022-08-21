@@ -1,0 +1,56 @@
+package com.koreate.betty.domain.book.provider;
+
+import java.sql.Timestamp;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.koreate.betty.domain.book.dto.BookUpdateForm;
+import com.koreate.betty.domain.book.service.BookService;
+import com.koreate.betty.global.config.AppConfig;
+import com.koreate.betty.global.config.RootConfig;
+import com.koreate.betty.global.config.WebConfig;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@ContextConfiguration(classes = { WebConfig.class, AppConfig.class, RootConfig.class })
+@WebAppConfiguration
+@RunWith(SpringJUnit4ClassRunner.class)
+
+public class BookRepoTest {
+
+	@Autowired
+	BookService bs;
+	
+	@Test
+	public void bookUpdateTest() { // 테스트 완료
+		
+		String targetCode = "9772950991004";
+		
+		BookUpdateForm form = new BookUpdateForm();
+		form.setCode("9772950991004");
+		form.setTitle("더퍼슨스 the Persons No.4 : 브랜드 디렉터 Brand Director");
+		form.setAuth("더퍼슨스");
+		form.setPub("더퍼슨스");
+		Timestamp time = Timestamp.valueOf("2022-06-10 00:00:00");
+		form.setPubDate(time);
+		form.setPage(330);
+		form.setGenre(300);
+		form.setImg("k172838297_1.jpg");
+		form.setIntro("책소개\r\n" + 
+				" 우리는 매일 브랜드를 마주하며 살아간다. 때로는 브랜드의 메시지에 공감하기도 하고, 그들의 아름다움과 뛰어남에 감탄하기도 한다. 더불어 다른 이들이 어떤 브랜드를 좋아하는지 열심히 관찰한다. 각자가 좋아하는 브랜드가 곧 각자의 정체성을 대변하기 때문이다.\r\n" + 
+				" \r\n" + 
+				" 브랜드의 이면에서 브랜드의 정체성을 쌓아올리고 있는 브랜드 디렉터를 만났다. 새로운 유기체의 페르소나를 빚어내는 사람. 인간 존재를 고민하며 정체성을 탐구하는 사람. 비즈니스가 단순 돈벌이에 그치지 않도록 알맹이를 채워 넣는 사람. 세상에 없던 정체성을 생성하며 우리에게 소구하는 국내 최고 브랜드 디렉터 9명을 만나보았다.");
+		int result = bs.bookUpdate(targetCode, form);
+		log.info("result : " + result);
+	}
+	
+	
+	
+}
