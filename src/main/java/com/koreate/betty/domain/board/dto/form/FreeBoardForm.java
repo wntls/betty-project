@@ -5,15 +5,24 @@ import javax.validation.constraints.Size;
 
 import org.springframework.lang.Nullable;
 
-import com.koreate.betty.domain.board.vo.SuggestBoard;
+import com.koreate.betty.domain.board.vo.FreeBoard;
 
-public class SuggestBoardForm {
-	
+import lombok.Data;
+
+@Data
+public class FreeBoardForm {
+	// 존재하지 않는 아이디의 경우 예외 발생. (외래키 제약 위반)
 	@Nullable
 	private int bno;
 	
 	@NotBlank
 	private String memberId;
+	
+	// 한글,숫자,영문 상관없이 글자 수 50개까지만 통과
+	@Size(max = 50)
+	// "", null 모두 검증
+	@NotBlank
+	private String tag;
 	
 	@Size(max = 50)
 	@NotBlank
@@ -21,17 +30,17 @@ public class SuggestBoardForm {
 	
 	@NotBlank
 	private String content;
+
+	// image
 	
-	
-	public SuggestBoard suggestBoard() {
-		return SuggestBoard.builder()
+	public FreeBoard createFreeBoard() {
+		return FreeBoard.builder()
 				.bno(bno)
 				.memberId(memberId)
+				.tag(tag)
 				.title(title)
 				.content(content)
 				.build();
-				
-	} 
-	
-	
+	}
 }
+
