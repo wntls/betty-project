@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.koreate.betty.domain.board.controller.FreeBoardController;
-import com.koreate.betty.domain.model.ErrorResult;
+import com.koreate.betty.global.error.ErrorResult;
 
 import lombok.extern.slf4j.Slf4j;
 
