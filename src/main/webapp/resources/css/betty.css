@@ -112,12 +112,28 @@
 
 
 .box{
-	padding : 0.75rem 1.25rem;
-	border: 1px solid #727272;
+	padding : 18px 30px 16px 20px;
+	background : #1d1e39;
+	border-radius: 10px;
+}
+
+.box2{
+	padding : 18px 30px 16px 20px;
 }
 
 .ul > li {
 	padding: 0.25rem 0 0.25rem 0.75rem;
+	list-style: none;
+}
+
+.highlight_font{
+	color : red;
+}
+
+.sub_title{
+	/* color : #856f92; */
+	color : #ccb87c;
+	font-weight: 500;
 }
 
 .header-lantern-left {
@@ -204,3 +220,9 @@
 	overflow: visible;
 	resize: none;
 }
+
+.modal-content {
+	color: black;
+	background: rgba(255,255,255,0.8);
+}
+
