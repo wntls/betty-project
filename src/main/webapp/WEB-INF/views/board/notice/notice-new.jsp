@@ -8,7 +8,7 @@
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="board-detail board-title text-secondary mb-5">
-					<span>자유게시판 글 작성</span>
+					<span>공지사항 글 작성</span>
 				</div>
 				<div class="w-100"></div>
 				<input class="board-detail board-title" type="text" value="제목">
@@ -71,7 +71,6 @@
 
 	CKEDITOR.replace('editor', ckeditor_config);
 </script>
-
 
 
 
