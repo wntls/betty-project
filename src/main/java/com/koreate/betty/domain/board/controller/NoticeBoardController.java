@@ -15,7 +15,7 @@ public class NoticeBoardController {
 	
 	@GetMapping("new")
 	public String noticeBoardNew() {
-		return "boards/notice/notice-new";
+		return "board/notice/notice-new";
 	}
 	
 	//pathvariable

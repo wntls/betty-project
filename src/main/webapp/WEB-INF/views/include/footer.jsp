@@ -55,6 +55,9 @@
 <script src="${path}/resources/js/owl.carousel.min.js"></script>
 <script src="${path}/resources/js/jquery.nice-select.min.js"></script>
 <script src="${path}/resources/js/main.js"></script>
+<script src="${path}/resources/ckeditor/ckeditor.js"></script>
+<script src="${path}/resources/ckeditor/adapters/jquery.js"></script>
+
 
 <!-- fullcalendar CDN -->
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.min.js'></script>

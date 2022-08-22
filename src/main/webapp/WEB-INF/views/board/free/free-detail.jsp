@@ -15,7 +15,7 @@
 			</div>
 			<div class="w-100"></div>
 			
-					<input class="board-detail board-title" type="text" value="제목" readonly>
+					<input class="board-detail board-title" type="text" value="자유게시판 제목" readonly>
 					<hr />
 					<div class="row">
 						<div class="col-md-6">
@@ -88,17 +88,9 @@
 
 <script>
 	$(document).ready(function (){
-		console.log("0");
 		var ta = $("#textArea");
-		console.log("1");
-		console.log("ta "+ta);
-		console.log("2");
 		ta.css('height','auto');
-		console.log("3");
 		var taH = ta.prop('scrollHeight');
-		console.log("4");
-		console.log("taH " + taH);
 		ta.css('height', taH);
-		console.log("5");
 	});
 </script>
