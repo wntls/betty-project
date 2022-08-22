@@ -27,7 +27,7 @@ public class NoticeBoardController {
 	//pathvariable
 	@GetMapping("/num/edit")
 	public String noticeBoardEdit() {
-		return "boards/notice/notice-edit";
+		return "board/notice/notice-edit";
 	}
 	
 }
