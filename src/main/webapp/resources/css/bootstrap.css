@@ -1968,7 +1968,6 @@ pre code {
   .table-responsive-sm {
     display: block;
     width: 100%;
-    overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
   .table-responsive-sm > .table-bordered {
@@ -2015,7 +2014,6 @@ pre code {
 .table-responsive {
   display: block;
   width: 100%;
-  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -4231,7 +4229,7 @@ input[type="button"].btn-block {
 
 .nav-link {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.3rem;
   color: #fafafa;
   font-size: 0.8rem;
 }
@@ -4746,9 +4744,8 @@ input[type="button"].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: rgba(121, 121, 121, 0.2);
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
 }
 
