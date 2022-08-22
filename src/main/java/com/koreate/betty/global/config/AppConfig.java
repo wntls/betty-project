@@ -38,6 +38,8 @@ import lombok.extern.slf4j.Slf4j;
 			)
 public class AppConfig implements WebMvcConfigurer {
 
+	
+	
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addFormatter(new TempFormatter());
