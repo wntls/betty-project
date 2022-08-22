@@ -22,6 +22,21 @@
 .genreSel {
 	max-width: 100px;
 }
+.modal {
+	color: graytext;
+}
+
+.modal-title {
+	color: graytext;
+}
+
+.input-group-text label {
+	margin: 0px;
+	padding: 0px;
+}
+.bookName{
+ max-width:150px;
+}
 
 </style>
 
@@ -105,7 +120,272 @@
 						</table>
 					</div>
 				</form>
+				<div class="modal fade" id="exampleModalCenter"
+					data-backdrop="static" tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+					<div
+						class="modal-dialog modal-dialog-scrollable modal-dialog-centered"
+						role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalCenterTitle">Modal
+									title</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="false">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<!-- 입력태그 하나 -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
+										<div class="input-group-text">
+											<input id="bookDrop" type="checkbox"
+												aria-label="Checkbox for following text input"> <label
+												for="bookDrop"> 폐기</label>
+										</div>
+									</div>
+									<input type="text" value="책이름 아무거나"
+										class="form-control bookName" readonly> <input
+										type="text" class="form-control" aria-label="{js에 보낼 name값}">
+								</div>
+								<br />
+								<!-- 입력태그 하나 -->
+								<!-- 입력태그 하나 -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
+										<div class="input-group-text">
+											<input id="bookDrop" type="checkbox"
+												aria-label="Checkbox for following text input"> <label
+												for="bookDrop"> 폐기</label>
+										</div>
+									</div>
+									<input type="text" value="책이름 아무거나"
+										class="form-control bookName" readonly> <input
+										type="text" class="form-control" aria-label="{js에 보낼 name값}">
+								</div>
+								<br />
+								<!-- 입력태그 하나 -->
+								<!-- 입력태그 하나 -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
+										<div class="input-group-text">
+											<input id="bookDrop" type="checkbox"
+												aria-label="Checkbox for following text input"> <label
+												for="bookDrop"> 폐기</label>
+										</div>
+									</div>
+									<input type="text" value="책이름 아무거나"
+										class="form-control bookName" readonly> <input
+										type="text" class="form-control" aria-label="{js에 보낼 name값}">
+								</div>
+								<br />
+								<!-- 입력태그 하나 -->
+								<!-- 입력태그 하나 -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
+										<div class="input-group-text">
+											<input id="bookDrop" type="checkbox"
+												aria-label="Checkbox for following text input"> <label
+												for="bookDrop"> 폐기</label>
+										</div>
+									</div>
+									<input type="text" value="책이름 아무거나"
+										class="form-control bookName" readonly> <input
+										type="text" class="form-control" aria-label="{js에 보낼 name값}">
+								</div>
+								<br />
+								<!-- 입력태그 하나 -->
+								<!-- 입력태그 하나 -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
+										<div class="input-group-text">
+											<input id="bookDrop" type="checkbox"
+												aria-label="Checkbox for following text input"> <label
+												for="bookDrop"> 폐기</label>
+										</div>
+									</div>
+									<input type="text" value="책이름 아무거나"
+										class="form-control bookName" readonly> <input
+										type="text" class="form-control" aria-label="{js에 보낼 name값}">
+								</div>
+								<br />
+								<!-- 입력태그 하나 -->
+								<!-- 입력태그 하나 -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
+										<div class="input-group-text">
+											<input id="bookDrop" type="checkbox"
+												aria-label="Checkbox for following text input"> <label
+												for="bookDrop"> 폐기</label>
+										</div>
+									</div>
+									<input type="text" value="책이름 아무거나"
+										class="form-control bookName" readonly> <input
+										type="text" class="form-control" aria-label="{js에 보낼 name값}">
+								</div>
+								<br />
+								<!-- 입력태그 하나 -->
+								<!-- 입력태그 하나 -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
+										<div class="input-group-text">
+											<input id="bookDrop" type="checkbox"
+												aria-label="Checkbox for following text input"> <label
+												for="bookDrop"> 폐기</label>
+										</div>
+									</div>
+									<input type="text" value="책이름 아무거나"
+										class="form-control bookName" readonly> <input
+										type="text" class="form-control" aria-label="{js에 보낼 name값}">
+								</div>
+								<br />
+								<!-- 입력태그 하나 -->
+								<!-- 입력태그 하나 -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
+										<div class="input-group-text">
+											<input id="bookDrop" type="checkbox"
+												aria-label="Checkbox for following text input"> <label
+												for="bookDrop"> 폐기</label>
+										</div>
+									</div>
+									<input type="text" value="책이름 아무거나"
+										class="form-control bookName" readonly> <input
+										type="text" class="form-control" aria-label="{js에 보낼 name값}">
+								</div>
+								<br />
+								<!-- 입력태그 하나 -->
+								<!-- 입력태그 하나 -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
+										<div class="input-group-text">
+											<input id="bookDrop" type="checkbox"
+												aria-label="Checkbox for following text input"> <label
+												for="bookDrop"> 폐기</label>
+										</div>
+									</div>
+									<input type="text" value="책이름 아무거나"
+										class="form-control bookName" readonly> <input
+										type="text" class="form-control" aria-label="{js에 보낼 name값}">
+								</div>
+								<br />
+								<!-- 입력태그 하나 -->
+								<!-- 입력태그 하나 -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
+										<div class="input-group-text">
+											<input id="bookDrop" type="checkbox"
+												aria-label="Checkbox for following text input"> <label
+												for="bookDrop"> 폐기</label>
+										</div>
+									</div>
+									<input type="text" value="책이름 아무거나"
+										class="form-control bookName" readonly> <input
+										type="text" class="form-control" aria-label="{js에 보낼 name값}">
+								</div>
+								<br />
+								<!-- 입력태그 하나 -->
+								<!-- 입력태그 하나 -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
+										<div class="input-group-text">
+											<input id="bookDrop" type="checkbox"
+												aria-label="Checkbox for following text input"> <label
+												for="bookDrop"> 폐기</label>
+										</div>
+									</div>
+									<input type="text" value="책이름 아무거나"
+										class="form-control bookName" readonly> <input
+										type="text" class="form-control" aria-label="{js에 보낼 name값}">
+								</div>
+								<br />
+								<!-- 입력태그 하나 -->
+								<!-- 입력태그 하나 -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
+										<div class="input-group-text">
+											<input id="bookDrop" type="checkbox"
+												aria-label="Checkbox for following text input"> <label
+												for="bookDrop"> 폐기</label>
+										</div>
+									</div>
+									<input type="text" value="책이름 아무거나"
+										class="form-control bookName" readonly> <input
+										type="text" class="form-control" aria-label="{js에 보낼 name값}">
+								</div>
+								<br />
+								<!-- 입력태그 하나 -->
+								<!-- 입력태그 하나 -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
+										<div class="input-group-text">
+											<input id="bookDrop" type="checkbox"
+												aria-label="Checkbox for following text input"> <label
+												for="bookDrop"> 폐기</label>
+										</div>
+									</div>
+									<input type="text" value="책이름 아무거나"
+										class="form-control bookName" readonly> <input
+										type="text" class="form-control" aria-label="{js에 보낼 name값}">
+								</div>
+								<br />
+								<!-- 입력태그 하나 -->
+								<!-- 입력태그 하나 -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
+										<div class="input-group-text">
+											<input id="bookDrop" type="checkbox"
+												aria-label="Checkbox for following text input"> <label
+												for="bookDrop"> 폐기</label>
+										</div>
+									</div>
+									<input type="text" value="책이름 아무거나"
+										class="form-control bookName" readonly> <input
+										type="text" class="form-control" aria-label="{js에 보낼 name값}">
+								</div>
+								<br />
+								<!-- 입력태그 하나 -->
+								<!-- 입력태그 하나 -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
+										<div class="input-group-text">
+											<input id="bookDrop" type="checkbox"
+												aria-label="Checkbox for following text input"> <label
+												for="bookDrop"> 폐기</label>
+										</div>
+									</div>
+									<input type="text" value="책이름 아무거나"
+										class="form-control bookName" readonly> <input
+										type="text" class="form-control" aria-label="{js에 보낼 name값}">
+								</div>
+								<br />
+								<!-- 입력태그 하나 -->
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary">{submit}</button>
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">{cancel}</button>
+							</div>
+						</div>
 
+					</div>
+				</div>
 				<!-- table -->
 				<table id="blackTable"
 					class="table-data-list table-striped table-dark">
@@ -140,7 +420,9 @@
 					<tr>
 						<td>{pub_date}</td>
 						<td>{genre}</td>
-						<td>{보유권수} / <input type="button" value="수정" id="{ISBN**}"/></td>
+						<td>{보유권수} / <input type="button" class="btn"
+							data-toggle="modal" data-target="#exampleModalCenter" value="수정"
+							id="{ISBN**}" /></td>
 						<td>{기타 넣을거}</td>
 					</tr>
 					<!-- 1블럭 -->

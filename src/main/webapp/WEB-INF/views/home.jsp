@@ -27,7 +27,7 @@
         </div>
     </div>
 </div>
-
+tofhaksemfrl
 						<div id="modal">
                        <div class="modal_view">
                         <div class="close-area"><h3>x</h3></div>
