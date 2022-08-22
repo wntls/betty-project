@@ -25,7 +25,7 @@ public class SuggestBoardController {
 	
 	@GetMapping("num/edit")
 	public String suggestBoardEdit() {
-		return "boards/suggest/suggest-edit";
+		return "board/suggest/suggest-edit";
 	}
 	
 }
