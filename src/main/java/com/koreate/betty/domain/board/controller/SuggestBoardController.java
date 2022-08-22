@@ -15,7 +15,7 @@ public class SuggestBoardController {
 	
 	@GetMapping("new")
 	public String freeBoardNew() {
-		return "boards/suggest/suggest-new";
+		return "board/suggest/suggest-new";
 	}
 	
 	@GetMapping("num")

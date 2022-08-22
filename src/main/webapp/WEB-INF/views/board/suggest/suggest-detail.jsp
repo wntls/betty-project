@@ -1,81 +1,122 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
-<%@include file="../../include/header.jsp" %>
+<%@include file="/WEB-INF/views/include/header.jsp"%>
 
 <!-- Blog Details Section Begin -->
-<section class="blog-details spad">
-	<div class="container-md">
-		<div class="row">
+<section>
+	<div class="container-md spad">
+		<div class="row justify-content-center">
 
-			<div class="col-md-2"></div>
+
 			<div class="col-md-8">
-				<div class="row justify-content-center">
-					<div class="col-md-8 section-title">
-						<div class="col-md-12">
-							<div class="breadcrumb__links">
-								<a href="#"><i class="fa fa-home"></i> Home</a>
-								<a href="#">Categories</a> 
-								<span>Romance</span>
+				<div class="board-detail board-title text-secondary">
+					<span>건의사항</span>
+				</div>
+				<div class="w-100"></div>
+				<input class="board-detail board-title" type="text" value="건의사항 제목" readonly>
+				<hr />
+				<div class="row">
+					<div class="col-md-6">
+						<div class="blog__details">
+							<div class="thumb-list-profile">
+								<img src="${path}/resources/img/member/thumb_profile_male.png" />
+								<span class="text-white">닉네임</span>
 							</div>
 						</div>
-						<hr/>
-						<h2>[건의사항]</h2>
 					</div>
+					<div class="col-md-6 text-white"
+						style="line-height: 50px; text-align: right">2050-12-10</div>
+				</div>
+				<div class="board-detail row spad-sm">
+					<textarea id="textArea" readonly>
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]				[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]				[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]				[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							[자유 게시판 내용]
+							</textarea>
+				</div>
+				<div class="row justify-content-center mb-5">
+				<button type="button" class="btn btn-danger">
+					<i class="fa fa-heart-o"></i> 5
+				</button>
+				</div>
 
-					<div class="col-md-8 blog__details__form spad">
-						<form>
-							<div class="col-md-8 section-title">
-								<h4>[건의사항 제목]</h4>
-							</div>
-							<input class="col-md-12 form-control" type="text" value="[건의사항 제목]"
-								readonly />
-							<hr />
-							<div class="row">
-								<div class="col-md-6">
-									<div class="blog__details">
-										<div class="thumb-list-profile">
-											<img src="/c/resources/img/member/thumb_profile_male.png" />
-											<span class="text-white">닉네임</span>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 text-white"
-									style="line-height: 50px; text-align: right">2050-12-10</div>
-							</div>
-							<div class="row spad">
-								<div class="col-md-8 section-title">
-									<h4>[건의사항 내용]</h4>
-								</div>
-								<textarea class="col-md-12 form-control txtAreaLarge" style="resize: none;" 
-									readonly>[건의사항 내용]</textarea>
-							</div>
-						</form>
-					</div>
+				<div class="w-100"></div>
 
-					<div class="col-md-8 blog__details__btns">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="blog__details__btns__item">
-									<button type="submit" class="site-btn">목록</button>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="blog__details__btns__item next__btn">
-									<button type="submit" class=" site-btn">수정</button>
-								</div>
+				<div class="blog__details__btns">
+					<div class="row justify-content-between">
+						<div class="col-md float-left">
+							<button type="button" class="btn btn-danger">목록</button>
+
+						</div>
+						<div class="col-md">
+							<div class="btn-group float-right" role="group">
+								<button class="btn btn-danger">수정</button>
+								<button class="btn btn-secondary ml-3">삭제</button>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-2"></div>
-
 			</div>
 		</div>
 	</div>
 </section>
-<!-- Blog Details Section End -->
 
 
-<%@include file="../../include/footer.jsp" %>
+<%@include file="/WEB-INF/views/include/footer.jsp"%>
+
 </html>
+
+<script>
+	$(document).ready(function (){
+		var ta = $("#textArea");
+		ta.css('height','auto');
+		var taH = ta.prop('scrollHeight');
+		ta.css('height', taH);
+	});
+</script>
