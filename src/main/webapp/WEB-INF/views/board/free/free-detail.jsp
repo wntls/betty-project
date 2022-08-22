@@ -31,7 +31,7 @@
 							style="line-height: 50px; text-align: right">2050-12-10</div>
 					</div>
 					<div class="row spad-sm h-100">
-						<textarea class="board-detail board-content w-100" readonly>
+						<textarea class="board-detail board-content w-100" id="autoTextarea" readonly>
 							[자유 게시판 내용]
 							[자유 게시판 내용]
 							[자유 게시판 내용]
@@ -84,4 +84,32 @@
 
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
+
 </html>
+
+<script>
+const Textarea = () => {
+	  const autoResizeTextarea = () => {
+	    let textarea = document.querySelector('.autoTextarea');
+
+	    if (textarea) {
+	      textarea.style.height = 'auto';
+	      let height = textarea.scrollHeight; // 높이
+	      textarea.style.height = `${height + 8}px`;
+	    }
+	  };
+	  
+	  return (
+	    <>
+	      <textarea
+	        type="text"
+		placeholder={`입력값을 입력해주세요!\n길이는 마음대로입니다.`}
+	        maxLength="1200"
+	        className="autoTextarea"
+	        onKeyDown={autoResizeTextarea}  // keydown이되엇을때마다 autoResizeTextarea실행
+	        onKeyUp={autoResizeTextarea} // keyup이되엇을때마다 autoResizeTextarea실행
+	      />
+	    </>
+	  )
+	}
+</script>
