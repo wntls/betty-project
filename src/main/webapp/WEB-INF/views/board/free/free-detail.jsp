@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 
 <%@include file="/WEB-INF/views/include/header.jsp"%>
-<script src="/c/resources/ckeditor/ckeditor.js"></script>
 
 <!-- Blog Details Section Begin -->
 <section>
@@ -16,13 +15,13 @@
 			</div>
 			<div class="w-100"></div>
 			
-					<input class="board-detail board-title" type="text" value="안녕하세요?" readonly>
+					<input class="board-detail board-title" type="text" value="제목" readonly>
 					<hr />
 					<div class="row">
 						<div class="col-md-6">
 							<div class="blog__details">
 								<div class="thumb-list-profile">
-									<img src="/c/resources/img/member/thumb_profile_male.png" /> <span
+									<img src="${path}/resources/img/member/thumb_profile_male.png" /> <span
 										class="text-white">닉네임</span>
 								</div>
 							</div>
@@ -30,8 +29,8 @@
 						<div class="col-md-6 text-white"
 							style="line-height: 50px; text-align: right">2050-12-10</div>
 					</div>
-					<div class="row spad-sm h-100">
-						<textarea class="board-detail board-content w-100" id="autoTextarea" readonly>
+					<div class="board-detail row spad-sm">
+						<textarea id="textArea" readonly>
 							[자유 게시판 내용]
 							[자유 게시판 내용]
 							[자유 게시판 내용]
@@ -88,28 +87,18 @@
 </html>
 
 <script>
-const Textarea = () => {
-	  const autoResizeTextarea = () => {
-	    let textarea = document.querySelector('.autoTextarea');
-
-	    if (textarea) {
-	      textarea.style.height = 'auto';
-	      let height = textarea.scrollHeight; // 높이
-	      textarea.style.height = `${height + 8}px`;
-	    }
-	  };
-	  
-	  return (
-	    <>
-	      <textarea
-	        type="text"
-		placeholder={`입력값을 입력해주세요!\n길이는 마음대로입니다.`}
-	        maxLength="1200"
-	        className="autoTextarea"
-	        onKeyDown={autoResizeTextarea}  // keydown이되엇을때마다 autoResizeTextarea실행
-	        onKeyUp={autoResizeTextarea} // keyup이되엇을때마다 autoResizeTextarea실행
-	      />
-	    </>
-	  )
-	}
+	$(document).ready(function (){
+		console.log("0");
+		var ta = $("#textArea");
+		console.log("1");
+		console.log("ta "+ta);
+		console.log("2");
+		ta.css('height','auto');
+		console.log("3");
+		var taH = ta.prop('scrollHeight');
+		console.log("4");
+		console.log("taH " + taH);
+		ta.css('height', taH);
+		console.log("5");
+	});
 </script>

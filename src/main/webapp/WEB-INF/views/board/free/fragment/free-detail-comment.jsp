@@ -6,7 +6,7 @@
 
 	<div class="blog__details__comment__item">
 		<div class="anime__review__item__pic">
-			<img src="/c/resources/img/member/thumb_profile_male.png" alt="">
+			<img src="${path}/resources/img/member/thumb_profile_male.png" alt="">
 		</div>
 		<div class="blog__details__comment__item__text">
 			<span>Sep 08, 2020</span>
@@ -20,7 +20,7 @@
 	<div
 		class="blog__details__comment__item blog__details__comment__item--reply">
 		<div class="anime__review__item__pic">
-			<img src="/c/resources/img/member/profile_female.png" alt="">
+			<img src="${path}/resources/img/member/profile_female.png" alt="">
 		</div>
 		<div class="blog__details__comment__item__text">
 			<span>Sep 08, 2020</span>

@@ -21,32 +21,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
 
+	
 	<!-- 추가 -->
-    <link rel="stylesheet" href="${path}/resources/css/table.css" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/mypage.css" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/modal.css" type="text/css">
-   	<link rel="stylesheet" href="${path}/resources/css/sidebar.css" type="text/css">
-   	<link rel="stylesheet" href="${path}/resources/css/betty.css" type="text/css">
-   
+	<link rel="stylesheet" href="${path}/resources/css/betty.css" type="text/css">
+
     <!-- Css Styles -->
     <link rel="stylesheet" href="${path}/resources/css/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/font-awesome.css" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/elegant-icons.css" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="${path}/resources/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/slicknav.css" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/style.css" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/pjs.css" type="text/css">
+    
+   	
+   	
     
     <!-- fullcalendar CDN -->
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.2/main.min.css' />
-    <!-- table style -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" type="text/css">
     <!-- bootstrap icon -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 </head>
 
  
