@@ -48,4 +48,9 @@ public interface SuggestBoardRepository {
 		
 		// 전체 게시글 개수
 		public int listCount(SearchCriteria cri);
+
+		// 건의사항 수정
+		// 여기까지 하고 합침
+		//@UpdateProvider(type=SuggestBoardProvider.class, method="suggestRead")
+		//public SuggestBoard suggestRead(SuggestBoard vo);
 }

@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.koreate.betty.domain.board.dao.FreeBoardRepository;
 import com.koreate.betty.domain.board.dto.form.FreeBoardForm;
-import com.koreate.betty.domain.board.dto.form.FreeBoardRemoveForm;
-import com.koreate.betty.domain.board.dto.form.FreeBoardUpdateForm;
 import com.koreate.betty.domain.board.vo.FreeBoard;
 
 @Service

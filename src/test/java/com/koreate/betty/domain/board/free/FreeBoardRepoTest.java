@@ -3,7 +3,6 @@ package com.koreate.betty.domain.board.free;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -12,9 +11,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.koreate.betty.domain.board.dto.form.FreeBoardForm;
-import com.koreate.betty.domain.board.dto.form.FreeBoardRemoveForm;
-import com.koreate.betty.domain.board.dto.form.FreeBoardUpdateForm;
-import com.koreate.betty.domain.board.dto.form.FreeBoardWriteForm;
 import com.koreate.betty.domain.board.service.FreeBoardService;
 import com.koreate.betty.domain.board.vo.FreeBoard;
 import com.koreate.betty.global.config.AppConfig;

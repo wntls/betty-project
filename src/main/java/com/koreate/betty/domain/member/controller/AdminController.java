@@ -20,7 +20,6 @@ public class AdminController {
 	
 	@GetMapping("members")
 	public String memberListOfAdmin() {
-		System.out.println("CALL");
 		return "admin/admin-members";
 	}
 	
