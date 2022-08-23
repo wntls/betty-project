@@ -17,6 +17,7 @@
 				<br/>
 				sign
 				<a class="dropdown-item" href="${path}/sign/in">로그인</a>
+				<a class="dropdown-item" href="${path}/sign/up">회원가입 선택</a>
 				<a class="dropdown-item" href="${path}/sign/up/member">회원가입</a>
 				<a class="dropdown-item" href="${path}/sign/up/staff">직원 회원가입</a> 
 				 

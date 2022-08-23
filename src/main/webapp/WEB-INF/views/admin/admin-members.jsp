@@ -8,9 +8,7 @@
 
 <section class="product-page spad">
 	<div class="container-md">
-		<div class="row">
-		<div class="col-md-1 text-white">nav</div>
-	
+		<div class="row justify-content-center">
 		<!-- 섹션 -->
 		<div class="col-md-10">
 			<!-- 타이틀 부분 -->
@@ -212,9 +210,6 @@
 				
 				
 				<!-- col-md-10 -->
-			</div>
-			<div class="col-md-1 text-white">
-				recently book
 			</div>
 		</div>
 		<!-- container -->
