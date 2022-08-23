@@ -12,21 +12,21 @@
                     <h3>Sign UP</h3>
                     <form action="#">
                         <div class="input__item">
-                            <input type="text" name="uid" placeholder="아이디를 입력 하세요" />
+                            <input type="text" name="memberId" placeholder="아이디를 입력 하세요" />
                             <span><i class="bi bi-person-video2"></i></span>
                         </div>
                         <div class="input__item">
-                            <input type="password" name="upw"
+                            <input type="password" name="pw"
                             placeholder="비밀번호 입력하세요"/>
                             <span class="icon_lock"></span>
                         </div>
                         <div class="input__item">
-                            <input type="password" name="repw"
+                            <input type="password" name="rePw"
                             placeholder="비밀번호 재입력하세요"/>
                             <span class="icon_lock"></span>
                         </div>
                         <div class="input__item">
-                            <input type="text" name="uname"
+                            <input type="text" name="name"
                             placeholder="이름을 입력하세요"/>
                             <span class="icon_profile"></span>
                         </div>
