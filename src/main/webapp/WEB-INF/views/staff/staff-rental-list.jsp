@@ -4,34 +4,10 @@
 
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 
-<style>
-#blackTable {
-	border-spacing: 2px;
-	border-collapse: separate;
-}
-
-#blackTable tr td {
-	min-width: 50px;
-	font-size: medium;
-}
-
-#blackTable tr td:first-child {
-	max-width: 50px;
-}
-
-.genreSel {
-	max-width: 100px;
-}
-
-</style>
-
 <section>
-	<div class="container-lg">
-		<div class="row">
-			<div class="col-lg-2">
-				<%@include file="/WEB-INF/views/include/nav/staff-side-nav.jsp"%>
-			</div>
-			<div class="col-lg-8">
+	<div class="container-md">
+		<div class="row justify-content-center">
+			<div class="col-md-8">
 				<!-- 섹션 -->
 				<!-- 타이틀 부분 -->
 
@@ -42,7 +18,7 @@
 								<h4>대여 현황 및 예약 정보</h4>
 							</div>
 						</div>
-						<div class="col-lg-4 col-lg-4 col-sm-6 anime__details__btn">
+						<div class="col-md-4 col-md-4 col-sm-6 anime__details__btn">
 							<button class="follow-btn float-right"> 회원 리스트 </button>
 
 						</div>
@@ -222,11 +198,7 @@
 					<!-- 1블럭 -->
 					
 				</table>
-				<!-- col-lg-10 -->
 			</div>
-
-		</div>
-		<div class="col-lg-2">
 		</div>
 	</div>
 </section>

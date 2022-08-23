@@ -10,7 +10,7 @@
 			<div class="col-md-auto">
 				<div class="login__form">
 					<h3>회원가입</h3>
-					<form action="#">
+					<form>
 						<div class="input__item">
 							<input type="text" name="uid" placeholder="아이디를 입력 하세요" /> <span><i
 								class="bi bi-person-video2"></i></span>

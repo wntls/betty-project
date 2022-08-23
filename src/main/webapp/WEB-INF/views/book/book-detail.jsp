@@ -22,17 +22,17 @@
                             <div class="row">
                                 <div class="col-md-6 col-md-6">
                                     <ul>
-                                        <li><span>장르:</span> 소설</li>
-                                        <li><span>작가:</span> 무라카미 하루키</li>
-                                        <li><span>출판일:</span> 2020.02.02 </li>
-                                        <li><span>출판사:</span> 문학동네 </li>
+                                        <li><span>장르:</span> {book.genre}</li>
+                                        <li><span>작가:</span> {book.auth}</li>
+                                        <li><span>출판일:</span> {book.pubDate} </li>
+                                        <li><span>출판사:</span> {book.pub} </li>
                                     </ul>
                                 </div>
                                 <div class="col-md-6 col-md-6">
                                     <ul>
-                                        <li><span>쪽수:</span> 721쪽</li>
-                                        <li><span>무게:</span> 516g</li>
-                                        <li><span>ISBN:</span> 9791189909390</li>
+                                        <li><span>쪽수:</span> {book.page}</li>
+                                        <li><span>재고:</span> {book.stock}(?)</li>
+                                        <li><span>ISBN:</span> {book.isbn}</li>
                                         <li><span>조회수:</span> 131,541</li>
                                     </ul>
                                 </div>

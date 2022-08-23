@@ -40,8 +40,11 @@
 							<p class="card-text">{title}</p>
 						</div>
 					</div>
-
+				</div>
+					
 					<div class="w-100 mb-5"></div>
+				
+				<div class="row justify-content-around">
 
 					<div class="card col-md-2">
 						<img src="${path}/resources/img/book/800/9791158791919.jpg"
@@ -78,7 +81,23 @@
 
 				</div>
 
-				<div class="row justify-content-center mt-3">
+
+				<div class="row justify-content-between mt-5">
+					<form>
+						<div class="form-row input-group mb-3">
+							<div class="input-group-prepend">
+								<select>
+									<option value="">제목</option>
+									<option value="">작성자</option>
+									<option value="">내용</option>
+								</select>
+							</div>
+							<input type="text" style="height: 42px" class="form-control">
+							<div class="input-group-append">
+								<button type="submit" class="btn btn-primary">검색하기</button>
+							</div>
+						</div>
+					</form>
 					<!-- 페이징 처리 -->
 					<div class="form-row">
 						<ul class="pagination" id="pa">
