@@ -33,9 +33,9 @@
 								class="icon_lock"></span>
 						</div>
 						<div class="form-check" style="width: 100%; text-align: center">
-							<input class="form-check-input" type="checkbox" name="cookie" id="loginCookie">
-							<label class="form-check-label" for="loginCookie">로그인시 쿠키
-								저장</label>
+							<input class="form-check-input" type="checkbox" name="cookie"
+								id="loginCookie"> <label class="form-check-label"
+								for="loginCookie">로그인시 쿠키 저장</label>
 						</div>
 
 						<!-- 버튼 크기 == input__itme 크기 -->
@@ -48,35 +48,24 @@
 				<ul
 					class="list-group list-group-horizontal-md justify-content-center">
 
-					<li class="list-group-item"><a href="">아이디 찾기</a></li>
-					<li class="list-group-item"><a href="">비밀번호 찾기</a></li>
+					<li class="list-group-item"><a data-toggle="modal"
+						data-target="#idFindModal">아이디 찾기</a></li>
+					<li class="list-group-item"><a data-toggle="modal"
+						data-target="#passFindModal">비밀번호 찾기</a></li>
 				</ul>
-
 			</div>
 		</div>
-		<!-- Button trigger modal -->
-		<button type="button" class="btn btn-primary" data-toggle="modal"
-			data-target="#exampleModalCenter">(onclick{아이디찾기}), hide</button>
-		<button type="button" class="btn btn-primary" data-toggle="modal"
-			data-target="#passFindModal">비번찾기 모달</button>
-		<button type="button" class="btn btn-primary" data-toggle="modal"
-			data-target="#moone">고객문의</button>
-		
 
-
-
-		<!-- 고객문의 모달 -->
-		<div class="modal fade" id="moone" data-backdrop="static"
-			tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-			aria-hidden="true">
+		<!-- idFind Modal -->
+		<div class="modal fade" id="idFindModal" data-backdrop="static"
+			tabindex="-1" role="dialog" aria-hidden="true">
 			<div
 				class="modal-dialog modal-dialog-scrollable modal-dialog-centered"
 				role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalCenterTitle">고객 문의</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
+						<h5 class="modal-title">비밀번호 찾기</h5>
+						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="false">&times;</span>
 						</button>
 					</div>
@@ -84,44 +73,24 @@
 						<!-- 입력태그 하나 -->
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<div class="input-group-text">작성자</div>
+								<div class="input-group-text">이름</div>
 							</div>
 							<input type="text" class="form-control"
-								aria-label="{js에 보낼 name값}" value="{yourName}"
-								readonly="readonly">
-						</div>
-						<br />
-						<!-- 입력태그 하나 -->
-						<!-- 입력태그 하나 -->
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<div class="input-group-text">제목</div>
-							</div>
-							<input type="text" class="form-control"
-								aria-label="{js에 보낼 name값}">
-						</div>
-						<br />
-						<!-- 입력태그 하나 -->
-						<!-- 입력태그 하나 -->
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<div class="input-group-text">내용</div>
-							</div>
-							<input type="text" class="form-control"
-								aria-label="{js에 보낼 name값}">
+								<button id="idFindModalPhoneCheck">전화번호 인증</button>
 						</div>
 						<br />
 						<!-- 입력태그 하나 -->
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary">{transferSubmit}</button>
+						<button type="button" class="btn btn-primary">{submit}</button>
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">{cancel}</button>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- 고객문의 모달/ -->
+		<!-- id Find Modal/ -->
+
 
 		<!-- passFindModal -->
 		<div class="modal fade" id="passFindModal" data-backdrop="static"
@@ -145,7 +114,6 @@
 								<div class="input-group-text" id="passFindInputID">아이디</div>
 							</div>
 							<input type="text" class="form-control"
-								aria-label="{js에 보낼 name값}">
 						</div>
 						<br />
 						<!-- 입력태그 하나 -->
@@ -156,7 +124,6 @@
 								</div>
 							</div>
 							<input type="text" class="form-control"
-								aria-label="{js에 보낼 name값}">
 						</div>
 						<br />
 						<!-- 입력태그 하나 -->
@@ -173,47 +140,9 @@
 		<!-- passFind modal/ -->
 
 
-		<!-- idFind Modal -->
-		<div class="modal fade" id="exampleModalCenter" data-backdrop="static"
-			tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-			aria-hidden="true">
-			<div
-				class="modal-dialog modal-dialog-scrollable modal-dialog-centered"
-				role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalCenterTitle">비밀번호 찾기</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="false">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<!-- 입력태그 하나 -->
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<div class="input-group-text">이름</div>
-							</div>
-							<input type="text" class="form-control"
-								aria-label="{js에 보낼 name값}">
-							<button id="idFindModalPhoneCheck">전화번호 인증</button>
-						</div>
-						<br />
-						<!-- 입력태그 하나 -->
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary">{submit}</button>
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">{cancel}</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- id Find Modal/ -->
+
 	</div>
 </section>
 <!-- Login Section End -->
 
-
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
-</html>

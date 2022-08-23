@@ -473,7 +473,7 @@ mark,
   padding: 0.25rem;
   background-color: #fff;
   border: 1px solid #dee2e6;
-  border-radius: 0.25rem;
+  border-radius: 50%;
   max-width: 100%;
   height: auto;
 }
@@ -6072,6 +6072,7 @@ a.close.disabled {
 .modal-title {
   margin-bottom: 0;
   line-height: 1.5;
+  color: black;
 }
 
 .modal-body {

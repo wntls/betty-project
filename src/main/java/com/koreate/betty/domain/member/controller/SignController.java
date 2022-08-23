@@ -20,10 +20,8 @@ public class SignController {
 	
 	private final MemberService ms;
 	
-	@GetMapping("inin")
-	public String login() {
-		
-		
+	@GetMapping("in")
+	public String signIn() {
 		return "sign/sign-in";
 	}
 		
@@ -33,18 +31,18 @@ public class SignController {
 	}
 	
 	@GetMapping("up/member")
-	public String signUP() {
+	public String signUpMember() {
 		return "sign/sign-up-member";
 	}
 	
 	@GetMapping("up/staff")
-	public String signUp_staff() {
+	public String signUpStaff() {
 		return "sign/sign-up-staff";
 	}
 	
 
-	@GetMapping("in")
-	public String login(LoginForm form, HttpSession session) {
+	@PostMapping("in")
+	public String signIn(LoginForm form, HttpSession session) {
 		Member loginMember = ms.loginMember(form);
 		session.setAttribute("loginMember", loginMember);
 		return "redirect:/";

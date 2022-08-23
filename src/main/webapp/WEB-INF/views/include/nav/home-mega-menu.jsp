@@ -25,9 +25,10 @@
 				
 				member
 				
-				<a class="dropdown-item" href="${path}/members/num">대시보드</a>
-				<a class="dropdown-item" href="${path}/members/num/edit">회원 정보 수정</a>
-				<a class="dropdown-item" href="${path}/members/num/rentals">대여 목록</a> 
+				<a class="dropdown-item" href="${path}/members/dashboard">대시보드</a>
+				<a class="dropdown-item" href="${path}/members/num/charge">포인트충전</a> 
+				<a class="dropdown-item" href="${path}/members/num">회원정보</a>
+				<a class="dropdown-item" href="${path}/members/num/rentals">대여이력</a> 
 				
 				<br/>
 				

@@ -22,7 +22,7 @@
 				<form>
 					<table class="table table-borderless table-dark mb-5">
 						<tbody>
-							<!-- 2행 -->
+							<!-- 1행 -->
 							<tr>
 								<th scope="row">대여 상태</th>
 								<td colspan="2">
@@ -38,7 +38,7 @@
 								</td>
 								<td></td>
 							</tr>
-							<!-- 3행 -->
+							<!-- 2행 -->
 							<tr>
 								<th scope="row">도서 발행일 별</th>
 								<td colspan="3">
@@ -53,7 +53,7 @@
 									</div>
 								</td>
 							</tr>
-							<!-- 4행 -->
+							<!-- 3행 -->
 							<tr>
 								<th scope="row">검색</th>
 								<td>
