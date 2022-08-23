@@ -105,7 +105,7 @@
 					<tr>
 						<td rowspan="3">1</td>
 						<td class="책 이미지" style="max-width: 135px" rowspan="3"><img
-							src="${path}/resources/img/book/100/9788935213344.jpg" /></td>
+							src="${path}/resources/img/book/origin/9788935213344.jpg" /></td>
 						<td>{title}</td>
 						<td>{code}</td>
 						<td>{auth}</td>
@@ -140,7 +140,7 @@
 					<tr>
 						<td rowspan="3">1</td>
 						<td class="책 이미지" style="max-width: 135px" rowspan="3"><img
-							src="${path}/resources/img/book/100/9791190826556.jpg" /></td>
+							src="${path}/resources/img/book/origin/9791190826556.jpg" /></td>
 						<td>{title}</td>
 						<td>{code}</td>
 						<td>{auth}</td>
@@ -175,7 +175,7 @@
 					<tr>
 						<td rowspan="3">1</td>
 						<td class="책 이미지" style="max-width: 135px" rowspan="3"><img
-							src="${path}/resources/img/book/400/9788983711892.jpg" /></td>
+							src="${path}/resources/img/book/origin/9788935213344.jpg" /></td>
 						<td>{title}</td>
 						<td>{code}</td>
 						<td>{auth}</td>

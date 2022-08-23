@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 
 <section>
@@ -78,6 +79,9 @@
 						</table>
 					</div>
 				</form>
+				
+				
+				
 				<div class="modal fade" id="exampleModalCenter"
 					data-backdrop="static" tabindex="-1" role="dialog"
 					aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -86,8 +90,7 @@
 						role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalCenterTitle">Modal
-									title</h5>
+								<h5 class="modal-title">{title}</h5>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-label="Close">
 									<span aria-hidden="false">&times;</span>
@@ -99,257 +102,31 @@
 									<div class="input-group-prepend">
 										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
 										<div class="input-group-text">
-											<input id="bookDrop" type="checkbox"
-												aria-label="Checkbox for following text input"> <label
-												for="bookDrop"> 폐기</label>
+											<input id="bookDrop" type="checkbox"> 
+											<label for="bookDrop">폐기</label>
 										</div>
 									</div>
-									<input type="text" value="책이름 아무거나"
-										class="form-control bookName" readonly> <input
-										type="text" class="form-control" aria-label="{js에 보낼 name값}">
+									<input type="text" value="{code}" class="form-control bookName" readonly> 
+									<input type="text" class="form-control">
 								</div>
-								<br />
-								<!-- 입력태그 하나 -->
-								<!-- 입력태그 하나 -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
-										<div class="input-group-text">
-											<input id="bookDrop" type="checkbox"
-												aria-label="Checkbox for following text input"> <label
-												for="bookDrop"> 폐기</label>
-										</div>
-									</div>
-									<input type="text" value="책이름 아무거나"
-										class="form-control bookName" readonly> <input
-										type="text" class="form-control" aria-label="{js에 보낼 name값}">
-								</div>
-								<br />
-								<!-- 입력태그 하나 -->
-								<!-- 입력태그 하나 -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
-										<div class="input-group-text">
-											<input id="bookDrop" type="checkbox"
-												aria-label="Checkbox for following text input"> <label
-												for="bookDrop"> 폐기</label>
-										</div>
-									</div>
-									<input type="text" value="책이름 아무거나"
-										class="form-control bookName" readonly> <input
-										type="text" class="form-control" aria-label="{js에 보낼 name값}">
-								</div>
-								<br />
-								<!-- 입력태그 하나 -->
-								<!-- 입력태그 하나 -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
-										<div class="input-group-text">
-											<input id="bookDrop" type="checkbox"
-												aria-label="Checkbox for following text input"> <label
-												for="bookDrop"> 폐기</label>
-										</div>
-									</div>
-									<input type="text" value="책이름 아무거나"
-										class="form-control bookName" readonly> <input
-										type="text" class="form-control" aria-label="{js에 보낼 name값}">
-								</div>
-								<br />
-								<!-- 입력태그 하나 -->
-								<!-- 입력태그 하나 -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
-										<div class="input-group-text">
-											<input id="bookDrop" type="checkbox"
-												aria-label="Checkbox for following text input"> <label
-												for="bookDrop"> 폐기</label>
-										</div>
-									</div>
-									<input type="text" value="책이름 아무거나"
-										class="form-control bookName" readonly> <input
-										type="text" class="form-control" aria-label="{js에 보낼 name값}">
-								</div>
-								<br />
-								<!-- 입력태그 하나 -->
-								<!-- 입력태그 하나 -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
-										<div class="input-group-text">
-											<input id="bookDrop" type="checkbox"
-												aria-label="Checkbox for following text input"> <label
-												for="bookDrop"> 폐기</label>
-										</div>
-									</div>
-									<input type="text" value="책이름 아무거나"
-										class="form-control bookName" readonly> <input
-										type="text" class="form-control" aria-label="{js에 보낼 name값}">
-								</div>
-								<br />
-								<!-- 입력태그 하나 -->
-								<!-- 입력태그 하나 -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
-										<div class="input-group-text">
-											<input id="bookDrop" type="checkbox"
-												aria-label="Checkbox for following text input"> <label
-												for="bookDrop"> 폐기</label>
-										</div>
-									</div>
-									<input type="text" value="책이름 아무거나"
-										class="form-control bookName" readonly> <input
-										type="text" class="form-control" aria-label="{js에 보낼 name값}">
-								</div>
-								<br />
-								<!-- 입력태그 하나 -->
-								<!-- 입력태그 하나 -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
-										<div class="input-group-text">
-											<input id="bookDrop" type="checkbox"
-												aria-label="Checkbox for following text input"> <label
-												for="bookDrop"> 폐기</label>
-										</div>
-									</div>
-									<input type="text" value="책이름 아무거나"
-										class="form-control bookName" readonly> <input
-										type="text" class="form-control" aria-label="{js에 보낼 name값}">
-								</div>
-								<br />
-								<!-- 입력태그 하나 -->
-								<!-- 입력태그 하나 -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
-										<div class="input-group-text">
-											<input id="bookDrop" type="checkbox"
-												aria-label="Checkbox for following text input"> <label
-												for="bookDrop"> 폐기</label>
-										</div>
-									</div>
-									<input type="text" value="책이름 아무거나"
-										class="form-control bookName" readonly> <input
-										type="text" class="form-control" aria-label="{js에 보낼 name값}">
-								</div>
-								<br />
-								<!-- 입력태그 하나 -->
-								<!-- 입력태그 하나 -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
-										<div class="input-group-text">
-											<input id="bookDrop" type="checkbox"
-												aria-label="Checkbox for following text input"> <label
-												for="bookDrop"> 폐기</label>
-										</div>
-									</div>
-									<input type="text" value="책이름 아무거나"
-										class="form-control bookName" readonly> <input
-										type="text" class="form-control" aria-label="{js에 보낼 name값}">
-								</div>
-								<br />
-								<!-- 입력태그 하나 -->
-								<!-- 입력태그 하나 -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
-										<div class="input-group-text">
-											<input id="bookDrop" type="checkbox"
-												aria-label="Checkbox for following text input"> <label
-												for="bookDrop"> 폐기</label>
-										</div>
-									</div>
-									<input type="text" value="책이름 아무거나"
-										class="form-control bookName" readonly> <input
-										type="text" class="form-control" aria-label="{js에 보낼 name값}">
-								</div>
-								<br />
-								<!-- 입력태그 하나 -->
-								<!-- 입력태그 하나 -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
-										<div class="input-group-text">
-											<input id="bookDrop" type="checkbox"
-												aria-label="Checkbox for following text input"> <label
-												for="bookDrop"> 폐기</label>
-										</div>
-									</div>
-									<input type="text" value="책이름 아무거나"
-										class="form-control bookName" readonly> <input
-										type="text" class="form-control" aria-label="{js에 보낼 name값}">
-								</div>
-								<br />
-								<!-- 입력태그 하나 -->
-								<!-- 입력태그 하나 -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
-										<div class="input-group-text">
-											<input id="bookDrop" type="checkbox"
-												aria-label="Checkbox for following text input"> <label
-												for="bookDrop"> 폐기</label>
-										</div>
-									</div>
-									<input type="text" value="책이름 아무거나"
-										class="form-control bookName" readonly> <input
-										type="text" class="form-control" aria-label="{js에 보낼 name값}">
-								</div>
-								<br />
-								<!-- 입력태그 하나 -->
-								<!-- 입력태그 하나 -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
-										<div class="input-group-text">
-											<input id="bookDrop" type="checkbox"
-												aria-label="Checkbox for following text input"> <label
-												for="bookDrop"> 폐기</label>
-										</div>
-									</div>
-									<input type="text" value="책이름 아무거나"
-										class="form-control bookName" readonly> <input
-										type="text" class="form-control" aria-label="{js에 보낼 name값}">
-								</div>
-								<br />
-								<!-- 입력태그 하나 -->
-								<!-- 입력태그 하나 -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<!-- 내용물이 뭔가 조금씩 어긋나면 어긋나는원인찾아서 마진, 패딩 없애면 대부분 해결된다!!! -->
-										<div class="input-group-text">
-											<input id="bookDrop" type="checkbox"
-												aria-label="Checkbox for following text input"> <label
-												for="bookDrop"> 폐기</label>
-										</div>
-									</div>
-									<input type="text" value="책이름 아무거나"
-										class="form-control bookName" readonly> <input
-										type="text" class="form-control" aria-label="{js에 보낼 name값}">
-								</div>
-								<br />
-								<!-- 입력태그 하나 -->
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-primary">{submit}</button>
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">{cancel}</button>
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">{cancel}</button>
 							</div>
 						</div>
 
 					</div>
 				</div>
+				
+				
+				
 				<!-- table -->
 				<table id="blackTable"
 					class="table-data-list table-striped table-dark">
 					<!-- 1블럭 -->
 					<!-- 1 -->
-					<tr class="text-center">
+					<tr id="tr1">
 						<td>번호</td>
 						<td>책 표지</td>
 						<td style="min-width: 130px">도서명</td>
@@ -357,33 +134,32 @@
 						<td>작가</td>
 						<td>출판사</td>
 					</tr>
-					<!-- 2 -->
-					<tr>
+					<tr id="tr2">
 						<td rowspan="3">1</td>
-						<td class="책 이미지" style="max-width: 135px" rowspan="3"><img
-							src="${path}/resources/img/book/100/9788935213344.jpg" /></td>
-						<td>{title}</td>
-						<td>{code}</td>
+						<td class="책 이미지" style="max-width: 135px" rowspan="3">
+						<img src="${path}/resources/img/book/origin/9788935213344.jpg" /></td>
+						<td class="tempTitle">{제목넘기기}</td>
+						<td>코드넘기자</td>
 						<td>{auth}</td>
 						<td>{pub}</td>
 					</tr>
-					<!-- 3 -->
-					<tr>
+					<tr id="tr3">
 						<td style="min-width: 130px">출판일</td>
 						<td style="min-width: 130px">장르</td>
 						<td style="min-width: 130px">보유 권수</td>
 						<td style="min-width: 130px">기타</td>
 					</tr>
-					<!-- 4 -->
-					<tr>
+					<tr id="tr4">
 						<td>{pub_date}</td>
 						<td>{genre}</td>
-						<td>{보유권수} / <input type="button" class="btn"
-							data-toggle="modal" data-target="#exampleModalCenter" value="수정"
-							id="{ISBN**}" /></td>
+						<td>
+							{보유권수} / 
+							<input type="button" onclick="throwData(this)" class="btn" data-toggle="modal" data-target="#exampleModalCenter" value="수정" id="testBtn" />
+						</td>
 						<td>{기타 넣을거}</td>
 					</tr>
-					<!-- 1블럭 -->
+					
+					
 					<!-- 1블럭 -->
 					<!-- 1 -->
 					<tr class="text-center">
@@ -398,7 +174,7 @@
 					<tr>
 						<td rowspan="3">1</td>
 						<td style="max-width: 135px" rowspan="3" class="책 이미지"><img
-							src="${path}/resources/img/book/100/9788935213344.jpg" /></td>
+							src="${path}/resources/img/book/origin/9788935213344.jpg" /></td>
 						<td>{title}</td>
 						<td>{code}</td>
 						<td>{auth}</td>
@@ -418,81 +194,42 @@
 						<td>{보유권수}</td>
 						<td>{기타 넣을거}</td>
 					</tr>
-					<!-- 1블럭 -->
-					<!-- 1블럭 -->
-					<!-- 1 -->
-					<tr class="text-center">
-						<td>번호</td>
-						<td>책 표지</td>
-						<td style="width: 130px">도서명</td>
-						<td>ISBN</td>
-						<td>작가</td>
-						<td>출판사</td>
-					</tr>
-					<!-- 2 -->
-					<tr>
-						<td rowspan="3">1</td>
-						<td style="max-width: 135px" rowspan="3" class="책 이미지"><img
-							src="${path}/resources/img/book/100/9788935213344.jpg" /></td>
-						<td>{title}</td>
-						<td>{code}</td>
-						<td>{auth}</td>
-						<td>{pub}</td>
-					</tr>
-					<!-- 3 -->
-					<tr>
-						<td style="width: 130px">출판일</td>
-						<td style="width: 130px">장르</td>
-						<td style="width: 130px">보유 권수</td>
-						<td style="width: 130px">기타</td>
-					</tr>
-					<!-- 4 -->
-					<tr>
-						<td>{pub_date}</td>
-						<td>{genre}</td>
-						<td>{보유권수}</td>
-						<td>{기타 넣을거}</td>
-					</tr>
-					<!-- 1 -->
-					<tr class="text-center">
-						<td>번호</td>
-						<td>책 표지</td>
-						<td style="width: 130px">도서명</td>
-						<td>ISBN</td>
-						<td>작가</td>
-						<td>출판사</td>
-					</tr>
-					<!-- 2 -->
-					<tr>
-						<td rowspan="3">1</td>
-						<td style="max-width: 135px" rowspan="3" class="책 이미지"><img
-							src="${path}/resources/img/book/100/9788935213344.jpg" /></td>
-						<td>{title}</td>
-						<td>{code}</td>
-						<td>{auth}</td>
-						<td>{pub}</td>
-					</tr>
-					<!-- 3 -->
-					<tr>
-						<td style="width: 130px">출판일</td>
-						<td style="width: 130px">장르</td>
-						<td style="width: 130px">보유 권수</td>
-						<td style="width: 130px">기타</td>
-					</tr>
-					<!-- 4 -->
-					<tr>
-						<td>{pub_date}</td>
-						<td>{genre}</td>
-						<td>{보유권수}</td>
-						<td>{기타 넣을거}</td>
-					</tr>
-					<!-- 1블럭 -->
 				</table>
-				<!-- col-md-10 -->
 			</div>
 		</div>
 	</div>
 </section>
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
+
+<script>
+
+		function throwData(ev){
+			
+			console.log(ev.closest("#tr2"));
+			let tr = ev.parentNode.parentNode.previousSibling.previousSibling.previousSibling.previousSibling;
+			let title = tr.children[2].innerHTML;
+			let code = tr.children[3].innerHTML;
+			code = { "code" : code };			
+			console.log(code);
+			console.log($('.modal-title').text());
+			$('.modal-title').text(title);
+			$('.bookName').val(code);
+			
+		
+			
+			$.ajax({
+				url: '${path}/staff/books/plz',
+				type: 'put',
+				data: code,
+				contentType: "application/json",
+				dataType: 'json',
+				success: function(result){
+					$('.modal-title').text(result.title);
+					$('.bookName').val(result.content);
+				}
+			})
+		}
+
+</script>
 

@@ -33,6 +33,7 @@
 		</div>
 	</div>
 </div>
+
 <div class="modal fade" id="exampleModalCenter" tabindex="-1"
 	role="dialog" aria-labelledby="exampleModalCenterTitle"
 	aria-hidden="true">
@@ -78,6 +79,7 @@
 		</div>
 	</div>
 </div>
+
 <!-- Product Section Begin -->
 <section class="product spad">
 	<div class="container-md">
@@ -102,7 +104,7 @@
 						<div class="col-md-4">
 							<div class="product__item">
 								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/800/9791158791919.jpg">
+									data-setbg="${path}/resources/img/book/origin/9788935213344.jpg">
 									<!-- <div class="ep">18 / 18</div> -->
 									<div class="comment">
 										<i class="fa fa-comments"></i> 댓글
@@ -126,7 +128,7 @@
 						<div class="col-md-4">
 							<div class="product__item">
 								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/800/9791158791919.jpg">
+									data-setbg="${path}/resources/img/book/origin/9788935213344.jpg">
 									<!-- <div class="ep">18 / 18</div> -->
 									<div class="comment">
 										<i class="fa fa-comments"></i> 댓글
@@ -150,7 +152,7 @@
 						<div class="col-md-4">
 							<div class="product__item">
 								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/800/9791158791919.jpg">
+									data-setbg="${path}/resources/img/book/origin/9788935213344.jpg">
 									<!-- <div class="ep">18 / 18</div> -->
 									<div class="comment">
 										<i class="fa fa-comments"></i> 댓글
@@ -192,7 +194,7 @@
 						<div class="col-md-4">
 							<div class="product__item">
 								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/800/9791158791919.jpg">
+									data-setbg="${path}/resources/img/book/origin/9788935213344.jpg">
 									<!-- <div class="ep">18 / 18</div> -->
 									<div class="comment">
 										<i class="fa fa-comments"></i> 11
@@ -215,10 +217,10 @@
 						<div class="col-md-4">
 							<div class="product__item">
 								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/800/9791158791919.jpg">
+									data-setbg="${path}/resources/img/book/origin/9788935213344.jpg">
 									<!-- <div class="ep">18 / 18</div> -->
 									<div class="comment">
-										<i class="fa fa-comments"></i> 11
+										<i class="fa fa-comments"></i> 11 
 									</div>
 									<div class="view">
 										<i class="fa fa-eye"></i> 9141
@@ -238,7 +240,7 @@
 						<div class="col-md-4">
 							<div class="product__item">
 								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/800/9791158791919.jpg">
+									data-setbg="${path}/resources/img/book/origin/9788935213344.jpg">
 									<!-- <div class="ep">18 / 18</div> -->
 									<div class="comment">
 										<i class="fa fa-comments"></i> 11
@@ -279,7 +281,7 @@
 						<div class="col-md-4">
 							<div class="product__item">
 								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/800/9791158791919.jpg">
+									data-setbg="${path}/resources/img/book/origin/9788935213344.jpg">
 									<div class="ep">18 / 18</div>
 									<div class="comment">
 										<i class="fa fa-comments"></i> 11
@@ -302,7 +304,7 @@
 						<div class="col-md-4">
 							<div class="product__item">
 								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/800/9791158791919.jpg">
+									data-setbg="${path}/resources/img/book/origin/9788935213344.jpg">
 									<div class="ep">18 / 18</div>
 									<div class="comment">
 										<i class="fa fa-comments"></i> 11
@@ -326,7 +328,7 @@
 						<div class="col-md-4">
 							<div class="product__item">
 								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/800/9791158791919.jpg">
+									data-setbg="${path}/resources/img/book/origin/9788935213344.jpg">
 									<div class="ep">18 / 18</div>
 									<div class="comment">
 										<i class="fa fa-comments"></i> 11
