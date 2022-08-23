@@ -18,6 +18,11 @@ public class MemberController {
 		return "member/member-edit";
 	}
 	
+	@GetMapping("info")
+	public String memberInfo() {
+		return "member/member-info";
+	}
+	
 	@GetMapping("rentals")
 	public String memberRendal() {
 		return "member/member-rental-list";

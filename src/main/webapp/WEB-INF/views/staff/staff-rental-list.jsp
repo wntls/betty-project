@@ -8,9 +8,6 @@
 	<div class="container-md spad">
 		<div class="row justify-content-center">
 			<div class="col-md-8">
-				<!-- 섹션 -->
-				<!-- 타이틀 부분 -->
-
 				<div class="product__page__title">
 					<div class="row">
 						<div class="col-md-8 col-md-8 col-md-6 title__align__center">
