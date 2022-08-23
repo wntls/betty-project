@@ -10,7 +10,7 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="anime__details__pic set-bg"
-						data-setbg="${path}/resources/img/book/800/9791158791919.jpg">
+						data-setbg="${path}/resources/img/book/origin/9788935213344.jpg">
 					</div>
 				</div>
 				<div class="col-md-8">
@@ -57,8 +57,5 @@
 		<%@include file="/WEB-INF/views/book/fragment/book-detail-comment.jsp"%>
 	</div>
 </section>
-<!--  BookDetails Section End -->
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
-
-</html>
