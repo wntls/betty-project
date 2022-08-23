@@ -236,11 +236,6 @@
 	min-width: 400px;
 }
 
-.flex-nowrap, .form-control {
-	max-width: 90%;
-	min-height: 51px;
-}
-
 .custom-select {
 	max-width: 70%;
 	min-height: 51px;
