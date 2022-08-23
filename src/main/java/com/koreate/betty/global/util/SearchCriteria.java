@@ -1,6 +1,4 @@
-package net.koreate.common.utils;
-
-import com.koreate.betty.global.util.Criteria;
+package com.koreate.betty.global.util;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
