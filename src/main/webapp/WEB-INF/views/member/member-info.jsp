@@ -9,13 +9,13 @@
 			<div class="section-title">
 				<div class="row justify-content-between">
 					<div class="col-auto">
-						<h4>회원 정보 수정</h4>
+						<h4>회원 정보</h4>
 					</div>
 					<div class="col-auto">
 						<button class="btn btn-danger"
-							onclick="location.href='${path}/members/num/edit'">확인</button>
-						<button class="btn btn-secondary"
-							onclick="location.href='${path}/members/num'">취소</button>
+							onclick="location.href='${path}/members/num/edit'">수정</button>
+						<button class="btn btn-secondary ml-3"
+							onclick="location.href='${path}/members/num'">탈퇴</button>
 					</div>
 				</div>
 			</div>
