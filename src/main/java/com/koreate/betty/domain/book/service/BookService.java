@@ -31,4 +31,8 @@ public class BookService {
 	public List<Book> jBooksSearch(BookSearchForm form) {
 		return bookRepository.jBooksSearch();
 	}
+
+	public int insertByCrawler(Book book) {
+		return bookRepository.insertByCrawler(book);		
+	}
 }

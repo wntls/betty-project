@@ -7,9 +7,11 @@ import javax.validation.constraints.Size;
 
 import com.koreate.betty.domain.book.vo.Book;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class BookUpdateForm {
 	
 	// 필수 X인 건 지워도 정상적으로 작동합니다 필요에 따라 제거
@@ -40,9 +42,6 @@ public class BookUpdateForm {
 	@NotBlank
 	private int genre;
 	
-	@NotBlank
-	private String img;
-	
 	@NotBlank // 필수 X
 	private String intro;
 	
@@ -56,7 +55,6 @@ public class BookUpdateForm {
 				.pubDate(pubDate)
 				.page(page)
 				.genre(genre)
-				.img(img)
 				.intro(intro)
 				.build();
 	}

@@ -16,9 +16,8 @@ public class BookJoinBookSingle {
 	private final Timestamp pubDate;
 	private final int page;
 	private final int genre;
-	private final String img;
 	private final String intro;
-	private final int num;	
+	private final int num;
 	private final String rental;
 	private final String stat;
 	
