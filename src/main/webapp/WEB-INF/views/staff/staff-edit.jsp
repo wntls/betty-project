@@ -6,10 +6,20 @@
 <div class="container-md spad">
 	<div class="row justify-content-center">
 		<div class="col-md-8">
-			<br />
 			<div class="section-title">
-					<h4>회원 정보 수정</h4>
+				<div class="row justify-content-between">
+					<div class="col-auto">
+						<h4>회원 정보 수정</h4>
+					</div>
+					<div class="col-auto">
+						<button class="btn btn-danger"
+							onclick="location.href='${path}/staff/num/edit'">확인</button>
+						<button class="btn btn-secondary"
+							onclick="location.href='${path}/staff/num'">취소</button>
+					</div>
+				</div>
 			</div>
+
 				<img class="img-thumbnail" alt="..."
 					src="${path}/resources/img/member/profile_male.png" />
 			<div class="w-100 mb-5"></div>

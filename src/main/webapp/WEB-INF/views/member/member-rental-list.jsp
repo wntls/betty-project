@@ -1,134 +1,75 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
-<%@include file="/WEB-INF/views/include/header.jsp" %>
+<%@include file="/WEB-INF/views/include/header.jsp"%>
 
-<!-- 대여 table -->
 <section>
-	<div class="container-md">
-		<div class="row">
-			<!-- 현재 대여 중인 목록 리스트 -->
-			<div>
-			    <div class="table-responsive">
-			        <div class="table-wrapper">			
-			            <div class="table-title">
-			                <div class="row">
-			                    <div class="col-md-3 col-md-3">
-			                        <select class="w-100 form-control mt-md-1 mt-md-2" style="display: none;">
-		                                <option value="1">대여 예약</option>
-		                                <option value="2">현재 대여 중인 목록</option>
-		                                <option value="3">총 대여 목록</option>
-		                            </select>
-			                    </div>
-			                    <div class="col-md-7 col-md-7">
-			                        <h2 class="text-center">현재 대여 중인 목록</h2>
-			                    </div>
-			                    <div class="col-lm-1 col-md-1">
-			                        <div class="show-entries">
-			                            <select>
-			                                <option>5</option>
-			                                <option>10</option>
-			                                <option>15</option>
-			                                <option>20</option>
-			                            </select>
-			                        </div>						
-			                    </div>
-			                </div>
-			            </div>
-			            
-			            <table class="table table-bordered">
-			                <thead>
-			                    <tr>
-			                        <th>#</th>
-			                        <th>책 제목 <i class="fa fa-sort"></i></th>
-			                        <th>작가<i class="fa fa-sort"></i></th>
-			                        <th>대여 날짜<i class="fa fa-sort"></i></th>
-			                        <th>반납 기간 <i class="fa fa-sort"></i></th>
-			                        <th>상세보기</th>
-			                    </tr>
-			                </thead>
-			                <tbody>
-			                	<!-- 1 -->
-			                    <tr>
-			                        <td>1</td>
-			                        <td>모시깽이</td>
-			                        <td>헤르만 헤세</td>
-			                        <td>22-08-07</td>
-			                        <td>22-08-14</td>
-			                        <td>
-			                        	<a href="#" class="view" title="View" data-toggle="tooltip">
-			                        	<i class="bi bi-book"></i></a>
-			                        </td>
-			                    </tr>
-			                    <!-- 2 -->
-			                    <tr>
-			                        <td>2</td>
-			                        <td>모시깽이2</td>
-			                        <td>헤르만 헤세2</td>
-			                        <td>22-08-14</td>
-			                        <td>22-08-21</td>
-			                        <td>
-			                        	<a href="#" class="view" title="View" data-toggle="tooltip">
-			                        	<i class="bi bi-book"></i></a>
-			                        </td>
-			                    </tr>
-			                    <!-- 3 -->
-			                    <tr>
-			                        <td>3</td>
-			                        <td>모시깽이3</td>
-			                        <td>헤르만 헤세3</td>
-			                        <td>22-08-21</td>
-			                        <td>22-08-30</td>
-			                        <td>
-			                        	<a href="#" class="view" title="View" data-toggle="tooltip">
-			                        	<i class="bi bi-book"></i></a>
-			                        </td>
-			                    </tr>
-			                    <!-- 4 -->
-			                    <tr>
-			                        <td>4</td>
-			                        <td>모시깽이4</td>
-			                        <td>헤르만 헤세4</td>
-			                        <td>22-09-07</td>
-			                        <td>22-09-14</td>
-			                        <td>
-			                        	<a href="#" class="view" title="View" data-toggle="tooltip">
-			                        	<i class="bi bi-book"></i></a>
-			                        </td>
-			                    </tr>
-			                    <!-- 5 -->
-			                    <tr>
-			                        <td>5</td>
-			                        <td>모시깽이5</td>
-			                        <td>헤르만 헤세5</td>
-			                        <td>22-09-14</td>
-			                        <td>22-09-21</td>
-			                        <td>
-			                        	<a href="#" class="view" title="View" data-toggle="tooltip">
-			                        	<i class="bi bi-book"></i></a>
-			                        </td>
-			                    </tr>     
-			                </tbody>
-			            </table>
-			            
-			            <!-- 페이징 처리 -->
-			            <div class="clearfix">
-			                <ul class="pagination">
-			                    <li><a href="#">Previous</a></li>
-			                    <li><a href="#" >1</a></li>
-			                    <li><a href="#" >2</a></li>
-			                    <li><a href="#" >3</a></li>
-			                    <li><a href="#" >4</a></li>
-			                    <li><a href="#" >5</a></li>
-			                    <li><a href="#" >Next</a></li>
-			                </ul>
-			            </div>
-			        </div>
-			    </div>        
-			</div>  
-		 </div>  
+	<div class="container-md spad">
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<div class="product__page__title">
+					<div class="row">
+						<div class="col-md-8 col-md-8 col-md-6 title__align__center">
+							<div class="section-title">
+								<h4>내 대여 현황</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<form>
+					<table class="table table-borderless table-dark mb-5">
+						<tbody>
+							<!-- 2행 -->
+							<tr>
+								<th scope="row">대여 상태</th>
+								<td colspan="2">
+									<div class="btn-group btn-group-toggle" data-toggle="buttons">
+										<label class="btn btn-secondary active"> <input
+											type="radio" name="rental" value="all" checked> 전체
+										</label> <label class="btn btn-secondary"> <input type="radio"
+											name="rental" value="rent"> 대여중인 도서
+										</label> <label class="btn btn-secondary"> <input type="radio"
+											name="rental" value="reserv"> 예약중인 도서
+										</label>
+									</div>
+								</td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+
+
+
+				<!-- table -->
+				<h6 id="info">* 대여 상태에 따른 대여 이력을 확인할 수 있습니다.</h6>
+				<table id="blackTable"
+					class="table-data-list table-striped table-dark text-center">
+					<!-- 1 -->
+					<tr>
+						<td>번호</td>
+						<td>도서명</td>
+						<td>ISBN</td>
+						<td>대여여부</td> <!-- Y : 대여자,  R : 예약자 , N : none -->
+						<td>도서 대여일</td>
+						<td>반납 예정일</td>
+					</tr>
+					<!-- 2 -->
+					<tr>
+						<td>1</td>
+						<td>리 제로부터ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㄹ 시작하는 이세계 생활</td>
+						<td>123456789098</td>
+						<td>R</td>
+						<td>2022-08-23</td>
+						<td>2022-09-15</td>
+					</tr>
+				</table>
+			</div>
+		</div>
 	</div>
 </section>
-<%@include file="/WEB-INF/views/include/footer.jsp" %>
+<%@include file="/WEB-INF/views/include/footer.jsp"%>
 
- </html>

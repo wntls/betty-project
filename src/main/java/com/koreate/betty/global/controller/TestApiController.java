@@ -1,5 +1,10 @@
 package com.koreate.betty.global.controller;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,8 +27,12 @@ public class TestApiController {
 		return data;
 	}
 	
-	@Setter
-	@Getter
+	@GetMapping("/test/date")
+	public void testDate (@DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
+		Timestamp.from(date.toInstant());
+	}
+		
+	@Setter @Getter
 	static class Data {
 		
 		String code;

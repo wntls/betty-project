@@ -9,7 +9,7 @@
 			<div class="section-title">
 				<div class="row justify-content-between">
 					<div class="col-auto">
-						<h4>회원 정보 수정</h4>
+						<h4>포인트 충전 화면</h4>
 					</div>
 					<div class="col-auto">
 						<button class="btn btn-danger"
