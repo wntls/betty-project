@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.koreate.betty.domain.book.dto.BookSearchForm;
 import com.koreate.betty.domain.book.dto.BookUpdateForm;
 import com.koreate.betty.domain.book.service.BookService;
 import com.koreate.betty.domain.book.vo.Book;
@@ -23,7 +24,6 @@ import lombok.extern.slf4j.Slf4j;
 @ContextConfiguration(classes = { WebConfig.class, AppConfig.class, RootConfig.class })
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-
 public class BookRepoTest {
 
 	@Autowired
@@ -63,10 +63,27 @@ public class BookRepoTest {
 	}
 	
 	
-	@Test
-	public void jBooksSearchTest() {
-		
-	}
+	// @Test
+		public void jBooksSearchTest() {
+			String searchText = "마술";
+			String searchOption = "title";
+
+			String rentOption = "all";
+
+			Timestamp pubDate = Timestamp.valueOf("2015-01-01");
+			String pubDateOption = "after";
+
+			String genre = null;
+
+			BookSearchForm bsf = new BookSearchForm();
+			bsf.setSearchText(searchText);
+			bsf.setSearchOption(searchOption);
+			bsf.setRentOption(rentOption);
+			bsf.setPubDate(pubDate);
+			bsf.setPubDateOption(pubDateOption);
+			bsf.setGenre(genre);
+
+		}
 	
 	
 	

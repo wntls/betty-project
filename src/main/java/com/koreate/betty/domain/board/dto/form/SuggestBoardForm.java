@@ -7,6 +7,10 @@ import org.springframework.lang.Nullable;
 
 import com.koreate.betty.domain.board.vo.SuggestBoard;
 
+import lombok.Getter;
+import lombok.Setter;
+@Getter
+@Setter
 public class SuggestBoardForm {
 	
 	@Nullable
@@ -22,6 +26,9 @@ public class SuggestBoardForm {
 	@NotBlank
 	private String content;
 	
+	private int depth;
+	
+	private int origin;
 	
 	public SuggestBoard suggestBoard() {
 		return SuggestBoard.builder()
@@ -29,8 +36,9 @@ public class SuggestBoardForm {
 				.memberId(memberId)
 				.title(title)
 				.content(content)
+				.depth(depth)
+				.origin(origin)
 				.build();
-				
 	} 
 	
 	

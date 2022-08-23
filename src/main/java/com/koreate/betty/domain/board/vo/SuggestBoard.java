@@ -3,6 +3,7 @@ package com.koreate.betty.domain.board.vo;
 import java.sql.Timestamp;
 
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 
 @Getter

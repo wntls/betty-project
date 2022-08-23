@@ -4,8 +4,6 @@ import static com.koreate.betty.domain.model.TableConst.BOOK_SINGLE_TBL;
 
 import org.apache.ibatis.jdbc.SQL;
 
-import com.koreate.betty.domain.book.vo.Book;
-
 public class BookSingleProvider {
 
 	// 기존 도서 재고 1권 추가
@@ -25,5 +23,8 @@ public class BookSingleProvider {
 	
 	// 해당 도서 1권 정보
 	
-//	public String book
+	public String oneBook(String ISBN, int num) { // book_single 객체를 넘겨받거나, form 형태를 받음
+		
+		return "";
+	}
 }

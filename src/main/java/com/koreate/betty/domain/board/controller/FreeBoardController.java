@@ -9,12 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.koreate.betty.domain.board.dto.FreeBoardDto;
-import com.koreate.betty.domain.board.dto.form.FreeBoardWriteForm;
 import com.koreate.betty.domain.board.service.FreeBoardService;
-import com.koreate.betty.domain.board.vo.FreeBoard;
 
 @Controller
-@RequestMapping("/boards/free/")
+@RequestMapping("/boards/free")
 public class FreeBoardController {
 
 	@Autowired
@@ -31,7 +29,7 @@ public class FreeBoardController {
 	}
 	
 	//@PathVariable
-	@GetMapping("/num/edit")
+	@GetMapping("num/edit")
 	public String freeBoardEdit() {
 		return "board/free/free-edit";
 	}
@@ -42,7 +40,6 @@ public class FreeBoardController {
 		// 게시글에 필요한 정보만 담아서 model 에 담고 페이지 반환
 		FreeBoardDto dto = null;
 		model.addAttribute("dto", dto);
-		//return "boards/free/"+num;
 		return "board/free/free-detail";
 	}
 	

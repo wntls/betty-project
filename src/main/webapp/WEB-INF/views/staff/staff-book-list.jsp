@@ -1,60 +1,9 @@
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
-
-<style>
-#blackTable {
-	border-spacing: 2px;
-	border-collapse: separate;
-}
-
-#blackTable tr td {
-	min-width: 50px;
-	font-size: medium;
-}
-
-#blackTable tr td:first-child {
-	max-width: 50px;
-}
-
-.genreSel {
-	max-width: 100px;
-}
-
-.modal {
-	color: graytext;
-}
-
-.modal-title {
-	color: graytext;
-}
-
-.input-group-text label {
-	margin: 0px;
-	padding: 0px;
-}
-
-.bookName {
-	max-width: 150px;
-}
-
-.btnText {
-	color: graytext;
-}
-#info{
-	color: graytext;
-	text-align: center;
-}
-</style>
 
 <section>
 	<div class="container-md">
-		<div class="row">
-			<div class="col-md-2">
-				<%@include file="/WEB-INF/views/include/nav/staff-side-nav.jsp"%>
-			</div>
+		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<!-- 섹션 -->
 				<!-- 타이틀 부분 -->
@@ -558,8 +507,6 @@
 						<td>{보유권수}</td>
 						<td>{기타 넣을거}</td>
 					</tr>
-					<!-- 1블럭 -->
-					<!-- 1블럭 -->
 					<!-- 1 -->
 					<tr class="text-center">
 						<td>번호</td>
@@ -597,13 +544,9 @@
 				</table>
 				<!-- col-md-10 -->
 			</div>
-
-		</div>
-		<div class="col-md-2">
-			<%@include file="/WEB-INF/views/include/nav/right-side-nav.jsp"%>
 		</div>
 	</div>
 </section>
+
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
-</html>
 

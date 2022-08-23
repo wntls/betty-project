@@ -1,7 +1,7 @@
 .nice-select {
   -webkit-tap-highlight-color: transparent;
   background-color: #fff;
-  border-radius: 5px;
+  color: black;
   border: solid 1px #e8e8e8;
   box-sizing: border-box;
   clear: both;
@@ -9,10 +9,15 @@
   display: block;
   float: left;
   font-family: inherit;
-  font-size: 14px;
-  font-weight: normal;
+  
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 0;
+  display: inline-block;
+  
   height: 42px;
-  line-height: 40px;
+  line-height: 42px;
+  
   outline: none;
   padding-left: 18px;
   padding-right: 30px;
@@ -121,6 +126,7 @@
     padding-right: 29px;
     text-align: left;
     -webkit-transition: all 0.2s;
+    color: black;
     transition: all 0.2s; }
     .nice-select .option:hover, .nice-select .option.focus, .nice-select .option.selected.focus {
       background-color: #f6f6f6; }

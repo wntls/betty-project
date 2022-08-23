@@ -3,54 +3,114 @@
 
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 
-<%@include file="/WEB-INF/views/include/section-slider.jsp"%>
-
-<section class="product spad">
-	<div class="container-md">
-		<div class="row">
+<section>
+	<div class="container-md spad">
+		<div class="row justify-content-center">
 			<div class="col-md-10">
-				<div class="trending__product">
-					<div class="row">
-						<div class="col-md-4">
-							<div class="product__item">
-								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/800/9791158791919.jpg">
-									<div class="comment">
-										<i class="fa fa-comments"></i> 댓글
-									</div>
-									<div class="view">
-										<i class="fa fa-eye"></i> 조회수
-									</div>
-								</div>
-								<div class="product__item__text">
-									<ul>
-										<li>소설</li>
-										<li>넬레 노이하우스</li>
-									</ul>
-									<h5>
-										<a href="#">책 제목 적어야지</a>
-									</h5>
-								</div>
-							</div>
+				<div class="row justify-content-around">
+					<div class="card col-md-2">
+						<img src="${path}/resources/img/book/800/9791158791919.jpg"
+							class="card-img-top" alt="...">
+						<div class="card-body">
+							<p class="card-text">{title}</p>
+						</div>
+					</div>
+
+					<div class="card col-md-2">
+						<img src="${path}/resources/img/book/800/9791158791919.jpg"
+							class="card-img-top" alt="...">
+						<div class="card-body">
+							<p class="card-text">{title}</p>
+						</div>
+					</div>
+
+					<div class="card col-md-2">
+						<img src="${path}/resources/img/book/800/9791158791919.jpg"
+							class="card-img-top" alt="...">
+						<div class="card-body">
+							<p class="card-text">{title}</p>
+						</div>
+					</div>
+
+
+					<div class="card col-md-2">
+						<img src="${path}/resources/img/book/800/9791158791919.jpg"
+							class="card-img-top" alt="...">
+						<div class="card-body">
+							<p class="card-text">{title}</p>
 						</div>
 					</div>
 				</div>
+					
+					<div class="w-100 mb-5"></div>
 				
-				<!-- 페이징 처리 -->
-				<div class="product__pagination">
-	                <a href="#" class="current-page">1</a>
-	                <a href="#">2</a>
-	                <a href="#">3</a>
-	                <a href="#">4</a>
-	                <a href="#">5</a>
-	                <a href="#"><i class="fa fa-angle-double-right"></i></a>
-	            </div>
-            
-			</div>
-			
-			<div class="col-md-2">
-				<!-- 최근에 클릭 한 책 리스트 -->
-				<%@include file="/WEB-INF/views/include/nav/right-side-nav.jsp" %>
+				<div class="row justify-content-around">
+
+					<div class="card col-md-2">
+						<img src="${path}/resources/img/book/800/9791158791919.jpg"
+							class="card-img-top" alt="...">
+						<div class="card-body">
+							<p class="card-text">{title}</p>
+						</div>
+					</div>
+
+					<div class="card col-md-2">
+						<img src="${path}/resources/img/book/800/9791158791919.jpg"
+							class="card-img-top" alt="...">
+						<div class="card-body">
+							<p class="card-text">{title}</p>
+						</div>
+					</div>
+
+					<div class="card col-md-2">
+						<img src="${path}/resources/img/book/800/9791158791919.jpg"
+							class="card-img-top" alt="...">
+						<div class="card-body">
+							<p class="card-text">{title}</p>
+						</div>
+					</div>
+
+
+					<div class="card col-md-2">
+						<img src="${path}/resources/img/book/800/9791158791919.jpg"
+							class="card-img-top" alt="...">
+						<div class="card-body">
+							<p class="card-text">{title}</p>
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="row justify-content-between mt-5">
+					<form>
+						<div class="form-row input-group mb-3">
+							<div class="input-group-prepend">
+								<select>
+									<option value="">제목</option>
+									<option value="">작성자</option>
+									<option value="">내용</option>
+								</select>
+							</div>
+							<input type="text" style="height: 42px" class="form-control">
+							<div class="input-group-append">
+								<button type="submit" class="btn btn-primary">검색하기</button>
+							</div>
+						</div>
+					</form>
+					<!-- 페이징 처리 -->
+					<div class="form-row">
+						<ul class="pagination" id="pa">
+							<li><a href="#">Previous</a></li>
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#">Next</a></li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

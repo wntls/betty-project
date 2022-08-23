@@ -1,18 +1,38 @@
 package com.koreate.betty.domain.board.provider;
 
+import static com.koreate.betty.domain.model.TableConst.SUGGEST_BOARD_TBL;
+
 import org.apache.ibatis.jdbc.SQL;
 
 import com.koreate.betty.domain.board.vo.SuggestBoard;
+import com.koreate.betty.global.util.Criteria;
 
-import static com.koreate.betty.domain.model.TableConst.*;
+import net.koreate.common.utils.SearchCriteria;
 
 public class SuggestBoardProvider {
 	
 	// 건의사항 등록
-	public String suggestRegist(SuggestBoard vo) {
-		return new SQL().INSERT_INTO(SUGGEST_BOARD_TBL)
-				.INTO_COLUMNS("member_id","title","content")
-				.INTO_VALUES("#{memberId},#{title},#{content}")
+	public String suggestRegist(SuggestBoard board) {
+		SQL sql = new SQL();
+		sql.INSERT_INTO(SUGGEST_BOARD_TBL);
+		sql.INTO_COLUMNS("title,content");
+		if(board.getOrigin() != 0) {
+			sql.INTO_COLUMNS("origin,depth");
+		}
+		sql.INTO_COLUMNS("member_id");
+		sql.INTO_VALUES("#{title},#{content}");
+		if(board.getOrigin() != 0) {
+			sql.INTO_VALUES("#{origin},#{depth}");
+		}
+		sql.INTO_VALUES("#{memberId}");
+		return sql.toString();
+	}
+	
+	// origin column 값 수정
+	public String updateOrigin() {
+		return new SQL().UPDATE(SUGGEST_BOARD_TBL)
+				.SET("origin = LAST_INSERT_ID()")
+				.WHERE("bno = LAST_INSERT_ID()")
 				.toString();
 	}
 	
@@ -40,5 +60,21 @@ public class SuggestBoardProvider {
 				.toString();
 	}
 	
+	// 전체 게시물 개수
+	public String listAllCount(SearchCriteria cri) {
+		return new SQL().SELECT("count(*)")
+				.FROM(SUGGEST_BOARD_TBL)
+				.toString();
+	}
+	
+	// 건의사항 목록 출력
+	public String suggestList(Criteria cri) {
+		return new SQL().SELECT("*")
+				.FROM(SUGGEST_BOARD_TBL)
+				.ORDER_BY("origin, depth")
+				.OFFSET(cri.getStartRow())
+				.LIMIT(cri.getPerPageNum())
+				.toString();
+	}
 	
 }

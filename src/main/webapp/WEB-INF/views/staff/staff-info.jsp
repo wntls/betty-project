@@ -1,37 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="path" value="${pageContext.request.contextPath }"
-	scope="session" />
 
 <%@include file="/WEB-INF/views/include/header.jsp"%>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<style>
-.img-thumbnail {
-	background-color: #B7B7B7;
-}
-
-#imgs {
-	min-width: 400px;
-}
-
-.staffInfoList ul {
-	min-width: 70%;
-}
-
-.staffInfoList ul :nth-child(2) {
-	min-width: 70%;
-}
-</style>
 
 <div class="container-md">
-
-
-	<div class="row">
-		<div class="col-md-1 text-white">nav</div>
-
-
+	<div class="row justify-content-center">
 		<div class="col-md-10">
 			<br />
 			<div class="section-title">
@@ -102,11 +75,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-1 text-white">nav</div>
 	</div>
-
 </div>
 
+</html>
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
-</html>

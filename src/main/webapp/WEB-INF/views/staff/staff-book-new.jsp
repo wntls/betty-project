@@ -3,44 +3,9 @@
 
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 
-<style>
-.img-thumbnail {
-	background-color: #B7B7B7;
-}
-
-.input-group-text {
-	min-width: 130px;
-}
-
-#imgs {
-	min-width: 400px;
-}
-
-.flex-nowrap, .form-control {
-	max-width: 90%;
-	min-height: 51px;
-}
-
-.custom-select {
-	max-width: 70%;
-	min-height: 51px;
-}
-
-.staffInfoList ul, .staffInfoList ul :nth-child(2) {
-	min-width: 70%;
-}
-
-#imgs {
-	max-width: 500px;
-}
-</style>
-
 <section>
 	<div class="container-md spad">
-		<div class="row">
-			<div class="col-md-2">
-				<%@include file="/WEB-INF/views/include/nav/staff-side-nav.jsp"%>
-			</div>
+		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="section-title">
 					<br />
@@ -118,12 +83,8 @@
 
 				</div>
 			</div>
-			<div class="col-md-2">
-				<%@include file="/WEB-INF/views/include/nav/right-side-nav.jsp"%>
-			</div>
-
 		</div>
 	</div>
 </section>
+
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
-</html>

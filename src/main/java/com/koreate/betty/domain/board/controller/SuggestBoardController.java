@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/boards/suggest/")
+@RequestMapping("/boards/suggest")
 public class SuggestBoardController {
 
 	@GetMapping
@@ -15,7 +15,7 @@ public class SuggestBoardController {
 	
 	@GetMapping("new")
 	public String freeBoardNew() {
-		return "boards/suggest/suggest-new";
+		return "board/suggest/suggest-new";
 	}
 	
 	@GetMapping("num")

@@ -3,8 +3,6 @@
 
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 
-
-
 <section>
 	<div class="container-md">
 		<div class="row">

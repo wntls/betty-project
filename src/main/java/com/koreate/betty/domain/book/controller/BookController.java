@@ -5,17 +5,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/books/")
+@RequestMapping("/books")
 public class BookController {
 
 	@GetMapping
-	public String bookDetails() {
+	public String bookListPage() {
 		return "book/book-board";
 	}
 	
 	//pathvariable
 	@GetMapping("num")
-	public String bookList() {
+	public String bookDetail() {
 		return "book/book-detail";
 	}
 	

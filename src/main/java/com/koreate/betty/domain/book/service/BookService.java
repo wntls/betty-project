@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.koreate.betty.domain.book.dao.BookRepository;
+import com.koreate.betty.domain.book.dto.BookSearchForm;
 import com.koreate.betty.domain.book.dto.BookUpdateForm;
 import com.koreate.betty.domain.book.vo.Book;
 
@@ -15,7 +16,9 @@ public class BookService {
 	@Autowired
 	BookRepository bookRepository;
 	
-	public int update(String targetCode, BookUpdateForm form) {	// bookUpdate Form에 맞게 수정할 것
+	// 나중에 @Valid 검증 객체 앞에 추가
+	// bookUpdate Form에 맞게 수정할 것
+	public int update(String targetCode, BookUpdateForm form) {	
 		
 		Book book = form.createBook();		
 		return bookRepository.update(targetCode, book);
@@ -25,7 +28,7 @@ public class BookService {
 		return bookRepository.jBooksList();
 	}
 	
-	public List<Book> jBooksSearchByCode(String targetCode) {
-		return bookRepository.jBooksList();
+	public List<Book> jBooksSearch(BookSearchForm form) {
+		return bookRepository.jBooksSearch();
 	}
 }

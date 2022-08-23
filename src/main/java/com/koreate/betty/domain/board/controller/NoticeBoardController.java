@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/boards/notice/")
+@RequestMapping("/boards/notice")
 public class NoticeBoardController {
 
 	@GetMapping
@@ -15,7 +15,7 @@ public class NoticeBoardController {
 	
 	@GetMapping("new")
 	public String noticeBoardNew() {
-		return "boards/notice/notice-new";
+		return "board/notice/notice-new";
 	}
 	
 	//pathvariable
@@ -25,7 +25,7 @@ public class NoticeBoardController {
 	}
 
 	//pathvariable
-	@GetMapping("/num/edit")
+	@GetMapping("num/edit")
 	public String noticeBoardEdit() {
 		return "board/notice/notice-edit";
 	}

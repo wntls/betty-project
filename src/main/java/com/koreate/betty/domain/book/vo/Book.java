@@ -8,7 +8,7 @@ import lombok.Getter;
 @Getter
 @Builder
 public class Book {
-
+	
 	private final String code;
 	private final String title;
 	private final String auth;
