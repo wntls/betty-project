@@ -2,6 +2,7 @@ package com.koreate.betty.domain.book.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
@@ -21,5 +22,11 @@ public interface BookRepository {
 	
 	@SelectProvider(type=BookProvider.class, method="jBooksSearch")
 	public List<Book> jBooksSearch();
-		
+	
+	
+	
+	// 크롤링
+	@InsertProvider(type=BookProvider.class, method="insertByCrawler")
+	public int insertByCrawler(Book book);
+	
 }

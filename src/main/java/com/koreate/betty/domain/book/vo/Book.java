@@ -16,7 +16,6 @@ public class Book {
 	private final Timestamp pubDate;
 	private final int page;
 	private final int genre;
-	private final String img;
 	private final String intro;
 	
 }

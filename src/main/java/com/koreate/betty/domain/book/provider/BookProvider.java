@@ -17,7 +17,7 @@ public class BookProvider {
 	// 신규 도서 등록
 	public String register(Book book) {
 		return new SQL().INSERT_INTO(BOOK_TBL)
-				.INTO_VALUES("#{code}, #{title}, #{auth}, #{pub}, #{pubDate}, #{page}, #{genre}, #{img}, #{intro}")
+				.INTO_VALUES("#{code}, #{title}, #{auth}, #{pub}, #{pubDate}, #{page}, #{genre}, #{intro}")
 				.toString();
 	}
 
@@ -51,7 +51,7 @@ public class BookProvider {
 	public String update(@Param("targetCode") String targetCode, @Param("book") Book book) {
 		return new SQL().UPDATE(BOOK_TBL).SET("code = #{book.code}").SET("title = #{book.title}")
 				.SET("auth = #{book.auth}").SET("pub = #{book.pub}").SET("pub_date = #{book.pubDate}")
-				.SET("page = #{book.page}").SET("genre = #{book.genre}").SET("img = #{book.img}")
+				.SET("page = #{book.page}").SET("genre = #{book.genre}")
 				.SET("intro = #{book.intro}").WHERE("code = #{targetCode}").toString();
 	}
 
@@ -159,7 +159,15 @@ public class BookProvider {
 
 	// 대여, 예약된 책 목록 검색 // 반드시 변수 값은 y : 대여, r : 예약, n : 없음으로 지정
 	public String jBooksRentalList(String stat) {
+		
 		return new SQL().SELECT("*").FROM(BOOK_TBL).JOIN(BOOK_SINGLE_TBL).WHERE("code = book_code")
 				.WHERE("rental = " + stat).toString();
 	}
+	
+	public String insertByCrawler(Book book) {
+		return "INSERT IGNORE INTO book VALUES(#{code}, #{title}, #{auth}, #{pub}, #{pubDate}, #{page}, #{genre}, #{intro})";
+	}
+	
+	
+	
 }
