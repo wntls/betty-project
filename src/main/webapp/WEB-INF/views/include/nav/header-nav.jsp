@@ -22,12 +22,12 @@
 						<!-- 가운데 메뉴바  .nav-link padding 나중에 1rem 으로 교체-->
 						<div class="col-md-4">
 							<nav class="nav">
-								<a class="nav-link" href="${path}/library/">도서관 소개</a> 
-								<a class="nav-link" href="${path}/books/">도서 목록</a> 
-								<a class="nav-link" href="${path}/members/num/">회원 공간</a>
-								<a class="nav-link" href="${path}/boards/notice/">게시판</a>
-								<a class="nav-link" href="${path}/staff/">직원</a>
-								<a class="nav-link" href="${path}/admin/">관리자</a>
+								<a class="nav-link" href="${path}/library">도서관 소개</a> 
+								<a class="nav-link" href="${path}/books">도서 목록</a> 
+								<a class="nav-link" href="${path}/members/num">회원 공간</a>
+								<a class="nav-link" href="${path}/boards/notice">게시판</a>
+								<a class="nav-link" href="${path}/staff">직원</a>
+								<a class="nav-link" href="${path}/admin">관리자</a>
 							</nav>
 						</div>
 						<!-- 우측 회원관련 -->
