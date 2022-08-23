@@ -25,17 +25,15 @@
 				<form>
 					<div class="list-group justify-content-center">
 						<div class="input__item">
-							<input type="text" name="uid" placeholder="아이디"> <span
+							<input type="text" name="memberId" placeholder="아이디"> <span
 								class="icon_profile"></span>
-
 						</div>
 						<div class="input__item">
-							<input type="password" name="upw" placeholder="비밀번호"> <span
+							<input type="password" name="pw" placeholder="비밀번호"> <span
 								class="icon_lock"></span>
 						</div>
-
 						<div class="form-check" style="width: 100%; text-align: center">
-							<input class="form-check-input" type="checkbox" id="loginCookie">
+							<input class="form-check-input" type="checkbox" name="cookie" id="loginCookie">
 							<label class="form-check-label" for="loginCookie">로그인시 쿠키
 								저장</label>
 						</div>
@@ -63,59 +61,10 @@
 			data-target="#passFindModal">비번찾기 모달</button>
 		<button type="button" class="btn btn-primary" data-toggle="modal"
 			data-target="#moone">고객문의</button>
-		<button type="button" class="btn btn-primary" data-toggle="modal"
-			data-target="#bookCount">도서 재고수정(위치확인)</button>
+		
 
 
-		<!-- 도서재고 수정(도서폐기랑 위치바꿔야됨)/ -->
-		<div class="modal fade" id="bookCount" data-backdrop="static"
-			tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-			aria-hidden="true">
-			<div
-				class="modal-dialog modal-dialog-scrollable modal-dialog-centered"
-				role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalCenterTitle">고객 문의</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="false">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<!-- 입력태그 하나 -->
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<div class="input-group-text">현재 도서 권수 - </div>
-							</div>
-							<input type="text" class="form-control"
-								aria-label="{js에 보낼 name값}" value="{yourNum}"
-								readonly="readonly">
-						</div>
-						<br />
-						<!-- 입력태그 하나 -->
-						<!-- 입력태그 하나 -->
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<div class="input-group-text">
-								수정된 권수
-								</div>
-							</div>
-									<input type="number" id="{도서재고 수정 입력받을값}">
-						</div>
-						<br />
-						<!-- 입력태그 하나 -->
-						
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary">{transferSubmit}</button>
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">{cancel}</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- 도서재고 수정(도서폐기랑 위치바꿔야됨)/ -->
+
 		<!-- 고객문의 모달 -->
 		<div class="modal fade" id="moone" data-backdrop="static"
 			tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
