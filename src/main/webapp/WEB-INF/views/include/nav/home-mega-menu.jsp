@@ -46,19 +46,19 @@
 				
 				<a class="dropdown-item" href="${path}/staff/num/edit">회원 정보 수정</a>
 				
-				<a class="dropdown-item" href="${path}/staff/books">도서 현황</a>
+				<a class="dropdown-item" href="${path}/staff/books/">도서 현황</a>
 				
 				<a class="dropdown-item" href="${path}/staff/books/new">도서 입고</a>
 				<a class="dropdown-item" href="${path}/staff/books/num/edit">도서 정보 수정</a>
 				
-				<a class="dropdown-item" href="${path}/staff/rentals">도서 대여 현황 및 예약 정보</a>
+				<a class="dropdown-item" href="${path}/staff/rentals/">도서 대여 현황 및 예약 정보</a>
 
 				<br/>
 				admin
-				<a class="dropdown-item" href="${path}/admin/members">관리자 회원정보 확인</a>
+				<a class="dropdown-item" href="${path}/admin/members/">관리자 회원정보 확인</a>
 				<br/>
 				library
-				<a class="dropdown-item" href="${path}/library">도서관 소개</a>
+				<a class="dropdown-item" href="${path}/library/">도서관 소개</a>
 			</div>
 			
 			<div class="col-md-4">
