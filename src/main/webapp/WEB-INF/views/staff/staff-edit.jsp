@@ -1,46 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="path" value="${pageContext.request.contextPath }"
-	scope="session" />
 
 <%@include file="/WEB-INF/views/include/header.jsp"%>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-<style>
-.img-thumbnail {
-	background-color: #B7B7B7;
-}
-
-.input-group-text {
-	min-width: 130px;
-}
-
-#imgs {
-	min-width: 400px;
-}
-
-.flex-nowrap, .form-control {
-	max-width: 90%;
-	min-height: 51px;
-}
-
-.custom-select {
-	max-width: 70%;
-	min-height: 51px;
-}
-
-.staffInfoList ul, .staffInfoList ul :nth-child(2) {
-	min-width: 70%;
-}
-</style>
-
 
 <div class="container-md spad">
-	<div class="row">
-		<div class="col-md-1 text-white">nav</div>
+	<div class="row justify-content-center">
 		<div class="col-md-10">
-		<div class="section-title">
+			<div class="section-title">
 				<br />
 				<h4>직원 정보 업데이트</h4>
 				<br />
@@ -131,11 +97,9 @@
 
 			</div>
 		</div>
-		<div class="col-md-1 text-white">nav</div>
 	</div>
 
 </div>
-
+</html>
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
-</html>

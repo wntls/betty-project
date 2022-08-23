@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<div class="container-lg spad">
+<div class="container-md spad">
 	<div class="row">
 		<div class="membership_title">
 			<h2>편의 시설 안내</h2>

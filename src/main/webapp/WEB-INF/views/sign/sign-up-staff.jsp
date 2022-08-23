@@ -6,8 +6,8 @@
 <!-- Signup Section Begin -->
 <section class="signup spad">
     <div class="container-md">
-        <div class="row">
-            <div class="col-md-6">
+        <div class="row justify-content-center">
+            <div class="col-md-6 row justify-content-center">
                 <div class="login__form">                        
                     <h3>Sign UP</h3>
                     <form action="#">
@@ -54,18 +54,6 @@
                         <!-- 우측 정렬 -->
                         <button type="button" class="cancel-btn">취소</button>
                     </form>                        
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="login__social__links">
-                    <h3>Login With:</h3>
-                    <ul>
-                        <li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Sign in With Facebook</a>
-                        </li>
-                        <li><a href="#" class="google"><i class="fa fa-google"></i> Sign in With Google</a></li>
-                        <li><a href="#" class="twitter"><i class="fa fa-twitter"></i> Sign in With Twitter</a></li>
-                    </ul>
                 </div>
             </div>
         </div>

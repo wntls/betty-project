@@ -82,7 +82,7 @@
 				</div>
 				<div class="row justify-content-center mb-5">
 				<button type="button" class="btn btn-danger">
-					<i class="fa fa-heart-o"></i> 5
+					<i class="fa fa-heart-o"></i> num
 				</button>
 				</div>
 

@@ -11,10 +11,10 @@
 	    <a class="nav-link" href="${path}/staff/num">내 정보</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" href="${path}/staff/rentals/">대여 현황</a>
+	    <a class="nav-link" href="${path}/staff/rentals">대여 현황</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" href="${path}/staff/books/">도서 현황</a>
+	    <a class="nav-link" href="${path}/staff/books">도서 현황</a>
 	  </li>
 	  <li class="nav-item">
 	    <a class="nav-link" href="${path}/staff/books/new">도서 입고</a>

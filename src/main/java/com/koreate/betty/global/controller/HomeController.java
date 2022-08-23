@@ -18,7 +18,6 @@ public class HomeController {
 	
 	@GetMapping
 	public String home(Locale locale, Model model) {
-
 		return "home";
 	}
 	

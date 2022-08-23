@@ -24,6 +24,7 @@
 	
 	<!-- 추가 -->
 	<link rel="stylesheet" href="${path}/resources/css/betty.css" type="text/css">
+	<link rel="stylesheet" href="${path}/resources/css/table.css" type="text/css">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="${path}/resources/css/bootstrap.css" type="text/css">
@@ -34,7 +35,6 @@
     <link rel="stylesheet" href="${path}/resources/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/slicknav.css" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/style.css" type="text/css">
-    
    	
    	
     
@@ -53,4 +53,5 @@
 
 <%@include file="/WEB-INF/views/include/nav/header-nav.jsp" %>
 	
+
 

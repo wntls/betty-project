@@ -2,24 +2,6 @@
 	pageEncoding="UTF-8"%>
 
 <%@include file="/WEB-INF/views/include/header.jsp"%>
-<style>
-.modal {
-	color: graytext;
-}
-
-.modal-title {
-	color: graytext;
-}
-
-.input-group-text label {
-	margin: 0px;
-	padding: 0px;
-}
-
-.bookName {
-	max-width: 150px;
-}
-</style>
 
 <!-- 로그인 화면 윗 공간 -->
 <section class="normal-breadcrumb set-bg"

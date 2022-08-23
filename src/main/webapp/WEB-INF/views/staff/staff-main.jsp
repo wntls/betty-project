@@ -1,28 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	
 <%@include file="/WEB-INF/views/include/header.jsp"%>
-<style>
-#cardText input {
-	border: none;
-	padding: 2px;
-	max-width: 130px;
-}
 
-label {
-	color: graytext;
-}
-
-p {
-	text-align: center;
-}
-</style>
 <section>
-	<!-- ${path}/resources/img/member/profile_male.png -->
 
 	<div class="container-md spad">
-		<div class="row">
-			<div class="col-md-1"></div>
+		<div class="row justify-content-center">
 			<div class="col-md-10 spad">
 
 				<!-- row-cols-md-(한줄에 띄울 개수) -->
@@ -331,12 +315,7 @@ p {
 
 				</div>
 
-
-
-
-
 			</div>
-			<div class="col-md-1"></div>
 		</div>
 	</div>
 </section>

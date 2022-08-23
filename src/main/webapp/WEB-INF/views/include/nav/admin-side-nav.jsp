@@ -8,7 +8,7 @@
 	    <a class="nav-link disabled">관리자 화면</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" href="${path}/admin/members/">회원 정보</a>
+	    <a class="nav-link" href="${path}/admin/members">회원 정보</a>
 	  </li>
 	  <li class="nav-item">
 	    <a class="nav-link" href="${path}/admin/profit">도서관 수익</a>

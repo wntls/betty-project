@@ -8,7 +8,7 @@
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="board-detail board-title text-secondary mb-5">
-					<span>자유게시판 글 작성</span>
+					<span>공지사항 글 수정</span>
 				</div>
 				<div class="w-100"></div>
 				<input class="board-detail board-title" type="text" value="제목">
@@ -41,7 +41,7 @@
 						</div>
 						<div class="col-md">
 							<div class="btn-group float-right" role="group">
-								<button class="btn btn-danger ml-3">작성</button>
+								<button class="btn btn-danger ml-3">수정</button>
 								<button class="btn btn-secondary ml-3">취소</button>
 							</div>
 						</div>
@@ -54,7 +54,6 @@
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 </html>
-
 <script>
 	var ckeditor_config = {
 			resize_enabled : false,

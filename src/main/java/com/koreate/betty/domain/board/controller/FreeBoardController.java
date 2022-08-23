@@ -14,7 +14,7 @@ import com.koreate.betty.domain.board.service.FreeBoardService;
 import com.koreate.betty.domain.board.vo.FreeBoard;
 
 @Controller
-@RequestMapping("/boards/free/")
+@RequestMapping("/boards/free")
 public class FreeBoardController {
 
 	@Autowired
@@ -31,7 +31,7 @@ public class FreeBoardController {
 	}
 	
 	//@PathVariable
-	@GetMapping("/num/edit")
+	@GetMapping("num/edit")
 	public String freeBoardEdit() {
 		return "board/free/free-edit";
 	}

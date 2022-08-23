@@ -17,6 +17,7 @@
 				<br/>
 				sign
 				<a class="dropdown-item" href="${path}/sign/in">로그인</a>
+				<a class="dropdown-item" href="${path}/sign/up">회원가입 선택</a>
 				<a class="dropdown-item" href="${path}/sign/up/member">회원가입</a>
 				<a class="dropdown-item" href="${path}/sign/up/staff">직원 회원가입</a> 
 				 
@@ -24,26 +25,23 @@
 				
 				member
 				
-				<a class="dropdown-item" href="${path}/members/num/">대시보드</a>
+				<a class="dropdown-item" href="${path}/members/num">대시보드</a>
 				<a class="dropdown-item" href="${path}/members/num/edit">회원 정보 수정</a>
-				
 				<a class="dropdown-item" href="${path}/members/num/rentals">대여 목록</a> 
-				
-				<a class="dropdown-item" href="${path}/members/num/calendar">출석체크</a>
 				
 				<br/>
 				
 				book 
 				<a class="dropdown-item" href="${path}/books/num">책 상세보기</a> 
-				<a class="dropdown-item" href="${path}/books/">책 리스트</a>
+				<a class="dropdown-item" href="${path}/books">책 리스트</a>
 			</div>
 			
 			<div class="col-md-4">
 				<div class="dropdown-header">김선기</div>
 				<br/>
 				staff
-				<a class="dropdown-item" href="${path}/staff/">직원 영역</a>
-				<a class="dropdown-item" href="${path}/staff/members/">회원 정보 조회</a>
+				<a class="dropdown-item" href="${path}/staff">직원 영역</a>
+				<a class="dropdown-item" href="${path}/staff/members">회원 정보 조회</a>
 				<a class="dropdown-item" href="${path}/staff/num">직원 회원정보</a>
 				
 				<a class="dropdown-item" href="${path}/staff/num/edit">회원 정보 수정</a>
@@ -67,9 +65,9 @@
 				<div class="dropdown-header">박주신</div>
 				<br/>
 				board
-				<a class="dropdown-item" href="${path}/boards/free/">자유게시판</a> 
-				<a class="dropdown-item" href="${path}/boards/suggest/">건의사항</a> 
-				<a class="dropdown-item" href="${path}/boards/notice/">공지사항</a> 
+				<a class="dropdown-item" href="${path}/boards/free">자유게시판</a> 
+				<a class="dropdown-item" href="${path}/boards/suggest">건의사항</a> 
+				<a class="dropdown-item" href="${path}/boards/notice">공지사항</a> 
 			  	<a class="dropdown-item" href="${path}/boards/free/num">자유게시판 상세보기</a> 
 			  	<a class="dropdown-item" href="${path}/boards/free/new">자유게시판 등록</a> 
 			  	<a class="dropdown-item" href="${path}/boards/free/num/edit">자유게시판 수정</a> 
@@ -80,7 +78,6 @@
 			  	<a class="dropdown-item" href="${path}/boards/notice/new">공지사항 등록</a> 
 			  	<a class="dropdown-item" href="${path}/boards/notice/num/edit">공지사항 수정</a> 
 			  	<a class="dropdown-item" href="${path}/admin/profit">도서관 수익</a> 
-			  	<a class="dropdown-item" href="${path}/admin/members/">직원 정보</a>
 			  	editor ex
 			  	<a class="dropdown-item" href="${path}/edit">에디터 견본</a> 
 			</div>
