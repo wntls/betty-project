@@ -132,7 +132,7 @@ public class FreeBoardRepoTest {
 			log.info("first={}, second={}, third={}",first,second,third);
 		}
 	
-	@Test	
+	//@Test	
 	public void listTest() {
 		List<FreeBoard> list = freeBoardService.freeList();
 		log.info("list : "+ list.size());
