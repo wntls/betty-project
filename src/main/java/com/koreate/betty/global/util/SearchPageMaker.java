@@ -1,9 +1,7 @@
-package net.koreate.common.utils;
+package com.koreate.betty.global.util;
 
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import com.koreate.betty.global.util.PageMaker;
 
 public class SearchPageMaker extends PageMaker{
 

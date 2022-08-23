@@ -11,8 +11,7 @@ import org.apache.ibatis.annotations.UpdateProvider;
 import com.koreate.betty.domain.board.provider.SuggestBoardProvider;
 import com.koreate.betty.domain.board.vo.SuggestBoard;
 import com.koreate.betty.global.util.Criteria;
-
-import net.koreate.common.utils.SearchCriteria;
+import com.koreate.betty.global.util.SearchCriteria;
 
 @Mapper
 public interface SuggestBoardRepository {
@@ -49,8 +48,4 @@ public interface SuggestBoardRepository {
 		// 전체 게시글 개수
 		public int listCount(SearchCriteria cri);
 
-		// 건의사항 수정
-		// 여기까지 하고 합침
-		//@UpdateProvider(type=SuggestBoardProvider.class, method="suggestRead")
-		//public SuggestBoard suggestRead(SuggestBoard vo);
 }

@@ -6,8 +6,7 @@ import org.apache.ibatis.jdbc.SQL;
 
 import com.koreate.betty.domain.board.vo.SuggestBoard;
 import com.koreate.betty.global.util.Criteria;
-
-import net.koreate.common.utils.SearchCriteria;
+import com.koreate.betty.global.util.SearchCriteria;
 
 public class SuggestBoardProvider {
 	
