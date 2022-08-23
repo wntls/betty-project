@@ -2,7 +2,7 @@
   -webkit-tap-highlight-color: transparent;
   background-color: #fff;
   color: black;
-  border: solid 1px #e8e8e8;
+  border: solid 1px #343A40;
   box-sizing: border-box;
   clear: both;
   cursor: pointer;
@@ -15,8 +15,8 @@
   border-radius: 0;
   display: inline-block;
   
-  height: 42px;
-  line-height: 42px;
+  height: calc(1.5em + 0.75rem + 2px);
+  line-height: calc(1.5em + 0.75rem + 2px);
   
   outline: none;
   padding-left: 18px;

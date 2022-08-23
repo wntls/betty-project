@@ -71,13 +71,14 @@
     cursor: pointer;
 }
 
-.table-detail-search tr{
-    height: 60px;
+.table-detail-search tr {
+    height: 2rem;
 }
 
 .table-detail-search tr th{
     text-align: center;
 }
+
 
 .table-detail-search input{
     margin-left: 5px;
@@ -90,6 +91,7 @@
     overflow: hidden;
     border-radius: 10px;
     border-collapse: collapse;
+    border-color: #0B0C2A;
 }
 
 .table-data-list tr{
@@ -98,6 +100,10 @@
     height: 30px;
 }
 
+.table-data-list tr td{
+    max-width: 250px;
+    overflow-wrap: break-word;
+}
 
 /*--------------------------------------------------------------------------------  */
 .table-responsive {

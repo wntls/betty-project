@@ -28,18 +28,17 @@
 								<th>장르 지정</th>
 								<td class="text-align-left " colspan="3">
 									<div class="input-group mb-3">
-										<select class="custom-select" id="genreSel"
-											onclick="genreSel(this.value);">
+										<select id="genreSel" onchange="genreVal()" >
 											<option selected>장르 선택</option>
-											<option id="100">철학(100)</option>
-											<option id="200">종교(200)</option>
-											<option id="300">사회(300)</option>
-											<option id="400">과학(400)</option>
-											<option id="500">공학(500)</option>
-											<option id="600">예술(600)</option>
-											<option id="700">외국어(700)</option>
-											<option id="800">소설(800)</option>
-											<option id="900">역사(900)</option>
+											<option value="100">철학(100)</option>
+											<option value="200">종교(200)</option>
+											<option value="300">사회(300)</option>
+											<option value="400">과학(400)</option>
+											<option value="500">공학(500)</option>
+											<option value="600">예술(600)</option>
+											<option value="700">외국어(700)</option>
+											<option value="800">소설(800)</option>
+											<option value="900">역사(900)</option>
 										</select>
 									</div>
 								</td>
@@ -220,6 +219,11 @@
 
 <script>
 
+		function genreVal(){
+			var val = $('#genreSel').val();
+			console.log(val);
+		}
+		
 		function throwData(ev){
 			
 			console.log(ev.closest("#tr2"));
