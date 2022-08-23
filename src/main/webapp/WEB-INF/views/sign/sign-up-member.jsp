@@ -12,20 +12,20 @@
 					<h3>회원가입</h3>
 					<form>
 						<div class="input__item">
-							<input type="text" name="uid" placeholder="아이디를 입력 하세요" /> <span><i
+							<input type="text" name="memberId" placeholder="아이디를 입력 하세요" /> <span><i
 								class="bi bi-person-video2"></i></span>
 						</div>
 						<div class="input__item">
-							<span class="icon_lock"></span> <input type="password" name="upw"
+							<span class="icon_lock"></span> <input type="password" name="pw"
 								placeholder="비밀번호 입력하세요" />
 						</div>
 						<div class="input__item">
 							<span class="icon_lock"></span> <input type="password"
-								name="repw" placeholder="비밀번호 재입력하세요" />
+								name="rePw" placeholder="비밀번호 재입력하세요" />
 						</div>
 						<div class="input__item">
 							<span class="icon_profile"></span> <input type="text"
-								name="uname" placeholder="이름을 입력하세요" />
+								name="name" placeholder="이름을 입력하세요" />
 						</div>
 						<div class="input__item">
 							<input type="text" name="birth" placeholder="19930516" /> <span><i
@@ -44,12 +44,12 @@
 								class="icon_mail"></span>
 						</div>
 
-							<div class="btn-group justify-content-center">
+						<div class="btn-group justify-content-center">
 							<button type="submit" class="site-btn">가입 하기</button>
 							<button type="button" class="cancel-btn">취소</button>
-							</div>
+						</div>
+					</form>
 				</div>
-				</form>
 			</div>
 
 		</div>

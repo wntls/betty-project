@@ -11,21 +11,21 @@
                     <h3>회원 정보 수정</h3>
                     <form action="#">
                         <div class="input__item">
-                            <input type="text" name="uid" value="${uid }" />
+                            <input type="text" name="memberId" value="${uid }" />
                             <span><i class="bi bi-person-video2"></i></span>
                         </div>
                         <div class="input__item">
-                            <input type="password" name="upw"
+                            <input type="password" name="pw"
                             placeholder="비밀번호 입력하세요"/>
                             <span class="icon_lock"></span>
                         </div>
                         <div class="input__item">
-                            <input type="password" name="repw"
+                            <input type="password" name="rePw"
                             placeholder="비밀번호 재입력하세요"/>
                             <span class="icon_lock"></span>
                         </div>
                         <div class="input__item">
-                            <input type="text" name="uname"
+                            <input type="text" name="name"
                             value="${uname }" />
                             <span class="icon_profile"></span>
                         </div>
