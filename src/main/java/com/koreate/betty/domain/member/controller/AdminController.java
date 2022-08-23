@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin/")
+@RequestMapping("/admin")
 public class AdminController {
 	
 	@GetMapping
@@ -18,7 +18,7 @@ public class AdminController {
 		return "admin/admin-profit";
 	}
 	
-	@GetMapping("members/")
+	@GetMapping("members")
 	public String memberListOfAdmin() {
 		System.out.println("CALL");
 		return "admin/admin-members";
