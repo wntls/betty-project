@@ -89,7 +89,7 @@
 						role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalCenterTitle">고객 문의</h5>
+								<h5 class="modal-title" id="exampleModalCenterTitle">보유 권수 수정</h5>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-label="Close">
 									<span aria-hidden="false">&times;</span>
@@ -102,7 +102,7 @@
 										<div class="input-group-text">현재 도서 권수 -</div>
 									</div>
 									<input type="text" class="form-control"
-										aria-label="{js에 보낼 name값}" value="{yourNum}"
+									 	 value="{num이나 bookNum}"
 										readonly="readonly">
 								</div>
 								<br />
