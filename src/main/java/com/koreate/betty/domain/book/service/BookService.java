@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.koreate.betty.domain.book.dao.BookRepository;
+import com.koreate.betty.domain.book.dto.BookBuyForm;
 import com.koreate.betty.domain.book.dto.BookSearchForm;
 import com.koreate.betty.domain.book.dto.BookUpdateForm;
 import com.koreate.betty.domain.book.vo.Book;
@@ -23,7 +25,23 @@ public class BookService {
 		Book book = form.createBook();		
 		return bookRepository.update(targetCode, book);
 	}
+	
+	public int insert(BookBuyForm form) {
+		Book book = form.createBook();
+		return bookRepository.insert(book);
+	}
 
+	@Transactional
+	public int insertWare(String code, String id, int count) {
+		int result = 0;
+		while (count-- > 0) {
+			int temp = bookRepository.insertWare(code);
+			result += temp;
+		}
+		bookRepository.updateId(id);
+		return result;
+	}
+	
 	public List<Book> jBooksList() {
 		return bookRepository.jBooksList();
 	}
