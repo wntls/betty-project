@@ -7,15 +7,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.koreate.betty.domain.member.dto.LoginForm;
+import com.koreate.betty.domain.member.dto.form.JoinForm;
+import com.koreate.betty.domain.member.dto.form.LoginForm;
 import com.koreate.betty.domain.member.service.MemberService;
 import com.koreate.betty.domain.member.vo.Member;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/sign")
 @RequiredArgsConstructor
+@Slf4j
 public class SignController {	
 	
 	private final MemberService ms;
@@ -47,9 +50,14 @@ public class SignController {
 		session.setAttribute("loginMember", loginMember);
 		return "redirect:/";
 	}
-
 	
-	
+	@PostMapping("up/member")
+	public String signUpMember(JoinForm form) {
+		int result = ms.joinMember(form);
+		
+		log.info("signUpMember result : {} ", result);
+		return "redirect:/";
+	}
 	
 	
 }
