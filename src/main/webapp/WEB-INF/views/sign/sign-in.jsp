@@ -47,7 +47,6 @@
 				<!-- login form의 right 정렬 -->
 				<ul
 					class="list-group list-group-horizontal-md justify-content-center">
-
 					<li class="list-group-item"><a data-toggle="modal"
 						data-target="#idFindModal">아이디 찾기</a></li>
 					<li class="list-group-item"><a data-toggle="modal"
@@ -64,27 +63,36 @@
 				role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title">비밀번호 찾기</h5>
+						<h5 class="modal-title">아이디 찾기</h5>
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="false">&times;</span>
 						</button>
 					</div>
 					<div class="modal-body">
 						<!-- 입력태그 하나 -->
-						<div class="input-group mb-3">
+						<div class="input-group">
 							<div class="input-group-prepend">
 								<div class="input-group-text">이름</div>
 							</div>
-							<input type="text" class="form-control"
-								<button id="idFindModalPhoneCheck">전화번호 인증</button>
+							<input type="text" class="form-control">
+								
 						</div>
+						
+						<div class="input-group mt-3">
+						  <div class="input-group-prepend">
+						    <span class="input-group-text">전화번호</span>
+						  </div>
+						  <input type="text" class="form-control">
+						  <button id="idFindModalPhoneCheck">인증하기</button>
+						</div>
+						
 						<br />
 						<!-- 입력태그 하나 -->
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary">{submit}</button>
+						<button type="button" class="btn btn-primary">확인</button>
 						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">{cancel}</button>
+							data-dismiss="modal">취소</button>
 					</div>
 				</div>
 			</div>
@@ -101,7 +109,7 @@
 				role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalCenterTitle">아이디 찾기</h5>
+						<h5 class="modal-title" id="exampleModalCenterTitle">비밀번호 찾기</h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="false">&times;</span>
@@ -113,26 +121,26 @@
 							<div class="input-group-prepend">
 								<div class="input-group-text" id="passFindInputID">아이디</div>
 							</div>
-							<input type="text" class="form-control"
+							<input type="text" class="form-control">
 						</div>
-						<br />
-						<!-- 입력태그 하나 -->
+						
 						<!-- 입력태그 하나 -->
 						<div class="input-group mb-3">
 							<div class="input-group-prepend">
-								<div class="input-group-text" id="passFindInputPass">비밀번호
+								<div class="input-group-text" id="passFindInputPass">전화번호
 								</div>
 							</div>
-							<input type="text" class="form-control"
+							<input type="text" class="form-control">
+							<button id="idFindModalPhoneCheck">인증하기</button>
 						</div>
 						<br />
 						<!-- 입력태그 하나 -->
 
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-primary">{submit}</button>
+						<button type="button" class="btn btn-primary">확인</button>
 						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">{cancel}</button>
+							data-dismiss="modal">취소</button>
 					</div>
 				</div>
 			</div>

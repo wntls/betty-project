@@ -1,4 +1,4 @@
-package com.koreate.betty.web;
+package com.koreate.betty.jaemin;
 
 import java.util.Map;
 

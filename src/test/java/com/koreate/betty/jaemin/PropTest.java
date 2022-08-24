@@ -1,4 +1,4 @@
-package com.koreate.betty;
+package com.koreate.betty.jaemin;
 
 import java.util.Locale;
 
@@ -24,7 +24,10 @@ import lombok.extern.slf4j.Slf4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = WebConfig.class)
 @Slf4j
-@PropertySource({"classpath:/prop/file.properties" , "classpath:prop/file.properties", "classpath:/file.properties", "classpath:file.properties"})
+@PropertySource({"classpath:/prop/file.properties" ,
+				"classpath:prop/file.properties", 
+				"classpath:/file.properties", 
+				"classpath:file.properties"})
 public class PropTest {
 	
 	//@Value("${jdbc.driver}")

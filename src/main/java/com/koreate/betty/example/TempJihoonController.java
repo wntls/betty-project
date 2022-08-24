@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import lombok.RequiredArgsConstructor;
 
-@Controller
+//@Controller
 @RequiredArgsConstructor
 public class TempJihoonController {
 

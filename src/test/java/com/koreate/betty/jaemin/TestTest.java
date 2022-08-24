@@ -1,4 +1,4 @@
-package com.koreate.betty;
+package com.koreate.betty.jaemin;
 
 import org.junit.Test;
 
