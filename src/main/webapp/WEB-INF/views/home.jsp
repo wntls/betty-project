@@ -84,99 +84,7 @@
 <section class="product spad">
 	<div class="container-md">
 		<div class="row">
-			<div class="col-md-8">
-				<!-- 인기 도서 -->
-				<div class="trending__product">
-					<div class="row">
-						<div class="col-md-8">
-							<div class="section-title">
-								<h4>인기 도서</h4>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="btn__all">
-								<a href="#" class="primary-btn">더보기 <span
-									class="arrow_right"></span></a>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-4">
-							<div class="product__item">
-								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/medium/9772383984000.jpg">
-									<!-- <div class="ep">18 / 18</div> -->
-									<div class="comment">
-										<i class="fa fa-comments"></i> 댓글
-									</div>
-									<div class="view">
-										<i class="fa fa-eye"></i> 조회수
-									</div>
-								</div>
-								<div class="product__item__text">
-									<ul>
-										<!-- <li>책 카테고리</li> -->
-										<li>장르</li>
-										<li>작가</li>
-									</ul>
-									<h5>
-										<a href="#">책 제목 적어야지</a>
-									</h5>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="product__item">
-								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/medium/9772383984000.jpg">
-									<!-- <div class="ep">18 / 18</div> -->
-									<div class="comment">
-										<i class="fa fa-comments"></i> 댓글
-									</div>
-									<div class="view">
-										<i class="fa fa-eye"></i> 조회수
-									</div>
-								</div>
-								<div class="product__item__text">
-									<ul>
-										<!-- <li>문학</li> -->
-										<li>소설</li>
-										<li>히가시노게이고</li>
-									</ul>
-									<h5>
-										<a href="#">나미야 잡화점의 기적</a>
-									</h5>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="product__item">
-								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/medium/9772383984000.jpg">
-									<!-- <div class="ep">18 / 18</div> -->
-									<div class="comment">
-										<i class="fa fa-comments"></i> 댓글
-									</div>
-									<div class="view">
-										<i class="fa fa-eye"></i> 조회수
-									</div>
-								</div>
-								<div class="product__item__text">
-									<ul>
-										<!-- <li>문학</li> -->
-										<li>소설</li>
-										<li>무라카미 하루키</li>
-									</ul>
-									<h5>
-										<a href="#">1Q84</a>
-									</h5>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			
-				<!-- 최신 도서 -->
+			<div class="col-md-10">
 				<div class="recent__product">
 					<div class="row">
 						<div class="col-md-8">
@@ -184,38 +92,9 @@
 								<h4>최신 도서</h4>
 							</div>
 						</div>
-						<div class="col-md-4">
-							<div class="btn__all">
-								<a href="#" class="primary-btn">View All <span
-									class="arrow_right"></span></a>
-							</div>
-						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-4">
-							<div class="product__item">
-								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/medium/9772383984000.jpg">
-									<div class="ep">18 / 18</div>
-									<div class="comment">
-										<i class="fa fa-comments"></i> 11
-									</div>
-									<div class="view">
-										<i class="fa fa-eye"></i> 9141
-									</div>
-								</div>
-								<div class="product__item__text">
-									<ul>
-										<li>Active</li>
-										<li>Movie</li>
-									</ul>
-									<h5>
-										<a href="#">Great Teacher Onizuka</a>
-									</h5>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
+					<div class="row justify-content-around">
+						<div class="col-md-3">
 							<div class="product__item">
 								<div class="product__item__pic set-bg"
 									data-setbg="${path}/resources/img/book/medium/9772383984000.jpg">
@@ -239,7 +118,30 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-3">
+							<div class="product__item">
+								<div class="product__item__pic set-bg"
+									data-setbg="${path}/resources/img/book/medium/9772383984000.jpg">
+									<div class="ep">18 / 18</div>
+									<div class="comment">
+										<i class="fa fa-comments"></i> 11
+									</div>
+									<div class="view">
+										<i class="fa fa-eye"></i> 9141
+									</div>
+								</div>
+								<div class="product__item__text">
+									<ul>
+										<li>Active</li>
+										<li>Movie</li>
+									</ul>
+									<h5>
+										<a href="#">Mushishi Zoku Shou: Suzu no Shizuku</a>
+									</h5>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
 							<div class="product__item">
 								<div class="product__item__pic set-bg"
 									data-setbg="${path}/resources/img/book/medium/9772383984000.jpg">

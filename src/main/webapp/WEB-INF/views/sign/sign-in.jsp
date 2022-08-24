@@ -183,7 +183,7 @@
 							<span aria-hidden="false">&times;</span>
 						</button>
 					</div>
-					<form class="form-group" action="${path}/members/${}/edit" method="post">
+					<form class="form-group" action="${path}/members/num/edit" method="post">
 						<div class="modal-body">
 							<!-- 입력태그 하나 -->
 							<div class="input-group mb-3">

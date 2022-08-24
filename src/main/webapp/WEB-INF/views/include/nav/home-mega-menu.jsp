@@ -25,7 +25,7 @@
 				
 				member
 				
-				<a class="dropdown-item" href="${path}/members/dashboard">대시보드</a>
+				<a class="dropdown-item" href="${path}/members/num/dashboard">대시보드</a>
 				<a class="dropdown-item" href="${path}/members/num/charge">포인트충전</a> 
 				<a class="dropdown-item" href="${path}/members/num">회원정보</a>
 				<a class="dropdown-item" href="${path}/members/num/rentals">대여이력</a> 
@@ -81,6 +81,7 @@
 			  	<a class="dropdown-item" href="${path}/admin/profit">도서관 수익</a> 
 			  	editor ex
 			  	<a class="dropdown-item" href="${path}/edit">에디터 견본</a> 
+			  	<a class="dropdown-item" href="${path}/knh">캘린더 연습</a> 
 			</div>
 		</div>
 	</div>
