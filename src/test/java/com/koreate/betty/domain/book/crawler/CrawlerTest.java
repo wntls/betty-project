@@ -58,13 +58,15 @@ public class CrawlerTest {
 				options.addArguments("headless");
 				driver = new ChromeDriver(options);
 
-				int cid = 2105;
-				// 2105 : 고전
-				// 170 : 경제
-				// 517 : 예술/대중문화
-				// 74 : 역사
-				// 987 : 과학 
-				// 656 : 인문학
+				int cid = 1196;
+				// 2105 : 고전 O 완료
+				// 170 : 경제 O 완료
+				// 517 : 예술/대중문화 O 완료
+				// 74 : 역사 O 완료
+				// 987 : 과학 O 완료
+				// 656 : 인문학 O 완료
+				// 1237 : 종교 O 완료
+				// 1196 : 여행 O 완료
 				
 				// webapp/crawlingimg
 				// webapp/resources/img/book/origin
@@ -80,6 +82,7 @@ public class CrawlerTest {
 				if (driver != null) {
 					driver.close();
 					driver.quit();
+					driver = null;
 				}
 			}
 		} catch (Exception e) {
@@ -87,7 +90,7 @@ public class CrawlerTest {
 		} finally {
 			if (driver != null) {
 				driver.close();
-				driver.quit();
+				driver.quit();				
 			}
 		}
 	}

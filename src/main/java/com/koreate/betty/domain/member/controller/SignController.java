@@ -17,13 +17,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import com.koreate.betty.domain.board.dto.form.FreeBoardForm;
-import com.koreate.betty.domain.member.dto.LoginForm;
+
+import com.koreate.betty.domain.member.dto.form.JoinForm;
+import com.koreate.betty.domain.member.dto.form.LoginForm;
+
 import com.koreate.betty.domain.member.service.MemberService;
 import com.koreate.betty.domain.member.vo.Member;
 
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+
 import net.nurigo.sdk.message.model.Message;
 import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
 import net.nurigo.sdk.message.response.SingleMessageSentResponse;
@@ -32,7 +37,9 @@ import net.nurigo.sdk.message.service.DefaultMessageService;
 @Controller
 @RequestMapping("/sign")
 @RequiredArgsConstructor
-public class SignController {
+
+public class SignController {	
+
 	
 	private final DefaultMessageService messageService;
 	private final MemberService memberService;
@@ -65,6 +72,7 @@ public class SignController {
 		return "redirect:/";
 	}
 
+  // 내부 로직 빼낼 예정
 	@PostMapping("sms")
 	@ResponseBody
 	public Map<String, String> sendSMS(String phone) throws Exception {
@@ -121,4 +129,10 @@ public class SignController {
 		return code;
 	}
 
-}
+	@PostMapping("up/member")
+	public String signUpMember(JoinForm form) {
+		int result = ms.joinMember(form);
+		
+		log.info("signUpMember result : {} ", result);
+		return "redirect:/";
+	}

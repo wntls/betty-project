@@ -14,7 +14,7 @@ import lombok.Setter;
 public class SuggestBoardForm {
 	
 	@Nullable
-	private int bno;
+	private Integer bno;
 	
 	@NotBlank
 	private String memberId;
@@ -26,9 +26,9 @@ public class SuggestBoardForm {
 	@NotBlank
 	private String content;
 	
-	private int depth;
+	private Integer depth;
 	
-	private int origin;
+	private Integer origin;
 	
 	public SuggestBoard suggestBoard() {
 		return SuggestBoard.builder()

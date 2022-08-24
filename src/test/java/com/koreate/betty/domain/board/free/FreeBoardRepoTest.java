@@ -3,6 +3,7 @@ package com.koreate.betty.domain.board.free;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -112,6 +113,7 @@ public class FreeBoardRepoTest {
 		log.info("first={}, second={}, third={}",first,second,third);
 	}
 	
+	
 	//@Test
 	public void removeTest() {
 		int first = freeBoardService.remove(formR1);
@@ -130,7 +132,7 @@ public class FreeBoardRepoTest {
 	
 	//@Test	
 	public void listTest() {
-		List<FreeBoard> list = freeBoardService.freeList();
+		List<FreeBoard> list = freeBoardService.freeList(ex);
 		log.info("list : "+ list.size());
 		FreeBoard board = list.get(1);
 		log.info(board.getTitle());

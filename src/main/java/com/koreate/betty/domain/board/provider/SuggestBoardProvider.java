@@ -1,11 +1,11 @@
 package com.koreate.betty.domain.board.provider;
 
+import static com.koreate.betty.domain.model.TableConst.NOTICE_BOARD_TBL;
 import static com.koreate.betty.domain.model.TableConst.SUGGEST_BOARD_TBL;
 
 import org.apache.ibatis.jdbc.SQL;
 
 import com.koreate.betty.domain.board.vo.SuggestBoard;
-import com.koreate.betty.global.util.Criteria;
 import com.koreate.betty.global.util.SearchCriteria;
 
 public class SuggestBoardProvider {
@@ -67,13 +67,33 @@ public class SuggestBoardProvider {
 	}
 	
 	// 건의사항 목록 출력
-	public String suggestList(Criteria cri) {
+	public String suggestList(SearchCriteria cri, SuggestBoard vo) {
 		return new SQL().SELECT("*")
 				.FROM(SUGGEST_BOARD_TBL)
 				.ORDER_BY("origin, depth")
+				.WHERE("title LIKE CONCAT('%',#{title},'%')")
 				.OFFSET(cri.getStartRow())
 				.LIMIT(cri.getPerPageNum())
 				.toString();
 	}
+	
+	// 조회수 증가
+	public String updateCnt(int bno) {
+		return new SQL()
+				.UPDATE(SUGGEST_BOARD_TBL)
+				.SET("viewcnt = viewcnt + 1")
+				.WHERE("bno = #{bno}")
+				.toString();
+	}
+	
+	// 추천수 증가
+	public String updateRecommend(int bno) {
+		return new SQL()
+				.UPDATE(SUGGEST_BOARD_TBL)
+				.SET("recommend = recommend + 1")
+				.WHERE("bno = #{bno}")
+				.toString();
+	}
+	
 	
 }
