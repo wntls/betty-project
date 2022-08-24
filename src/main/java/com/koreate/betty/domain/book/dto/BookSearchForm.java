@@ -1,7 +1,5 @@
 package com.koreate.betty.domain.book.dto;
 
-import java.sql.Timestamp;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -18,11 +16,11 @@ public class BookSearchForm {
 	@NotBlank
 	private String searchOption;
 
-	@NotBlank
+	@Nullable
 	private String rentOption;
 
 	@Nullable	// 태그의 입력 형태에 따라 바뀔 수 있음 > provider 변경 필요
-	private Timestamp pubDate;
+	private String pubDate;
 
 	@NotNull
 	private String pubDateOption;
