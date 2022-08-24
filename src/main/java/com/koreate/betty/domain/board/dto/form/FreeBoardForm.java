@@ -13,7 +13,7 @@ import lombok.Data;
 public class FreeBoardForm {
 	// 존재하지 않는 아이디의 경우 예외 발생. (외래키 제약 위반)
 	@Nullable
-	private int bno;
+	private Integer bno;
 	
 	@NotBlank
 	private String memberId;

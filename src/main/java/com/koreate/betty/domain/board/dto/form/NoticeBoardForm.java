@@ -1,5 +1,27 @@
 package com.koreate.betty.domain.board.dto.form;
 
-public class NoticeBoardForm {
+import com.koreate.betty.domain.board.vo.NoticeBoard;
 
+import lombok.Data;
+@Data
+public class NoticeBoardForm {
+	
+	private Integer bno;
+	
+	private String memberId;
+	
+	private String title;
+
+	private String content;
+	
+	
+	public NoticeBoard noticeBoard() {
+		return NoticeBoard.builder()
+				.bno(bno)
+				.memberId(memberId)
+				.title(title)
+				.content(content)
+				.build();
+	}
+	
 }

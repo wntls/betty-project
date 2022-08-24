@@ -36,9 +36,17 @@ public class FreeBoardService {
 		return board.getBno();
 	}
 	
-	// 게시글 목록
-	public List<FreeBoard> freeList() {
-		return freeBoardRepository.listAll();
+	// 게시글 전체 목록
+	public List<FreeBoard> freeList(FreeBoardForm form) {
+		FreeBoard board = form.createFreeBoard();
+		return freeBoardRepository.listAll(board);
 	}
+	
+	// 조회수 증가
+	public int updateCnt(int bno) {
+		return freeBoardRepository.updateCnt(bno);
+	}
+	
+	
 	
 }

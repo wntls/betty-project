@@ -142,7 +142,7 @@ table td {
 								<div>
 									<button type="button" data-toggle="modal" data-target="#moone"
 									class="btn btn-danger">
-									문의하기</a>
+									문의하기</button>
 								</div>
 							</div>
 						</div>
@@ -190,7 +190,7 @@ table td {
 						<div class="input-group-prepend">
 							<div class="input-group-text">내용</div>
 						</div>
-						<input type="textarea" class="form-control">
+						<textarea class="form-control" rows="" cols=""></textarea>
 					</div>
 				</div>
 				<div class="modal-footer">

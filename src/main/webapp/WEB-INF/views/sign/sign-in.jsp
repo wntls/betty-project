@@ -75,6 +75,7 @@
 								<div class="input-group-text">이름</div>
 							</div>
 							<input type="text" class="form-control" name="name">
+
 						</div>
 						
 						<div class="input-group mt-3">
@@ -137,8 +138,10 @@
 								<div class="input-group-text" id="passFindInputPass">전화번호
 								</div>
 							</div>
+
 							<input type="text" class="form-control" name="phone">
 							<button id="idFindModalPhoneCheck">인증하기</button>
+
 						</div>
 						<!-- 입력태그 하나 -->
 						<div class="input-group mt-3" style="display: flex" id="pwCodeWrap">
