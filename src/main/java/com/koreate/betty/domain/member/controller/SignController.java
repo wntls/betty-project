@@ -29,11 +29,13 @@ import com.koreate.betty.domain.member.vo.Member;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+import lombok.extern.slf4j.Slf4j;
 import net.nurigo.sdk.message.model.Message;
 import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
 import net.nurigo.sdk.message.response.SingleMessageSentResponse;
 import net.nurigo.sdk.message.service.DefaultMessageService;
 
+@Slf4j
 @Controller
 @RequestMapping("/sign")
 @RequiredArgsConstructor
@@ -131,8 +133,13 @@ public class SignController {
 
 	@PostMapping("up/member")
 	public String signUpMember(JoinForm form) {
-		int result = ms.joinMember(form);
+
+		int result = memberService.joinMember(form);
 		
 		log.info("signUpMember result : {} ", result);
 		return "redirect:/";
 	}
+
+	
+}
+
