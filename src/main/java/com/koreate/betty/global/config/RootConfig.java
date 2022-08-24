@@ -6,10 +6,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+
+import net.nurigo.sdk.NurigoApp;
+import net.nurigo.sdk.message.service.DefaultMessageService;
 
 @Configuration
 @Import(DBConfig.class)
@@ -36,5 +37,10 @@ public class RootConfig {
 	public static PropertySourcesPlaceholderConfigurer propertyPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
     }
+	
+	@Bean
+	public DefaultMessageService defaultMessageService() {
+		return NurigoApp.INSTANCE.initialize("NCSIA5IIYYBCCHTZ", "YHERRFBC76LCQGTRG6ZYHG6QHEPBIP54", "https://api.coolsms.co.kr");
+	}
 	
 }

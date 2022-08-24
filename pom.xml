@@ -206,6 +206,22 @@
 			<version>2.0.2</version>
 		</dependency>
 
+		<!-- mail && sms -->		
+		<dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>1.6.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>net.nurigo</groupId>
+		    <artifactId>sdk</artifactId>
+		    <version>4.2.4</version>
+		</dependency>
 
 		<!-- Other -->
 		<dependency>
@@ -225,37 +241,14 @@
 		    <version>3.0.4</version>
 		    <scope>test</scope>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
     		<groupId>org.seleniumhq.selenium</groupId>
     		<artifactId>selenium-java</artifactId>
     		<version>4.4.0</version>
 		</dependency>
 		
-		<!-- java mail API -->
-		<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
-		<dependency>
-		    <groupId>com.sun.mail</groupId>
-		    <artifactId>javax.mail</artifactId>
-		    <version>1.6.2</version>
-		</dependency>
 		
-		<!-- application context에서 사용하긴 하지만 자주 사용 안되는 애들 모아져있는 친구 -->
-		<!-- 캐쉬, 메일, 스케줄링, ui 등 관련된 기능? -->
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-context-support</artifactId>
-		    <version>${org.springframework-version}</version>
-		</dependency>
 		
-		<!-- sendSMS callsms lib -->
-		<dependency>
-		    <groupId>net.nurigo</groupId>
-		    <artifactId>sdk</artifactId>
-		    <version>4.2.4</version>
-		</dependency>
 		
 	</dependencies>
 

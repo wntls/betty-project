@@ -52,10 +52,17 @@
 |	 | ADD jakarta.validation-api version 2.0.2	|					|
 |	 +==========================================+					|
 |																	|
+|	+=========== mail && sms ===========+							|
+|	| ADD spring-context-support		|							|
+|	| ADD javax.mail					|							|
+|	| ADD sdk							|							|
+|	+===================================+							|
+|																	|
 |	+========== Other ==========+									|
 |	| ADD lombok				|									|
 |	| ADD jackson-databind		|									|
 | 	| ADD jakarta.el			|									|
+|	| ADD selenium-java			|									|
 |	+===========================+									|
 |																	|
 |																	|
