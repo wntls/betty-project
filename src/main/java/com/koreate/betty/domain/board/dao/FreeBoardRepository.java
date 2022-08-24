@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.UpdateProvider;
 
 import com.koreate.betty.domain.board.provider.FreeBoardProvider;
 import com.koreate.betty.domain.board.vo.FreeBoard;
+import com.koreate.betty.global.util.SearchCriteria;
 
 @Mapper
 public interface FreeBoardRepository {
@@ -17,18 +18,27 @@ public interface FreeBoardRepository {
 	// 게시글 등록
 	@InsertProvider(type=FreeBoardProvider.class, method="save")
 	@Options(useGeneratedKeys = true , keyProperty = "bno")
-	public void save(FreeBoard board);
+	public int save(FreeBoard board);
 	
 	// 게시글 삭제
 	@UpdateProvider(type=FreeBoardProvider.class, method="freeRemove")
-	public void freeRemove(FreeBoard board);
+	public int freeRemove(FreeBoard board);
 	
 	// 게시글 수정
 	@UpdateProvider(type=FreeBoardProvider.class, method="freeUpdate")
-	public void freeUpdate(FreeBoard board);
+	public int freeUpdate(FreeBoard board);
 	
 	// 게시글 전체 목록
 	@SelectProvider(type=FreeBoardProvider.class, method="freeList")
-	public List<FreeBoard> listAll();
+	public List<FreeBoard> listAll(FreeBoard board);
+	
+	// 조회수 증가
+	@UpdateProvider(type=FreeBoardProvider.class, method="updateCnt")
+	public int updateCnt(int bno);
+	
+	// 전체 게시물 개수
+	@SelectProvider(type=FreeBoardProvider.class, method="listAllCount")
+	public int listAllCount(SearchCriteria cri);
+	
 	
 }

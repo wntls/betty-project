@@ -8,15 +8,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SuggestBoardDTO {
 	
-	private int bno;
+	private Integer bno;
 	private String memberId;
 	private String title;
 	private String content;
-	private int origin;
-	private int depth;
+	private Integer origin;
+	private Integer depth;
 	private Timestamp regdate;
-	private int viewcnt;
-	private int recommend;
-	private char showboard;
+	private Integer viewcnt;
+	private Integer recommend;
+	private String showboard;
 	
 }
