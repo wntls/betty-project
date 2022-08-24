@@ -75,7 +75,7 @@
 							<div class="input-group-prepend">
 								<div class="input-group-text">이름</div>
 							</div>
-							<input type="text" class="form-control"
+							<input type="text" class="form-control" />
 								<button id="idFindModalPhoneCheck">전화번호 인증</button>
 						</div>
 						<br />
@@ -113,7 +113,7 @@
 							<div class="input-group-prepend">
 								<div class="input-group-text" id="passFindInputID">아이디</div>
 							</div>
-							<input type="text" class="form-control"
+							<input type="text" class="form-control" />
 						</div>
 						<br />
 						<!-- 입력태그 하나 -->
@@ -123,7 +123,7 @@
 								<div class="input-group-text" id="passFindInputPass">비밀번호
 								</div>
 							</div>
-							<input type="text" class="form-control"
+							<input type="text" class="form-control" />
 						</div>
 						<br />
 						<!-- 입력태그 하나 -->

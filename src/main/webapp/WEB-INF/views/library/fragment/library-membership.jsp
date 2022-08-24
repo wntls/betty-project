@@ -17,13 +17,13 @@
 					<td>
 						<span>
 							<i class="bi bi-hexagon"></i><br/>
-							<em>기본 등급</em>
+							<em>bronze 등급</em>
 						</span>
 					</td>
 					<td>
 						<span>
 							<i class="bi bi-gift-fill"></i><br/>
-							<em>유료 등급</em>
+							<em>silver 등급</em>
 						</span>
 					</td>
 					<td>
