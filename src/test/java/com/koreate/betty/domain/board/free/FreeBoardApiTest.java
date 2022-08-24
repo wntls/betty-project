@@ -141,7 +141,7 @@ public class FreeBoardApiTest {
 		
 	}
 	
-	//@Test
+		@Test
 		public void removeTest() {
 			int first = freeBoardService.remove(formR1);
 			int second = freeBoardService.remove(formR2);
@@ -159,7 +159,7 @@ public class FreeBoardApiTest {
 
 		@Test	
 		public void listTest() {
-			List<FreeBoard> list = freeBoardService.freeList();
+			List<FreeBoard> list = freeBoardService.freeList(ex);
 			log.info("list : "+ list.size());
 			FreeBoard board = list.get(1);
 			log.info(board.getTitle());

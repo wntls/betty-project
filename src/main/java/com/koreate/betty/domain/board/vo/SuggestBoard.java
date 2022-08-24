@@ -10,16 +10,16 @@ import lombok.Getter;
 @Builder
 public class SuggestBoard {
 	
-	private final int bno;
+	private final Integer bno;
 	private final String memberId;
 	private final String title;
 	private final String content;
-	private final int origin;
-	private final int depth;
-	private final int seq;
+	private final Integer origin;
+	private final Integer depth;
+	private final Integer seq;
 	private final Timestamp regdate;
-	private final int viewcnt;
-	private final int recommend;
-	private final char showboard;
+	private final Integer viewcnt;
+	private final Integer recommend;
+	private final String showboard;
 	
 }

@@ -9,12 +9,13 @@ import lombok.Getter;
 @Builder
 public class NoticeBoard {
 	
+	private final Integer bno;
 	private final String memberId;
 	private final String title;
 	private final String content;
 	private final Timestamp regdate;
-	private final int viewcnt;
-	private final char showboard;
+	private final Integer viewcnt;
+	private final String showboard;
 	
 	
 	

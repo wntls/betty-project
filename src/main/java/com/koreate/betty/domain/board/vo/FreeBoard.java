@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 @Builder
 public class FreeBoard {
 
-	private final int bno;
+	private final Integer bno;
 	private final String memberId;
 	private final String tag;
 	private final String title;
 	private final String content;
 	private final Timestamp regdate;
-	private final int viewcnt;
+	private final Integer viewcnt;
 	private final String showboard;
 	
 }
