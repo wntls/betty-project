@@ -19,23 +19,23 @@ public interface SuggestBoardRepository {
 		// 건의사항 등록
 		@InsertProvider(type=SuggestBoardProvider.class, method="suggestRegist")
 		@Options(useGeneratedKeys = true , keyProperty = "bno")
-		public void suggestRegist(SuggestBoard vo);
+		public int suggestRegist(SuggestBoard vo);
 		
 		// 답변글 등록
 		@InsertProvider(type=SuggestBoardProvider.class, method="suggestRegist")
-		public void suggestReply(SuggestBoard vo);
+		public int suggestReply(SuggestBoard vo);
 		
 		// 업데이트 오리진
 		@UpdateProvider(type=SuggestBoardProvider.class, method="updateOrigin")
-		public void updateOrigin();
+		public int updateOrigin();
 		
 		// 건의사항 삭제
 		@UpdateProvider(type=SuggestBoardProvider.class, method="suggestRemove")
-		public void suggestRemove(SuggestBoard vo);
+		public int suggestRemove(SuggestBoard vo);
 		
 		// 건의사항 수정
 		@UpdateProvider(type=SuggestBoardProvider.class, method="suggestUpdate")
-		public void suggestUpdate(SuggestBoard vo);
+		public int suggestUpdate(SuggestBoard vo);
 		
 		// 건의사항 상세
 		@UpdateProvider(type=SuggestBoardProvider.class, method="suggestDetail")
