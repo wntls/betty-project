@@ -26,8 +26,8 @@
 								<a class="nav-link" href="${path}/books">도서 목록</a> 
 								<a class="nav-link" href="${path}/members/num/dashboard">회원 공간</a>
 								<a class="nav-link" href="${path}/boards/notice">게시판</a>
-								<a class="nav-link" href="${path}/staff">직원</a>
-								<a class="nav-link" href="${path}/admin">관리자</a>
+								<a class="nav-link" href="${path}/staff/books">직원</a>
+								<a class="nav-link" href="${path}/admin/members">관리자</a>
 							</nav>
 						</div>
 						<!-- 우측 회원관련 -->

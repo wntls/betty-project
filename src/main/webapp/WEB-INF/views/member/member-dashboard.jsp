@@ -37,7 +37,7 @@ table td {
 						<div class="card">
 							<div class="row justify-content-around" style="padding:1rem">
 									<div class="text-center">
-										<img src="${path}/resources/img/member/profile_male.png"
+										<img src="${path}/resources/img/member/thumbnail/profile_male.jpg"
 											style="width: 10rem" class="img-thumbnail"
 											alt="...">
 									</div>

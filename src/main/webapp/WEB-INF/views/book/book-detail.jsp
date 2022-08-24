@@ -10,7 +10,7 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="anime__details__pic set-bg"
-						data-setbg="${path}/resources/img/book/origin/9788935213344.jpg">
+						data-setbg="${path}/resources/img/book/origin/9772383984000.jpg">
 					</div>
 				</div>
 				<div class="col-md-8">

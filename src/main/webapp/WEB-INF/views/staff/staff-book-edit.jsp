@@ -15,7 +15,7 @@
 				<div class="row justify-content-center">
 					<div class="col-md-11 col-md-4" id="imgs">
 						<img class="img-thumbnail" alt="..."
-							src="${path}/resources/img/book/origin/9788935213344.jpg" />
+							src="${path}/resources/img/book/origin/9772383984000.jpg" />
 						<button type="button" class="btn btn-secondary btn-md btn-block">
 							책 표지 삽입</button>
 					</div>

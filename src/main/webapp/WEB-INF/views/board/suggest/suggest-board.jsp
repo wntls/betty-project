@@ -70,7 +70,7 @@
 									<option value="">내용</option>
 								</select>
 							</div>
-							<input type="text" style="height: 42px" class="form-control">
+							<input type="text" class="form-control">
 							<div class="input-group-append">
 								<button type="submit" class="btn btn-primary">검색하기</button>
 							</div>

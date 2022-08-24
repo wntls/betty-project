@@ -21,7 +21,7 @@
 						<div class="col-md-6">
 							<div class="blog__details">
 								<div class="thumb-list-profile">
-									<img src="${path}/resources/img/member/thumb_profile_male.png" /> <span
+									<img src="${path}/resources/img/member/thumbnail/profile_male.jpg" /> <span
 										class="text-white">닉네임</span>
 								</div>
 							</div>

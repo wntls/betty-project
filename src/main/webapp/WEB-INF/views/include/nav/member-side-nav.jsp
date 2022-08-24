@@ -8,7 +8,7 @@
 	    <a class="nav-link disabled" href="#">마이페이지</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" href="${path}/members/dashboard">대시보드</a>
+	    <a class="nav-link" href="${path}/members/num/dashboard">대시보드</a>
 	  </li>
 	  <li class="nav-item">
 	    <a class="nav-link" href="${path}/members/num/charge">포인트충전</a>

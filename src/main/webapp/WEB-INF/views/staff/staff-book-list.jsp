@@ -103,7 +103,7 @@
 					<tr onclick="location.href='${path}/staff/books/num/edit'">
 						<td rowspan="3">1</td>
 						<td class="책 이미지" style="max-width: 135px" rowspan="3">
-						<img src="${path}/resources/img/book/origin/9788935213344.jpg" /></td>
+						<img src="${path}/resources/img/book/thumbnail/9772383984000.jpg" /></td>
 						<td class="tempTitle">{제목넘기기}</td>
 						<td>코드넘기자</td>
 						<td>{auth}</td>

@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.UpdateProvider;
 
-import com.koreate.betty.domain.board.provider.NoticeBoardProvider;
 import com.koreate.betty.domain.board.provider.SuggestBoardProvider;
 import com.koreate.betty.domain.board.vo.SuggestBoard;
 import com.koreate.betty.global.util.SearchCriteria;

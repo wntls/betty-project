@@ -118,7 +118,7 @@
 					<tr>
 						<td rowspan="3">1</td>
 						<td rowspan="3" class="thumb-list-profile"><img
-							src="${path}/resources/img/member/thumb_profile_male.png" /></td>
+							src="${path}/resources/img/member/thumbnail/profile_male.jpg" /></td>
 						<td>namu6747</td>
 						<td>namu6747</td>
 						<td>박재민</td>
@@ -173,7 +173,7 @@
 					<tr>
 						<td rowspan="3">1</td>
 						<td rowspan="3" class="thumb-list-profile"><img
-							src="${path}/resources/img/member/thumb_profile_male.png" /></td>
+							src="${path}/resources/img/member/thumbnail/profile_male.jpg" /></td>
 						<td>namu6747</td>
 						<td>namu6747</td>
 						<td>박재민</td>

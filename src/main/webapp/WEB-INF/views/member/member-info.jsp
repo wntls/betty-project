@@ -21,7 +21,7 @@
 			</div>
 
 			<img class="img-thumbnail" alt="..."
-				src="${path}/resources/img/member/profile_male.png" />
+				src="${path}/resources/img/member/origin/profile_male.jpg" />
 			<div class="w-100 mb-5"></div>
 
 
