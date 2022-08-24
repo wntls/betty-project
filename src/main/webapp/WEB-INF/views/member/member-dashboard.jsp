@@ -194,7 +194,7 @@ table td {
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">전송</button>
+					<button type="button" id="inqSubBtn" class="btn btn-primary">전송</button>
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">취소</button>
 				</div>
