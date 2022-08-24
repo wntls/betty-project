@@ -10,7 +10,8 @@
             <div class="col-md-6 row justify-content-center">
                 <div class="login__form">                        
                     <h3>Sign UP</h3>
-                    <form action="#">
+                    <form method="POST">
+                    	<input type="text" name="rights" value=1 hidden>
                         <div class="input__item">
                             <input type="text" name="memberId" placeholder="아이디를 입력 하세요" />
                             <span><i class="bi bi-person-video2"></i></span>

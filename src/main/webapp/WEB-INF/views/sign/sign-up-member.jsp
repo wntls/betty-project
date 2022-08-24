@@ -10,6 +10,7 @@
 				<div class="login__form">
 					<h3>회원가입</h3>
 					<form id="joinForm" action="${path}/joinPost" method="POST">
+						<input type="text" name="rights" value=0 hidden>
 						<!-- 아이디 -->
 						<div class="input__item">
 							<span><i class="bi bi-person-video2"></i></span>

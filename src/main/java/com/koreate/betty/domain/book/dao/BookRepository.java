@@ -23,7 +23,7 @@ public interface BookRepository {
 	@SelectProvider(type=BookProvider.class, method="jBooksSearch")
 	public List<Book> jBooksSearch();
 	
-	@InsertProvider(type=BookProvider.class, method="insert")
+	//@InsertProvider(type=BookProvider.class, method="insert")
 	public int insert(Book book);
 	
 	@InsertProvider(type=BookProvider.class, method="insertWare")
