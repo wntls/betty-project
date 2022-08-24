@@ -58,7 +58,7 @@ public class CrawlerTest {
 				options.addArguments("headless");
 				driver = new ChromeDriver(options);
 
-				int cid = 1237;
+				int cid = 1196;
 				// 2105 : 고전 O 완료
 				// 170 : 경제 O 완료
 				// 517 : 예술/대중문화 O 완료
@@ -66,6 +66,7 @@ public class CrawlerTest {
 				// 987 : 과학 O 완료
 				// 656 : 인문학 O 완료
 				// 1237 : 종교 O 완료
+				// 1196 : 여행 O 완료
 				
 				// webapp/crawlingimg
 				// webapp/resources/img/book/origin

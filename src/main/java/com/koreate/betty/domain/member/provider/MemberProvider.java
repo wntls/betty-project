@@ -14,9 +14,9 @@ public class MemberProvider {
 	// 회원가입
 	public String register(Member member) {
 		return new SQL().INSERT_INTO(MEMBER_TBL)
-				.INTO_COLUMNS("id", "pw", "nickname", "name", "gender", "birth", "phone", "addr", "email")
-				.INTO_VALUES("#{id}, #{pw}, #{nickname}, #{name}, #{gender}, #{birth}, #{phone}, #{addr}, #{email}")
-				.toString();		
+				.INTO_COLUMNS("id", "pw", "nickname", "name", "gender", "birth", "phone", "addr", "email", "rights")
+				.INTO_VALUES("#{id}, #{pw}, #{nickname}, #{name}, #{gender}, #{birth}, #{phone}, #{addr}, #{email}, #{rights}")
+				.toString();
 	}
 	
 	// 로그인

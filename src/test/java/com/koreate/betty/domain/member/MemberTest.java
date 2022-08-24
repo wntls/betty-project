@@ -28,9 +28,10 @@ public class MemberTest {
 	@Autowired
 	MemberService ms;
 	
-//	@Test // 완료
+	@Test // 완료
 	public void joinTest() {
-		JoinForm form = new JoinForm("123","2","2","2","2","2","2000-11-22","2","2","2");
+		JoinForm form = new JoinForm("123","2","2","2","2","2","2000-11-22","2","2","2", 0);
+		
 		int result = ms.joinMember(form);
 		log.info("\n\n\n ::: joinTest result : {}", result);
 	}
@@ -91,7 +92,7 @@ public class MemberTest {
 		log.info("\n\n\n ::: changeImg result : {}", result);
 	}
 	
-	@Test
+//	@Test // 완료
 	public void deleteMemberTest() {
 		String id = "123";
 		

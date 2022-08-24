@@ -46,6 +46,8 @@ public class JoinForm {
 	@NotBlank
 	String email;
 	
+	@NotBlank
+	Integer rights;
 	
 	public Member createMember() {
 		return Member.builder()
@@ -58,6 +60,7 @@ public class JoinForm {
 				.addr(addr)
 				.phone(phone)
 				.email(email)
-				.build();		
+				.rights(rights)
+				.build();
 	}	
 }
