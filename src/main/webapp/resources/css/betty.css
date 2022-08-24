@@ -96,7 +96,7 @@
 }
 
 .text-black {
-	color: black;
+	color: #121212;
 }
 
 /* 게시판 상세보기 textarea */
@@ -240,3 +240,59 @@
 	max-width: 70%;
 	min-height: 51px;
 }
+
+
+
+
+.membership-bronze{
+	background: #ccb87c;
+	border-radius: 0.25rem;
+	padding: 0.25rem 0.5rem;
+}
+
+.membership-silver{
+	background: #727272;
+	border-radius: 0.25rem;
+	padding: 0.25rem 0.5rem;
+}
+
+.membership-vip{
+	background: #5047eb;
+	border-radius: 0.25rem;
+	padding: 0.25rem 0.5rem;
+}
+
+.membership-box{
+	display : flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	flex: 1 0 0%;
+	position : relative;
+	
+	padding: 1.5rem;
+	margin: 0 0.75rem 1rem 0.75rem;
+	align-items: center;
+	border: 1px solid #8972ee;
+	border-radius: 0.25rem;
+}
+
+/* .membership-box .btn{
+	bottom: -0.1rem;
+	margin-bottom: 1rem; 
+} */
+
+.membership-class-title{
+	margin : 2rem 0;
+	color : #03dac6;
+	font-weight: 700;
+}
+
+.ul > .mebership-li{
+	list-style: none;
+	margin : 0;
+	padding : 0.5rem 0;
+	display : flex;
+	align-items: center;
+}
+
+
