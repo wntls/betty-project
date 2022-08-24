@@ -3,6 +3,7 @@ package com.koreate.betty.domain.board.provider;
 import org.apache.ibatis.jdbc.SQL;
 
 import com.koreate.betty.domain.board.vo.FreeBoard;
+import com.koreate.betty.global.util.SearchCriteria;
 
 import static com.koreate.betty.domain.model.TableConst.*;
 
@@ -35,12 +36,50 @@ public class FreeBoardProvider {
 	}
 
 	// 자유게시판 목록 요청
-	public String freeList(FreeBoard board) {
-		return new SQL()
-				.SELECT("*")
+	public String freeList(SearchCriteria cri) {
+		SQL sql = new SQL();
+				sql.SELECT("*");
+				sql.FROM(FREE_BOARD_TBL);
+				getSearchWhere(cri, sql);
+				sql.ORDER_BY("bno DESC");
+				sql.OFFSET(cri.getStartRow());
+				sql.LIMIT(cri.getPerPageNum());
+				sql.toString();
+		return sql.toString();
+	}
+	
+	// 전체 게시물 개수
+	public String listAllCount(SearchCriteria cri) {
+		return new SQL().SELECT("count(*)")
 				.FROM(FREE_BOARD_TBL)
-				.ORDER_BY("bno DESC")
 				.toString();
+	}
+	
+	// 조회수 증가
+	public String updateCnt(int bno) {
+		return new SQL()
+				.UPDATE(FREE_BOARD_TBL)
+				.SET("viewcnt = viewcnt + 1")
+				.WHERE("bno = #{bno}")
+				.toString();
+	}
+	
+	private void getSearchWhere(SearchCriteria cri, SQL sql) {
+		String titleQuery = "title LIKE CONCAT('%','"+cri.getKeyword()+"','%')";
+		String contentQuery = "content LIKE CONCAT('%',#{keyword},'%')";
+		String writerQuery = "member_id LIKE CONCAT('%',#{keyword},'%')";
+		if(cri.getSearchType() != null && !cri.getSearchType().trim().equals("")
+				&& !cri.getSearchType().trim().equals("n")) {
+			if(cri.getSearchType().contains("t")) {
+				sql.OR().WHERE(titleQuery);
+			}
+			if(cri.getSearchType().contains("c")) {
+				sql.OR().WHERE(contentQuery);
+			}
+			if(cri.getSearchType().contains("w")) {
+				sql.OR().WHERE(writerQuery);
+			}
+		}
 	}
 
 }

@@ -18,12 +18,12 @@ public class SuggestBoardController {
 		return "board/suggest/suggest-new";
 	}
 	
-	@GetMapping("num")
+	@GetMapping("{bno}")
 	public String suggestBoardDetail() {
 		return "board/suggest/suggest-detail";
 	}
 	
-	@GetMapping("num/edit")
+	@GetMapping("{bno}/edit")
 	public String suggestBoardEdit() {
 		return "board/suggest/suggest-edit";
 	}

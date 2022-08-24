@@ -58,7 +58,7 @@
 <script src="${path}/resources/js/caleandar.js"></script>
 <script src="${path}/resources/ckeditor/ckeditor.js"></script>
 <script src="${path}/resources/ckeditor/adapters/jquery.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 
 </body>
-
+</html>

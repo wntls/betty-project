@@ -206,6 +206,22 @@
 			<version>2.0.2</version>
 		</dependency>
 
+		<!-- mail && sms -->		
+		<dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>1.6.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>net.nurigo</groupId>
+		    <artifactId>sdk</artifactId>
+		    <version>4.2.4</version>
+		</dependency>
 
 		<!-- Other -->
 		<dependency>
@@ -225,13 +241,14 @@
 		    <version>3.0.4</version>
 		    <scope>test</scope>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 		<dependency>
     		<groupId>org.seleniumhq.selenium</groupId>
     		<artifactId>selenium-java</artifactId>
     		<version>4.4.0</version>
 		</dependency>
+		
+		
+		
 		
 	</dependencies>
 

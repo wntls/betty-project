@@ -13,8 +13,7 @@ public class StaffController {
 		return "staff/staff-main";
 	}
 	
-	//pathvariable
-	@GetMapping("num")
+	@GetMapping("{memberId}")
 	public String userInfo() {
 		return "staff/staff-info";
 	}
@@ -24,8 +23,7 @@ public class StaffController {
 		return "staff/staff-member-list";
 	}
 	
-	//pathvariable
-	@GetMapping("num/edit")
+	@GetMapping("{memberId}/edit")
 	public String staffUpdate() {
 		return "staff/staff-edit";
 	}
@@ -40,8 +38,7 @@ public class StaffController {
 		return "staff/staff-book-new";
 	}
 	
-	//pathvariable
-	@GetMapping("books/num/edit")
+	@GetMapping("books/{isbn}/edit")
 	public String updateBooks() {
 		return "staff/staff-book-edit";
 	}

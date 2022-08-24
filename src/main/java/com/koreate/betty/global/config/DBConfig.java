@@ -1,26 +1,19 @@
 package com.koreate.betty.global.config;
 
-import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
-import org.mybatis.spring.mapper.ClassPathMapperScanner;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.TransactionManager;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-import lombok.extern.slf4j.Slf4j;
-
 @DatabaseConfiguration
-@Slf4j
 @MapperScan(basePackages = { "com.koreate.betty.domain.*.dao" })
 public class DBConfig {
 
@@ -39,7 +32,6 @@ public class DBConfig {
 		bean.setConfiguration(config);
 		
 		bean.setDataSource(ds);
-		// bean.setTypeAliasesPackage("com.koreate.betty.domain");
 		return bean.getObject();
 	}
 

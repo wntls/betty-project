@@ -29,13 +29,13 @@ public class FreeBoardController {
 	}
 	
 	//@PathVariable
-	@GetMapping("num/edit")
+	@GetMapping("{bno}/edit")
 	public String freeBoardEdit() {
 		return "board/free/free-edit";
 	}
 	
 	//@PathVariable
-	@GetMapping("num")
+	@GetMapping("{bno}")
 	public String freeBoardDetail(@PathVariable @Nullable Integer num, Model model) {
 		// 게시글에 필요한 정보만 담아서 model 에 담고 페이지 반환
 		FreeBoardDto dto = null;

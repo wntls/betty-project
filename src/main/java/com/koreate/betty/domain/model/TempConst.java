@@ -1,5 +1,8 @@
 package com.koreate.betty.domain.model;
 
-public interface TempConst {
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 
+public interface TempConst {
+	
 }

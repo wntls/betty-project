@@ -1,7 +1,8 @@
 package com.koreate.betty.domain.member.provider;
 
-import static com.koreate.betty.domain.model.TableConst.*;
+import static com.koreate.betty.domain.model.TableConst.MEMBER_TBL;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
 import com.koreate.betty.domain.member.vo.Member;
@@ -13,48 +14,48 @@ public class MemberProvider {
 	// 회원가입
 	public String register(Member member) {
 		return new SQL().INSERT_INTO(MEMBER_TBL)
-				.INTO_COLUMNS("id", "pw", "nickname", "name", "gender", "birth", "phone", "addr", "email")
-				.INTO_VALUES("#{id}, #{pw}, #{nickname}, #{name}, #{gender}, #{birth}, #{phone}, #{addr}, #{email}")
-				.toString();		
+				.INTO_COLUMNS("id", "pw", "nickname", "name", "gender", "birth", "phone", "addr", "email", "rights")
+				.INTO_VALUES("#{id}, #{pw}, #{nickname}, #{name}, #{gender}, #{birth}, #{phone}, #{addr}, #{email}, #{rights}")
+				.toString();
 	}
 	
 	// 로그인
-	public String login(String id, String pw) {
+	public String login(@Param("id")String id, @Param("pw")String pw) {
 		return new SQL().SELECT("*")
 				.FROM(MEMBER_TBL)
 				.WHERE("id = #{id}").WHERE("pw = #{pw}")
 				.toString();
 	}
 	
-	// 아이디 찾기
-	public String findId(String email) {
-		return new SQL().SELECT("*")
+	// 아이디 찾기 (이름 + 전화로 회원의 계정 존재 확인)
+	public String findId(@Param("name")String name, @Param("phone")String phone) {
+		return new SQL().SELECT("id")
 				.FROM(MEMBER_TBL)
-				.WHERE("email = #{email}")
+				.WHERE("name = #{name}")
+				.WHERE("phone = #{phone}")
 				.toString();
 	}
 	
+	// 비밀번호 변경 전 유저의 정보 확인  : 아이디 + 전화번호로 회원의 계정이 존재하는지 확인
+	public String confirmForChangePw(@Param("id")String id, @Param("phone")String phone) {
+		return new SQL().SELECT("count(*)")
+				.FROM(MEMBER_TBL)
+				.WHERE("id = #{id}")
+				.WHERE("phone = #{phone}")
+				.toString();
+	}
+	
+	
 	// 비밀번호 재설정
-	public String changePw(String id, String changePw) {
+	public String changePw(@Param("id")String id, @Param("pw")String changePw) {
 		return new SQL().UPDATE(MEMBER_TBL)
 				.SET("pw = #{pw}")
 				.WHERE("id = #{id}")
 				.toString();
 	}
+		
 	
 	
-	// 비밀번호 재설정 버튼 클릭 시 -> 사용자에게 아이디를 받음 (입력)
-	// 아이디를 통해 이메일을 찾아서(findEmail) 코드를 전송하고 사용자의 코드 입력이 올바르면 
-	// 위의 비밀번호 재설정을(changePw) 호출하여 비밀번호 변경
-	
-	
-	// 아이디에 등록된 이메일 검색(비밀번호 찾기 용도로 검색정보(이메일)를 사용자에게 출력하지 않고 이메일로 인증을 받음)
-	public String findEmail(String id) {
-		return new SQL().SELECT("email")
-				.FROM(MEMBER_TBL)
-				.WHERE("id = #{id}")
-				.toString();
-	}
 	
 	// 계정 전체 검색 (직원 -> 회원정보 조회)
 	public String findAll() {
@@ -62,7 +63,7 @@ public class MemberProvider {
 				.FROM(MEMBER_TBL)
 				.toString();
 	}
-	
+
 	
 	// 계정 한개 검색 (마이페이지/직원 정보)
 	public String fineOne(String id) {
@@ -73,7 +74,7 @@ public class MemberProvider {
 	}
 		
 	// 프로필 이미지 업데이트
-	public String changeImg(String id, String img) {
+	public String changeImg(@Param("id")String id, @Param("id")String img) {
 		return new SQL().UPDATE(MEMBER_TBL)
 				.SET("img = #{img}")
 				.WHERE("id = #{id}")

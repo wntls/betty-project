@@ -19,13 +19,13 @@ public class NoticeBoardController {
 	}
 	
 	//pathvariable
-	@GetMapping("num")
+	@GetMapping("{bno}")
 	public String noticeBoardDetail() {
 		return "board/notice/notice-detail";
 	}
 
 	//pathvariable
-	@GetMapping("num/edit")
+	@GetMapping("{bno}/edit")
 	public String noticeBoardEdit() {
 		return "board/notice/notice-edit";
 	}
