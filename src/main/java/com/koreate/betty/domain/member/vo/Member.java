@@ -23,5 +23,6 @@ public class Member {
 	private final Timestamp regDate;
 	private final String del;
 	private final String img;
+	private final Integer rights;
 	
 }
