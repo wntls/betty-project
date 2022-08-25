@@ -131,7 +131,7 @@ public class SignController {
 		return code;
 	}
 
-	@PostMapping("up/member")
+	//@PostMapping("up/member")
 	public String signUpMember(JoinForm form) {
 
 		int result = memberService.joinMember(form);

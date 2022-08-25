@@ -3,19 +3,16 @@
 
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 
-<div class="container-md spad">
-	<div class="row justify-content-center">
-		<div class="col-md-8">
-			<div class="section-title">
+<section class="signup spad">
+	<div class="container-md">
+		<div class="row justify-content-center">
+			<div class="col-md-auto">
+				
+				
+				<div class="section-title">
 				<div class="row justify-content-between">
 					<div class="col-auto">
 						<h4>회원 정보 수정</h4>
-					</div>
-					<div class="col-auto">
-						<button class="btn btn-danger"
-							onclick="location.href='${path}/members/num/edit'">확인</button>
-						<button class="btn btn-secondary"
-							onclick="location.href='${path}/members/num'">취소</button>
 					</div>
 				</div>
 			</div>
@@ -27,7 +24,7 @@
 			<hr/>
 			<h2>이미지 업로드 테스트</h2>
 			<form action="" method="post" enctype="multipart/form-data">
-				<input type="text" name="memberId" value="id001" hidden>
+				<input type="text" name="id" value="id001" hidden>
 				<div class="input-group mb-3">
 				  <div class="custom-file">
 				    <input type="file" class="custom-file-input" name="profileImg" id="profileImg" accept="image/*">
@@ -39,61 +36,212 @@
 				</div>
 			</form>
 			<hr/>
+				
+				
+			
+				<div class="login__form">
+					<form id="editForm" action="" method="post">
 
+						<div class="input__item">
+							<span><i class="bi bi-person-video2"></i></span>
+							<input type="text" name="id" id="id" readonly/> 
+							<div class="result"></div>
+						</div>
 
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">아이디</span>
+						<div class="input__item">
+							<span class="icon_lock"></span> 
+							<input type="password" name="pw" id="pw"/>
+							<div class="result"></div>
+						</div>
+
+						<div class="input__item">
+							<span class="icon_lock"></span> 
+							<input type="password" name="repw" id="repw"/>
+							<div class="result"></div>
+						</div>
+
+						<div class="input__item">
+							<span class="icon_profile"></span> 
+							<input type="text" name="name" id="name"/>
+							<div class="result"></div>
+						</div>
+
+						<div class="input__item">
+							<span class="icon_profile"></span> 
+							<input type="text" name="nickname" id="nickname"/>
+							<div class="result"></div>
+						</div>
+
+						<div class="input__item">
+							<span><i class="bi bi-calendar3"></i></span>
+							<input type="text" name="birth" id="birth"/> 
+							<div class="result"></div>
+						</div>
+					
+						 <div class="row ml-2 mb-3">
+							 <div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+							  <label class="form-check-label" for="male">남성</label>
+							</div>
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+							  <label class="form-check-label" for="female">여성</label>
+							</div>
+						</div>
+						 
+						<div class="input__item mt-3">
+							<span><i class="bi bi-house"></i></span>
+							<input type="text" name="addr" id="addr"/> 
+						</div>
+						
+						<div class="input__item">
+							<span><i class="bi bi-phone"></i></span>
+								<input type="text" name="phone" id="phone" readonly/> 
+						</div>
+						
+						<div class="input__item">
+							<span class="icon_mail"></span>
+							<input type="text" name="email" id="email" readonly/> 
+						</div>
+
+						<div class="btn-group">
+							<button type="submit" class="btn btn-danger mr-2">수정하기</button>
+							<button type="button" class="btn btn-secondary">취소</button>
+						</div>
+					</form>
+					
 				</div>
-				<input type="text" class="form-control">
 			</div>
-
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">닉네임</span>
-				</div>
-				<input type="text" class="form-control">
-			</div>
-
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">성별</span>
-				</div>
-				<input type="text" class="form-control">
-			</div>
-
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">생년월일</span>
-				</div>
-				<input type="text" class="form-control">
-			</div>
-
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">전화번호</span>
-				</div>
-				<input type="text" class="form-control">
-			</div>
-
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">이메일</span>
-				</div>
-				<input type="text" class="form-control">
-			</div>
-
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<span class="input-group-text">가입일</span>
-				</div>
-				<input type="text" class="form-control">
-			</div>
-
 		</div>
 	</div>
-</div>
-
-</html>
+</section>
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
+
+<script>
+$(function(){
+	
+	function checkRegex(elP, valP, regexP, messageP, ajaxP){
+		// 정규 표현식이 일치 하지 않을 때
+		if(regexP.test(valP) === false){
+			showMessage(elP,messageP,false);
+			return false;
+		// 정규표현식 일치하고 ajax가 존재하지 않을 때
+		}else if(regexP.test(valP) !== false
+					&& ajaxP === null){
+			showMessage(elP, "", true);
+			return true;
+		}else{
+			if(ajaxP !== null){
+				ajaxP(elP);
+			}
+		}
+	}
+	
+	function showMessage(elP,messageP,isCheck){
+		var html = "<sapn style='margin-left:5px;font-size:12px;";
+		html += isCheck ? "color:green;" : "color:red;"
+		html += "'>"; // 여기까지가 style 임
+		html += messageP;
+		html += "</span>";
+		$(elP).html(html);		
+	}
+	
+	$("#editForm").validate({
+		onkeyup : function(el){
+			$(el).valid();
+		},
+		rules : {	
+			
+			pw : {
+				required : true,
+				minlength : 6,
+				maxlength : 20
+			},
+			repw : {
+				required : true,
+				minlength : 6,
+				maxlength : 20,
+				equalTo : "#pw"
+			},
+			
+			name : {
+				required : true,
+				rangelength : [2,6]
+			},
+			
+			nickname : {
+				required : true,
+				rangelength : [2,10]
+			},
+			
+			birth :{
+				required : true
+			},
+			
+			gender : {
+				required : true
+			},
+			
+			addr : {
+				required : true
+			},  
+		 
+		},
+		messages : {
+			
+			pw : {
+				required : "비밀번호를 작성해 주세요.",
+				minlength : "비밀번호는 최소 6자리 이상입니다.",
+				maxlength : "비밀번호는 최대 20자리까지 가능합니다."
+			},
+			repw : {
+				required : "비밀번호를 작성해 주세요.",
+				minlength : "비밀번호는 최소 6자리 이상입니다.",
+				maxlength : "비밀번호는 최대 20자리까지 가능합니다.",
+				equalTo : "비밀번호가 일치하지 않습니다."
+			},
+			
+			name : {
+				required : "이름을 입력해 주세요.",
+				rangelength : "이름은 2~6글자 이내 작성해주세요."
+			},
+			
+			nickname : {
+				required : "닉네임을 입력해 주세요.",
+				rangelength : "닉네임은 2~10글자 이내 작성해주세요."
+			},
+			
+			birth : {
+				required : "생일을 선택해 주세요."
+			},
+			
+			gender : {
+				required : "성별을 확인해 주세요."
+			},
+			
+			addr : {
+				required : "주소를 입력해 주세요."
+			} 
+			
+		},
+		errorClass : "text-danger",
+		errorElement : "div",
+		errorPlacement : function(error, element){	
+			if(element.prop("type") === 'radio'){ 
+				element.removeClass("text-danger");
+				error.insertAfter(element.parent().parent());
+			}else{
+				error.insertAfter(element);
+			}
+		},
+		submitHandler : function(form){
+				$(form).submit();
+		}
+	}); 
+	
+});
+</script>
+
+
+
