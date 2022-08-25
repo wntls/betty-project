@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import com.koreate.betty.domain.member.dao.MemberRepository;
 import com.koreate.betty.domain.member.dto.form.JoinForm;
 import com.koreate.betty.domain.member.dto.form.LoginForm;
+import com.koreate.betty.domain.member.dto.form.PointForm;
+import com.koreate.betty.domain.member.dto.form.UpdateForm;
+import com.koreate.betty.domain.member.vo.ChkLog;
 import com.koreate.betty.domain.member.vo.Member;
 
 import lombok.RequiredArgsConstructor;
@@ -49,7 +52,7 @@ public class MemberService {
 		
 		Member joinMember = form.createMember();
 				
-		result = memberRepository.register(joinMember);
+		result = memberRepository.join(joinMember);
 		return result;
 	}
 	
@@ -61,10 +64,10 @@ public class MemberService {
 		return id;
 	}
 	
-	public int confirmForChangePw(String id, String phone) {
+	public int findForChangePw(String id, String phone) {
 		int result = 0;
 		
-		result = memberRepository.confirmForChangePw(id, phone);
+		result = memberRepository.findForChangePw(id, phone);
 		
 		return result;
 	}
@@ -81,14 +84,6 @@ public class MemberService {
 		List<Member> list = memberRepository.findAll();
 		return list;
 	}
-	
-	public int changeImg(String id, String img) {
-		int result = 0;
-		
-		result = memberRepository.changeImg(id, img);
-		
-		return result;
-	}
 
 	public int deleteMember(String id) {
 		int result = 0;
@@ -96,6 +91,24 @@ public class MemberService {
 		result = memberRepository.deleteMember(id);
 		
 		return result;
+	}
+
+	public int updateMember(String targetId, UpdateForm form) {
+		Member update = form.createMember();
+		int result = memberRepository.updateMember(targetId, update); 
+		
+		return result;
+	}
+
+	public int addPoint(PointForm form) {
+		String id = form.getId();
+		int point = form.getPoint();
+		int result = memberRepository.addPoint(id, point);
+		return result;
+	}
+
+	public List<ChkLog> findMyChkLog(String id) {
+		return memberRepository.findMyChkLog(id);
 	}
 	
 }

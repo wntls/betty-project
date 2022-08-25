@@ -9,6 +9,6 @@ public class MemberCard {
 	
  	private final String memberId;
  	private final String premium;
-    private final int demerit;
-	
+    private final Integer demerit;
+	private final Integer point;
 }
