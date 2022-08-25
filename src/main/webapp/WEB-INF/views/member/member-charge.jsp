@@ -49,7 +49,7 @@
 								</li>
 							</ul>
 							<button class="btn btn-danger" 
-								onclick="location.href='#'">브론즈 등급 가입</button>
+								onclick="onMembershipModal(this)" data-fee="0" value="브론즈">브론즈 등급 가입</button>
 						<!-- </div>  -->
 					</div>
 					
@@ -82,7 +82,7 @@
 							</li>
 						</ul>
 						<button class="btn btn-danger" 
-							onclick="location.href='#'">브론즈 등급 가입</button>
+							onclick="onMembershipModal(this)" data-fee="50,000" value="실버">실버 등급 가입</button>
 					</div>
 					
 					<!-- vip -->
@@ -114,11 +114,30 @@
 							</li>
 						</ul>
 						<button class="btn btn-danger" 
-							onclick="location.href='#'">브론즈 등급 가입</button>
+							onclick="onMembershipModal(this)" data-fee="150,000" value="VIP">VIP 등급 가입</button>
 					</div>
 					
 				</div><!-- .card-deck end -->
-				
+
+				<div class="containder-md mt-3 row justify-content-center">
+					<div class="flex-column">
+						<div class="col-auto input-group mb-3">
+						  <div class="input-group-prepend">
+						    <span class="input-group-text" id="myPoint">현재 포인트</span>
+						  </div>
+						  <input type="text" class="form-control" value="임시 50,000" readonly">
+						</div>
+					
+						<div class="col-auto input-group mb-3">
+							<input type="text" class="form-control" placeholder="충전할 금액">
+							<div class="input-group-append">
+								<button class="btn btn-outline-secondary" type="button">충전</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
 			</div>
 		</div>
 	</div>
@@ -127,3 +146,42 @@
 </html>
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
+
+
+
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" >
+        <p id="modal-body" style="color:black">Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">확인</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+	function onMembershipModal(event){
+		console.log(event.value);
+		console.log(event.dataset.fee);
+		const grade = event.value;
+		const title = grade + " 멤버십 가입 안내";
+		const fee = event.dataset.fee;
+		const content = grade + ' 등급의 월 요금제는 ' +fee+ '원 입니다. 결제하시겠습니까?'; 
+
+		
+		$('.modal-title').text(title);
+		$('#modal-body').text(content);
+		$('.modal').modal('show');
+		
+	}
+</script>
