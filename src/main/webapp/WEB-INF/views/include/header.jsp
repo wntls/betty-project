@@ -25,6 +25,7 @@
 	<!-- 추가 -->
 	<link rel="stylesheet" href="${path}/resources/css/betty.css" type="text/css">
 	<link rel="stylesheet" href="${path}/resources/css/table.css" type="text/css">
+	<link rel="stylesheet" href="${path}/resources/css/simple-calendar.css" type="text/css">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="${path}/resources/css/bootstrap.css" type="text/css">
