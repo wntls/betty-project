@@ -23,6 +23,22 @@
 			<img class="img-thumbnail" alt="..."
 				src="${path}/resources/img/member/origin/profile_male.jpg" />
 			<div class="w-100 mb-5"></div>
+			
+			<hr/>
+			<h2>이미지 업로드 테스트</h2>
+			<form action="" method="post" enctype="multipart/form-data">
+				<input type="text" name="memberId" value="id001" hidden>
+				<div class="input-group mb-3">
+				  <div class="custom-file">
+				    <input type="file" class="custom-file-input" name="profileImg" id="profileImg" accept="image/*">
+				    <label class="custom-file-label" for="profileImg">프로필 이미지를 등록하세요</label>
+				  </div>
+				  <div class="input-group-append">
+				    <button class="btn btn-outline-secondary" type="submit" id="profileImgUploadBtn">업로드 요청</button>
+				  </div>
+				</div>
+			</form>
+			<hr/>
 
 
 			<div class="input-group mb-3">
