@@ -8,10 +8,10 @@ import lombok.Getter;
 public class Premium {
 	
 	private final String grade;		
-    private final int fee; 					
-    private final int lendBookcnt; 
-    private final int lendPeriod;
-    private final int dueSale;
-    private final int lendPrice;
+    private final Integer fee; 					
+    private final Integer lendBookcnt; 
+    private final Integer lendPeriod;
+    private final Integer dueSale;
+    private final Integer lendPrice;
 	
 }
