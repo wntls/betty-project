@@ -9,10 +9,12 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.koreate.betty.domain.member.dto.InquiryForm;
-import com.koreate.betty.domain.model.TempConst;
+import com.koreate.betty.domain.member.dto.form.UpdateForm;
+import com.koreate.betty.domain.member.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberController {
 
 	private final JavaMailSender mailSender;
+	private final MemberService memberService;
 	
 	@Value("${mail.username}")
 	private String adminEmail;
@@ -62,6 +65,17 @@ public class MemberController {
 		helper.setTo(adminEmail);
 		
 		mailSender.send(message);
+		return "redirect:/members/{memberId}";
+	}
+	
+	@PostMapping("edit")
+	public String memberInfoEdit(UpdateForm form) {
+		
+		String targetId = form.getMemberId();
+		
+		boolean uploaded = memberService.imgUpload(targetId, form.getImg());
+		int result = memberService.updateMember(targetId, form);
+				
 		return "redirect:/members/{memberId}";
 	}
 	
