@@ -5,9 +5,11 @@ import java.sql.Timestamp;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 @Builder
+@ToString
 public class SuggestBoard {
 	
 	private final Integer bno;

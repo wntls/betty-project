@@ -36,7 +36,7 @@ public class FreeBoardController {
 	
 	//@PathVariable
 	@GetMapping("{bno}")
-	public String freeBoardDetail(@PathVariable @Nullable Integer num, Model model) {
+	public String freeBoardDetail(@PathVariable @Nullable Integer bno, Model model) {
 		// 게시글에 필요한 정보만 담아서 model 에 담고 페이지 반환
 		FreeBoardDto dto = null;
 		model.addAttribute("dto", dto);

@@ -23,10 +23,20 @@ public interface BookRepository {
 	@SelectProvider(type=BookProvider.class, method="jBooksSearch")
 	public List<Book> jBooksSearch();
 	
+	//@InsertProvider(type=BookProvider.class, method="insert")
+	public int insert(Book book);
+	
+	@InsertProvider(type=BookProvider.class, method="insertWare")
+	public int insertWare(String code);
+	
+	@InsertProvider(type=BookProvider.class, method="updateId")
+	public int updateId(String id);
 	
 	
 	// 크롤링
 	@InsertProvider(type=BookProvider.class, method="insertByCrawler")
 	public int insertByCrawler(Book book);
+
+	
 	
 }

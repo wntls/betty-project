@@ -11,7 +11,10 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.koreate.betty.domain.member.dto.form.JoinForm;
 import com.koreate.betty.domain.member.dto.form.LoginForm;
+import com.koreate.betty.domain.member.dto.form.PointForm;
+import com.koreate.betty.domain.member.dto.form.UpdateForm;
 import com.koreate.betty.domain.member.service.MemberService;
+import com.koreate.betty.domain.member.vo.ChkLog;
 import com.koreate.betty.domain.member.vo.Member;
 import com.koreate.betty.global.config.AppConfig;
 import com.koreate.betty.global.config.RootConfig;
@@ -28,9 +31,9 @@ public class MemberTest {
 	@Autowired
 	MemberService ms;
 	
-	@Test // 완료
+//	@Test // 완료
 	public void joinTest() {
-		JoinForm form = new JoinForm("123","2","2","2","2","2","2000-11-22","2","2","2", 0);
+		JoinForm form = new JoinForm("123","1","1", "1" ,"1","1", "2000-11-22","1","1", "1", 0);
 		
 		int result = ms.joinMember(form);
 		log.info("\n\n\n ::: joinTest result : {}", result);
@@ -46,18 +49,18 @@ public class MemberTest {
 //	@Test // 완료
 	public void findIdTest() {
 		String name = "2";
-		String phone = "2";
+		String phone = "1";
 		String id = ms.findId(name, phone);
 		
 		log.info("\n\n\n ::: findIdTest id : {}", id);
 	}
 
 //	@Test // 완료
-	public void confirmForChangePwTest() {
+	public void findForChangePwTest() {
 		String id = "123";
 		String phone = "2";
 		
-		int result = ms.confirmForChangePw(id, phone);
+		int result = ms.findForChangePw(id, phone);
 		
 		log.info("\n\n\n ::: confirmForChangePwTest : {}", result);
 	}
@@ -87,10 +90,13 @@ public class MemberTest {
 		String id = "123";
 		String img = "profile2.jpg";
 		
-		int result = ms.changeImg(id, img);
+//		int result = ms.changeImg(id, img);	// 현재 서비스도 삭제됨
 		
-		log.info("\n\n\n ::: changeImg result : {}", result);
+//		log.info("\n\n\n ::: changeImg result : {}", result);
 	}
+	
+	
+	
 	
 //	@Test // 완료
 	public void deleteMemberTest() {
@@ -98,5 +104,42 @@ public class MemberTest {
 		
 		int result = ms.deleteMember(id);
 		log.info("\n\n\n ::: deleteMemberTest result : {}", result);
+	}
+	
+	
+//	@Test
+	public void updateMemberTest() {
+		// 대상
+		// 멤버 (수정 정보)
+		
+		String targetId = "123";
+		
+		UpdateForm updateform = new UpdateForm("123","2", "2", "nic", "2", "2","2000-11-22", "3", "3", "3", "img",0);
+		
+		int result = ms.updateMember(targetId, updateform);
+		
+		log.info("\n\n\n\n result : {}", result);
+	}
+	
+//	@Test
+	public void addPointTest() {
+		PointForm form = new PointForm("123", "1-1-1", 10000);
+		
+		int result = ms.addPoint(form);
+		
+		log.info("\n\n\n\n result : {}", result);
+	}	
+	
+//	@Test
+	public void findMyChkLogTest() {
+		
+		String id = "123";
+		
+		List<ChkLog> list = ms.findMyChkLog(id);
+		
+		for (ChkLog c : list) {
+			log.info("\n\n chk : {}", c);
+		}
+		
 	}
 }

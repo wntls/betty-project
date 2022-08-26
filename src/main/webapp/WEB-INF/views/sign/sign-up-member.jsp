@@ -9,6 +9,7 @@
 			<div class="col-md-auto">
 				<div class="login__form">
 					<h3>회원가입</h3>
+
 					<form id="signUpForm" action="" method="post">
 						아이디
 						<div class="input__item">

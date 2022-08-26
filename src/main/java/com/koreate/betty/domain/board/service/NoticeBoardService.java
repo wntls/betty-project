@@ -8,19 +8,21 @@ import org.springframework.stereotype.Service;
 import com.koreate.betty.domain.board.dao.NoticeBoardRepository;
 import com.koreate.betty.domain.board.dto.form.NoticeBoardForm;
 import com.koreate.betty.domain.board.vo.NoticeBoard;
+import com.koreate.betty.global.util.PageMaker;
 import com.koreate.betty.global.util.SearchCriteria;
+import com.koreate.betty.global.util.SearchPageMaker;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Service
 public class NoticeBoardService {
-	
+
 	@Autowired
 	NoticeBoardRepository dao;
-	
+
 	// 공지사항 등록
 	public int write(NoticeBoardForm form) {
-		NoticeBoard board = form.noticeBoard();		
+		NoticeBoard board = form.noticeBoard();
 		return dao.noticeRegist(board);
 	}
 
@@ -29,30 +31,35 @@ public class NoticeBoardService {
 		NoticeBoard board = form.noticeBoard();
 		return dao.noticeUpdate(board);
 	}
-	
+
 	// 공지사항 삭제
-	public int remove(NoticeBoardForm form) {
-		NoticeBoard board = form.noticeBoard();		
-		return dao.noticeRemove(board.getBno());
-	}	
-	
+	public int remove(int bno) {
+		return dao.noticeRemove(bno);
+	}
+
 	// 조회수 증가
 	public int updateCnt(int bno) {
 		return dao.updateCnt(bno);
 	}
-	
+
 	// 공지사항 상세
-	public int detail(NoticeBoardForm form) {
-		NoticeBoard board = form.noticeBoard();
-		return dao.noticeDetail(board);
+	public NoticeBoard detail(int bno) {
+		return dao.noticeDetail(bno);
 	}
-	
+
 	// 공지사항 목록
-	public List<NoticeBoard> noticeList(NoticeBoardForm form, SearchCriteria cri){
-		NoticeBoard board = form.noticeBoard();
-		return dao.noticeList(cri, board);
+	public List<NoticeBoard> noticeList(SearchCriteria cri) {
+		return dao.noticeList(cri);
 	}
 	
-	
-	
+	// 페이징 처리
+	public PageMaker getPageMaker(SearchCriteria cri) {
+		int totalCount = dao.listAllCount(cri);
+		PageMaker pm = new SearchPageMaker();
+		pm.setCri(cri);
+		pm.setDisplayPageNum(5);
+		pm.setTotalCount(totalCount);
+		return pm;
+	}
+
 }

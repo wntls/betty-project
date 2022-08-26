@@ -3,7 +3,6 @@ package com.koreate.betty.domain.book.provider;
 import java.sql.Timestamp;
 import java.util.List;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -70,7 +69,7 @@ public class BookRepoTest {
 
 			String rentOption = "all";
 
-			Timestamp pubDate = Timestamp.valueOf("2015-01-01");
+			String pubDate = "2015-01-01";
 			String pubDateOption = "after";
 
 			String genre = null;
