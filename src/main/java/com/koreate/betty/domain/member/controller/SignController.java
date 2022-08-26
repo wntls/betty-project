@@ -1,34 +1,28 @@
 package com.koreate.betty.domain.member.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-import com.koreate.betty.domain.board.dto.form.FreeBoardForm;
-
 import com.koreate.betty.domain.member.dto.form.JoinForm;
 import com.koreate.betty.domain.member.dto.form.LoginForm;
-
 import com.koreate.betty.domain.member.service.MemberService;
 import com.koreate.betty.domain.member.vo.Member;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.sdk.message.model.Message;
 import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
@@ -70,10 +64,14 @@ public class SignController {
 	@PostMapping("in")
 	public String signIn(LoginForm form, HttpSession session) {
 		Member loginMember = memberService.loginMember(form);
+		if(loginMember == null) { // 사용자에게 알리는 로직 필요	
+			return "redirect:/sign/in";
+		}
 		session.setAttribute("loginMember", loginMember);
 		return "redirect:/";
 	}
-
+	
+	
   // 내부 로직 빼낼 예정
 	@PostMapping("sms")
 	@ResponseBody
@@ -97,7 +95,7 @@ public class SignController {
 		return map;
 	}
 
-	@GetMapping("up/idCheck")
+	@GetMapping("up/idCheck")	// @@ DB를 검사하는 로직이 필요할것으로 생각됩니다. (service : checkIdForJoin)
 	@ResponseBody
 	public boolean isCheck(String id) {
 		boolean isCheck = false;
@@ -112,6 +110,18 @@ public class SignController {
 	public String checkEmail(
 			@RequestParam("email") String email
 			) throws Exception{
+		
+		boolean result = memberService.checkEmailForJoin(email);	// true : 검색된 이메일이 있음
+		if (result) {
+			
+			/*		@@
+			 * 		사용자에게 중복 이메일이 있음을 알리고
+			 *   	아래 코드가 실행되지 않도록 리턴
+			 *    
+			 *  */ 
+			
+		}
+		
 		System.out.println(email);
 		String code = "";
 		
@@ -130,6 +140,15 @@ public class SignController {
 		
 		return code;
 	}
+	
+	
+	// @@ 회원가입 시 nickname 중복 확인 필요
+	// service : boolean checkNickForJoin
+	
+	
+	// @@ 로그인 뷰에서 아이디 찾기 버튼 눌렀을 때 ajax service : findId
+	
+	// @@ 로그인 뷰에서 비밀번호 변경 버튼 눌렀을 때 ajax	 service : findForChangePw, changePw
 
 	@PostMapping("up/member")
 	public String signUpMember(JoinForm form) {
@@ -137,9 +156,19 @@ public class SignController {
 		int result = memberService.joinMember(form);
 		
 		log.info("signUpMember result : {} ", result);
-		return "redirect:/";
+		return "redirect:/sign/in";
 	}
+	
+	// 위와 소스코드가 일치합니다. front 단에서 매핑시키면 지워주세요
+	@PostMapping("up/staff")
+	public String signUpStaff(JoinForm form) {
 
+		int result = memberService.joinMember(form);
+		
+		log.info("signUpMember result : {} ", result);
+		return "redirect:/sign/in";
+	}
+	
+	
 	
 }
-

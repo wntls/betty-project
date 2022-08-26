@@ -56,6 +56,24 @@ public class MemberService {
 		return result;
 	}
 	
+	public boolean checkIdForJoin(String id) {
+		String checkId = memberRepository.checkIdForJoin(id);
+		
+		return checkId != null ? true : false;
+	}
+	
+	public boolean checkNickForJoin(String nick) {
+		String checkNick = memberRepository.checkNickForJoin(nick);
+		
+		return checkNick != null ? true : false; 
+	}
+	
+	public boolean checkEmailForJoin(String email) {
+		String checkEmail = memberRepository.checkEmailForJoin(email);
+		
+		return checkEmail != null ? true : false;
+	}
+	
 	public String findId(String name, String phone) {
 		String id = null;
 		

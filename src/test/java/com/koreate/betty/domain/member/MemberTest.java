@@ -49,7 +49,7 @@ public class MemberTest {
 //	@Test // 완료
 	public void findIdTest() {
 		String name = "2";
-		String phone = "2";
+		String phone = "1";
 		String id = ms.findId(name, phone);
 		
 		log.info("\n\n\n ::: findIdTest id : {}", id);
@@ -130,7 +130,7 @@ public class MemberTest {
 		log.info("\n\n\n\n result : {}", result);
 	}	
 	
-	@Test
+//	@Test
 	public void findMyChkLogTest() {
 		
 		String id = "123";

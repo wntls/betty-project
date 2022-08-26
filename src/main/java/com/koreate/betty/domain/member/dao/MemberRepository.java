@@ -19,20 +19,20 @@ public interface MemberRepository {
 	@InsertProvider(type=MemberProvider.class, method="join")
 	public int join(Member member);
 	
-	@SelectProvider(type=MemberProvider.class, method="findIdForJoin")
-	public String findIdForJoin(String id);
+	@SelectProvider(type=MemberProvider.class, method="checkIdForJoin")
+	public String checkIdForJoin(String id);
 	
-	@SelectProvider(type=MemberProvider.class, method="findNickForJoin")
-	public String findNickForJoin(String nick);
+	@SelectProvider(type=MemberProvider.class, method="checkNickForJoin")
+	public String checkNickForJoin(String nick);
 	
-	@SelectProvider(type=MemberProvider.class, method="findEmailForJoin")
-	public String findEmailForJoin(String email);
+	@SelectProvider(type=MemberProvider.class, method="checkEmailForJoin")
+	public String checkEmailForJoin(String email);
 	
 	@SelectProvider(type=MemberProvider.class, method="login")
 	public Member login(@Param("id")String id, @Param("pw")String pw);
 	
 	@SelectProvider(type=MemberProvider.class, method="findId")
-	public String findId(@Param("name")String name, @Param("phone")String phone);
+	public String findId(final String name, final String phone);
 	
 	@SelectProvider(type=MemberProvider.class, method="findForChangePw")
 	public int findForChangePw(@Param("id")String id, @Param("phone")String phone);
