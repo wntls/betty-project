@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
@@ -15,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.koreate.betty.domain.book.service.BookService;
 import com.koreate.betty.domain.member.dto.form.JoinForm;
 import com.koreate.betty.domain.member.dto.form.LoginForm;
 import com.koreate.betty.domain.member.dto.form.PointForm;
@@ -36,6 +36,7 @@ public class MemberTest {
 
 	@Autowired
 	MemberService ms;
+	BookService bs;
 	
 //	@Test // 완료
 	public void joinTest() {
@@ -113,7 +114,7 @@ public class MemberTest {
 	}
 	
 	
-	@Test
+//	@Test
 	public void updateMemberTest() {
 		// 대상
 		// 멤버 (수정 정보)
@@ -156,7 +157,15 @@ public class MemberTest {
 		
 		for (ChkLog c : list) {
 			log.info("\n\n chk : {}", c);
-		}
+		}		
+	}
+	
+//	@Test
+	public void updateMembershipTest() {
+		String id = "1224";
+		String grade = "bronze";
 		
+		int result = ms.updateMembership(id, grade);
+		log.info("\n\n\n\n result : {}", result);
 	}
 }

@@ -1,6 +1,5 @@
 package com.koreate.betty.domain.member.service;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -186,6 +185,15 @@ public class MemberService {
 		}
 		
 		return uploaded;
+	}
+
+	public int updateMembership(String id, String membershipGrade) {
+		return memberRepository.updateMembership(id, membershipGrade);		
+	}
+
+	public String findGradeById(String id) {
+		
+		return null;
 	}
 	
 }

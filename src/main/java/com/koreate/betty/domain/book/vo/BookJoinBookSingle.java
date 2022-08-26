@@ -14,10 +14,10 @@ public class BookJoinBookSingle {
 	private final String auth;
 	private final String pub;
 	private final Timestamp pubDate;
-	private final int page;
-	private final int genre;
+	private final Integer page;
+	private final Integer genre;
 	private final String intro;
-	private final int num;
+	private final Integer num;
 	private final String rental;
 	private final String stat;
 	

@@ -130,7 +130,13 @@ public class MemberProvider {
 				.toString();
 	}
 	
-	
+	public String updateMembership(@Param("id")String id, @Param("msGrade")String msGrade) {		
+		return new SQL().UPDATE(MEMBER_CARD_TBL)
+				.SET("premium_grade = #{msGrade}")
+				.WHERE("member_id = #{id}")
+				.toString();
+	}
+		
 }
 
 // 사용하지 않을 듯 한 코드를 임시로 옮겼습니다. 완성 단계에 다다르면 지워주세요
