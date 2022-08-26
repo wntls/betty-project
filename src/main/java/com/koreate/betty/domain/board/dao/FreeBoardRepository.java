@@ -22,7 +22,7 @@ public interface FreeBoardRepository {
 	
 	// 게시글 삭제
 	@UpdateProvider(type=FreeBoardProvider.class, method="freeRemove")
-	public int freeRemove(FreeBoard board);
+	public int freeRemove(int bno);
 	
 	// 게시글 수정
 	@UpdateProvider(type=FreeBoardProvider.class, method="freeUpdate")
@@ -30,7 +30,7 @@ public interface FreeBoardRepository {
 	
 	// 게시글 전체 목록
 	@SelectProvider(type=FreeBoardProvider.class, method="freeList")
-	public List<FreeBoard> listAll(FreeBoard board);
+	public List<FreeBoard> listAll(SearchCriteria cri);
 	
 	// 조회수 증가
 	@UpdateProvider(type=FreeBoardProvider.class, method="updateCnt")
@@ -40,5 +40,14 @@ public interface FreeBoardRepository {
 	@SelectProvider(type=FreeBoardProvider.class, method="listAllCount")
 	public int listAllCount(SearchCriteria cri);
 	
-	
+	// 게시글 상세
+	@SelectProvider(type=FreeBoardProvider.class, method="detail")
+	public FreeBoard freeDetail(int bno);
 }
+
+
+
+
+
+
+

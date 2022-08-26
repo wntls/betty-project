@@ -60,14 +60,14 @@ public class NoticeBoardRepoTest {
 	
 	//@Test
 	public void remove() {
-		int t = ns.remove(form2);
+		int t = ns.remove(2);
 		log.info("t={}",t);
 	}
 	
-	@Test
+	//@Test
 		public void modify() {
-			int t = ns.update(form3);
-			log.info("t={}",t);
+			//int t = ns.update(2);
+			//log.info("t={}",t);
 		}
 	
 }

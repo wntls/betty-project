@@ -30,11 +30,11 @@ public interface NoticeBoardRepository {
 	
 		// 공지사항 상세
 		@SelectProvider(type=NoticeBoardProvider.class, method="noticeDetail")
-		public int noticeDetail(NoticeBoard vo);
+		public NoticeBoard noticeDetail(int bno);
 		
 		// 공지사항 목록
 		@SelectProvider(type=NoticeBoardProvider.class, method = "noticeList")
-		public List<NoticeBoard> noticeList(SearchCriteria cri, NoticeBoard board);
+		public List<NoticeBoard> noticeList(SearchCriteria cri);
 		
 		// 조회수 증가
 		@UpdateProvider(type=NoticeBoardProvider.class, method="updateCnt")

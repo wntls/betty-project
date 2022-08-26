@@ -1,13 +1,15 @@
 package com.koreate.betty.domain.board.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.annotation.JsonFormat.Feature;
 import com.koreate.betty.domain.board.dao.FreeBoardCommentRepository;
 import com.koreate.betty.domain.board.dto.form.FreeBoardCommentForm;
 import com.koreate.betty.domain.board.vo.FreeBoard;
 import com.koreate.betty.domain.board.vo.FreeBoardComment;
+import com.koreate.betty.global.util.Criteria;
 
 @Service
 public class FreeCommentService {
@@ -29,9 +31,8 @@ public class FreeCommentService {
 	}
 	
 	// 댓글 삭제
-	public int remove(FreeBoardCommentForm form, String loginUser) {
-		FreeBoardComment vo = form.freeBoardComment();
-		return dao.removeComment(loginUser, vo);	
+	public int remove(int cno, String loginUser) {
+		return dao.removeComment(loginUser, cno);	
 	}
 	
 	// 오리진 업데이트
@@ -39,4 +40,8 @@ public class FreeCommentService {
 		return dao.updateOrigin();
 	}
 	
+	// 댓글 목록 출력
+	public List<FreeBoardComment> list(Criteria cri, int bno){
+		return dao.commentList(cri, bno);
+	}
 }

@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.koreate.betty.domain.board.dto.form.SuggestBoardForm;
 import com.koreate.betty.domain.board.service.SuggestBoardService;
+import com.koreate.betty.domain.board.vo.SuggestBoard;
 import com.koreate.betty.global.config.AppConfig;
 import com.koreate.betty.global.config.RootConfig;
 import com.koreate.betty.global.config.WebConfig;
@@ -37,8 +39,9 @@ public class SuggestBoardRepoTest {
 	public void init() {
 		form1 = new SuggestBoardForm();
 		form1.setMemberId("id001");
-		form1.setTitle("원본글이다");
-		form1.setContent("원본글이다");
+		form1.setOrigin(0);
+		form1.setTitle("dadf");
+		form1.setContent("sdfsdfsdf");
 		
 		form2 = new SuggestBoardForm();
 		form2.setMemberId("id002");
@@ -51,16 +54,18 @@ public class SuggestBoardRepoTest {
 	
 	
 	//@Test
+	//@Transactional
 	public void registTest() {
 	 	int result = ss.suggestWrite(form1);
 		log.info("result={}",result);
+		System.out.println("=============="+result);
 	}
 	
 	@Test
 	public void replyTest() {
-		ss.suggestReply(form2);
+		SuggestBoard nn = ss.suggestDetail(12);
+		log.info("result={}",nn);
 	}
-	
 	
 	//@Test
 	public void test() {

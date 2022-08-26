@@ -1,6 +1,5 @@
 package com.koreate.betty.domain.board.provider;
 
-import static com.koreate.betty.domain.model.TableConst.NOTICE_BOARD_TBL;
 import static com.koreate.betty.domain.model.TableConst.SUGGEST_BOARD_TBL;
 
 import org.apache.ibatis.jdbc.SQL;
@@ -15,12 +14,12 @@ public class SuggestBoardProvider {
 		SQL sql = new SQL();
 		sql.INSERT_INTO(SUGGEST_BOARD_TBL);
 		sql.INTO_COLUMNS("title,content");
-		if(board.getOrigin() != 0) {
+		if(board.getOrigin() != null || board.getOrigin() != 0) {
 			sql.INTO_COLUMNS("origin,depth");
 		}
 		sql.INTO_COLUMNS("member_id");
 		sql.INTO_VALUES("#{title},#{content}");
-		if(board.getOrigin() != 0) {
+		if(board.getOrigin() != null || board.getOrigin() != 0) {
 			sql.INTO_VALUES("#{origin},#{depth}");
 		}
 		sql.INTO_VALUES("#{memberId}");
@@ -52,7 +51,7 @@ public class SuggestBoardProvider {
 	}
 	
 	// 건의사항 상세보기
-	public String suggestDetail(SuggestBoard vo) {
+	public String suggestDetail(int bno) {
 		return new SQL().SELECT("*")
 				.FROM(SUGGEST_BOARD_TBL)
 				.WHERE("bno = #{bno}")
@@ -61,20 +60,21 @@ public class SuggestBoardProvider {
 	
 	// 전체 게시물 개수
 	public String listAllCount(SearchCriteria cri) {
-		return new SQL().SELECT("count(*)")
-				.FROM(SUGGEST_BOARD_TBL)
-				.toString();
+		SQL sql = new SQL().SELECT("count(*)");
+		sql.FROM(SUGGEST_BOARD_TBL);
+		getSearchWhere(cri, sql);
+		return sql.toString();
 	}
 	
 	// 건의사항 목록 출력
-	public String suggestList(SearchCriteria cri, SuggestBoard vo) {
-		return new SQL().SELECT("*")
-				.FROM(SUGGEST_BOARD_TBL)
-				.ORDER_BY("origin, depth")
-				.WHERE("title LIKE CONCAT('%',#{title},'%')")
-				.OFFSET(cri.getStartRow())
-				.LIMIT(cri.getPerPageNum())
-				.toString();
+	public String suggestList(SearchCriteria cri) {
+		SQL sql = new SQL().SELECT("*");
+		sql.FROM(SUGGEST_BOARD_TBL);
+		sql.ORDER_BY("origin, depth");
+		getSearchWhere(cri, sql);
+		sql.OFFSET(cri.getStartRow());
+		sql.LIMIT(cri.getPerPageNum());
+		return sql.toString();
 	}
 	
 	// 조회수 증가
@@ -93,6 +93,25 @@ public class SuggestBoardProvider {
 				.SET("recommend = recommend + 1")
 				.WHERE("bno = #{bno}")
 				.toString();
+	}
+	
+	// 검색
+	private void getSearchWhere(SearchCriteria cri, SQL sql) {
+		String titleQuery = "title LIKE CONCAT('%','"+cri.getKeyword()+"','%')";
+		String contentQuery = "content LIKE CONCAT('%',#{keyword},'%')";
+		String writerQuery = "member_id LIKE CONCAT('%',#{keyword},'%')";
+		if(cri.getSearchType() != null && !cri.getSearchType().trim().equals("")
+				&& !cri.getSearchType().trim().equals("n")) {
+			if(cri.getSearchType().contains("t")) {
+				sql.OR().WHERE(titleQuery);
+			}
+			if(cri.getSearchType().contains("c")) {
+				sql.OR().WHERE(contentQuery);
+			}
+			if(cri.getSearchType().contains("w")) {
+				sql.OR().WHERE(writerQuery);
+			}
+		}
 	}
 	
 	
