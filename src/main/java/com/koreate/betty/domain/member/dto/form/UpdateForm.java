@@ -1,10 +1,12 @@
 package com.koreate.betty.domain.member.dto.form;
 
+import java.io.File;
 import java.sql.Timestamp;
 
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.lang.Nullable;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.koreate.betty.domain.member.vo.Member;
 
@@ -41,19 +43,12 @@ public class UpdateForm {
 	@NotBlank
 	String addr;
 	
-	@NotBlank
-	String phone;
-	
-	@NotBlank
-	String email;
-	
 	@Nullable
-	String img;
-	
-	@NotBlank
-	Integer rights;
+	MultipartFile img;
 	
 	public Member createMember() {
+		
+		String fileName =  memberId + "_" + img.getName();
 		return Member.builder()
 				.id(memberId)
 				.pw(pw)
@@ -62,10 +57,7 @@ public class UpdateForm {
 				.gender(gender)
 				.birth(Timestamp.valueOf(birth + " 00:00:00"))
 				.addr(addr)
-				.phone(phone)
-				.email(email)
-				.img(img)
-				.rights(rights)
+				.img(fileName)
 				.build();
-	}	
+	}
 }

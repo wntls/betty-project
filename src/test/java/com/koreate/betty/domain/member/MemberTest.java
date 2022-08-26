@@ -1,13 +1,19 @@
 package com.koreate.betty.domain.member;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.koreate.betty.domain.member.dto.form.JoinForm;
 import com.koreate.betty.domain.member.dto.form.LoginForm;
@@ -107,18 +113,29 @@ public class MemberTest {
 	}
 	
 	
-//	@Test
+	@Test
 	public void updateMemberTest() {
 		// 대상
 		// 멤버 (수정 정보)
 		
-		String targetId = "123";
-		
-		UpdateForm updateform = new UpdateForm("123","2", "2", "nic", "2", "2","2000-11-22", "3", "3", "3", "img",0);
-		
-		int result = ms.updateMember(targetId, updateform);
-		
-		log.info("\n\n\n\n result : {}", result);
+		String targetId = "1224";
+		MultipartFile img;
+		try {
+			img = new MockMultipartFile("testimg2.png", new FileInputStream(new File("src/test/resources/img", "testimg2.png")));
+						
+			boolean uploaded = ms.imgUpload(targetId, img);
+			log.info("\n\n\n\n uploaded : {}", uploaded);
+			
+			UpdateForm updateform = new UpdateForm("1224","5", "5", "nick", "2", "male","2000-11-22", "3", img);
+			
+			int result = ms.updateMember(targetId, updateform);
+			
+			log.info("\n\n\n\n result : {}", result);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 	}
 	
 //	@Test

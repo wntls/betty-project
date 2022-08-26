@@ -1,8 +1,16 @@
 package com.koreate.betty.domain.member.service;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
+
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.koreate.betty.domain.member.dao.MemberRepository;
 import com.koreate.betty.domain.member.dto.form.JoinForm;
@@ -14,6 +22,8 @@ import com.koreate.betty.domain.member.vo.Member;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.coobird.thumbnailator.Thumbnails;
+import net.koreate.file.utils.MediaUtils;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberService {
 
 	private final MemberRepository memberRepository;
+	private final ServletContext context;
 	
 	public Member loginMember(LoginForm form) {
 		String id = form.getMemberId();
@@ -127,6 +138,54 @@ public class MemberService {
 
 	public List<ChkLog> findMyChkLog(String id) {
 		return memberRepository.findMyChkLog(id);
+	}
+	
+//	src\main\webapp\resources\img\member\origin
+	public boolean imgUpload(String targetId, MultipartFile img) {
+		
+		boolean uploaded = false;
+		
+		String originalName = img.getName();
+		String formatName = originalName.substring(originalName.lastIndexOf(".") + 1);
+		log.info("\n\n\n\n originalName : {}", originalName);
+		log.info("\n\n\n\n formatName : {}", formatName);
+		
+		if (MediaUtils.getMediaType(formatName) == null) { // 이미지 파일이 아닐 경우
+			return uploaded;
+		}
+		
+		String sp = File.separator;
+		String originPath = context.getRealPath(sp+"resources"+sp+"img"+sp+"member"+sp+"origin");
+		String middlePath = context.getRealPath(sp+"resources"+sp+"img"+sp+"member"+sp+"middle");
+		String thumbPath = context.getRealPath(sp+"resources"+sp+"img"+sp+"member"+sp+"thumbnail");
+		
+		String imgName = targetId + "_" + originalName; 
+		
+		File file = new File(originPath, imgName);
+		
+		try {
+			img.transferTo(file); // 오리진에 넣음			
+			
+			BufferedImage originImg = ImageIO.read(file);			
+						
+			BufferedImage middleImg = Thumbnails.of(originImg).size(300, 300).keepAspectRatio(false).asBufferedImage();
+			BufferedImage thumbImg = Thumbnails.of(originImg).size(50, 50).keepAspectRatio(false).asBufferedImage();
+			
+			File mFile = new File(middlePath, imgName);
+			ImageIO.write(middleImg, formatName, mFile);
+			File tFile = new File(thumbPath, imgName);			
+			ImageIO.write(thumbImg, formatName, tFile);
+			
+			uploaded = true;
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return uploaded;
 	}
 	
 }
