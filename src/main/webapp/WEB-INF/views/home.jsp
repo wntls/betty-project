@@ -272,4 +272,24 @@
 
 <%@include file="./include/footer.jsp"%>
 
+<script>
+	
+	let data = { code : "text" };
+	
+	/* $.post("${path}/test/multi", data, function(result){
+		alert(result);
+	}); */
+	
+	$.ajax({
+		  type: "post",
+		  url: "${path}/test/multi",
+		  data : JSON.stringify(data),
+		  dataType : 'json',
+		  success: function(result){
+			  alert(result.code + result.title + result.content);
+		  }
+		});
+	
+</script>
+
 </html>

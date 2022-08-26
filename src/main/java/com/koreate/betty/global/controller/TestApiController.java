@@ -2,11 +2,14 @@ package com.koreate.betty.global.controller;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Getter;
@@ -34,11 +37,19 @@ public class TestApiController {
 		
 	@Setter @Getter
 	static class Data {
-		
 		String code;
 		String title;
 		String content;
-		
+	}
+	
+	@PostMapping("/test/multi")
+	@ResponseBody
+	public Data testMulti(@RequestBody Data data) {
+		String code = data.getCode();
+		log.info("code = {}", data.getCode());
+		data.setTitle(code+" title");
+		data.setContent(code+" content");
+		return data;
 	}
 
 }
