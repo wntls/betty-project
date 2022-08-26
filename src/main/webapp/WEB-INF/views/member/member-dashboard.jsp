@@ -74,7 +74,7 @@ table td {
 						<div class="card">
 							<div class="card-header">출석달력</div>
 							<div class="card-body">
-								<div id="caleandar"></div>
+								<div id="container"></div>
 							</div>
 						</div>
 
@@ -203,8 +203,49 @@ table td {
 	</div>
 </div>
 
-
 <script>
+$(function(){
+	$("#container").simpleCalendar({
+	 
+		fixedStartDay: 0, // 일요일부터 시작
+	    disableEmptyDetails: true, // 빈 공간에 저번 달, 다음 달 표시 해줄?
+	     
+	    months: ['1월','2월','3월','4월','5월','6월','7월'
+	    	 ,'8월','9월','10월','11월','12월'],
+	   	days: ['일','월','화','수','목','금','토'],
+	   	
+	   	events: [{
+	   		startDate : new Date(),
+	   		endDate : new Date(),
+	   		summary : '출석 체크'
+	   	},
+	   	
+	   	{
+	   		startDate: new Date(new Date()
+        		.setHours(new Date().getHours() + 24))
+     			.toDateString(),
+       		endDate: new Date(new Date()
+	         	.setHours(new Date().getHours() + 25))
+	       		.toISOString(),
+       		summary: '내일은 금요일'
+	   	},
+	   	
+	   	{
+	   		startDate: new Date(new Date()
+	      		.setHours(new Date().getHours() - new Date().getHours() - 12, 0))
+	    		.toISOString(),
+      		endDate: new Date(new Date()
+	      		.setHours(new Date().getHours() - new Date().getHours() - 11))
+	    		.getTime(),
+     		summary: '어제는 수요일'
+	   	}] 
+		
+ 	});
+});
+</script>
+
+
+<!-- <script>
 caleandar(element, events, settings);
 
 var element = caleandar($('#caleandar'));
@@ -232,4 +273,4 @@ var settings = {
 	
 var element = document.getElementById('caleandar');
 caleandar(element, events, settings);
-</script>
+</script> -->
