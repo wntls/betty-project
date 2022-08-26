@@ -13,7 +13,7 @@
 					<form id="signUpForm" action="" method="post">
 						아이디
 						<div class="input__item">
-							<span><i class="bi bi-person-video2"></i></span>
+							<span><i class="bi bi-person-circle"></i></span>
 							<input type="text" name="id" id="id" placeholder="아이디를 입력 하세요" /> 
 							<div class="result"></div>
 						</div>
@@ -37,7 +37,7 @@
 						</div>
 						닉네임
 						<div class="input__item">
-							<span class="icon_profile"></span> 
+							<span><i class="bi bi-person-video2"></i></span> 
 							<input type="text" name="nickname" id="nickname" placeholder="닉네임을 입력하세요" />
 							<div class="result"></div>
 						</div>
@@ -49,28 +49,41 @@
 						</div>
 						성별
 						<div class="btn-group btn-group-toggle w-100 mb-3"  data-toggle="buttons">
-						  <label class="btn btn-primary text-white">
-						    <input type="radio" name="gender" id="male" value="male"> 남성
-						   </label>
-						  <label class="btn btn-primary ml-2 text-white">
-						    <input type="radio" name="gender" id="female" value="female"> 여성
-						  </label>
+							<label class="btn btn-primary text-white">
+								<input type="radio" name="gender" id="male" value="male"> 남성
+							</label>
+							<label class="btn btn-primary ml-2 text-white">
+								<input type="radio" name="gender" id="female" value="female"> 여성
+							</label>
 						<div class="result"></div>
 						</div>
 						
 						주소
-						<div class="input__item">
-							<span><i class="bi bi-house"></i></span>
-							<input type="text" name="addr" id="addr" placeholder="사랑시 고백구 행복동" />
+						<!-- <div class="input__item"> -->
+							<!-- <span><i class="bi bi-house"></i></span> -->
+							<div class="row addr-box">
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="post" id="post"/>
+								</div>
+								<div class="col-md-4">
+									<input type="button" class="form-control btn btn-light" onclick="sample6_execDaumPostcode();" value="주소찾기"/>
+								</div>
+							</div>
+							<br/>
+							<input type="text" class="form-control" name="addr" id="addr"/>
+							<br/>
+							<input type="text" class="form-control" name="addr_detail" id="addr_detail"/>
+							
+							<!-- <input type="text" name="addr" id="addr" placeholder="사랑시 고백구 행복동" /> -->
 							<div class="result"></div> 
-						</div>
+						<!-- </div> -->
 						
 						전화번호
 						<div class="input__item">
 							<span><i class="bi bi-phone"></i></span>
-								<input type="text" name="phone" id="phone" placeholder="01012345678" /> 
-								<input type="button" class="btn btn-danger" value="인증코드 전송" id="sendSMS" disabled/>
-								<div class="result"></div>
+							<input type="text" name="phone" id="phone" placeholder="01012345678" /> 
+							<input type="button" class="btn btn-danger" value="인증코드 전송" id="sendSMS" disabled/>
+							<div class="result"></div>
 						</div>
 						
 						<div class="input-group flex-nowrap justify-content-center mb-4" style="display: none" id="codeWrap">
@@ -87,8 +100,8 @@
 						</div>
 						
 						<div class="input-group flex-nowrap justify-content-center mb-4" style="display: none" id="emailCodeWrap">
-								<input type="text" class="user-email-code" />
-								<input type="button" class="emailAcceptCode" value="인증" />
+							<input type="text" class="user-email-code" />
+							<input type="button" class="emailAcceptCode" value="인증" />
 						</div>
 
 						<div class="btn-group justify-content-center">
@@ -108,7 +121,7 @@
 <script>
 $(function(){
 	
-		$('#sendSMS').removeAttr('hidden');
+	$('#sendSMS').removeAttr('hidden');
 	
 	function checkRegex(elP, valP, regexP, messageP, ajaxP){
 		// 정규 표현식이 일치 하지 않을 때
@@ -253,6 +266,13 @@ $(function(){
 		}
 	});
 	
+	$.validator.addMethod("regex",function(value,element,regexpr){
+		return regexpr.test(value);
+	});
+	
+	var regexBirth = /^[0-9]{4}[0-9]{2}[0-9]{2}$/;							
+	
+	
 	// 유효성 검사(폰  / 이메일은 위에서 인증코드랑 같이해서 제외) 
 	// - 주소는 api쓰면 따로 안해도 되서 일단 제외시킴
 	$("#signUpForm").validate({
@@ -287,11 +307,16 @@ $(function(){
 			
 			nickname : {
 				required : true,
+				remote :{
+					type : "GET",
+					url : "${path}/user/nicknameCheck"
+				},
 				rangelength : [2,10]
 			},
 			
 			birth :{
-				required : true
+				required : true,
+				regex : regexBirth
 			},
 			
 			gender : {
@@ -313,50 +338,52 @@ $(function(){
 		},
 		messages : {
 			id : {
-				required : "아이디를 작성해주세요.",
+				required : "아이디를 작성 해주세요.",
 				remote : "이미 존재하는 아이디입니다."
 			},
 			
 			pw : {
-				required : "비밀번호를 작성해 주세요.",
+				required : "비밀번호를 작성 해 주세요.",
 				minlength : "비밀번호는 최소 6자리 이상입니다.",
 				maxlength : "비밀번호는 최대 20자리까지 가능합니다."
 			},
 			repw : {
-				required : "비밀번호를 작성해 주세요.",
+				required : "비밀번호를 작성 해 주세요.",
 				minlength : "비밀번호는 최소 6자리 이상입니다.",
 				maxlength : "비밀번호는 최대 20자리까지 가능합니다.",
 				equalTo : "비밀번호가 일치하지 않습니다."
 			},
 			
 			name : {
-				required : "이름을 입력해 주세요.",
+				required : "이름을 입력 해 주세요.",
 				rangelength : "이름은 2~6글자 이내 작성해주세요."
 			},
 			
 			nickname : {
-				required : "닉네임을 입력해 주세요.",
+				required : "닉네임을 입력 해 주세요.",
+				remote : "이미 존재하는 닉네임 입니다.",
 				rangelength : "닉네임은 2~10글자 이내 작성해주세요."
 			},
 			
 			birth : {
-				required : "생일을 선택해 주세요."
+				required : "생일을 입력 해 주세요.",
+				regex : "19930516형식으로 입력해주세요"
 			},
 			
 			gender : {
-				required : "성별을 확인해 주세요."
+				required : "성별을 확인 해 주세요."
 			},
 			
 			addr : {
-				required : "주소를 입력해 주세요."
+				required : "주소를 입력 해 주세요."
 			},
 			
 			phone : {
-				required : "전화번호를 입력해 주세요."
+				required : "전화번호를 입력 해 주세요."
 			},
 			
 			email : {
-				required : "이메일을 입력해 주세요."
+				required : "이메일을 입력 해 주세요."
 			} 
 			
 		},

@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="${path}/resources/css/owl.carousel.css" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/slicknav.css" type="text/css">
     <link rel="stylesheet" href="${path}/resources/css/style.css" type="text/css">
-    <link rel="stylesheet" href="${path}/resources/css/theme1.css" type="text/css">
+    <%-- <link rel="stylesheet" href="${path}/resources/css/theme1.css" type="text/css"> --%>
    	
     <!-- bootstrap icon -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">

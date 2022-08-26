@@ -300,6 +300,17 @@
 	display: block;	
 }
 
+#signUpForm .addr-box{
+	margin-right: 0; 
+    margin-left: 0;
+	justify-content: space-between;
+}
+
+.login__form form .input__item .btn{
+	padding-left: 0;
+}
+
+
 .off-line{
 	border: 2px solid #eee;
 	background: #eee;
