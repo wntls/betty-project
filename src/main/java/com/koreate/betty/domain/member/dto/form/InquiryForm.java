@@ -1,4 +1,4 @@
-package com.koreate.betty.domain.member.dto;
+package com.koreate.betty.domain.member.dto.form;
 
 import javax.validation.constraints.NotBlank;
 

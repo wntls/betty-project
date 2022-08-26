@@ -11,6 +11,8 @@ import com.koreate.betty.domain.book.dto.BookBuyForm;
 import com.koreate.betty.domain.book.dto.BookSearchForm;
 import com.koreate.betty.domain.book.dto.BookUpdateForm;
 import com.koreate.betty.domain.book.vo.Book;
+import com.koreate.betty.domain.rental.vo.Rental;
+import com.koreate.betty.domain.rental.vo.Reserve;
 
 @Service
 public class BookService {
@@ -53,4 +55,5 @@ public class BookService {
 	public int insertByCrawler(Book book) {
 		return bookRepository.insertByCrawler(book);		
 	}
+
 }

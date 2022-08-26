@@ -40,6 +40,9 @@ public interface MemberRepository {
 	@SelectProvider(type=MemberProvider.class, method="findAll")
 	public List<Member> findAll();
 	
+	@SelectProvider(type=MemberProvider.class, method="findMyChkLog")
+	public List<ChkLog> findMyChkLog(String loginId);
+	
 	@UpdateProvider(type=MemberProvider.class, method="updateMember")
 	public int updateMember(@Param("id")String targetId, @Param("member")Member member);
 	
@@ -52,8 +55,8 @@ public interface MemberRepository {
 	@UpdateProvider(type=MemberProvider.class, method="addPoint")
 	public int addPoint(@Param("id")String id, @Param("point")int point);
 	
-	@SelectProvider(type=MemberProvider.class, method="findMyChkLog")
-	public List<ChkLog> findMyChkLog(String loginId);
+	@UpdateProvider(type=MemberProvider.class, method="updateMembership")
+	public int updateMembership(@Param("id")String id, @Param("msGrade")String msGrade);
 	
 	
 }

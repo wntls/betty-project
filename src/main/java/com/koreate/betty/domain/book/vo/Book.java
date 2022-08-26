@@ -14,8 +14,8 @@ public class Book {
 	private final String auth;
 	private final String pub;
 	private final Timestamp pubDate;
-	private final int page;
-	private final int genre;
+	private final Integer page;
+	private final Integer genre;
 	private final String intro;
 	
 }
