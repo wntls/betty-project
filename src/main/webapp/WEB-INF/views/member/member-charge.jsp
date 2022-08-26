@@ -18,27 +18,27 @@
 	<div class="row justify-content-center">
 		<div class="col-md-8">
 		
-				<div class="membership_title mb-5">
-					<h2>포인트 충전</h2>
-				</div>
+			<div class="membership_title mb-5">
+				<h2>포인트 충전</h2>
+			</div>
 
-				<div class="containder-md mt-3 row justify-content-center">
-					<div class="flex-column">
-						<div class="col-auto input-group mb-3">
-						  <div class="input-group-prepend">
-						    <span class="input-group-text">현재 포인트</span>
-						  </div>
-						  <input type="text" class="form-control"  id="myPoint" value="임시 50,000" readonly">
-						</div>
-					
-						<div class="col-auto input-group mb-3">
-							<input type="text" class="form-control" id="chargeAmount" placeholder="충전할 금액">
-							<div class="input-group-append">
-								<button class="btn btn-outline-secondary" id="chargeBtn">충전</button>
-							</div>
+			<div class="containder-md mt-3 row justify-content-center">
+				<div class="flex-column">
+					<div class="col-auto input-group mb-3">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text">현재 포인트</span>
+					  </div>
+					  <input type="text" class="form-control"  id="myPoint" value="임시 50,000" readonly">
+					</div>
+				
+					<div class="col-auto input-group mb-3">
+						<input type="text" class="form-control" id="chargeAmount" placeholder="충전할 금액">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" id="chargeBtn">충전</button>
 						</div>
 					</div>
 				</div>
+			</div>
 			
 
 			<div class="w-100 mb-5"></div>
@@ -54,22 +54,21 @@
 						<i class="bi bi-hexagon"></i>
 						<span class="membership-bronze">bronze</span>
 						<h3 class="membership-class-title">무료</h3>
-						<!-- <div class="row align-content-between"> -->
-							<ul class="ul">
-								<li class="mebership-li">
-									<i class="bi bi-check-circle">
-										<span>7일 동안 최대 1권 대여 가능</span>
-									</i>
-								</li>
-								<li class="mebership-li">
-									<i class="bi bi-check-circle">
-										<span>대여 비용 1,000원</span>
-									</i>
-								</li>
-							</ul>
-							<button class="btn btn-danger vertical_bottom" 
-								onclick="onMembershipModal(this)" data-fee="0" value="브론즈">브론즈 등급 가입</button>
-						<!-- </div>  -->
+						
+						<ul class="ul">
+							<li class="mebership-li">
+								<i class="bi bi-check-circle">
+									<span>7일 동안 최대 1권 대여 가능</span>
+								</i>
+							</li>
+							<li class="mebership-li">
+								<i class="bi bi-check-circle">
+									<span>대여 비용 1,000원</span>
+								</i>
+							</li>
+						</ul>
+						<button class="btn btn-danger vertical_bottom" 
+							onclick="onMembershipModal(this)" data-fee="0" value="브론즈">브론즈 등급 가입</button>
 					</div>
 					
 					<!-- 실버 -->
@@ -138,9 +137,12 @@
 					
 				</div><!-- .card-deck end -->
 			</div>
+			
+			
 		</div>
 	</div>
 </div>
+<%@include file="/WEB-INF/views/offline/offline-test.jsp" %>
 
 </html>
 

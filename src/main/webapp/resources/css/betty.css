@@ -212,10 +212,6 @@
 	background-color: #B7B7B7;
 }
 
-#imgs {
-	min-width: 400px;
-}
-
 .staffInfoList ul {
 	min-width: 70%;
 }
@@ -273,13 +269,8 @@
 	margin: 0 0.75rem 1rem 0.75rem;
 	align-items: center;
 	border: 1px solid #8972ee;
-	border-radius: 0.25rem;
+	border-radius: 0.5rem;
 }
-
-/* .membership-box .btn{
-	bottom: -0.1rem;
-	margin-bottom: 1rem; 
-} */
 
 .membership-class-title{
 	margin : 2rem 0;
@@ -295,4 +286,39 @@
 	align-items: center;
 }
 
+.card .book-rantal{
+	background: #007bff;
+	text-align: center;
+}
 
+.card .book-return{
+	background: #dc3545;
+	text-align: center;
+}
+
+.card-body .book-btn{
+	display: block;	
+}
+
+.off-line{
+	border: 2px solid #eee;
+	background: #eee;
+}
+
+.study-room{
+	display : flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	flex: 1 0 0%;
+	position : relative;
+	padding: 1rem;
+}
+
+.study-room .room01,
+.study-room .room03{
+	border: 2px solid #5047eb;
+}
+
+.study-room .room02{
+	border: 2px solid #3898EC;
+}
