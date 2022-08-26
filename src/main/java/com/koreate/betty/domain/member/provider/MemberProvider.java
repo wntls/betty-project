@@ -22,21 +22,21 @@ public class MemberProvider {
 	}
 	
 	// 아이디 중복 확인
-	public String findIdForJoin(String id) {
+	public String checkIdForJoin(String id) {
 		return new SQL().SELECT("id").FROM(MEMBER_TBL)
 				.WHERE("id = #{id}")
 				.toString();
 	}
 		
 	// 닉네임 중복 확인
-	public String findNickForJoin(String nick) {
+	public String checkNickForJoin(String nick) {
 		return new SQL().SELECT("nickname").FROM(MEMBER_TBL)
 				.WHERE("nickname = #{nick}")
 				.toString();
 	}
 	
 	// 이메일 중복 확인
-	public String findEmailForJoin(String email) {
+	public String checkEmailForJoin(String email) {
 		return new SQL().SELECT("email").FROM(MEMBER_TBL)
 				.WHERE("email = #{email}")
 				.toString();
@@ -51,7 +51,7 @@ public class MemberProvider {
 	}
 	
 	// 아이디 찾기 (이름 + 전화로 회원의 계정 존재 확인)
-	public String findId(@Param("name")String name, @Param("phone")String phone) {
+	public String findId(final String name, final String phone) {
 		return new SQL().SELECT("id")
 				.FROM(MEMBER_TBL)
 				.WHERE("name = #{name}")
