@@ -45,15 +45,11 @@ public class FreeBoardCommentRepoTest {
 		form1.setOrigin(0);
 		form1.setDepth(0);
 		form1.setSeq(0);
-		form1.setFreeBno(3);
-		form1.setMemberId("id001");
-		form1.setComment("ㄹㅇㅋㅋ");
+		form1.setFreeBno(30);
+		form1.setMemberId("id002");
+		form1.setComment("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ");
 		form5 = new FreeBoardForm();
-		form5.setBno(3);
-		form5.setMemberId("s");
-		form5.setTag("asd");
-		form5.setTitle("tt");
-		form5.setContent("cc");
+		form5.setBno(30);
 	}
 	
 	@Test

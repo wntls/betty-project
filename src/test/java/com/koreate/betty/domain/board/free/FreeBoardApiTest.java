@@ -141,11 +141,11 @@ public class FreeBoardApiTest {
 		
 	}
 	
-		@Test
+		//@Test
 		public void removeTest() {
-			int first = freeBoardService.remove(formR1);
-			int second = freeBoardService.remove(formR2);
-			int third = freeBoardService.remove(formR3);
+			int first = freeBoardService.remove(1);
+			int second = freeBoardService.remove(2);
+			int third = freeBoardService.remove(3);
 			log.info("first={}, second={}, third={}",first,second,third);
 		}
 
@@ -157,11 +157,13 @@ public class FreeBoardApiTest {
 				log.info("first={}, second={}, third={}",first,second,third);
 			}
 
-		@Test	
+		//@Test
+		/*
 		public void listTest() {
 			List<FreeBoard> list = freeBoardService.freeList(ex);
 			log.info("list : "+ list.size());
 			FreeBoard board = list.get(1);
 			log.info(board.getTitle());
 		}
+		*/
 }

@@ -34,7 +34,7 @@ public class NoticeBoardProvider {
 		}
 		
 		// 공지사항 상세보기
-		public String noticeDetail(NoticeBoard vo) {
+		public String noticeDetail(int bno) {
 			return new SQL().SELECT("*")
 					.FROM(NOTICE_BOARD_TBL)
 					.WHERE("bno = #{bno}")
@@ -51,24 +51,43 @@ public class NoticeBoardProvider {
 		}
 		
 		// 공지사항 목록 출력
-		public String noticeList(SearchCriteria cri, NoticeBoard vo) {
-			return new SQL().SELECT("*")
-					.FROM(NOTICE_BOARD_TBL)
-					.ORDER_BY("bno DESC")
-					.WHERE("title LIKE CONCAT('%',#{title},'%')")
-					.OFFSET(cri.getStartRow())
-					.LIMIT(cri.getPerPageNum())
-					.toString();
+		public String noticeList(SearchCriteria cri) {
+			SQL sql = new SQL().SELECT("*");
+			sql.FROM(NOTICE_BOARD_TBL);
+			sql.ORDER_BY("bno DESC");
+			getSearchWhere(cri, sql);
+			sql.OFFSET(cri.getStartRow());
+			sql.LIMIT(cri.getPerPageNum());
+			return sql.toString();
 		}
 		
 		
 		// 전체 게시물 개수
 		public String listAllCount(SearchCriteria cri) {
-			return new SQL().SELECT("count(*)")
-					.FROM(NOTICE_BOARD_TBL)
-					.toString();
+			SQL sql = new SQL().SELECT("count(*)");
+			sql.FROM(NOTICE_BOARD_TBL);
+			getSearchWhere(cri, sql);
+			return sql.toString();
 		}
-		
+	
+		// 검색
+		private void getSearchWhere(SearchCriteria cri, SQL sql) {
+			String titleQuery = "title LIKE CONCAT('%','"+cri.getKeyword()+"','%')";
+			String contentQuery = "content LIKE CONCAT('%',#{keyword},'%')";
+			String writerQuery = "member_id LIKE CONCAT('%',#{keyword},'%')";
+			if(cri.getSearchType() != null && !cri.getSearchType().trim().equals("")
+					&& !cri.getSearchType().trim().equals("n")) {
+				if(cri.getSearchType().contains("t")) {
+					sql.OR().WHERE(titleQuery);
+				}
+				if(cri.getSearchType().contains("c")) {
+					sql.OR().WHERE(contentQuery);
+				}
+				if(cri.getSearchType().contains("w")) {
+					sql.OR().WHERE(writerQuery);
+				}
+			}
+		}
 		
 		
 		

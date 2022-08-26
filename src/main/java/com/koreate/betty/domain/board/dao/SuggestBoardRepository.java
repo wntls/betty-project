@@ -31,7 +31,7 @@ public interface SuggestBoardRepository {
 		
 		// 건의사항 삭제
 		@UpdateProvider(type=SuggestBoardProvider.class, method="suggestRemove")
-		public int suggestRemove(SuggestBoard vo);
+		public int suggestRemove(int bno);
 		
 		// 건의사항 수정
 		@UpdateProvider(type=SuggestBoardProvider.class, method="suggestUpdate")
@@ -39,11 +39,11 @@ public interface SuggestBoardRepository {
 		
 		// 건의사항 상세
 		@SelectProvider(type=SuggestBoardProvider.class, method="suggestDetail")
-		public int suggestRead(SuggestBoard vo);
+		public SuggestBoard suggestRead(int bno);
 		
 		// 건의사항 목록 출력
 		@SelectProvider(type=SuggestBoardProvider.class, method = "suggestList")
-		public List<SuggestBoard> SuggestList(SearchCriteria cri, SuggestBoard board);
+		public List<SuggestBoard> SuggestList(SearchCriteria cri);
 		
 		// 조회수 증가
 		@UpdateProvider(type=SuggestBoardProvider.class, method="updateCnt")

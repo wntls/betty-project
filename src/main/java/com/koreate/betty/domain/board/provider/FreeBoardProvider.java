@@ -17,9 +17,18 @@ public class FreeBoardProvider {
 				.INTO_VALUES("#{memberId},#{tag},#{title},#{content}")
 				.toString();
 	}
+	
+	// 게시물 상세
+	public String detail(int bno) {
+		return new SQL()
+				.SELECT("*")
+				.FROM(FREE_BOARD_TBL)
+				.WHERE("bno = #{bno}")
+				.toString();
+	}
 
 	// 자유게시판 삭제 요청
-	public String freeRemove(FreeBoard board) {
+	public String freeRemove(int bno) {
 		return new SQL()
 				.UPDATE(FREE_BOARD_TBL)
 				.SET("showboard = 'n'")
@@ -44,15 +53,15 @@ public class FreeBoardProvider {
 				sql.ORDER_BY("bno DESC");
 				sql.OFFSET(cri.getStartRow());
 				sql.LIMIT(cri.getPerPageNum());
-				sql.toString();
 		return sql.toString();
 	}
 	
 	// 전체 게시물 개수
 	public String listAllCount(SearchCriteria cri) {
-		return new SQL().SELECT("count(*)")
-				.FROM(FREE_BOARD_TBL)
-				.toString();
+		SQL sql = new SQL().SELECT("count(*)");
+		sql.FROM(FREE_BOARD_TBL);
+		getSearchWhere(cri, sql);
+		return sql.toString();
 	}
 	
 	// 조회수 증가

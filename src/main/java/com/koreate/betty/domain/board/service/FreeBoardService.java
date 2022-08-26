@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import com.koreate.betty.domain.board.dao.FreeBoardRepository;
 import com.koreate.betty.domain.board.dto.form.FreeBoardForm;
 import com.koreate.betty.domain.board.vo.FreeBoard;
+import com.koreate.betty.global.util.PageMaker;
+import com.koreate.betty.global.util.SearchCriteria;
+import com.koreate.betty.global.util.SearchPageMaker;
 
 @Service
 public class FreeBoardService {
@@ -23,23 +26,19 @@ public class FreeBoardService {
 	}
 	
 	// 게시글 삭제
-	public int remove(FreeBoardForm form) {
-		FreeBoard board = form.createFreeBoard();
-		freeBoardRepository.freeRemove(board);
-		return board.getBno();
+	public int remove(int bno) {
+		return freeBoardRepository.freeRemove(bno);
 	}
 	
 	// 게시글 수정
 	public int update(FreeBoardForm form) {
 		FreeBoard board = form.createFreeBoard();
-		freeBoardRepository.freeUpdate(board);
-		return board.getBno();
+		return freeBoardRepository.freeUpdate(board);
 	}
 	
 	// 게시글 전체 목록
-	public List<FreeBoard> freeList(FreeBoardForm form) {
-		FreeBoard board = form.createFreeBoard();
-		return freeBoardRepository.listAll(board);
+	public List<FreeBoard> freeList(SearchCriteria cri) {
+		return freeBoardRepository.listAll(cri);
 	}
 	
 	// 조회수 증가
@@ -47,6 +46,20 @@ public class FreeBoardService {
 		return freeBoardRepository.updateCnt(bno);
 	}
 	
+	// 게시글 상세
+	public FreeBoard detail(int bno) {
+		return freeBoardRepository.freeDetail(bno);
+	}
+	
+	// 페이징 처리
+	public PageMaker getPageMaker(SearchCriteria cri) {
+		int totalCount = freeBoardRepository.listAllCount(cri);
+		PageMaker pm = new SearchPageMaker();
+		pm.setCri(cri);
+		pm.setDisplayPageNum(5);
+		pm.setTotalCount(totalCount);
+		return pm;
+	}
 	
 	
 }
