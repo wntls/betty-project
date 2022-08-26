@@ -60,8 +60,6 @@ String uri = request.getRequestURI();
 		request.setAttribute("leftNav", "admin");
 	} else if (uri.contains("views/board")){
 		request.setAttribute("leftNav", "board");
-	} else if (uri.contains("views/book")){
-		request.setAttribute("leftNav", "book");
 	} else {
 		request.setAttribute("leftNav", "");
 	}
@@ -78,9 +76,6 @@ String uri = request.getRequestURI();
 	</c:when>
 	<c:when test="${leftNav eq 'board'}">
 		<%@include file="/WEB-INF/views/include/nav/board-side-nav.jsp"%>
-	</c:when>
-	<c:when test="${leftNav eq 'book'}">
-		<%@include file="/WEB-INF/views/include/nav/book-side-nav.jsp"%>
 	</c:when>
 	<c:otherwise>
 	</c:otherwise>

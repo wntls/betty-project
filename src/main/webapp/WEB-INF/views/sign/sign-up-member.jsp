@@ -9,57 +9,63 @@
 			<div class="col-md-auto">
 				<div class="login__form">
 					<h3>회원가입</h3>
-					<form id="joinForm" action="${path}/joinPost" method="POST">
-						<input type="text" name="rights" value=0 hidden>
-						<!-- 아이디 -->
+
+					<form id="signUpForm" action="" method="post">
+						아이디
 						<div class="input__item">
 							<span><i class="bi bi-person-video2"></i></span>
 							<input type="text" name="id" id="id" placeholder="아이디를 입력 하세요" /> 
 							<div class="result"></div>
 						</div>
-						<!-- 비밀번호-->
+						비밀번호
 						<div class="input__item">
 							<span class="icon_lock"></span> 
 							<input type="password" name="pw" id="pw" placeholder="비밀번호 입력하세요" />
 							<div class="result"></div>
 						</div>
-						<!-- 비밀번호 확인 -->
+						비밀번호 확인
 						<div class="input__item">
 							<span class="icon_lock"></span> 
 							<input type="password" name="repw" id="repw" placeholder="비밀번호 재입력하세요" />
 							<div class="result"></div>
 						</div>
-						<!-- 이름-->
+						이름
 						<div class="input__item">
 							<span class="icon_profile"></span> 
 							<input type="text" name="name" id="name" placeholder="이름을 입력하세요" />
 							<div class="result"></div>
 						</div>
-						<!-- 생일 -->
+						닉네임
+						<div class="input__item">
+							<span class="icon_profile"></span> 
+							<input type="text" name="nickname" id="nickname" placeholder="닉네임을 입력하세요" />
+							<div class="result"></div>
+						</div>
+						생년월일
 						<div class="input__item">
 							<span><i class="bi bi-calendar3"></i></span>
 							<input type="text" name="birth" id="birth" placeholder="19930516" /> 
 							<div class="result"></div>
 						</div>
-					
-						 <div class="row ml-2 mb-3">
-							 <div class="form-check form-check-inline">
-							  <input class="form-check-input" type="radio" name="gender" id="male" value="남성">
-							  <label class="form-check-label" for="male">남성</label>
-							</div>
-							<div class="form-check form-check-inline">
-							  <input class="form-check-input" type="radio" name="gender" id="female" value="여성">
-							  <label class="form-check-label" for="female">여성</label>
-							</div>
-						</div>
-						 
-						<!-- 주소 -->
-						<div class="input__item mt-3">
-							<span><i class="bi bi-house"></i></span>
-							<input type="text" name="addr" id="addr" placeholder="사랑시 고백구 행복동" /> 
+						성별
+						<div class="btn-group btn-group-toggle w-100 mb-3"  data-toggle="buttons">
+						  <label class="btn btn-primary text-white">
+						    <input type="radio" name="gender" id="male" value="male"> 남성
+						   </label>
+						  <label class="btn btn-primary ml-2 text-white">
+						    <input type="radio" name="gender" id="female" value="female"> 여성
+						  </label>
+						<div class="result"></div>
 						</div>
 						
-						<!-- 번호-->
+						주소
+						<div class="input__item">
+							<span><i class="bi bi-house"></i></span>
+							<input type="text" name="addr" id="addr" placeholder="사랑시 고백구 행복동" />
+							<div class="result"></div> 
+						</div>
+						
+						전화번호
 						<div class="input__item">
 							<span><i class="bi bi-phone"></i></span>
 								<input type="text" name="phone" id="phone" placeholder="01012345678" /> 
@@ -72,14 +78,12 @@
 							<input type="button" class="btn btn-secondary acceptCode" value="인증" />
 						</div> 
 						
-						<!-- 메일 -->
+						이메일
 						<div class="input__item">
 							<span class="icon_mail"></span>
 							<input type="text" name="email" id="email" placeholder="이메일을 입력하세요" /> 
 							<input type="button" class="btn btn-danger" value="이메일 인증" id="sendEmail" disabled/>
 							<div class="result"></div>
-							
-							
 						</div>
 						
 						<div class="input-group flex-nowrap justify-content-center mb-4" style="display: none" id="emailCodeWrap">
@@ -251,7 +255,7 @@ $(function(){
 	
 	// 유효성 검사(폰  / 이메일은 위에서 인증코드랑 같이해서 제외) 
 	// - 주소는 api쓰면 따로 안해도 되서 일단 제외시킴
-	$("#joinForm").validate({
+	$("#signUpForm").validate({
 		onkeyup : function(el){
 			$(el).valid();
 		},
@@ -281,6 +285,11 @@ $(function(){
 				rangelength : [2,6]
 			},
 			
+			nickname : {
+				required : true,
+				rangelength : [2,10]
+			},
+			
 			birth :{
 				required : true
 			},
@@ -291,7 +300,15 @@ $(function(){
 			
 			addr : {
 				required : true
+			},
+			
+			phone : {
+				required : true
 			},  
+			
+			email : {
+				required : true
+			}  
 		 
 		},
 		messages : {
@@ -317,6 +334,11 @@ $(function(){
 				rangelength : "이름은 2~6글자 이내 작성해주세요."
 			},
 			
+			nickname : {
+				required : "닉네임을 입력해 주세요.",
+				rangelength : "닉네임은 2~10글자 이내 작성해주세요."
+			},
+			
 			birth : {
 				required : "생일을 선택해 주세요."
 			},
@@ -327,6 +349,14 @@ $(function(){
 			
 			addr : {
 				required : "주소를 입력해 주세요."
+			},
+			
+			phone : {
+				required : "전화번호를 입력해 주세요."
+			},
+			
+			email : {
+				required : "이메일을 입력해 주세요."
 			} 
 			
 		},
@@ -337,7 +367,7 @@ $(function(){
 		errorPlacement : function(error, element){	
 			if(element.prop("type") === 'radio'){ 
 				element.removeClass("text-danger");
-				error.insertAfter(element.parent().parent());
+				error.insertAfter(element.parent(),parent());
 			}else{
 				error.insertAfter(element);
 			}

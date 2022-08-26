@@ -24,10 +24,12 @@
 			<div class="login__form">
 				<form>
 					<div class="list-group justify-content-center">
+						아이디
 						<div class="input__item">
-							<input type="text" name="memberId" placeholder="아이디"> <span
+							<input type="text" name="id" placeholder="아이디"> <span
 								class="icon_profile"></span>
 						</div>
+						비밀번호
 						<div class="input__item">
 							<input type="password" name="pw" placeholder="비밀번호"> <span
 								class="icon_lock"></span>
@@ -129,7 +131,7 @@
 							<div class="input-group-prepend">
 								<div class="input-group-text">아이디</div>
 							</div>
-							<input type="text" class="form-control" name="memberId">
+							<input type="text" class="form-control" name="id">
 						</div>
 						
 						<!-- 입력태그 하나 -->
@@ -190,7 +192,7 @@
 								<div class="input-group-prepend">
 									<div class="input-group-text">아이디</div>
 								</div>
-								<input type="text" class="form-control" name="memberId" id="memberId">
+								<input type="text" class="form-control" name="id" id="id">
 							</div>
 							
 							<!-- 입력태그 하나 -->

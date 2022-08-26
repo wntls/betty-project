@@ -150,7 +150,7 @@ public class SignController {
 	
 	// @@ 로그인 뷰에서 비밀번호 변경 버튼 눌렀을 때 ajax	 service : findForChangePw, changePw
 
-	@PostMapping("up/member")
+	//@PostMapping("up/member")
 	public String signUpMember(JoinForm form) {
 
 		int result = memberService.joinMember(form);

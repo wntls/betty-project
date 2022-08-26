@@ -7,6 +7,39 @@
 	<div class="container-md spad">
 		<div class="row justify-content-center">
 			<div class="col-md-10">
+			<div class="btn-group btn-group-toggle mb-5" data-toggle="buttons">
+			  <label class="btn btn-secondary active">
+			    <input type="radio" name="genre" value="" checked> 전체
+			  </label>
+			  <label class="btn btn-secondary">
+			    <input type="radio" name="genre" value="100"> 철학
+			  </label>
+			  <label class="btn btn-secondary">
+			    <input type="radio" name="genre" value="200"> 종교
+			  </label>
+			  <label class="btn btn-secondary">
+			    <input type="radio" name="genre" value="300"> 사회
+			  </label>
+			  <label class="btn btn-secondary">
+			    <input type="radio" name="genre" value="400"> 과학
+			  </label>
+			  <label class="btn btn-secondary">
+			    <input type="radio" name="genre" value="500"> 공학
+			  </label>
+			  <label class="btn btn-secondary">
+			    <input type="radio" name="genre" value="600"> 예술
+			  </label>
+			  <label class="btn btn-secondary">
+			    <input type="radio" name="genre" value="700"> 외국어
+			  </label>
+			  <label class="btn btn-secondary">
+			    <input type="radio" name="genre" value="800"> 소설
+			  </label>
+			  <label class="btn btn-secondary">
+			    <input type="radio" name="genre" value="900"> 역사
+			  </label>
+			</div>
+			
 				<div class="row justify-content-around">
 					<div class="card col-md-2">
 						<img src="${path}/resources/img/book/medium/9772383984000.jpg"
