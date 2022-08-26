@@ -90,6 +90,7 @@
 					class="table-data-list table-striped table-dark text-center">
 					<!-- 1블럭 -->
 					<!-- 1 -->
+					<thead>
 					<tr onclick="location.href='${path}/staff/books/num/edit'">
 						<td>번호</td>
 						<td>책 표지</td>
@@ -98,14 +99,15 @@
 						<td>작가</td>
 						<td>출판사</td>
 					</tr>
-
+					</thead>
+					<tbody>
 					<!-- 2 -->
 					<tr onclick="location.href='${path}/staff/books/num/edit'">
 						<td rowspan="3">1</td>
 						<td class="책 이미지" style="max-width: 135px" rowspan="3">
 						<img src="${path}/resources/img/book/thumbnail/9772383984000.jpg" /></td>
-						<td class="tempTitle">{제목넘기기}</td>
-						<td>코드넘기자</td>
+						<td class="tempTitle" id="">{제목넘기기}</td>
+						<td id="codetd">코드넘기자1</td>
 						<td>{auth}</td>
 						<td>{pub}</td>
 					</tr>
@@ -121,10 +123,42 @@
 						<td><input type="button" class="btn btn-danger" onclick="throwData(this)"
 							data-toggle="modal" data-target="#bookCount"
 							value="재고 수정" id="bookAdd" name="bookAdd{isbn등}" /></td>
+							
 						<td><input type="button" class="btn btn-danger"
 							data-toggle="modal" data-target="#exampleModalCenter"
 							value="도서 폐기" id="bookAdd" name="bookAdd{isbn등}" /></td>
 					</tr>
+					</tbody>
+					
+					<tbody>
+					<!-- 2 -->
+					<tr onclick="location.href='${path}/staff/books/num/edit'">
+						<td rowspan="3">1</td>
+						<td class="책 이미지" style="max-width: 135px" rowspan="3">
+						<img src="${path}/resources/img/book/thumbnail/9772383984000.jpg" /></td>
+						<td class="tempTitle" id="">{제목넘기기}</td>
+						<td id="codetd">코드넘기자2</td>
+						<td>{auth}</td>
+						<td>{pub}</td>
+					</tr>
+					<tr id="tr3">
+						<td style="min-width: 130px">출판일</td>
+						<td style="min-width: 130px">장르</td>
+						<td style="min-width: 130px">보유 권수</td>
+						<td style="min-width: 130px">기타</td>
+					</tr>
+					<tr id="tr4">
+						<td>{pub_date}</td>
+						<td>{genre}</td>
+						<td><input type="button" class="btn btn-danger" onclick="throwData(this)"
+							data-toggle="modal" data-target="#bookCount"
+							value="재고 수정" id="bookAdd" name="bookAdd{isbn등}" /></td>
+							
+						<td><input type="button" class="btn btn-danger"
+							data-toggle="modal" data-target="#exampleModalCenter"
+							value="도서 폐기" id="bookAdd" name="bookAdd{isbn등}" /></td>
+					</tr>
+					</tbody>
 				</table>
 			</div>
 		</div>
@@ -190,8 +224,8 @@
 		
 		function throwData(ev){
 			
-			console.log(ev.closest("#tr2"));
-			let tr = ev.parentNode.parentNode.previousSibling.previousSibling.previousSibling.previousSibling;
+			$(ev.closest("tbody")).find("#codetd").html("넘긴제목");
+			/* let tr = ev.parentNode.parentNode.previousSibling.previousSibling.previousSibling.previousSibling;
 			let title = tr.children[2].innerHTML;
 			let code = tr.children[3].innerHTML;
 			code = { "code" : code };			
@@ -201,7 +235,11 @@
 			$('.bookName').val(code);
 			
 		
+			 */
 			
+		}
+		
+		function temp (){
 			$.ajax({
 				url: '${path}/staff/books/plz',
 				type: 'put',
@@ -213,7 +251,9 @@
 					$('.bookName').val(result.content);
 				}
 			})
+			
 		}
+		
 
 </script>
 
