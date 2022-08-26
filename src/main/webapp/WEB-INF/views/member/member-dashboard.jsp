@@ -9,7 +9,7 @@
 	max-height: 20rem;
 	overflow: hidden;
 	box-sizing: border-box;
-	margin: 1rem;
+	margin: 0;
 }
 
 table {
@@ -72,8 +72,7 @@ table td {
 
 					<div class="col mb-4">
 						<div class="card">
-							<div class="card-header">출석달력</div>
-							<div class="card-body">
+							<div class="card-body" style="padding-top:0">
 								<div id="container"></div>
 							</div>
 						</div>
