@@ -44,7 +44,7 @@
 
 							<!-- 2행 -->
 							<tr>
-								<th scope="row">대여 상태</th>
+								<th scope="row">직원여부</th>
 								<td colspan="2">
 									<div class="btn-group btn-group-toggle" data-toggle="buttons">
 										<label class="btn btn-secondary active"> 
