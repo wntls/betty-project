@@ -15,27 +15,6 @@ import com.koreate.betty.domain.member.vo.Member;
 
 @Repository
 public interface MemberRepository {
-
-	@InsertProvider(type=MemberProvider.class, method="join")
-	public int join(Member member);
-	
-	@SelectProvider(type=MemberProvider.class, method="checkIdForJoin")
-	public String checkIdForJoin(String id);
-	
-	@SelectProvider(type=MemberProvider.class, method="checkNickForJoin")
-	public String checkNickForJoin(String nick);
-	
-	@SelectProvider(type=MemberProvider.class, method="checkEmailForJoin")
-	public String checkEmailForJoin(String email);
-	
-	@SelectProvider(type=MemberProvider.class, method="login")
-	public Member login(@Param("id")String id, @Param("pw")String pw);
-	
-	@SelectProvider(type=MemberProvider.class, method="findId")
-	public String findId(final String name, final String phone);
-	
-	@SelectProvider(type=MemberProvider.class, method="findForChangePw")
-	public int findForChangePw(@Param("id")String id, @Param("phone")String phone);
 	
 	@SelectProvider(type=MemberProvider.class, method="findAll")
 	public List<Member> findAll();
