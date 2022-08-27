@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockMultipartFile;
@@ -38,7 +39,7 @@ public class MemberTest {
 	MemberService ms;
 	BookService bs;
 	
-//	@Test // 완료
+	@Test 
 	public void joinTest() {
 		JoinForm form = new JoinForm("123","1","1", "1" ,"1","1", "2000-11-22","1","1", "1", 0);
 		
