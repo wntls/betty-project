@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="af0a9f18-f1f3-4977-bd7e-4016cd95791f" name="변경" comment="" />
+    <list default="true" id="af0a9f18-f1f3-4977-bd7e-4016cd95791f" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/koreate/betty/domain/member/dto/form/SignInForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/koreate/betty/domain/member/dto/form/SignInForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/koreate/betty/domain/member/dto/form/signUpForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/koreate/betty/domain/member/dto/form/signUpForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/koreate/betty/domain/member/service/SignService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/koreate/betty/domain/member/service/SignService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +25,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/82105/Desktop/workspace/inflearn",
+    "last_opened_file_path": "C:/Users/82105/Desktop/inflearn",
     "settings.editor.selected.configurable": "configurable.group.appearance"
   }
 }]]></component>

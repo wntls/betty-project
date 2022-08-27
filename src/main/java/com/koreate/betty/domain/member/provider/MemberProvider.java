@@ -10,63 +10,6 @@ import org.apache.ibatis.jdbc.SQL;
 import com.koreate.betty.domain.member.vo.Member;
 
 public class MemberProvider {
-
-	// 멤버 테이블의 CRUD를 전달
-	
-	// 회원가입
-	public String join(Member member) {
-		return new SQL().INSERT_INTO(MEMBER_TBL)
-				.INTO_COLUMNS("id", "pw", "nickname", "name", "gender", "birth", "phone", "addr", "email", "rights")
-				.INTO_VALUES("#{id}, #{pw}, #{nickname}, #{name}, #{gender}, #{birth}, #{phone}, #{addr}, #{email}, #{rights}")
-				.toString();
-	}
-	
-	// 아이디 중복 확인
-	public String checkIdForJoin(String id) {
-		return new SQL().SELECT("id").FROM(MEMBER_TBL)
-				.WHERE("id = #{id}")
-				.toString();
-	}
-		
-	// 닉네임 중복 확인
-	public String checkNickForJoin(String nick) {
-		return new SQL().SELECT("nickname").FROM(MEMBER_TBL)
-				.WHERE("nickname = #{nick}")
-				.toString();
-	}
-	
-	// 이메일 중복 확인
-	public String checkEmailForJoin(String email) {
-		return new SQL().SELECT("email").FROM(MEMBER_TBL)
-				.WHERE("email = #{email}")
-				.toString();
-	}
-		
-	// 로그인
-	public String login(@Param("id")String id, @Param("pw")String pw) {
-		return new SQL().SELECT("*")
-				.FROM(MEMBER_TBL)
-				.WHERE("id = #{id}").WHERE("pw = #{pw}")
-				.toString();
-	}
-	
-	// 아이디 찾기 (이름 + 전화로 회원의 계정 존재 확인)
-	public String findId(final String name, final String phone) {
-		return new SQL().SELECT("id")
-				.FROM(MEMBER_TBL)
-				.WHERE("name = #{name}")
-				.WHERE("phone = #{phone}")
-				.toString();
-	}
-	
-	// 비밀번호 변경 전 유저의 정보 확인  : 아이디 + 전화번호로 회원의 계정이 존재하는지 확인
-	public String findForChangePw(@Param("id")String id, @Param("phone")String phone) {
-		return new SQL().SELECT("count(*)")
-				.FROM(MEMBER_TBL)
-				.WHERE("id = #{id}")
-				.WHERE("phone = #{phone}")
-				.toString();
-	}
 	
 	// 비밀번호 재설정
 	public String changePw(@Param("id")String id, @Param("pw")String changePw) {

@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.koreate.betty.domain.member.dao.MemberRepository;
-import com.koreate.betty.domain.member.dto.form.JoinForm;
-import com.koreate.betty.domain.member.dto.form.LoginForm;
+import com.koreate.betty.domain.member.dto.form.SignUpForm;
+import com.koreate.betty.domain.member.dto.form.SignInForm;
 import com.koreate.betty.domain.member.dto.form.PointForm;
 import com.koreate.betty.domain.member.dto.form.UpdateForm;
 import com.koreate.betty.domain.member.vo.ChkLog;
@@ -31,74 +31,6 @@ public class MemberService {
 
 	private final MemberRepository memberRepository;
 	private final ServletContext context;
-	
-	public Member loginMember(LoginForm form) {
-		String id = form.getMemberId();
-		String pw = form.getPw();
-		
-		String cookie = form.getLoginCookie();
-		
-		log.info("id = {} , pw = {} , cookie= {}", id, pw, cookie);
-		
-		
-		if (cookie != null) {
-			// 쿠키만드는 작업 해줘
-			// 나중에 함
-		}
-		
-		return memberRepository.login(id, pw);
-	}
-
-	public int joinMember(JoinForm form) {
-		
-		int result = 0;
-		
-		String pw = form.getPw();
-		String repw = form.getRepw();
-		
-		if (!pw.equals(repw)) {
-			return result;
-		}
-		
-		Member joinMember = form.createMember();
-				
-		result = memberRepository.join(joinMember);
-		return result;
-	}
-	
-	public boolean checkIdForJoin(String id) {
-		String checkId = memberRepository.checkIdForJoin(id);
-		
-		return checkId != null ? true : false;
-	}
-	
-	public boolean checkNickForJoin(String nick) {
-		String checkNick = memberRepository.checkNickForJoin(nick);
-		
-		return checkNick != null ? true : false; 
-	}
-	
-	public boolean checkEmailForJoin(String email) {
-		String checkEmail = memberRepository.checkEmailForJoin(email);
-		
-		return checkEmail != null ? true : false;
-	}
-	
-	public String findId(String name, String phone) {
-		String id = null;
-		
-		id = memberRepository.findId(name, phone);
-				
-		return id;
-	}
-	
-	public int findForChangePw(String id, String phone) {
-		int result = 0;
-		
-		result = memberRepository.findForChangePw(id, phone);
-		
-		return result;
-	}
 	
 	public int changePw(String id, String pw) {
 		int result = 0;

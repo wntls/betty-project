@@ -4,6 +4,8 @@ import javax.validation.constraints.NotBlank;
 
 import org.springframework.lang.Nullable;
 
+import com.koreate.betty.domain.member.vo.Member;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,15 +13,21 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginForm {
+public class SignInForm {
 	
 	@NotBlank
-	String memberId;
+	String id;
 	
 	@NotBlank
 	String pw;
 	
-	@Nullable
-	String loginCookie;
+	boolean loginCookie;
 	
+	public Member convertToMember(){
+		return new Member()
+				.builder()
+				.id(id)
+				.pw(pw)
+				.build();
+	}
 }

@@ -3,6 +3,7 @@ package com.koreate.betty.domain.member.dto.form;
 import java.sql.Timestamp;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.koreate.betty.domain.member.vo.Member;
 
@@ -14,10 +15,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JoinForm {
+public class SignUpForm {
 	
 	@NotBlank
-	String memberId;
+	String id;
 	
 	@NotBlank
 	String pw;
@@ -46,21 +47,24 @@ public class JoinForm {
 	@NotBlank
 	String email;
 	
-	@NotBlank
+	@NotNull
 	Integer rights;
-	
-	public Member createMember() {
-		return Member.builder()
-				.id(memberId)
-				.pw(pw)
-				.nickname(nickname)
-				.name(name)
-				.gender(gender)
-				.birth(Timestamp.valueOf(birth + " 00:00:00"))
-				.addr(addr)
-				.phone(phone)
-				.email(email)
-				.rights(rights)
-				.build();
-	}	
+		
+		public Member convertToMember(){
+			return new Member()
+					.builder()
+					.id(id)
+					.pw(pw)
+					.nickname(nickname)
+					.name(name)
+					.gender(gender)
+					.birth(Timestamp.valueOf(birth))
+					.phone(phone)
+					.addr(addr)
+					.email(email)
+					.rights(rights)
+					.build();
+		}
+		
+		
 }
