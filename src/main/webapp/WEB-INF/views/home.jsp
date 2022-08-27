@@ -173,5 +173,3 @@
 <!-- Product Section End -->
 
 <%@include file="./include/footer.jsp"%>
-
-</html>
