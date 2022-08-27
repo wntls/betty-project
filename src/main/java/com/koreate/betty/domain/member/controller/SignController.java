@@ -1,30 +1,25 @@
 package com.koreate.betty.domain.member.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.koreate.betty.domain.member.dto.form.SignInForm;
-import com.koreate.betty.domain.member.dto.form.signUpForm;
+import com.koreate.betty.domain.member.dto.form.SignUpForm;
 import com.koreate.betty.domain.member.service.SignService;
 import com.koreate.betty.domain.member.vo.Member;
 
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.nurigo.sdk.message.model.Message;
-import net.nurigo.sdk.message.request.SingleMessageSendingRequest;
-import net.nurigo.sdk.message.response.SingleMessageSentResponse;
 import net.nurigo.sdk.message.service.DefaultMessageService;
 
 @Slf4j
@@ -33,9 +28,8 @@ import net.nurigo.sdk.message.service.DefaultMessageService;
 @RequiredArgsConstructor
 public class SignController {	
 	
-	private final DefaultMessageService messageService;
 	private final SignService signService;
-	private final JavaMailSender mailSender;
+	
 	
 	@GetMapping("in")
 	public String signIn() {
@@ -51,6 +45,21 @@ public class SignController {
 	public String signUpMember() {
 		return "sign/sign-up-member";
 	}
+	
+	@PostMapping("up/member")
+	public String signUpMember(@Valid SignUpForm form, BindingResult bindingResult) {
+		log.info("signUpMember form = {}", form);
+		if(bindingResult.hasErrors()) {
+			bindingResult.getAllErrors()
+						.iterator()
+						.forEachRemaining(ex -> log.error("bindingResult = {}",ex));
+			return "redirect:/sign/up/member";
+		}
+		
+		int result = signService.signUp(form);
+		log.info("signUpMember result : {} ", result);
+		return "redirect:/sign/in";
+	}
 
 	@GetMapping("up/staff")
 	public String signUpStaff() {
@@ -58,122 +67,62 @@ public class SignController {
 	}
 
 	@PostMapping("in")
-	public String signIn(SignInForm form) {
-		Member loginMember = signService.SignIn(form);
-		if(loginMember == null) { // 사용자에게 알리는 로직 필요	
+	public String signIn(SignInForm form, HttpSession session) {
+		log.info("signIn Post form = {} ",form);
+		Member user = signService.SignIn(form);
+		if(user == null) { // 사용자에게 알리는 로직 필요	
 			return "redirect:/sign/in";
 		}
+		
+		session.setAttribute("user", user);
 		return "redirect:/";
 	}
 	
 
-	@GetMapping("up/idCheck")	// @@ DB를 검사하는 로직이 필요할것으로 생각됩니다. (service : checkIdForJoin)
+	@GetMapping("up/idCheck")
 	@ResponseBody
-	public boolean isCheck(String id) {
-		boolean isCheck = false;
-		if (id != null && !id.equals("admin")) {
-			isCheck = true;
-		}
-		return isCheck;
-	}
+	public boolean idCheck(String id) { return signService.checkIdDupl(id); }
 	
+	@GetMapping("up/nicknameCheck")
+	@ResponseBody
+	public boolean nicknameCheck(String nickname) { return signService.checkIdDupl(nickname); }
 	
-	// @@ 회원가입 시 nickname 중복 확인 필요
-	// service : boolean checkNickForJoin
-	
-	
-	// @@ 로그인 뷰에서 아이디 찾기 버튼 눌렀을 때 ajax service : findId
-	
-	// @@ 로그인 뷰에서 비밀번호 변경 버튼 눌렀을 때 ajax	 service : findForChangePw, changePw
-
-	@PostMapping("up/member")
-	public String signUpMember(@Valid signUpForm form) {
-
-		int result = signService.signUp(form);
-		
-		log.info("signUpMember result : {} ", result);
-		return "redirect:/sign/in";
-	}
 	
 	@GetMapping("find/id")
 	@ResponseBody
-	public String findIdGetCode(String name, String phone) {
-		
-		String findId = signService.forgetId(name, phone);
-		
-		if(findId == null) {
-			// return 존재하지 않는 회원입니다.
-		}
-		
-		int code = 0;
-		for(int i=0; i<5; i++) {
-			code +=(int)(Math.random()*10);
-		}
-		
-		return String.valueOf(code);
+	public String forgetIdTakeCode(FindIdDto dto, HttpSession session) {
+		String code = signService.forgetId(dto.getName(), dto.getPhone());
+		session.setAttribute("code", code);
+		session.setMaxInactiveInterval(180);
+		log.info("아이디 찾기 발급 코드 = {}",code);
+		return code;
 	}
 	
+	@PostMapping("find/id")
+	@ResponseBody
+	public String forgetIdValidCode(FindIdDto dto, @SessionAttribute("code") String code) {
+		if(dto.getCode().equals(code)) {
+			log.info("사용자가 입력한 코드 = {} , 아이디 찾기 발급 코드 = {}",dto.getCode(),code);
+			return signService.forgetId(dto.getName(), dto.getPhone());
+		}
+		log.info("[ERROR] 사용자가 입력한 코드 = {} , 아이디 찾기 발급 코드 = {}",dto.getCode(),code);
+		return "코드가 일치하지 않습니다";
+	}
 	
-	// 내부 로직 빼낼 예정
-		@PostMapping("sms")
-		@ResponseBody
-		public Map<String, String> sendSMS(String phone) throws Exception {
-			// code 생성
-			String code = "";
-			for (int i = 0; i < 5; i++) {
-				code += (int) (Math.random() * 10);
-			}
+	// @@ 로그인 뷰에서 비밀번호 변경 버튼 눌렀을 때 ajax	 service : findForChangePw, changePw
 
-			Message message = new Message();
-			message.setFrom("01045725901");
-			message.setTo("01000000000"); // message.setTo(phone);
-			message.setText("테스트 전송 메세지 입니다.해당 인증번호는[" + code + "]입니다.");
-
-			SingleMessageSentResponse response = this.messageService.sendOne(new SingleMessageSendingRequest(message));
-
-			Map<String, String> map = new HashMap<>();
-			map.put("code", code);
-			map.put("result", response.getStatusCode());
-			return map;
-		}
-		
-		
-		@GetMapping("/checkEmail")
-		@ResponseBody
-		public String checkEmail(
-				@RequestParam("email") String email
-				) throws Exception{
-			
-			boolean result = signService.checkEmailDupl(email);	// true : 검색된 이메일이 있음
-			if (result) {
-				
-				/*		@@
-				 * 		사용자에게 중복 이메일이 있음을 알리고
-				 *   	아래 코드가 실행되지 않도록 리턴
-				 *    
-				 *  */ 
-				
-			}
-			
-			System.out.println(email);
-			String code = "";
-			
-			for(int i=0; i<5; i++) {
-				code +=(int)(Math.random()*10);
-			}
-			
-			MimeMessage mesage = mailSender.createMimeMessage();
-			MimeMessageHelper helper = new MimeMessageHelper(mesage,"UTF-8");
-			helper.setFrom("show5901@gmail.com");
-			helper.setTo(email);
-			helper.setSubject("이메일 인증 코드 확인");
-			helper.setText("왜 코드 뭐는 되고 뭔는 안되는데!! ["+code+"]", true);
-			mailSender.send(mesage);
-			System.out.println("발신 완료");
-			
-			return code;
-		}
-		
-		
+	@Data
+	static class FindIdDto {
+		private String name;
+		private String phone;
+		private String code;
+	}
+	
+	@Data
+	static class FindPwDto{
+		private String id;
+		private String phone;
+		private String code;
+	}
 	
 }

@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class signUpForm {
+public class SignUpForm {
 	
 	@NotBlank
 	String id;
@@ -51,19 +51,19 @@ public class signUpForm {
 	Integer rights;
 		
 		public Member convertToMember(){
-			Member member = new Member();
-			member.setId(id);
-			member.setPw(pw);
-			member.setNickname(nickname);
-			member.setName(name);
-			member.setGender(gender);
-			member.setBirth(Timestamp.valueOf(birth+ " 00:00:00"));
-			member.setAddr(addr);
-			member.setAddr(addr);
-			member.setPhone(phone);
-			member.setEmail(email);
-			member.setRights(rights);;
-			return member;
+			return new Member()
+					.builder()
+					.id(id)
+					.pw(pw)
+					.nickname(nickname)
+					.name(name)
+					.gender(gender)
+					.birth(Timestamp.valueOf(birth))
+					.phone(phone)
+					.addr(addr)
+					.email(email)
+					.rights(rights)
+					.build();
 		}
 		
 		

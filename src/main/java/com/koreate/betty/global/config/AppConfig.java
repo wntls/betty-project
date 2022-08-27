@@ -42,7 +42,7 @@ public class AppConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
-		registry.addFormatter(new TempFormatter());
+		//registry.addFormatter(new TempFormatter());
 	}
 
 	@Override

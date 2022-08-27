@@ -21,14 +21,13 @@ public class SignInForm {
 	@NotBlank
 	String pw;
 	
-	@Nullable
-	String loginCookie;
+	boolean loginCookie;
 	
 	public Member convertToMember(){
-		Member member = new Member();
-		member.setId(id);
-		member.setPw(pw);
-		return member;
+		return new Member()
+				.builder()
+				.id(id)
+				.pw(pw)
+				.build();
 	}
-	
 }

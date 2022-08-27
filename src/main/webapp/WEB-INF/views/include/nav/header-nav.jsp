@@ -24,19 +24,45 @@
 							<nav class="nav">
 								<a class="nav-link" href="${path}/library">도서관 소개</a> 
 								<a class="nav-link" href="${path}/books">도서 목록</a> 
-								<a class="nav-link" href="${path}/members/num/dashboard">회원 공간</a>
 								<a class="nav-link" href="${path}/boards/notice">게시판</a>
-								<a class="nav-link" href="${path}/staff/books">직원</a>
-								<a class="nav-link" href="${path}/admin/members">관리자</a>
+								<c:choose>
+									<c:when test="${user.rights == 1}">
+										<a class="nav-link" href="${path}/members/num/dashboard">회원 공간</a>
+												
+									</c:when>
+									<c:when test="${user.rights == 2}">
+										<a class="nav-link" href="${path}/staff/books">직원</a>
+									
+									</c:when>
+									<c:when test="${user.rights == 3}">
+										<a class="nav-link" href="${path}/admin/members">관리자</a>
+										
+									</c:when>
+								</c:choose>
 							</nav>
 						</div>
 						<!-- 우측 회원관련 -->
-						<div class="col-md-3 float-right">
-							<nav class="nav float-right">
-								<a class="nav-link" href="${path}/sign/in">로그인</a> <a
-									class="nav-link" href="${path}/sign/up/member">회원가입</a>
-							</nav>
-						</div>
+						
+						<c:choose>
+							<c:when test="${user == null}">
+								<div class="col-md-3 float-right">
+									<nav class="nav float-right">
+										<a class="nav-link" href="${path}/sign/in">로그인</a> <a
+											class="nav-link" href="${path}/sign/up/member">회원가입</a>
+									</nav>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="col-md-3 float-right">
+									<nav class="nav float-right">
+										<a class="nav-link" href="${path}/members/${user.id}">${user.nickname}님</a> 
+										<a class="nav-link" href="${path}/sign/logout">로그아웃</a>
+									</nav>
+								</div>
+							</c:otherwise>
+						</c:choose>
+						
+						
 						<div class="col-md-2">
 							<nav class="nav">
 								<a class="nav-link active" href="#">KOR</a> <a
