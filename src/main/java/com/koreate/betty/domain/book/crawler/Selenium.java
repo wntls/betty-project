@@ -16,7 +16,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.koreate.betty.domain.book.dto.BookUpdateForm;
+import com.koreate.betty.domain.book.dto.form.BookUpdateForm;
 import com.koreate.betty.domain.book.vo.Book;
 
 public class Selenium {
