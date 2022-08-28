@@ -41,7 +41,7 @@
 						</div>
 						<div class="col-md">
 							<div class="btn-group float-right" role="group">
-								<button class="btn btn-danger ml-3">수정</button>
+								<button onclick="check()" class="btn btn-danger ml-3">수정</button>
 								<button class="btn btn-secondary ml-3">취소</button>
 							</div>
 						</div>
@@ -60,14 +60,18 @@
 			resize_enabled : false,
 			enterMode : CKEDITOR.ENTER_BR,
 			shiftEnterMode : CKEDITOR.ENTER_P,
-			filebrowserUploadUrl : "resources/ckUpload.do",
-			filebrowserUploadMethod : 'form',
-			height : 400,
-			extraPlugins: 'autogrow',
-			autoGrow_minHeight: 400,
+			height : 600,
+			autoGrow_minHeight: 600,
 			autoGrow_maxHeight: 5000,
 			removePlugins : 'resize'
 	};
 
 	CKEDITOR.replace('editor', ckeditor_config);
+	
+	function check(){
+		let innerContent = "이 텍스트를 에디터에 넣을 수 있음";
+		console.log(innerContent);
+		// ckeditor 내부에 텍스트를 넣는 방법
+		CKEDITOR.instances.editor.setData(innerContent);
+	}
 </script>

@@ -60,16 +60,21 @@
 			resize_enabled : false,
 			enterMode : CKEDITOR.ENTER_BR,
 			shiftEnterMode : CKEDITOR.ENTER_P,
-			filebrowserUploadUrl : "resources/ckUpload.do",
-			filebrowserUploadMethod : 'form',
-			height : 400,
-			extraPlugins: 'autogrow',
-			autoGrow_minHeight: 400,
+			height : 600,
+			autoGrow_minHeight: 600,
 			autoGrow_maxHeight: 5000,
 			removePlugins : 'resize'
 	};
 
 	CKEDITOR.replace('editor', ckeditor_config);
+	
+	function check(){
+		// ckeditor 내부의 텍스트를 가져오는 방법
+		let innerContent = CKEDITOR.instances.editor.getData();
+		console.log(innerContent);
+		// ckeditor 내부에 텍스트를 넣는 방법
+		// CKEDITOR.instances.editor.setData(innerContent);
+	}
 </script>
 
 

@@ -17,7 +17,6 @@ target/*
 META-INF/*
 ##### log4j.xml
 **/database.properties
-**/resources/ckeditor/
 **/resources/img/
 
 
