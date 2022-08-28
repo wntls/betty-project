@@ -1,4 +1,4 @@
-package com.koreate.betty.domain.book.dto;
+package com.koreate.betty.domain.book.dto.form;
 
 import java.sql.Timestamp;
 
@@ -7,7 +7,14 @@ import javax.validation.constraints.Size;
 
 import com.koreate.betty.domain.book.vo.Book;
 
-public class BookBuyForm {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class BookUpdateForm {
+	
+	// 필수 X인 건 지워도 정상적으로 작동합니다 필요에 따라 제거
 	
 	@Size(max = 50)
 	@NotBlank

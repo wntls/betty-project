@@ -9,8 +9,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.koreate.betty.domain.book.dto.BookSearchForm;
-import com.koreate.betty.domain.book.dto.BookUpdateForm;
+import com.koreate.betty.domain.book.dto.form.BookSearchForm;
+import com.koreate.betty.domain.book.dto.form.BookUpdateForm;
 import com.koreate.betty.domain.book.service.BookService;
 import com.koreate.betty.domain.book.vo.Book;
 import com.koreate.betty.global.config.AppConfig;
@@ -53,7 +53,7 @@ public class BookRepoTest {
 	
 	// @Test
 	public void joinTest() { // 테스트 완료 (jbooksList)
-		List<Book> list = bs.jBooksList();
+		List<Book> list = bs.bookList(null, null, null);
 		log.info("size : " + list.size());
 		Book b1 = list.get(1);
 		log.info(b1.getCode());
@@ -83,11 +83,5 @@ public class BookRepoTest {
 			bsf.setGenre(genre);
 
 		}
-	
-	
-	
-	
-	
-	
-	
+		
 }
