@@ -21,9 +21,9 @@ public class SuggestBoardService {
 	// 건의사항 등록
 	public int suggestWrite(SuggestBoardForm form) {
 		SuggestBoard board = form.suggestBoard();
-		dao.suggestRegist(board);
+		int result = dao.suggestRegist(board);
 		dao.updateOrigin();
-		return board.getBno();
+		return result;
 	}
 	
 	// 답변글 등록

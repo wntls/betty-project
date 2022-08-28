@@ -47,12 +47,12 @@ public class FreeBoardProvider {
 	// 자유게시판 목록 요청
 	public String freeList(SearchCriteria cri) {
 		SQL sql = new SQL();
-				sql.SELECT("*");
-				sql.FROM(FREE_BOARD_TBL);
-				getSearchWhere(cri, sql);
-				sql.ORDER_BY("bno DESC");
-				sql.OFFSET(cri.getStartRow());
-				sql.LIMIT(cri.getPerPageNum());
+		sql.SELECT("*");
+		sql.FROM(FREE_BOARD_TBL);
+		getSearchWhere(cri, sql);
+		sql.ORDER_BY("bno DESC");
+		sql.OFFSET(cri.getStartRow());
+		sql.LIMIT(cri.getPerPageNum());
 		return sql.toString();
 	}
 	

@@ -4,8 +4,10 @@ import java.sql.Timestamp;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 @Getter
 @Builder
+@ToString
 public class FreeBoardComment {
 	
 	private final Integer cno;
