@@ -38,14 +38,4 @@ public class FreeBoardController {
 		return "board/free/free-detail";
 	}
 	
-	
-	/*@GetMapping("getList")
-	//{ subject : re, perPageNum : 5 }
-	public String getListAll(SearchCriteria searchCriteria) {
-		// List<FreeBoardCommentDto> list = servere..();
-		
-		// new ResponseEntity<List<FreeBoardCommentDto>>(list, "200");
-		
-	}*/
-	
 }

@@ -29,6 +29,10 @@
 				
 				<div class="spad">
 				<textarea id="editor" class="col-md-6 form-control"
+						style="resize: none;">
+				</textarea>
+				
+				<textarea id="editor2" class="col-md-6 form-control"
 						style="resize: none;" placeholder="내용을 작성하세요.">
 				</textarea>
 				</div>
@@ -43,7 +47,7 @@
 						</div>
 						<div class="col-md">
 							<div class="btn-group float-right" role="group">
-								<button class="btn btn-danger ml-3">작성</button>
+								<button onclick="check()" class="btn btn-danger ml-3">작성</button>
 								<button class="btn btn-secondary ml-3">취소</button>
 							</div>
 						</div>
@@ -62,16 +66,19 @@
 			resize_enabled : false,
 			enterMode : CKEDITOR.ENTER_BR,
 			shiftEnterMode : CKEDITOR.ENTER_P,
-			filebrowserUploadUrl : "resources/ckUpload.do",
-			filebrowserUploadMethod : 'form',
-			height : 400,
-			extraPlugins: 'autogrow',
-			autoGrow_minHeight: 400,
+			height : 600,
+			autoGrow_minHeight: 600,
 			autoGrow_maxHeight: 5000,
 			removePlugins : 'resize'
 	};
 
 	CKEDITOR.replace('editor', ckeditor_config);
+	
+	function check(){
+		// ckeditor 내부의 텍스트를 가져오는 방법
+		let innerContent = CKEDITOR.instances.editor.getData();
+		console.log(innerContent);
+	}
 </script>
 
 

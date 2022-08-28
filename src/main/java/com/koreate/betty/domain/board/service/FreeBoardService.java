@@ -54,14 +54,6 @@ public class FreeBoardService {
 	
 	// 게시글 상세
 	public FreeBoard detail(int bno) {
-		/*
-		FreeBoard board =  freeBoardRepository.freeDetail(bno);
-		String id = board.getMemberId();
-		Member member memberRepository.findById();
-		member.getName();
-		FreeBoardDto dto = new FreeBoardDto();
-		dto.setMemberId(board.getMemberId());
-		*/
 		return freeBoardRepository.freeDetail(bno);
 	}
 	
