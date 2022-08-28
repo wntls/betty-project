@@ -14,13 +14,13 @@ public class SuggestBoardProvider {
 		SQL sql = new SQL();
 		sql.INSERT_INTO(SUGGEST_BOARD_TBL);
 		sql.INTO_COLUMNS("title,content");
-		if(board.getOrigin() != null || board.getOrigin() != 0) {
+		if(board.getOrigin() != null && board.getOrigin() != 0) {
 			sql.INTO_COLUMNS("origin,depth");
 		}
 		sql.INTO_COLUMNS("member_id");
 		sql.INTO_VALUES("#{title},#{content}");
-		if(board.getOrigin() != null || board.getOrigin() != 0) {
-			sql.INTO_VALUES("#{origin},#{depth}");
+		if(board.getOrigin() != null && board.getOrigin() != 0) {
+			sql.INTO_VALUES("#{origin},1");
 		}
 		sql.INTO_VALUES("#{memberId}");
 		return sql.toString();
@@ -43,7 +43,7 @@ public class SuggestBoardProvider {
 	}
 	
 	// 건의사항 삭제
-	public String suggestRemove(SuggestBoard vo) {
+	public String suggestRemove(int bno) {
 		return new SQL().UPDATE(SUGGEST_BOARD_TBL)
 				.SET("showboard = 'n'")
 				.WHERE("bno = #{bno}")

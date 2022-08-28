@@ -18,10 +18,17 @@ public class FreeCommentService {
 	FreeBoardCommentRepository dao;
 	
 	// 댓글 등록
-	public int add(FreeBoardCommentForm form, FreeBoard board) {
+	public int add(FreeBoardCommentForm form, int bno) {
 		FreeBoardComment vo = form.freeBoardComment();
+		int result = dao.commentAdd(vo, bno);
 		dao.updateOrigin();
-		return dao.commentAdd(vo, board);
+		return result;
+	}
+	
+	// 대댓글
+	public int reply(FreeBoardCommentForm form, int bno) {
+		FreeBoardComment vo = form.freeBoardComment();
+		return dao.commentReply(vo, bno);
 	}
 	
 	// 댓글 수정

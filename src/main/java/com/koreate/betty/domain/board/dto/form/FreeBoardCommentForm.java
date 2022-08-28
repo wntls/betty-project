@@ -22,6 +22,7 @@ public class FreeBoardCommentForm {
 	@NotBlank
 	private String comment;
 	
+	
 	private Integer origin;
 	
 	private Integer depth;

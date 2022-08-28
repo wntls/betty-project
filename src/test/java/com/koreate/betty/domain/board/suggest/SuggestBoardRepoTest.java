@@ -39,7 +39,6 @@ public class SuggestBoardRepoTest {
 	public void init() {
 		form1 = new SuggestBoardForm();
 		form1.setMemberId("id001");
-		form1.setOrigin(0);
 		form1.setTitle("dadf");
 		form1.setContent("sdfsdfsdf");
 		
@@ -48,13 +47,12 @@ public class SuggestBoardRepoTest {
 		form2.setTitle("답글이다");
 		form2.setContent("답글이다");
 		form2.setDepth(1);
-		form2.setOrigin(12);
 		
 	}
 	
 	
-	//@Test
-	//@Transactional
+	@Test
+	@Transactional
 	public void registTest() {
 	 	int result = ss.suggestWrite(form1);
 		log.info("result={}",result);
