@@ -12,14 +12,15 @@
 				<div class="table-wrapper">
 					<div class="row justify-content-between mb-2">
 						<div class="col-auto">
-								<div class="btn-group">
-							  <button type="button" class="btn btn-secondary mr-1" value="일상">일상</button>
-							  <button type="button" class="btn btn-secondary mr-1" value="질문">질문</button>
-							  <button type="button" class="btn btn-secondary" value="후기">후기</button>
+								<div class="btn-group" id="subject">
+							  <button type="button" class="btn btn-secondary mr-1" name="abc" value="">전체</button>
+							  <button type="button" class="btn btn-secondary mr-1" name="abc" value="li">일상</button>
+							  <button type="button" class="btn btn-secondary mr-1" name="abc" value="qu">질문</button>
+							  <button type="button" class="btn btn-secondary" name="abc" value="re">후기</button>
 							</div>
 						</div>
 						<div class="col-auto">
-							<select>
+							<select id="perPageNum">
 								<option selected="selected">5</option>
 								<option>10</option>
 								<option>20</option>
@@ -62,18 +63,18 @@
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-6">
-					<form>
+					<form id="searchForm" action="${path}/">
 						<div class="form-row input-group mb-3">
 							<div class="input-group-prepend">
-								<select>
-									<option value="">제목</option>
-									<option value="">작성자</option>
-									<option value="">내용</option>
+								<select id="searchType">
+									<option value="t">제목</option>
+									<option value="w">작성자</option>
+									<option value="c">내용</option>
 								</select>
 							</div>
-							<input type="text" class="form-control">
+							<input type="text" class="form-control" id="keyword">
 							<div class="input-group-append">
-								<button type="submit" class="btn btn-primary">검색하기</button>
+								<button type="submit" onclick="testPrint(event)" class="btn btn-primary">검색하기</button>
 							</div>
 						</div>
 					</form>
@@ -100,4 +101,85 @@
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 </html>
+
+<script>
+<!--
+let searchSet =  어떻게 말머리, 펄페이지넘, 폼데이터를 잘 모았어, 현재 페이지 번호까지 모았어 
+{ subject : re, perPageNum : 5 }
+	$.ajax({
+		type: 'get',
+		url: "${path}/boards/free/getList",
+		data: searchSet,
+		success: function(result){
+			tr 생성도 해야되고
+			생성한 tr에 번호도 넣어야되고
+					
+			result[0].
+			
+			for (let i=0; i< result.length; i++){
+			String createTr = `
+					<tr>
+						<td id="title">
+							${result[i].nickname}				
+						</td>
+					</tr>
+			
+			`
+			comment.ref
+			
+			id="mainhead"
+			
+			$('#mainhead').appent(createTr)
+			
+			
+			}
+		}
+	});
+
+
+
+$("button[name=abc]").on("click",function(event){
+	console.log(this.value);
+	this.setAttribute("active","");
+	
+	
+});
+
+
+	
+	$('#searchForm').on("submit",function(event){
+		event.preventDefault();
+		let focusBtn = $('#subject button :active').val();
+		console.log("10 focusBtn = "+$(':focus').val());
+		console.log("11 focusBtn = "+$('.focus').val());
+		console.log("12 button:active = "+$('button:active').val());
+		console.log("13 selected = "+$('.selected').val());
+		console.log("14 checkd = "+$('.checked').val());
+		console.log("15 focusBtn = "+$('button:focus').val());
+		console.log("16 $(this).val()"+$(this).val());
+		console.log("17 this.value"+this.value);
+		let formData = new FormData();
+		formData.append('searchType', $('#searchType').val());
+		formData.append('keyword', $('#keyword').val());
+		console.log("18 서치타입 = "+formData.get('searchType'));
+		console.log("19 키우드 = "+formData.get('keyword'));
+		console.log("20 "+formData['searchType']);
+		
+		<!-- form 입력 데이터와 perPageNum, 말머리  -->
+	});
+	
+	function testPrint(event){
+		console.log("1 focusBtn = "+$(':focus').val());
+		console.log("2 focusBtn = "+$('.focus').val());
+		console.log("3 button:active = "+$('button:active').val());
+		console.log("4 selected = "+$('.selected').val());
+		console.log("5 checkd = "+$('.checked').val());
+		console.log("6 focusBtn = "+$('button:focus').val());
+		console.log("7 "+event);
+		console.log("8 "+event.value);
+		console.log("9 "+$('#keyword').val());
+	}
+	-->
+	
+</script>
 

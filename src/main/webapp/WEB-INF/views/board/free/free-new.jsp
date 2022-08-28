@@ -11,8 +11,9 @@
 					<span>자유게시판 글 작성</span>
 				</div>
 				<div class="w-100"></div>
-				<input class="board-detail board-title" type="text" value="제목">
+				<input class="board-detail board-title" name="title" type="text" value="제목">
 				<hr />
+				
 				<div class="row">
 					<div class="col-md-6">
 						<div class="blog__details">
@@ -25,6 +26,7 @@
 				<div class="col-md-6 text-white"
 						style="line-height: 50px; text-align: right">2022-08-22</div>
 				</div>
+				
 				<div class="spad">
 				<textarea id="editor" class="col-md-6 form-control"
 						style="resize: none;" placeholder="내용을 작성하세요.">

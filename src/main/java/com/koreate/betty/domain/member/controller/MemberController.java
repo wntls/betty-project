@@ -62,7 +62,7 @@ public class MemberController {
 		
 		if (loginMember == null || !loginMember.getId().equals(id)) {
 			System.out.println("불일치\n\n\n");
-			return "redirect:/";	// 잘못된 접근은 일단 홈으로
+		//	return "redirect:/";	// 잘못된 접근은 일단 홈으로
 		}
 		
 		model.addAttribute("grade", memberService.findGradeById(id));
@@ -122,9 +122,9 @@ public class MemberController {
 	}
 	
 	@PostMapping("membership")
-	public String registerMembership(String id, String membershipGrade) {
+	public String registerMembership(@PathVariable String memberId, String id, String membershipGrade) {
 		int result = memberService.updateMembership(id, membershipGrade);
-		return "redirect:/members/{memberId}";
+		return "redirect:/members/"+memberId;
 	}
 	
 	@PostMapping("del")

@@ -1,13 +1,16 @@
 package com.koreate.betty.domain.board.service;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.koreate.betty.domain.board.dao.FreeBoardRepository;
+import com.koreate.betty.domain.board.dto.FreeBoardDto;
 import com.koreate.betty.domain.board.dto.form.FreeBoardForm;
 import com.koreate.betty.domain.board.vo.FreeBoard;
+import com.koreate.betty.domain.member.dao.MemberRepository;
 import com.koreate.betty.global.util.PageMaker;
 import com.koreate.betty.global.util.SearchCriteria;
 import com.koreate.betty.global.util.SearchPageMaker;
@@ -46,8 +49,19 @@ public class FreeBoardService {
 		return freeBoardRepository.updateCnt(bno);
 	}
 	
+	@Autowired
+	MemberRepository memberRepository;
+	
 	// 게시글 상세
 	public FreeBoard detail(int bno) {
+		/*
+		FreeBoard board =  freeBoardRepository.freeDetail(bno);
+		String id = board.getMemberId();
+		Member member memberRepository.findById();
+		member.getName();
+		FreeBoardDto dto = new FreeBoardDto();
+		dto.setMemberId(board.getMemberId());
+		*/
 		return freeBoardRepository.freeDetail(bno);
 	}
 	
