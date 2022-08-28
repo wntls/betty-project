@@ -10,6 +10,9 @@ import com.koreate.betty.domain.board.dto.form.FreeBoardCommentForm;
 import com.koreate.betty.domain.board.vo.FreeBoard;
 import com.koreate.betty.domain.board.vo.FreeBoardComment;
 import com.koreate.betty.global.util.Criteria;
+import com.koreate.betty.global.util.PageMaker;
+import com.koreate.betty.global.util.SearchCriteria;
+import com.koreate.betty.global.util.SearchPageMaker;
 
 @Service
 public class FreeCommentService {
@@ -18,17 +21,17 @@ public class FreeCommentService {
 	FreeBoardCommentRepository dao;
 	
 	// 댓글 등록
-	public int add(FreeBoardCommentForm form, int bno) {
+	public int add(FreeBoardCommentForm form) {
 		FreeBoardComment vo = form.freeBoardComment();
-		int result = dao.commentAdd(vo, bno);
+		int result = dao.commentAdd(vo);
 		dao.updateOrigin();
 		return result;
 	}
 	
 	// 대댓글
-	public int reply(FreeBoardCommentForm form, int bno) {
+	public int reply(FreeBoardCommentForm form) {
 		FreeBoardComment vo = form.freeBoardComment();
-		return dao.commentReply(vo, bno);
+		return dao.commentReply(vo);
 	}
 	
 	// 댓글 수정
@@ -51,4 +54,16 @@ public class FreeCommentService {
 	public List<FreeBoardComment> list(Criteria cri, int bno){
 		return dao.commentList(cri, bno);
 	}
+	
+	// 페이징 처리
+	public PageMaker getPageMaker(Criteria cri, int bno) {
+		int totalCount = dao.totalCount(bno);
+		PageMaker pm = new PageMaker();
+		pm.setCri(cri);
+		pm.setDisplayPageNum(5);
+		pm.setTotalCount(totalCount);
+		return pm;
+	}
+	
+	
 }
