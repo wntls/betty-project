@@ -19,12 +19,12 @@ public interface FreeBoardCommentRepository {
 	// 댓글 등록
 	@InsertProvider(type=FreeBoardCommentProvider.class, method="commentAdd")
 	//@Options(useGeneratedKeys = true , keyProperty = "cno")
-	public int commentAdd(@Param("cvo") FreeBoardComment cvo, @Param("bno") int bno);
+	public int commentAdd(FreeBoardComment cvo);
 
 	// 대댓글 등록
 	@InsertProvider(type=FreeBoardCommentProvider.class, method="commentAdd")
 	//@Options(useGeneratedKeys = true , keyProperty = "cno")
-	public int commentReply(@Param("cvo") FreeBoardComment cvo, @Param("bno") int bno);	
+	public int commentReply(FreeBoardComment cvo);	
 	
 	
 	// 댓글 수정
@@ -42,5 +42,9 @@ public interface FreeBoardCommentRepository {
 	// 댓글 목록 출력 WHERE free_bno = bno
 	@SelectProvider(type=FreeBoardCommentProvider.class, method = "commentList")
 	public List<FreeBoardComment> commentList(@Param("cri") Criteria cri, @Param("bno") int bno);
+	
+	// 댓글 전체 개수
+	@SelectProvider(type=FreeBoardCommentProvider.class, method = "totalCount")
+	public int totalCount(int bno);
 	
 }

@@ -12,19 +12,19 @@ import com.koreate.betty.global.util.Criteria;
 public class FreeBoardCommentProvider {
 	
 	// 댓글 작성
-	public String commentAdd(@Param("cvo") FreeBoardComment cvo, @Param("bno") int bno) {
+	public String commentAdd(FreeBoardComment cvo) {
 		SQL sql = new SQL();
 		sql.INSERT_INTO(FREE_COMMENT_TBL);
 		sql.INTO_COLUMNS("free_bno, comment");
 		if(cvo.getOrigin() != null && cvo.getOrigin() != 0) {
-			sql.INTO_COLUMNS("origin,depth,seq");
+			sql.INTO_COLUMNS("origin");
 		}
 		sql.INTO_COLUMNS("member_id");
-		sql.INTO_VALUES("#{bno}, #{cvo.comment}");
+		sql.INTO_VALUES("#{freeBno}, #{comment}");
 		if(cvo.getOrigin() != null && cvo.getOrigin() != 0) {
-			sql.INTO_VALUES("#{cvo.origin},1,1");
+			sql.INTO_VALUES("#{origin}");
 		}
-		sql.INTO_VALUES("#{cvo.memberId}");
+		sql.INTO_VALUES("#{memberId}");
 		return sql.toString();
 	}
 	
@@ -61,12 +61,20 @@ public class FreeBoardCommentProvider {
 				.SELECT("*")
 				.FROM(FREE_COMMENT_TBL)
 				.WHERE("free_bno = #{bno}")
-				.ORDER_BY("origin ASC, seq ASC, regdate ASC")
+				.ORDER_BY("origin ASC")
 				.OFFSET(cri.getStartRow())
 				.LIMIT(cri.getPerPageNum())
 				.toString();
 	}
 	
+	// 댓글 전체 개수
+	public String totalCount(int bno) {
+		return new SQL()
+				.SELECT("count(*)")
+				.FROM(FREE_COMMENT_TBL)
+				.WHERE("free_bno = #{bno}")
+				.toString();
+	}
 }
 
 
