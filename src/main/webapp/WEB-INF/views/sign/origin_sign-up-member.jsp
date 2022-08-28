@@ -55,7 +55,7 @@
 							<label class="btn btn-primary ml-2 text-white">
 								<input type="radio" name="gender" id="female" value="female"> 여성
 							</label>
-						<div class="result"></div>
+							<div class="result"></div>
 						</div>
 						
 						주소
@@ -72,7 +72,7 @@
 							<br/>
 							<input type="text" class="form-control" name="addr" id="addr"/>
 							<br/>
-							<input type="text" class="form-control" name="addr_detail" id="addr_detail"/>
+							<input type="text" class="form-control" name="addr_detail" id="addr_detail" placeholder="상세주소를 입력해 주세요"/>
 							
 							<!-- <input type="text" name="addr" id="addr" placeholder="사랑시 고백구 행복동" /> -->
 							<div class="result"></div> 
@@ -270,7 +270,8 @@ $(function(){
 		return regexpr.test(value);
 	});
 	
-	var regexBirth = /^[0-9]{4}[0-9]{2}[0-9]{2}$/;							
+	var regexBirth = /^[0-9]{4}[0-9]{2}[0-9]{2}$/;
+	var regexID = /^[0-9a-zA-Z]{3,10}$/;
 	
 	
 	// 유효성 검사(폰  / 이메일은 위에서 인증코드랑 같이해서 제외) 
@@ -285,7 +286,8 @@ $(function(){
 				remote : {
 					type : "GET",
 					url : "${path}/user/uidCheck"
-				}
+				},
+				regex : regexID
 			}, 
 			
 			pw : {
@@ -339,7 +341,8 @@ $(function(){
 		messages : {
 			id : {
 				required : "아이디를 작성 해주세요.",
-				remote : "이미 존재하는 아이디입니다."
+				remote : "이미 존재하는 아이디입니다.",
+				regex : "특수 문자 제외하고 영어와 숫자로 3~10글자 이내로 작성해주세요."
 			},
 			
 			pw : {
