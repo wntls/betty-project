@@ -11,6 +11,7 @@ import javax.servlet.ServletContext;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.koreate.betty.domain.member.dao.MemberCardRepository;
 import com.koreate.betty.domain.member.dao.MemberRepository;
 import com.koreate.betty.domain.member.dto.form.SignUpForm;
 import com.koreate.betty.domain.member.dto.form.SignInForm;
@@ -31,6 +32,7 @@ import net.koreate.file.utils.MediaUtils;
 public class MemberService {
 
 	private final MemberRepository memberRepository;
+	private final MemberCardRepository memberCardRepository;
 	private final ServletContext context;
 	
 	public Member findOne(String id) {
@@ -44,7 +46,7 @@ public class MemberService {
 	public int changePw(String id, String pw) {
 		int result = 0;
 		
-		result = memberRepository.changePw(id, pw);
+		result = memberRepository.updatePw(id, pw);
 		
 		return result;
 	}
@@ -57,14 +59,14 @@ public class MemberService {
 	public int deleteMember(String id) {
 		int result = 0;
 		
-		result = memberRepository.deleteMember(id);
+		result = memberRepository.delete(id);
 		
 		return result;
 	}
 
 	public int updateMember(String targetId, UpdateForm form) {
 		Member update = form.createMember();
-		int result = memberRepository.updateMember(targetId, update); 
+		int result = memberRepository.update(targetId, update); 
 		
 		return result;
 	}
@@ -72,7 +74,7 @@ public class MemberService {
 	public int addPoint(PointForm form) {
 		String id = form.getId();
 		int point = form.getPoint();
-		int result = memberRepository.addPoint(id, point);
+		int result = memberCardRepository.updatePoint(id, point);
 		return result;
 	}
 
@@ -129,11 +131,10 @@ public class MemberService {
 	}
 
 	public int updateMembership(String id, String membershipGrade) {
-		return memberRepository.updateMembership(id, membershipGrade);		
+		return memberCardRepository.updateGrade(id, membershipGrade);
 	}
 
 	public String findGradeById(String id) {
-		
 		return null;
 	}
 	

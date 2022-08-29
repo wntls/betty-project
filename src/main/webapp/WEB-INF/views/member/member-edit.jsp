@@ -1,44 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<style>
+	#profileImgDiv {
+		position: relative;
+		border-raius: 1rem;
+		width: 300px;
+		height: 300px;
+		margin-right: 2rem;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: top center;
+		box-sizing: border-box;
+	}
+</style>
+
 <%@include file="/WEB-INF/views/include/header.jsp"%>
+
 
 <section class="signup spad">
 	<div class="container-md">
 		<div class="row justify-content-center">
 			<div class="col-md-auto">
-				
-				
 				<div class="section-title">
-				<div class="row justify-content-between">
-					<div class="col-auto">
 						<h4>회원 정보 수정</h4>
-					</div>
 				</div>
-			</div>
 
-			<img class="img-thumbnail" alt="..."
-				src="${path}/resources/img/member/origin/${user.img}" />
-			<div class="w-100 mb-5"></div>
-			
-			<hr/>
-			<h2>이미지 업로드 테스트</h2>
-			<form action="" method="post" enctype="multipart/form-data">
-				<input type="text" name="id" value="id001" hidden>
-				<div class="input-group mb-3">
-				  <div class="custom-file">
-				    <input type="file" class="custom-file-input" name="profileImg" id="profileImg" accept="image/*">
-				    <label class="custom-file-label" for="profileImg">프로필 이미지를 등록하세요</label>
-				  </div>
-				  <div class="input-group-append">
-				    <button class="btn btn-outline-secondary" type="submit" id="profileImgUploadBtn">업로드 요청</button>
-				  </div>
-				</div>
-			</form>
-			<hr/>
 				<div class="login__form">
-					<form id="editForm" action="" method="post">
-
+					<div class="row justify-content-center spad-sm">
+					<div class="img-thumbnail" id="profileImgDiv" style="background-image: url('${path}/resources/img/member/origin/${user.img}');"></div>
+					</div>
+					<form id="editForm" action="" method="post" enctype="multipart/form-data">
+							
+						<div class="input-group mb-3">
+						  <div class="custom-file">
+						    <input type="file" class="custom-file-input" name="profileImg" id="profileImg" accept="image/*">
+						    <label class="custom-file-label" for="profileImg">프로필 이미지를 등록하세요</label>
+						  </div>
+						</div>
 						<div class="input__item">
 							<span><i class="bi bi-person-video2"></i></span>
 							<input type="text" name="id" id="id" value="${user.id}" readonly/> 
