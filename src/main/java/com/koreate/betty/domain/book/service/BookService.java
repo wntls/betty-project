@@ -35,6 +35,7 @@ public class BookService {
 		return list;
 	}
 	
+	
 	// 도서 정보 등록
 	public int bookRegister(BookBuyForm form) {
 		Book book = form.createBook();
