@@ -34,18 +34,8 @@ public class FreeBoardController {
 	@GetMapping("{bno}")
 	public String freeBoardDetail(@PathVariable Integer bno, Model model) {
 		FreeBoard board =  freeBoardService.detail(bno);
-		model.addAttribute("board", board);
+		model.addAttribute("board", FreeBoard.builder().content("<h2>HelloWord</h2>").build());
 		return "board/free/free-detail";
 	}
-	
-	
-	/*@GetMapping("getList")
-	//{ subject : re, perPageNum : 5 }
-	public String getListAll(SearchCriteria searchCriteria) {
-		// List<FreeBoardCommentDto> list = servere..();
-		
-		// new ResponseEntity<List<FreeBoardCommentDto>>(list, "200");
-		
-	}*/
 	
 }

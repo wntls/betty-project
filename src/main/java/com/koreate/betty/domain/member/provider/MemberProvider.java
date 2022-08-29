@@ -27,7 +27,7 @@ public class MemberProvider {
 	}
 
 	// 계정 한개 검색 (마이페이지/직원 정보)
-	public String fineOne(String id) {
+	public String findOne(String id) {
 		return new SQL().SELECT("*")
 				.FROM(MEMBER_TBL)
 				.WHERE("id = #{id}")

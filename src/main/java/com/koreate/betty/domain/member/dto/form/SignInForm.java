@@ -24,8 +24,7 @@ public class SignInForm {
 	boolean loginCookie;
 	
 	public Member convertToMember(){
-		return new Member()
-				.builder()
+		return Member.builder()
 				.id(id)
 				.pw(pw)
 				.build();

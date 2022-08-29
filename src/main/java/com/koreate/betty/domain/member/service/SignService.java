@@ -1,13 +1,21 @@
 package com.koreate.betty.domain.member.service;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.WebUtils;
 
 import com.koreate.betty.domain.member.dao.SignRepository;
 import com.koreate.betty.domain.member.dto.form.SignInForm;
 import com.koreate.betty.domain.member.dto.form.SignUpForm;
 import com.koreate.betty.domain.member.exception.NotFoundIdException;
 import com.koreate.betty.domain.member.vo.Member;
+import com.koreate.betty.domain.model.CookieConst;
+import com.koreate.betty.domain.model.SessionConst;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,20 +45,25 @@ public class SignService {
 	}
 	
 	// 로그인
-	public Member SignIn(SignInForm form) {
+	public Member signIn(SignInForm form) {
 		Member member = form.convertToMember();
-		boolean cookie = form.isLoginCookie();
-		
 		member = signRepository.findOneBySignIn(member);
-		
-		// cookie true or null
-		
-		if (cookie) {
-			log.info("쿠키에 사용자 정보 넣기");
-		}
 		return member;
 	}
 	
+	// 로그아웃
+	public void logout(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession(false);
+		Member user = (Member)session.getAttribute(SessionConst.USER);
+		session.invalidate();
+		Cookie cookieId = WebUtils.getCookie(request, CookieConst.COOKIE_USER);
+		if(cookieId != null) {
+			Cookie cookie = new Cookie(CookieConst.COOKIE_USER, user.getId());
+			cookie.setMaxAge(0);
+			cookie.setPath("/");
+			response.addCookie(cookie);
+		}
+	}
 	
 	// 아이디 중복 체크
 	public boolean checkIdDupl(String id) {

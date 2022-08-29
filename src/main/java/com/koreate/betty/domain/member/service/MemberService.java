@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.koreate.betty.domain.member.dao.MemberRepository;
 import com.koreate.betty.domain.member.dto.form.PointForm;
 import com.koreate.betty.domain.member.dto.form.UpdateForm;
+import com.koreate.betty.domain.member.exception.NotFoundIdException;
 import com.koreate.betty.domain.member.vo.ChkLog;
 import com.koreate.betty.domain.member.vo.Member;
 
@@ -29,6 +30,14 @@ public class MemberService {
 
 	private final MemberRepository memberRepository;
 	private final ServletContext context;
+	
+	public Member findOne(String id) {
+		Member findMember = memberRepository.findOne(id);
+		if (findMember == null) {
+			throw new NotFoundIdException();
+		}
+		return findMember;
+	}
 	
 	public int changePw(String id, String pw) {
 		int result = 0;

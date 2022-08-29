@@ -100,6 +100,7 @@
 </section>
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
+<<<<<<< HEAD
 </html>
 
 <script>
@@ -180,4 +181,6 @@ $("button[name=abc]").on("click",function(event){
 	-->
 	
 </script>
+=======
+>>>>>>> dev
 

@@ -18,7 +18,7 @@
 			</div>
 
 			<img class="img-thumbnail" alt="..."
-				src="${path}/resources/img/member/origin/profile_male.jpg" />
+				src="${path}/resources/img/member/origin/${user.img}" />
 			<div class="w-100 mb-5"></div>
 			
 			<hr/>
@@ -36,15 +36,12 @@
 				</div>
 			</form>
 			<hr/>
-				
-				
-			
 				<div class="login__form">
 					<form id="editForm" action="" method="post">
 
 						<div class="input__item">
 							<span><i class="bi bi-person-video2"></i></span>
-							<input type="text" name="id" id="id" readonly/> 
+							<input type="text" name="id" id="id" value="${user.id}" readonly/> 
 							<div class="result"></div>
 						</div>
 
@@ -62,19 +59,20 @@
 
 						<div class="input__item">
 							<span class="icon_profile"></span> 
-							<input type="text" name="name" id="name"/>
+							<input type="text" name="name" id="name" value="${user.name}"/>
 							<div class="result"></div>
 						</div>
 
 						<div class="input__item">
 							<span class="icon_profile"></span> 
-							<input type="text" name="nickname" id="nickname"/>
+							<input type="text" name="nickname" id="nickname" value="${user.nickname}"/>
 							<div class="result"></div>
 						</div>
 
 						<div class="input__item">
 							<span><i class="bi bi-calendar3"></i></span>
-							<input type="text" name="birth" id="birth"/> 
+							<input type="text" name="birth" id="birth" 
+									value="<f:formatDate pattern="yyyy-MM-dd" value="${user.birth}"/>"/> 
 							<div class="result"></div>
 						</div>
 					
@@ -89,6 +87,15 @@
 							</div>
 						</div>
 						 
+						 <script>
+						 		console.log(${user.gender});
+						 	if(${user.gender} == 'male'){
+						 		console.log("male");
+						 	} else {
+						 		console.log("female");
+						 	}
+						 </script>
+						 
 						<div class="input__item mt-3">
 							<span><i class="bi bi-house"></i></span>
 							<input type="text" name="addr" id="addr"/> 
@@ -96,12 +103,12 @@
 						
 						<div class="input__item">
 							<span><i class="bi bi-phone"></i></span>
-								<input type="text" name="phone" id="phone" readonly/> 
+								<input type="text" name="phone" id="phone" value="${user.phone}" readonly/> 
 						</div>
 						
 						<div class="input__item">
 							<span class="icon_mail"></span>
-							<input type="text" name="email" id="email" readonly/> 
+							<input type="text" name="email" id="email" value="${user.email}" readonly/> 
 						</div>
 
 						<div class="btn-group">
