@@ -12,4 +12,5 @@ public class BookComment {
 	private final String nickname;
 	private final String comment;
 	private final String showcomment;
+	
 }
