@@ -118,7 +118,7 @@ public class BookProvider {
 	}
 
 	// 개별 도서 검색(복합 검색) ex) 대여현황
-	public String jSearchCount(BookSearchForm form, Criteria cri) {
+	public String jSearch(BookSearchForm form, Criteria cri) {
 
 		String search = form.getSearchText();
 		String searchOption = form.getSearchOption();
