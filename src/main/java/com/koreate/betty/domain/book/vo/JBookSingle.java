@@ -7,7 +7,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public class BookJoinBookSingle {
+public class JBookSingle {
 
 	private final String code;
 	private final String title;
@@ -17,8 +17,11 @@ public class BookJoinBookSingle {
 	private final Integer page;
 	private final Integer genre;
 	private final String intro;
+	private final String bookCode;
 	private final Integer num;
 	private final String rental;
 	private final String stat;
+	private final String wareMember;
+	private final Timestamp wareDate;
 	
 }
