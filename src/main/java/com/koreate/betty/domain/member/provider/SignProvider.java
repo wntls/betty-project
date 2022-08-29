@@ -7,12 +7,22 @@ import org.apache.ibatis.jdbc.SQL;
 
 import com.koreate.betty.domain.member.vo.Member;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class SignProvider {
 	
 		public String create(Member member) {
+			log.info("==== member : {}",member);
 			return new SQL().INSERT_INTO(MEMBER_TBL)
 					.INTO_COLUMNS("id", "pw", "nickname", "name", "gender", "birth", "phone", "addr", "email", "rights")
 					.INTO_VALUES("#{id}, #{pw}, #{nickname}, #{name}, #{gender}, #{birth}, #{phone}, #{addr}, #{email}, #{rights}")
+					.toString();
+		}
+		
+		public String findById(String id) {
+			return new SQL().SELECT("*").FROM(MEMBER_TBL)
+					.WHERE("id = #{id}")
 					.toString();
 		}
 

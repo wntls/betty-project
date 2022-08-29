@@ -15,6 +15,10 @@ public interface SignRepository {
 		@InsertProvider(type=SignProvider.class, method="create")
 		public int create(Member member);
 		
+		// 쿠키용 계정 가져오기
+		@SelectProvider(type=SignProvider.class, method="findById")
+		public Member findById(String id);
+		
 		// 아이디 중복 검사
 		@SelectProvider(type=SignProvider.class, method="findIdById")
 		public String findIdById(String id);

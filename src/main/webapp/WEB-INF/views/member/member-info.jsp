@@ -22,7 +22,7 @@
 			</div>
 
 			<img class="img-thumbnail" alt="..."
-				src="${path}/resources/img/member/origin/profile_male.jpg" />
+				src="${path}/resources/img/member/origin/${user.img}" />
 			<div class="w-100 mb-5"></div>
 
 
@@ -30,56 +30,56 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text">아이디</span>
 				</div>
-				<input type="text" class="form-control" name="id" readonly>
+				<input type="text" class="form-control" name="id" value="${user.id}" readonly>
 			</div>
 			
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text">이름</span>
 				</div>
-				<input type="text" class="form-control" name="name" readonly>
+				<input type="text" class="form-control" name="name" value="${user.name}" readonly>
 			</div>
 
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text">닉네임</span>
 				</div>
-				<input type="text" class="form-control" name="nickname" readonly>
+				<input type="text" class="form-control" name="nickname" value="${user.nickname}" readonly>
 			</div>
 
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text">성별</span>
 				</div>
-				<input type="text" class="form-control" name="gender" readonly>
+				<input type="text" class="form-control" name="gender" value="${user.gender}" readonly>
 			</div>
 
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text">생년월일</span>
 				</div>
-				<input type="text" class="form-control" name="birth" readonly>
+				<input type="text" class="form-control" name="birth" value="<f:formatDate pattern="yyyy-MM-dd" value="${user.birth}"/>" readonly>
 			</div>
 
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text">주소</span>
 				</div>
-				<input type="text" class="form-control" name="addr" readonly>
+				<input type="text" class="form-control" name="addr" value="${user.addr}" readonly>
 			</div>
 			
 				<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text">전화번호</span>
 				</div>
-				<input type="text" class="form-control" name="phone" readonly>
+				<input type="text" class="form-control" name="phone" value="${user.phone}" readonly>
 			</div>
 
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text">이메일</span>
 				</div>
-				<input type="text" class="form-control" name="email" readonly>
+				<input type="text" class="form-control" name="email" value="${user.email}" readonly>
 			</div>
 
 		</div>

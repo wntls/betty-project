@@ -29,20 +29,19 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/members/{memberId}")
+@RequestMapping("/members/{id}")
 @PropertySource("classpath:/mail.properties")
 public class MemberController {
 
 	private final JavaMailSender mailSender;
 	private final MemberService memberService;
-	private final BookService bookService;
 	private final RentalService rentalService;
 	
 	@Value("${mail.username}")
 	private String adminEmail;
 	
 	@GetMapping
-	public String memberInfo() {
+	public String memberInfo(@PathVariable String id, Model model) {
 		return "member/member-info";
 	}
 	
@@ -82,8 +81,6 @@ public class MemberController {
 	
 	@GetMapping("edit")
 	public String memberEdit() {
-		
-		
 		return "member/member-edit";
 	}
 	
