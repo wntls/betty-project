@@ -49,10 +49,7 @@ public class SignController {
 	}
 	
 	@PostMapping("up/member")
-	public String signUpMember(
-			
-			@Valid SignUpForm form, 
-			BindingResult bindingResult) {
+	public String signUpMember(@Valid SignUpForm form, BindingResult bindingResult) {
 		log.info("signUpMember form = {}", form);
 		if(bindingResult.hasErrors()) {
 			bindingResult.getAllErrors()

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -19,8 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.koreate.betty.domain.book.service.BookService;
 import com.koreate.betty.domain.member.dto.form.PointForm;
 import com.koreate.betty.domain.member.dto.form.SignInForm;
-import com.koreate.betty.domain.member.dto.form.UpdateForm;
 import com.koreate.betty.domain.member.dto.form.SignUpForm;
+import com.koreate.betty.domain.member.dto.form.UpdateForm;
 import com.koreate.betty.domain.member.service.MemberService;
 import com.koreate.betty.domain.member.service.SignService;
 import com.koreate.betty.domain.member.vo.ChkLog;
@@ -43,7 +44,25 @@ public class MemberTest {
 	SignService signService;
 	BookService bs;
 	
-	@Test 
+	@Test
+	public void joinOne() {
+		SignUpForm form = new SignUpForm();
+		form.setId("namu6749");
+		form.setPw("namu6748");
+		form.setRepw("namu6748");
+		form.setNickname("namu6749");
+		form.setName("namu6749");
+		form.setGender("namu6748");
+		form.setAddr("namu6748");
+		form.setBirth(java.sql.Date.valueOf("2011-05-05"));
+		form.setPhone("0100000001");
+		form.setRights(3);
+		form.setEmail("namu6749@naver.com");
+		log.info("count = {} , form = {}",form);
+		signService.signUp(form);
+	}
+	
+	//@Test 
 	public void joinTest() {
 		IntStream.rangeClosed(1, 10).forEach(
 					i -> {
@@ -56,7 +75,7 @@ public class MemberTest {
 						String gender = i % 2 == 0 ? "man" : "woman";
 						form.setGender(gender);
 						form.setAddr("addr00"+i);
-						form.setBirth("2022-08-27 00:00:0"+i);
+						form.setBirth(new Date());
 						form.setPhone("0100000000"+i);
 						int count = i <= 3 ? i : 0;
 						form.setRights(count);
