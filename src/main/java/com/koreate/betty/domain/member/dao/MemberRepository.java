@@ -16,6 +16,10 @@ import com.koreate.betty.domain.member.vo.Member;
 @Repository
 public interface MemberRepository {
 	
+	
+	@SelectProvider(type=MemberProvider.class, method="findOne")
+	public Member findOne(String id);
+	
 	@SelectProvider(type=MemberProvider.class, method="findAll")
 	public List<Member> findAll();
 	

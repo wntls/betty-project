@@ -42,7 +42,7 @@
 			
 				<div class="row justify-content-around">
 					<div class="card col-md-2">
-						<img src="${path}/resources/img/book/medium/9772383984000.jpg"
+						<img src="${path}/resources/img/book/origin/9772383984000.jpg"
 							class="card-img-top" alt="...">
 						<div class="card-body">
 							<p class="card-text">{title}</p>
@@ -50,7 +50,7 @@
 					</div>
 
 					<div class="card col-md-2">
-						<img src="${path}/resources/img/book/medium/9772383984000.jpg"
+						<img src="${path}/resources/img/book/origin/9772383984000.jpg"
 							class="card-img-top" alt="...">
 						<div class="card-body">
 							<p class="card-text">{title}</p>
@@ -58,7 +58,7 @@
 					</div>
 
 					<div class="card col-md-2">
-						<img src="${path}/resources/img/book/medium/9772383984000.jpg"
+						<img src="${path}/resources/img/book/origin/9772383984000.jpg"
 							class="card-img-top" alt="...">
 						<div class="card-body">
 							<p class="card-text">{title}</p>
@@ -67,7 +67,7 @@
 
 
 					<div class="card col-md-2">
-						<img src="${path}/resources/img/book/medium/9772383984000.jpg"
+						<img src="${path}/resources/img/book/origin/9772383984000.jpg"
 							class="card-img-top" alt="...">
 						<div class="card-body">
 							<p class="card-text">{title}</p>
@@ -80,7 +80,7 @@
 				<div class="row justify-content-around">
 
 					<div class="card col-md-2">
-						<img src="${path}/resources/img/book/medium/9772383984000.jpg"
+						<img src="${path}/resources/img/book/origin/9772383984000.jpg"
 							class="card-img-top" alt="...">
 						<div class="card-body">
 							<p class="card-text">{title}</p>
@@ -88,7 +88,7 @@
 					</div>
 
 					<div class="card col-md-2">
-						<img src="${path}/resources/img/book/medium/9772383984000.jpg"
+						<img src="${path}/resources/img/book/origin/9772383984000.jpg"
 							class="card-img-top" alt="...">
 						<div class="card-body">
 							<p class="card-text">{title}</p>
@@ -96,7 +96,7 @@
 					</div>
 
 					<div class="card col-md-2">
-						<img src="${path}/resources/img/book/medium/9772383984000.jpg"
+						<img src="${path}/resources/img/book/origin/9772383984000.jpg"
 							class="card-img-top" alt="...">
 						<div class="card-body">
 							<p class="card-text">{title}</p>
@@ -105,7 +105,7 @@
 
 
 					<div class="card col-md-2">
-						<img src="${path}/resources/img/book/medium/9772383984000.jpg"
+						<img src="${path}/resources/img/book/origin/9772383984000.jpg"
 							class="card-img-top" alt="...">
 						<div class="card-body">
 							<p class="card-text">{title}</p>

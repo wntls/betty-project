@@ -26,7 +26,7 @@
 								<a class="nav-link" href="${path}/books">도서 목록</a> 
 								<a class="nav-link" href="${path}/boards/notice">게시판</a>
 								<c:choose>
-									<c:when test="${user.rights == 1}">
+									<c:when test="${user.rights == 0}">
 										<a class="nav-link" href="${path}/members/num/dashboard">회원 공간</a>
 												
 									</c:when>
@@ -76,34 +76,10 @@
 <div class="header-lantern-left"></div>
 <div class="header-lantern-right"></div>
 
-<% 
-String uri = request.getRequestURI();
-	if(uri.contains("views/member")){
-		request.setAttribute("leftNav", "member"); 
-	} else if (uri.contains("views/staff")){
-		request.setAttribute("leftNav", "staff");
-	} else if (uri.contains("views/admin")){
-		request.setAttribute("leftNav", "admin");
-	} else if (uri.contains("views/board")){
-		request.setAttribute("leftNav", "board");
-	} else {
-		request.setAttribute("leftNav", "");
-	}
-%>
-<c:choose>
-	<c:when test="${leftNav eq 'member'}">
-		<%@include file="/WEB-INF/views/include/nav/member-side-nav.jsp"%>
-	</c:when>
-	<c:when test="${leftNav eq 'staff'}">
-		<%@include file="/WEB-INF/views/include/nav/staff-side-nav.jsp"%>
-	</c:when>
-	<c:when test="${leftNav eq 'admin'}">
-		<%@include file="/WEB-INF/views/include/nav/admin-side-nav.jsp"%>
-	</c:when>
-	<c:when test="${leftNav eq 'board'}">
-		<%@include file="/WEB-INF/views/include/nav/board-side-nav.jsp"%>
-	</c:when>
-	<c:otherwise>
-	</c:otherwise>
-</c:choose>
-<%@include file="/WEB-INF/views/include/nav/right-side-nav.jsp"%>
+<c:if test="${ 
+			nav eq 'members' 	
+			or nav eq 'boards' 
+			or nav eq 'staff' 
+			or nav eq 'admin'}">
+	<jsp:include page="/WEB-INF/views/include/nav/${nav}-side-nav.jsp"/>
+</c:if>

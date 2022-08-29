@@ -58,7 +58,7 @@ public class MemberTest {
 						form.setAddr("addr00"+i);
 						form.setBirth("2022-08-27 00:00:0"+i);
 						form.setPhone("0100000000"+i);
-						int count = i <= 2 ? i : 0;
+						int count = i <= 3 ? i : 0;
 						form.setRights(count);
 						form.setEmail("email"+i+"@naver.com");
 						log.info("count = {} , form = {}",i,form);
@@ -70,7 +70,7 @@ public class MemberTest {
 //	@Test // 완료
 	public void loginTest() {
 		SignInForm form = new SignInForm("1", "1", true);
-		Member loginMember = signService.SignIn(form);
+		Member loginMember = signService.signIn(form);
 		log.info("\n\n\n ::: loginTest Member : {}", loginMember);
 	}
 	

@@ -1,9 +1,11 @@
 package com.koreate.betty.domain.member.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +18,11 @@ import com.koreate.betty.domain.member.dto.form.SignInForm;
 import com.koreate.betty.domain.member.dto.form.SignUpForm;
 import com.koreate.betty.domain.member.service.SignService;
 import com.koreate.betty.domain.member.vo.Member;
+import com.koreate.betty.domain.model.CookieConst;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.nurigo.sdk.message.service.DefaultMessageService;
 
 @Slf4j
 @Controller
@@ -47,7 +49,10 @@ public class SignController {
 	}
 	
 	@PostMapping("up/member")
-	public String signUpMember(@Valid SignUpForm form, BindingResult bindingResult) {
+	public String signUpMember(
+			
+			@Valid SignUpForm form, 
+			BindingResult bindingResult) {
 		log.info("signUpMember form = {}", form);
 		if(bindingResult.hasErrors()) {
 			bindingResult.getAllErrors()
@@ -67,16 +72,35 @@ public class SignController {
 	}
 
 	@PostMapping("in")
-	public String signIn(SignInForm form, HttpSession session) {
+	public String signIn(SignInForm form, HttpSession session, HttpServletResponse response) {
 		log.info("signIn Post form = {} ",form);
-		Member user = signService.SignIn(form);
+		Member user = signService.signIn(form);
+		boolean cookie = form.isLoginCookie();
+		log.info("login cookie = {}", cookie);
 		if(user == null) { // 사용자에게 알리는 로직 필요	
 			return "redirect:/sign/in";
 		}
-		
 		session.setAttribute("user", user);
+		
+		if (cookie) {
+			Cookie idCookie = new Cookie(CookieConst.COOKIE_USER, user.getId());
+			idCookie.setMaxAge(60 * 60 * 60);
+			idCookie.setPath("/");
+			response.addCookie(idCookie);
+		}
 		return "redirect:/";
 	}
+	
+	@GetMapping("logout")
+	public String logout(
+			HttpServletRequest request,
+			HttpServletResponse response
+			) {
+		signService.logout(request, response);
+		return "redirect:/";
+	}
+	
+	
 	
 
 	@GetMapping("up/idCheck")
