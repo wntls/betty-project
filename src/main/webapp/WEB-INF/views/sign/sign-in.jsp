@@ -30,7 +30,7 @@
 								class="icon_lock"></span>
 						</div>
 						<div class="form-check" style="width: 100%; text-align: center">
-							<input class="form-check-input" type="checkbox" name="cookie"
+							<input class="form-check-input" type="checkbox" name="loginCookie"
 								id="loginCookie"> <label class="form-check-label"
 								for="loginCookie">로그인시 쿠키 저장</label>
 						</div>

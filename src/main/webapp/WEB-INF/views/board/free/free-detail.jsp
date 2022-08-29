@@ -21,38 +21,18 @@
 						<div class="col-md-6">
 							<div class="blog__details">
 								<div class="thumb-list-profile">
+								<!-- 게시글 데이터 수정 필요 -->
 									<img src="${path}/resources/img/member/thumbnail/profile_male.jpg" /> <span
-										class="text-white">닉네임</span>
+										class="text-white">${user.nickname}</span>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-6 text-white"
 							style="line-height: 50px; text-align: right">2050-12-10</div>
 					</div>
-					<div class="board-detail row spad-sm">
-						<textarea id="textArea" readonly>
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							</textarea>
+					
+					<div class="spad-sm">
+						<c:out value="${board.content}" escapeXml="false"></c:out>
 					</div>
 			
 
@@ -83,14 +63,3 @@
 
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
-
-</html>
-
-<script>
-	$(document).ready(function (){
-		var ta = $("#textArea");
-		ta.css('height','auto');
-		var taH = ta.prop('scrollHeight');
-		ta.css('height', taH);
-	});
-</script>
