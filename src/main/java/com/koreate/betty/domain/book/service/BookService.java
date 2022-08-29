@@ -85,6 +85,10 @@ public class BookService {
 		return result;
 	}
 	
+	public List<JBookSingle> findBookSingleByCode(String code) { // 도서 폐기처리할 목록 불러오는 ajax 처리용  
+		return bookRepository.jFindByCode(code);
+	}
+	
 	// 도서 폐기
 	@Transactional
 	public int deleteBook(List<BookDeleteForm> formList) {	// 두배의 결과가 나옵니다

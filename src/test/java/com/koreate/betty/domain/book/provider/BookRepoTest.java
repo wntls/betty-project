@@ -2,6 +2,7 @@ package com.koreate.betty.domain.book.provider;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,8 @@ public class BookRepoTest {
 	
 	// @Test
 	public void joinTest() { // 테스트 완료 (jbooksList)
-		List<Book> list = bs.bookList(null, null, null);
+		Map<String, Object> map = bs.bookList(null, null, null);
+		List<Book> list = (List<Book>) map.get("list");
 		log.info("size : " + list.size());
 		Book b1 = list.get(1);
 		log.info(b1.getCode());
