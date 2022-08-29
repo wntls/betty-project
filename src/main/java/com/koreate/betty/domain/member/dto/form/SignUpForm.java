@@ -51,7 +51,7 @@ public class SignUpForm {
 	Integer rights;
 		
 		public Member convertToMember(){
-			return new Member()
+			return Member
 					.builder()
 					.id(id)
 					.pw(pw)

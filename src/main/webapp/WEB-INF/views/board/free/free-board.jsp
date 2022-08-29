@@ -145,8 +145,6 @@ $("button[name=abc]").on("click",function(event){
 	
 });
 
-
-	
 	$('#searchForm').on("submit",function(event){
 		event.preventDefault();
 		let focusBtn = $('#subject button :active').val();
@@ -165,7 +163,7 @@ $("button[name=abc]").on("click",function(event){
 		console.log("19 키우드 = "+formData.get('keyword'));
 		console.log("20 "+formData['searchType']);
 		
-		<!-- form 입력 데이터와 perPageNum, 말머리  -->
+		 /* form 입력 데이터와 perPageNum, 말머리 */ 
 	});
 	
 	function testPrint(event){

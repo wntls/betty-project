@@ -73,6 +73,7 @@ public class FreeBoardProvider {
 				.toString();
 	}
 	
+	// 검색
 	private void getSearchWhere(SearchCriteria cri, SQL sql) {
 		String titleQuery = "title LIKE CONCAT('%','"+cri.getKeyword()+"','%')";
 		String contentQuery = "content LIKE CONCAT('%',#{keyword},'%')";
