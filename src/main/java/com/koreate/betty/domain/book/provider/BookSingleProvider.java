@@ -1,30 +1,58 @@
 package com.koreate.betty.domain.book.provider;
 
+import static com.koreate.betty.domain.model.TableConst.BOOK_DUMP_TBL;
 import static com.koreate.betty.domain.model.TableConst.BOOK_SINGLE_TBL;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
-public class BookSingleProvider {
+import com.koreate.betty.domain.book.dto.form.BookDeleteForm;
 
-	// 기존 도서 재고 1권 추가
-	public String add(String code) {
-		return new SQL().INSERT_INTO(BOOK_SINGLE_TBL)
-				.INTO_COLUMNS("book_code")
-				.INTO_VALUES("#{code}")
+public class BookSingleProvider {	// single, dump
+	
+	// 도서 1권 정보
+	public String oneBook(@Param("code")String code, @Param("num")Integer num) { // book_single 객체를 넘겨받거나, form 형태를 받음		
+		return new SQL().SELECT("*").FROM(BOOK_SINGLE_TBL)
+				.WHERE("book_code = #{code}")
+				.WHERE("num = #{num}")
 				.toString();
 	}
-	
-	// 기존 도서 재고 1권 제거
-	public String delete(String code, String num) {
-		return new SQL().DELETE_FROM(BOOK_SINGLE_TBL)
-				.WHERE("book_code = #{code}").WHERE("num = #{num}")
-				.toString();
-	}
-	
-	// 해당 도서 1권 정보
-	
-	public String oneBook(String ISBN, int num) { // book_single 객체를 넘겨받거나, form 형태를 받음
 		
-		return "";
+	// 도서 재고 추가
+	public String insertWare(@Param("code")String code, @Param("id")String id) {
+		return new SQL().INSERT_INTO(BOOK_SINGLE_TBL)
+				.INTO_COLUMNS("book_code", "ware_member")
+				.INTO_VALUES("#{code}, #{id}")
+				.toString();
 	}
+		
+	// 도서 폐기
+	public String delete(String code) {
+		return new SQL().DELETE_FROM(BOOK_SINGLE_TBL)
+				.WHERE("code = #{code}")
+				.toString();
+	}
+	
+	// 폐기 테이블에 목록 추가
+	public String insertDump(BookDeleteForm form) {
+		return new SQL().INSERT_INTO(BOOK_DUMP_TBL)
+				.INTO_VALUES("#{bookCode}, #{bookNum}, #{date}, #{member_id}, #{cause}")
+				.toString();
+	}	
+	
+	// 코드로 검색 된 현재 보유 중인 책의 수
+	public String countExistByCode(String code) {
+		return new SQL().SELECT("count(*)").FROM(BOOK_SINGLE_TBL)
+				.WHERE("code = #{code}")
+				.WHERE("rental = 'n'")
+				.toString();
+	}
+	
+	// 코드로 검색 된 전체 책의 수
+	public String countAllByCode(String code) {
+		return new SQL().SELECT("count(*)").FROM(BOOK_SINGLE_TBL)
+				.WHERE("code = #{code}")
+				.toString();
+	}
+		
 }

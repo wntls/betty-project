@@ -300,7 +300,7 @@
 	display: block;	
 }
 
-#signUpForm .addr-box{
+form .addr-box{
 	margin-right: 0; 
     margin-left: 0;
 	justify-content: space-between;
@@ -308,6 +308,14 @@
 
 .login__form form .input__item .btn{
 	padding-left: 0;
+}
+
+form .form-control::placeholder {
+	color: #b7b7b7;
+}
+
+.w-70 {
+  width: 70% !important;
 }
 
 

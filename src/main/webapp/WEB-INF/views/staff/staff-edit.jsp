@@ -48,18 +48,24 @@
 					<input type="text" name="nickname" id="nickname" value=""  class="form-control" />
 				</div>
 				
-				<div class="row addr-box">
-					<div class="col-md-6">
-						<input type="text" class="form-control" name="post" id="post"/>
+				<div class="input-group mt-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text" >주소</span>
 					</div>
-					<div class="col-md-4">
-						<input type="button" class="form-control btn btn-light" onclick="sample6_execDaumPostcode();" value="주소찾기"/>
+				
+					<div class="row addr-box w-75">
+						<div class="col-md-6">
+							<input type="text" class="form-control" name="post" id="post"/>
+						</div>
+						<div class="col-md-4">
+							<input type="button" class="form-control btn btn-light" onclick="sample6_execDaumPostcode();" value="주소변경"/>
+						</div>
 					</div>
 				</div>
-				<br/>
-				<input type="text" class="form-control" name="addr" id="addr"/>
-				<br/>
-				<input type="text" class="form-control" name="addr_detail" id="addr_detail"/>
+				<div class="input-group mt-3">
+					<input type="text" class="form-control" name="addr" id="addr"/>
+					<input type="text" class="form-control" name="addr_detail" id="addr_detail" placeholder="상세주소를 입력해 주세요"/>
+				</div>
 				
 				<div class="input-group mt-3">
 					<div class="input-group-prepend">
