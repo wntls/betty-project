@@ -98,7 +98,7 @@ public class SignService {
 	
 	// 중복 검사 결과
 	private boolean isDupl(String target) {
-		return target != null ? true : false;
+		return target == null ? true : false;
 	}
 	
 	private String generateForgetCode() {

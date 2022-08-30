@@ -55,7 +55,6 @@ public class SignUpForm {
 	Integer rights;
 		
 		public Member convertToMember(){
-			log.info("date birth = {}",birth);
 			return Member.builder()
 					.id(id)
 					.pw(pw)
