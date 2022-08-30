@@ -12,7 +12,7 @@ import com.koreate.betty.domain.member.vo.Member;
 public class MemberProvider {
 	
 	// 비밀번호 재설정
-	public String changePw(@Param("id")String id, @Param("pw")String changePw) {
+	public String updatePw(@Param("id")String id, @Param("pw")String changePw) {
 		return new SQL().UPDATE(MEMBER_TBL)
 				.SET("pw = #{pw}")
 				.WHERE("id = #{id}")
@@ -27,7 +27,7 @@ public class MemberProvider {
 	}
 
 	// 계정 한개 검색 (마이페이지/직원 정보)
-	public String fineOne(String id) {
+	public String findOne(String id) {
 		return new SQL().SELECT("*")
 				.FROM(MEMBER_TBL)
 				.WHERE("id = #{id}")
@@ -35,7 +35,7 @@ public class MemberProvider {
 	}
 	
 	// 계정 삭제(회원 탈퇴)	// ## 주의 : UPDATE 쿼리를 사용합니다
-	public String deleteMember(String id) {
+	public String delete(String id) {
 		return new SQL().UPDATE(MEMBER_TBL)
 				.SET("del = 'y'")
 				.WHERE("id = #{id}")
@@ -43,23 +43,13 @@ public class MemberProvider {
 	}	
 	
 	// 회원 정보 수정 (이미지 수정도 이걸로 처리됩니다) // 본인 회원 수정, 스태프의 회원 수정
-	public String updateMember(@Param("id")String targetId, @Param("member")Member member) {
+	public String update(@Param("id")String targetId, @Param("member")Member member) {
 		return new SQL().UPDATE(MEMBER_TBL)
 				.SET("id = #{member.id}, pw = #{member.pw}, nickname = #{member.nickname}, name = #{member.name}, gender = #{member.gender}, birth = #{member.birth}, addr = #{member.addr}, img = #{member.img}")
 				.WHERE("id = #{id}")
 				.toString();
 	}
 	
-	
-	// 포인트 충전
-	public String addPoint(@Param("id")String id, @Param("point")int point) {
-		return new SQL().UPDATE(MEMBER_CARD_TBL)
-				.SET("point = point + #{point}")
-				.WHERE("member_id = #{id}")
-				.toString();
-	}
-	
-		
 	// 체크인
 	
 	// 체크아웃
@@ -70,13 +60,6 @@ public class MemberProvider {
 				.JOIN(CHK_LOG_TBL)
 				.WHERE("id = member_id")
 				.WHERE("id = #{loginId}")
-				.toString();
-	}
-	
-	public String updateMembership(@Param("id")String id, @Param("msGrade")String msGrade) {		
-		return new SQL().UPDATE(MEMBER_CARD_TBL)
-				.SET("premium_grade = #{msGrade}")
-				.WHERE("member_id = #{id}")
 				.toString();
 	}
 		

@@ -26,31 +26,8 @@
 					<div class="col-md-6 text-white"
 						style="line-height: 50px; text-align: right">${noticeBoard.regdate }</div>
 				</div>
-				<div class="board-detail row spad-sm">
-					${noticeBoard.content }
-					<!-- <textarea id="textArea" readonly>
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]				[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]				[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]				[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							</textarea> -->
+				<div class="spad-sm">
+						<c:out value="${board.content}" escapeXml="false"></c:out>
 				</div>
 				<div class="w-100"></div>
 

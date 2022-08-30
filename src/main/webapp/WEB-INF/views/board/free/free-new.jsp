@@ -31,10 +31,6 @@
 				<textarea id="editor" class="col-md-6 form-control"
 						style="resize: none;">
 				</textarea>
-				
-				<textarea id="editor2" class="col-md-6 form-control"
-						style="resize: none;" placeholder="내용을 작성하세요.">
-				</textarea>
 				</div>
 				
 				<div class="w-100"></div>
@@ -60,6 +56,8 @@
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 </html>
+
+
 
 <script>
 	var ckeditor_config = {

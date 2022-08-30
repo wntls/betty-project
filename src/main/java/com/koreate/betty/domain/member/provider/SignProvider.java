@@ -7,6 +7,9 @@ import org.apache.ibatis.jdbc.SQL;
 
 import com.koreate.betty.domain.member.vo.Member;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class SignProvider {
 	
 		public String create(Member member) {
@@ -15,7 +18,7 @@ public class SignProvider {
 					.INTO_VALUES("#{id}, #{pw}, #{nickname}, #{name}, #{gender}, #{birth}, #{phone}, #{addr}, #{email}, #{rights}")
 					.toString();
 		}
-
+		
 		public String findIdById(String id) {
 			return new SQL().SELECT("id").FROM(MEMBER_TBL)
 					.WHERE("id = #{id}")

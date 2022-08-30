@@ -96,7 +96,7 @@
 						<div class="col-md-3">
 							<div class="product__item">
 								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/medium/9772383984000.jpg">
+									data-setbg="${path}/resources/img/book/origin/9772383984000.jpg">
 									<div class="ep">18 / 18</div>
 									<div class="comment">
 										<i class="fa fa-comments"></i> 11
@@ -120,7 +120,7 @@
 						<div class="col-md-3">
 							<div class="product__item">
 								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/medium/9772383984000.jpg">
+									data-setbg="${path}/resources/img/book/origin/9772383984000.jpg">
 									<div class="ep">18 / 18</div>
 									<div class="comment">
 										<i class="fa fa-comments"></i> 11
@@ -143,7 +143,7 @@
 						<div class="col-md-3">
 							<div class="product__item">
 								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/medium/9772383984000.jpg">
+									data-setbg="${path}/resources/img/book/origin/9772383984000.jpg">
 									<div class="ep">18 / 18</div>
 									<div class="comment">
 										<i class="fa fa-comments"></i> 11

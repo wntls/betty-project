@@ -1,5 +1,6 @@
 package com.koreate.betty.domain.member.provider;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
 import static com.koreate.betty.domain.model.TableConst.*;
@@ -24,4 +25,19 @@ public class MemberCardProvider {
 	
 	// 멤버십 갱신 / 등급 변경(?)
 	
+	
+	// 포인트 충전
+	public String updatePoint(@Param("id")String id, @Param("point")int point) {
+		return new SQL().UPDATE(MEMBER_CARD_TBL)
+				.SET("point = point + #{point}")
+				.WHERE("member_id = #{id}")
+				.toString();
+	}
+	
+	public String updateGrade(@Param("id")String id, @Param("msGrade")String msGrade) {		
+		return new SQL().UPDATE(MEMBER_CARD_TBL)
+				.SET("premium_grade = #{msGrade}")
+				.WHERE("member_id = #{id}")
+				.toString();
+	}
 }

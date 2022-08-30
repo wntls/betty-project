@@ -34,7 +34,7 @@ public class FreeBoardController {
 	@GetMapping("{bno}")
 	public String freeBoardDetail(@PathVariable Integer bno, Model model) {
 		FreeBoard board =  freeBoardService.detail(bno);
-		model.addAttribute("board", board);
+		model.addAttribute("board", FreeBoard.builder().content("<h2>HelloWord</h2>").build());
 		return "board/free/free-detail";
 	}
 	
