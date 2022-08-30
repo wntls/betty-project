@@ -9,11 +9,13 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.UpdateProvider;
 
+import com.koreate.betty.domain.book.dto.RentalStatusDTO;
 import com.koreate.betty.domain.book.dto.form.BookDeleteForm;
 import com.koreate.betty.domain.book.dto.form.BookSearchForm;
 import com.koreate.betty.domain.book.provider.BookProvider;
 import com.koreate.betty.domain.book.provider.BookSingleProvider;
 import com.koreate.betty.domain.book.vo.Book;
+import com.koreate.betty.domain.book.vo.JBookRental;
 import com.koreate.betty.domain.book.vo.JBookSingle;
 import com.koreate.betty.global.util.Criteria;
 
@@ -52,6 +54,12 @@ public interface BookRepository {
 	
 	@SelectProvider(type=BookProvider.class, method="jSearchCount")
 	public int jSearchCount(BookSearchForm form);
+	
+	@SelectProvider(type=BookProvider.class, method="jRentalSearch")
+	public List<RentalStatusDTO> jRentalSearch(BookSearchForm form, Criteria cri);
+	
+	@SelectProvider(type=BookProvider.class, method="jRentalSearchCount")
+	public int jRentalSearchCount(BookSearchForm form);
 	
 	@InsertProvider(type=BookProvider.class, method="insert")
 	public int insert(Book book);

@@ -32,7 +32,7 @@ public class BookSingleProvider {	// single, dump
 	// 도서 폐기
 	public String delete(BookDeleteForm form) {
 		return new SQL().DELETE_FROM(BOOK_SINGLE_TBL)
-				.WHERE("code = #{code}")
+				.WHERE("book_code = #{code}")
 				.WHERE("num = #{bookNum}")
 				.toString();
 	}
@@ -48,7 +48,7 @@ public class BookSingleProvider {	// single, dump
 	// 코드로 검색 된 현재 보유 중인 책의 수
 	public String countExistByCode(String code) {
 		return new SQL().SELECT("count(*)").FROM(BOOK_SINGLE_TBL)
-				.WHERE("code = #{code}")
+				.WHERE("book_code = #{code}")
 				.WHERE("rental = 'n'")
 				.toString();
 	}
@@ -56,7 +56,7 @@ public class BookSingleProvider {	// single, dump
 	// 코드로 검색 된 전체 책의 수
 	public String countAllByCode(String code) {
 		return new SQL().SELECT("count(*)").FROM(BOOK_SINGLE_TBL)
-				.WHERE("code = #{code}")
+				.WHERE("book_code = #{code}")
 				.toString();
 	}		
 }

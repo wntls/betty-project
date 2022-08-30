@@ -1,4 +1,5 @@
 package com.koreate.betty.domain.book.provider;
+
 import static com.koreate.betty.domain.model.TableConst.BOOK_COMMENT_TBL;
 import static com.koreate.betty.domain.model.TableConst.BOOK_SINGLE_TBL;
 import static com.koreate.betty.domain.model.TableConst.BOOK_TBL;
@@ -38,11 +39,10 @@ public class BookProvider {
 
 		return sql.toString();
 	}
-	
+
 	// 전체 책 목록 총계
 	public String findAllCount() {
-		return new SQL().SELECT("count(*)").FROM(BOOK_TBL)
-				.toString();			
+		return new SQL().SELECT("count(*)").FROM(BOOK_TBL).toString();
 	}
 
 	// 도서 상세 정보
@@ -55,12 +55,10 @@ public class BookProvider {
 		return new SQL().SELECT("*").FROM(BOOK_COMMENT_TBL).WHERE("code = #{code}").OFFSET("#{cri.startRow}")
 				.LIMIT("#{cri.perPageNum}").toString();
 	}
-	
+
 	// 도서 상세 정보 페이지의 댓글 총계
 	public String findCommentByCodeCount(String code) {
-		return new SQL().SELECT("count(*)").FROM(BOOK_COMMENT_TBL)
-				.WHERE("code = #{code}")
-				.toString();
+		return new SQL().SELECT("count(*)").FROM(BOOK_COMMENT_TBL).WHERE("code = #{code}").toString();
 	}
 
 	// 신규 도서 등록
@@ -68,19 +66,16 @@ public class BookProvider {
 		return new SQL().INSERT_INTO(BOOK_TBL)
 				.INTO_VALUES("#{code}, #{title}, #{auth}, #{pub}, #{pubDate}, #{page}, #{genre}, #{intro}").toString();
 	}
-	
+
 	// 도서 상세 페이지 댓글 등록
 	public String insertComment(BookComment bookComment) {
 		return new SQL().INSERT_INTO(BOOK_COMMENT_TBL)
-				.INTO_VALUES("null", "#{bookCode}", "#{memberId}", "#{nickname}", "#{comment}", "null")
-				.toString();
+				.INTO_VALUES("null", "#{bookCode}", "#{memberId}", "#{nickname}", "#{comment}", "null").toString();
 	}
-	
+
 	// 도서 상세 페이지 댓글 삭제
 	public String deleteComment(Integer num) {
-		return new SQL().DELETE_FROM(BOOK_COMMENT_TBL)
-				.WHERE("num = #{num}")
-				.toString();
+		return new SQL().DELETE_FROM(BOOK_COMMENT_TBL).WHERE("num = #{num}").toString();
 	}
 
 	// 도서 정보 변경 (변경할 책 코드, 들어갈 정보) // 테스트 완료
@@ -99,16 +94,13 @@ public class BookProvider {
 	// 도서 전체 검색 // 테스트 완료
 	public String jFindAll(Criteria cri) {
 		return new SQL().SELECT("*").FROM(BOOK_TBL).JOIN(BOOK_SINGLE_TBL).WHERE("code = book_code").ORDER_BY("code")
-				.ORDER_BY("num")
-				.OFFSET("#{startRow}")
-				.LIMIT("#{perPageNum}")
-				.toString();
+				.ORDER_BY("num").OFFSET("#{startRow}").LIMIT("#{perPageNum}").toString();
 	}
-	
+
 	// 도서 전체 검색 갯수
 	public String jFindAllCount() {
-		return new SQL().SELECT("count(*)").FROM(BOOK_TBL).JOIN(BOOK_SINGLE_TBL).WHERE("code = book_code").ORDER_BY("code")
-				.toString();
+		return new SQL().SELECT("count(*)").FROM(BOOK_TBL).JOIN(BOOK_SINGLE_TBL).WHERE("code = book_code")
+				.ORDER_BY("code").toString();
 	}
 
 	// code로 찾은 한 도서의 목록 (isbn은 동일한 책이 여럿이 나옴) -> 특정 책을 클릭 했을 때, 책의 상태를 확인하기 위함
@@ -117,57 +109,28 @@ public class BookProvider {
 				.WHERE("code = #{code}").ORDER_BY("num").toString();
 	}
 
-	// 개별 도서 검색(복합 검색) ex) 대여현황
+	// 도서 현황
 	public String jSearch(BookSearchForm form, Criteria cri) {
 
 		String search = form.getSearchText();
 		String searchOption = form.getSearchOption();
-		String rentOption = form.getRentOption();
 		String pubDateOption = form.getPubDateOption();
-		String submitPage = form.getSubmitPage();
-		
-		SQL sql = new SQL().SELECT("count(*)");
 
-		
-		// View 페이지에서 input hidden 으로 name : submitPage 
-		// value 값을 books, rentals로 보내야 합니다
-		if (submitPage.equals("books"))	{ // 도서 현황 'staff/books'
-			sql.FROM(BOOK_TBL);
-		} else if (submitPage.equals("rentals")) { // 대여 현황 'staff/rentals'
-			sql.FROM(BOOK_SINGLE_TBL).JOIN(RENTAL_TBL);
-		} else {
-			System.out.println("========================\n\n\n\n");
-			System.out.println("jSearch : submitPage 값이 이상합니다.");
-			System.out.println("========================\n\n\n\n");			
-			return null;	// View 페이지 정상적으로 연결 시 else 삭제 (if문 전체 날리면 안됩니다)
-		}
+		SQL sql = new SQL().SELECT("*").FROM(BOOK_TBL);
 
-		switch (searchOption) {
-		case "title":
-			sql.WHERE("title = " + search);
-			break;
-		case "content":
-			sql.WHERE("content = " + search);
-			break;
-		case "auth":
-			sql.WHERE("auth = " + search);
-			break;
-		case "pub":
-			sql.WHERE("pub = " + search);
-			break;
-		default:
-			break;
-		}
-		if (rentOption != null) { // null일 경우 전체 검색이고, 옵션값을 rent 또는 reserve로 해주세요
-			switch (rentOption) {
-			case "able":
-				sql.WHERE("rental = 'n'");
+		if (searchOption != null) {
+			switch (searchOption) {
+			case "title":
+				sql.WHERE("title = " + search);
 				break;
-			case "rent":
-				sql.WHERE("rental = 'y'");
+			case "content":
+				sql.WHERE("content = " + search);
 				break;
-			case "reserv":
-				sql.WHERE("rental = 'r'");
+			case "auth":
+				sql.WHERE("auth = " + search);
+				break;
+			case "pub":
+				sql.WHERE("pub = " + search);
 				break;
 			default:
 				break;
@@ -190,61 +153,33 @@ public class BookProvider {
 		}
 
 		sql.ORDER_BY("code");
-		sql.OFFSET(cri.getStartRow())
-		.LIMIT(cri.getPerPageNum());
-		
+
+		sql.OFFSET(cri.getStartRow()).LIMIT(cri.getPerPageNum());
+
 		return sql.toString();
 	}
-	
+
+	// 도서 현황 count
 	public String jSearchCount(BookSearchForm form) {
 		String search = form.getSearchText();
 		String searchOption = form.getSearchOption();
-		String rentOption = form.getRentOption();
 		String pubDateOption = form.getPubDateOption();
-		String submitPage = form.getSubmitPage();
-		
-		SQL sql = new SQL().SELECT("*");
 
-		
-		// View 페이지에서 input hidden 으로 name : submitPage 
-		// value 값을 books, rentals로 보내야 합니다
-		if (submitPage.equals("books"))	{ // 도서 현황 'staff/books'
-			sql.FROM(BOOK_TBL);
-		} else if (submitPage.equals("rentals")) { // 대여 현황 'staff/rentals'
-			sql.FROM(BOOK_SINGLE_TBL).JOIN(RENTAL_TBL);
-		} else {
-			System.out.println("========================\n\n\n\n");
-			System.out.println("jSearch : submitPage 값이 이상합니다.");
-			System.out.println("========================\n\n\n\n");			
-			return null;	// View 페이지 정상적으로 연결 시 else 삭제 (if문 전체 날리면 안됩니다)
-		}
+		SQL sql = new SQL().SELECT("count(*)").FROM(BOOK_TBL);
 
-		switch (searchOption) {
-		case "title":
-			sql.WHERE("title = " + search);
-			break;
-		case "content":
-			sql.WHERE("content = " + search);
-			break;
-		case "auth":
-			sql.WHERE("auth = " + search);
-			break;
-		case "pub":
-			sql.WHERE("pub = " + search);
-			break;
-		default:
-			break;
-		}
-		if (rentOption != null) { // null일 경우 전체 검색이고, 옵션값을 rent 또는 reserve로 해주세요
-			switch (rentOption) {
-			case "able":
-				sql.WHERE("rental = 'n'");
+		if (searchOption != null) {
+			switch (searchOption) {
+			case "title":
+				sql.WHERE("title = " + search);
 				break;
-			case "rent":
-				sql.WHERE("rental = 'y'");
+			case "content":
+				sql.WHERE("content = " + search);
 				break;
-			case "reserv":
-				sql.WHERE("rental = 'r'");
+			case "auth":
+				sql.WHERE("auth = " + search);
+				break;
+			case "pub":
+				sql.WHERE("pub = " + search);
 				break;
 			default:
 				break;
@@ -265,10 +200,149 @@ public class BookProvider {
 		if (genre != null && !genre.equals("")) {
 			sql.WHERE("genre = " + genre);
 		}
-		
+
 		return sql.toString();
 	}
-	
+
+	// 대여 현황
+	// select book.code, book.title, book_single.rental, rental.member_id AS
+	// 'rental_id', rental_reserve.member_id AS 'reserve_id',
+	// rental.date AS 'rental_date', rental.return_date, rental_reserve.date AS
+	// 'reserve_date' from book
+	// LEFT JOIN book_single ON book.code = book_single.book_code
+	// LEFT JOIN rental ON book_single.num = rental.book_num AND book.code =
+	// rental.book_code
+	// LEFT JOIN rental_reserve ON book_single.num = rental_reserve.book_num AND
+	// book.code = rental_reserve.book_code;
+
+	public String jRentalSearch(BookSearchForm form, Criteria cri) {
+
+		String search = form.getSearchText();
+		String searchOption = form.getSearchOption();
+		String rentOption = form.getRentOption();
+		String pubDateOption = form.getPubDateOption();
+
+		SQL sql = new SQL().SELECT(
+				"book.code, book.title, book_single.rental, rental.member_id AS 'rental_id', rental_reserve.member_id AS 'reserve_id',"
+						+ " rental.date AS 'rental_date', rental.return_date, rental_reserve.date AS 'reserve_date'")
+				.FROM(BOOK_TBL);
+
+		sql.LEFT_OUTER_JOIN("book_single ON book.code = book_single.book_code")
+				.LEFT_OUTER_JOIN("rental ON book_single.num = rental.book_num AND book.code = rental.book_code")
+				.LEFT_OUTER_JOIN(
+						"rental_reserve ON book_single.num = rental_reserve.book_num AND book.code = rental_reserve.book_code");
+
+		if (searchOption != null) {
+			switch (searchOption) {
+			case "title":
+				sql.WHERE("book.title = " + search);
+				break;
+			case "content":
+				sql.WHERE("book.content = " + search);
+				break;
+			case "auth":
+				sql.WHERE("book.auth = " + search);
+				break;
+			case "pub":
+				sql.WHERE("book.pub = " + search);
+				break;
+			default:
+				break;
+			}
+		}
+
+		if (rentOption != null) { // null일 경우 전체 검색이고, 옵션값을 rent 또는 reserve로 해주세요
+			switch (rentOption) {
+			case "able":
+				sql.WHERE("book_single.rental = 'n'");
+				break;
+			case "rent":
+				sql.WHERE("book_single.rental = 'y'");
+				break;
+			case "reserv":
+				sql.WHERE("book_single.rental = 'r'");
+				break;
+			default:
+				break;
+			}
+		}
+
+		if (form.getPubDate() != null) { // 테스트 필요
+			Timestamp pubDate = Timestamp.valueOf(form.getPubDate() + " 00:00:00");
+			String date = new SimpleDateFormat("yyyy-MM-dd").format(pubDate);
+			if (pubDateOption.equals("after")) {
+				sql.WHERE("book.pub_date >= " + date);
+			} else {
+				sql.WHERE("book.pub_date <= " + date);
+			}
+		}
+
+		sql.ORDER_BY("book.code");
+		sql.OFFSET(cri.getStartRow()).LIMIT(cri.getPerPageNum());
+
+		return sql.toString();
+	}
+
+	public String jRentalSearchCount(BookSearchForm form) {
+		String search = form.getSearchText();
+		String searchOption = form.getSearchOption();
+		String rentOption = form.getRentOption();
+		String pubDateOption = form.getPubDateOption();
+
+		SQL sql = new SQL().SELECT("count(*)").FROM(BOOK_TBL);
+
+		sql.LEFT_OUTER_JOIN("book_single ON book.code = book_single.book_code")
+				.LEFT_OUTER_JOIN("rental ON book_single.num = rental.book_num AND book.code = rental.book_code")
+				.LEFT_OUTER_JOIN(
+						"rental_reserve ON book_single.num = rental_reserve.book_num AND book.code = rental_reserve.book_code");
+
+		if (searchOption != null) {
+			switch (searchOption) {
+			case "title":
+				sql.WHERE("book.title = " + search);
+				break;
+			case "content":
+				sql.WHERE("book.content = " + search);
+				break;
+			case "auth":
+				sql.WHERE("book.auth = " + search);
+				break;
+			case "pub":
+				sql.WHERE("book.pub = " + search);
+				break;
+			default:
+				break;
+			}
+		}
+
+		if (rentOption != null) { // null일 경우 전체 검색이고, 옵션값을 rent 또는 reserve로 해주세요
+			switch (rentOption) {
+			case "able":
+				sql.WHERE("book_single.rental = 'n'");
+				break;
+			case "rent":
+				sql.WHERE("book_single.rental = 'y'");
+				break;
+			case "reserv":
+				sql.WHERE("book_single.rental = 'r'");
+				break;
+			default:
+				break;
+			}
+		}
+
+		if (form.getPubDate() != null) { // 테스트 필요
+			Timestamp pubDate = Timestamp.valueOf(form.getPubDate() + " 00:00:00");
+			String date = new SimpleDateFormat("yyyy-MM-dd").format(pubDate);
+			if (pubDateOption.equals("after")) {
+				sql.WHERE("book.pub_date >= " + date);
+			} else {
+				sql.WHERE("book.pub_date <= " + date);
+			}
+		}
+
+		return sql.toString();
+	}
 
 //	둘중 하나로 검색, 대시보드와 내 대여 현황에 사용(Rental 패키지로 이동하는게 좋을듯 함) 
 //	Rental 패키지에 제대로 있으면 지워주세요

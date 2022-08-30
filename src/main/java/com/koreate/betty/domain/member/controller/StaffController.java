@@ -49,7 +49,7 @@ public class StaffController {
 	@GetMapping("books/cond")
 	@ResponseBody
 	public Map<String, Object> bookCond(String searchText, String searchOption, String pubDate, String pubDateOption,
-			String genre, Integer page) { // json
+			String genre, Integer page) { // json	// key : list, pm, nowCount, allCount // VO : BOOK 참조
 
 		BookSearchForm form = new BookSearchForm();
 		form.setSearchText(searchText);
@@ -58,7 +58,9 @@ public class StaffController {
 		form.setPubDateOption(pubDateOption);
 		form.setGenre(genre);
 
-		return bs.bookSearch(form, page);
+		Map<String, Object> map = bs.bookSearch(form, page);
+		
+		return map;
 	}
 
 	@GetMapping("books/new")
@@ -77,11 +79,11 @@ public class StaffController {
 		return "staff/staff-rental-list";
 	}
 
-	// 직원이 확인하는 도서 현황 페이지
+	// 직원이 확인하는 대여 현황 페이지
 	@GetMapping("rentals/cond")
 	@ResponseBody
 	public Map<String, Object> rentalCond(String searchText, String searchOption, String pubDate, String pubDateOption,
-			String rentOption, Integer page) { // json
+			String rentOption, Integer page) { // json		// key : list, pm  // 컬럼이 다릅니다. VO : RentalStatusDTO 참조
 
 		BookSearchForm form = new BookSearchForm();
 		form.setSearchText(searchText);
@@ -90,7 +92,7 @@ public class StaffController {
 		form.setPubDateOption(pubDateOption);
 		form.setRentOption(rentOption);
 
-		return bs.bookSearch(form, page);
+		return bs.rentalBookSearch(form, page);
 	}
 
 }
