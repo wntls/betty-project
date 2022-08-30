@@ -225,6 +225,9 @@
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 
 <script>
+	if("${message}" != ""){
+		alert("${message}");
+	}
 $(function(){
 	
 	$('#sendSMS').removeAttr('hidden');

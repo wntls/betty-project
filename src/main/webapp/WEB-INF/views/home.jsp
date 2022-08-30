@@ -172,3 +172,8 @@
 <!-- Product Section End -->
 
 <%@include file="./include/footer.jsp"%>
+<script>
+	if("${message}" != ""){
+		alert("${message}");
+	}
+</script>

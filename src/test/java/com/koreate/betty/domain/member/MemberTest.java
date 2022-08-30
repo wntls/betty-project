@@ -107,7 +107,7 @@ public class MemberTest {
 		String id = "123";
 		String phone = "2";
 		
-		int result = signService.forgetPw(id, phone);
+		String result = signService.forgetPw(id, phone);
 		
 		log.info("\n\n\n ::: confirmForChangePwTest : {}", result);
 	}
