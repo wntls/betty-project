@@ -1,75 +1,90 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
-<%@include file="/WEB-INF/views/include/header.jsp" %>
+<%@include file="/WEB-INF/views/include/header.jsp"%>
 
 <section class="signup spad">
 	<div class="container-md">
 		<div class="row justify-content-center">
 			<div class="col-md-auto">
 				<div class="login__form">
-					<h3>회원가입</h3>
+					<h3>직원 전용 회원가입!</h3>
+
 					<form id="signUpForm" action="" method="post">
-						<!-- 아이디 -->
+						<input type="text" name="rights" value="0" hidden/>
+						아이디
 						<div class="input__item">
-							<span><i class="bi bi-person-video2"></i></span>
+							<span><i class="bi bi-person-circle"></i></span>
 							<input type="text" name="id" id="id" placeholder="아이디를 입력 하세요" /> 
 							<div class="result"></div>
 						</div>
-						<!-- 비밀번호-->
+						비밀번호
 						<div class="input__item">
 							<span class="icon_lock"></span> 
 							<input type="password" name="pw" id="pw" placeholder="비밀번호 입력하세요" />
 							<div class="result"></div>
 						</div>
-						<!-- 비밀번호 확인 -->
+						비밀번호 확인
 						<div class="input__item">
 							<span class="icon_lock"></span> 
 							<input type="password" name="repw" id="repw" placeholder="비밀번호 재입력하세요" />
 							<div class="result"></div>
 						</div>
-						<!-- 이름-->
+						이름
 						<div class="input__item">
 							<span class="icon_profile"></span> 
 							<input type="text" name="name" id="name" placeholder="이름을 입력하세요" />
 							<div class="result"></div>
 						</div>
-						<!-- 닉네임-->
+						닉네임
 						<div class="input__item">
-							<span class="icon_profile"></span> 
+							<span><i class="bi bi-person-video2"></i></span> 
 							<input type="text" name="nickname" id="nickname" placeholder="닉네임을 입력하세요" />
 							<div class="result"></div>
 						</div>
-						<!-- 생일 -->
+						생년월일
 						<div class="input__item">
 							<span><i class="bi bi-calendar3"></i></span>
-							<input type="text" name="birth" id="birth" placeholder="19930516" /> 
+							<input type="text" name="birth" id="birth" placeholder="생년월일을 선택해주세요" /> 
 							<div class="result"></div>
 						</div>
-					
-						 <div class="row ml-2 mb-3">
-							 <div class="form-check form-check-inline">
-							  <input class="form-check-input" type="radio" name="gender" id="male" value="male">
-							  <label class="form-check-label" for="male">남성</label>
-							</div>
-							<div class="form-check form-check-inline">
-							  <input class="form-check-input" type="radio" name="gender" id="female" value="female">
-							  <label class="form-check-label" for="female">여성</label>
-							</div>
-						</div>
-						 
-						<!-- 주소 -->
-						<div class="input__item mt-3">
-							<span><i class="bi bi-house"></i></span>
-							<input type="text" name="addr" id="addr" placeholder="사랑시 고백구 행복동" /> 
+						성별
+						<div class="btn-group btn-group-toggle w-100 mb-3"  data-toggle="buttons">
+							<label class="btn btn-primary text-white">
+								<input type="radio" name="gender" id="male" value="male"> 남성
+							</label>
+							<label class="btn btn-primary ml-2 text-white">
+								<input type="radio" name="gender" id="female" value="female"> 여성
+							</label>
+							<div class="result"></div>
 						</div>
 						
-						<!-- 번호-->
+						주소
+						<!-- <div class="input__item"> -->
+							<!-- <span><i class="bi bi-house"></i></span> -->
+							<div class="row addr-box">
+								<div class="col-md-6">
+									<input type="text" class="form-control" name="post" id="post"/>
+								</div>
+								<div class="col-md-4">
+									<input type="button" class="form-control btn btn-light" onclick="sample6_execDaumPostcode();" value="주소찾기"/>
+								</div>
+							</div>
+							<br/>
+							<input type="text" class="form-control" name="addr" id="addr"/>
+							<br/>
+							<input type="text" class="form-control" name="addr_detail" id="addr_detail" placeholder="상세주소를 입력해주세요"/>
+							
+							<!-- <input type="text" name="addr" id="addr" placeholder="사랑시 고백구 행복동" /> -->
+							<div class="result"></div> 
+						<!-- </div> -->
+						
+						전화번호
 						<div class="input__item">
 							<span><i class="bi bi-phone"></i></span>
-								<input type="text" name="phone" id="phone" placeholder="01012345678" /> 
-								<input type="button" class="btn btn-danger" value="인증코드 전송" id="sendSMS" disabled/>
-								<div class="result"></div>
+							<input type="text" name="phone" id="phone" placeholder="01012345678" /> 
+							<input type="button" class="btn btn-danger" value="인증코드 전송" id="sendSMS" disabled/>
+							<div class="result"></div>
 						</div>
 						
 						<div class="input-group flex-nowrap justify-content-center mb-4" style="display: none" id="codeWrap">
@@ -77,19 +92,17 @@
 							<input type="button" class="btn btn-secondary acceptCode" value="인증" />
 						</div> 
 						
-						<!-- 메일 -->
+						이메일
 						<div class="input__item">
 							<span class="icon_mail"></span>
 							<input type="text" name="email" id="email" placeholder="이메일을 입력하세요" /> 
 							<input type="button" class="btn btn-danger" value="이메일 인증" id="sendEmail" disabled/>
 							<div class="result"></div>
-							
-							
 						</div>
 						
 						<div class="input-group flex-nowrap justify-content-center mb-4" style="display: none" id="emailCodeWrap">
-								<input type="text" class="user-email-code" />
-								<input type="button" class="emailAcceptCode" value="인증" />
+							<input type="text" class="user-email-code" />
+							<input type="button" class="emailAcceptCode" value="인증" />
 						</div>
 
 						<div class="btn-group justify-content-center">
@@ -97,22 +110,43 @@
 							<button type="button" class="cancel-btn">취소</button>
 						</div>
 					</form>
-					
+						<div id="test"></div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 </section>
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 
 <script>
 $(function(){
+	$.datepicker.setDefaults($.datepicker.regional["ko"]);
+	$("#birth").datepicker({
+        dateFormat: 'yy-mm-dd' //달력 날짜 형태
+        ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+        ,autoSize: false
+        ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
+        ,changeYear: true //option값 년 선택 가능
+        ,changeMonth: true //option값  월 선택 가능                
+        ,showAnim: "slideDown"
+       	,buttonImage: "${path}/resources/img/assets/datepciekr/ui-icons_444444_256x240.png" // 버튼 이미지
+    	,yearRange: 'c-50:c+0'
+        ,buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함 
+        ,buttonText: "선택" //버튼 호버 텍스트              
+        ,yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
+        ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 텍스트
+        ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip
+        ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
+        ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
+        ,maxDate: "0" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
+    });            
 	
-		$('#sendSMS').removeAttr('hidden');
+	$('#sendSMS').removeAttr('hidden');
 	
-	function checkRegex(elP, valP, regexP, messageP, ajaxP){
+	
+	// element, value, regex, message, ajax
+	 function checkRegex(elP, valP, regexP, messageP, ajaxP){
 		// 정규 표현식이 일치 하지 않을 때
 		if(regexP.test(valP) === false){
 			showMessage(elP,messageP,false);
@@ -255,6 +289,13 @@ $(function(){
 		}
 	});
 	
+	$.validator.addMethod("regex",function(value,element,regexpr){
+		return regexpr.test(value);
+	});
+	
+	var regexID = /^[0-9a-zA-Z]{3,10}$/;
+	
+	
 	// 유효성 검사(폰  / 이메일은 위에서 인증코드랑 같이해서 제외) 
 	// - 주소는 api쓰면 따로 안해도 되서 일단 제외시킴
 	$("#signUpForm").validate({
@@ -267,7 +308,8 @@ $(function(){
 				remote : {
 					type : "GET",
 					url : "${path}/user/uidCheck"
-				}
+				},
+				regex : regexID
 			}, 
 			
 			pw : {
@@ -287,8 +329,13 @@ $(function(){
 				rangelength : [2,6]
 			},
 			
-			birth :{
-				required : true
+			nickname : {
+				required : true,
+				remote :{
+					type : "GET",
+					url : "${path}/user/nicknameCheck"
+				},
+				rangelength : [2,10]
 			},
 			
 			gender : {
@@ -296,43 +343,62 @@ $(function(){
 			},
 			
 			addr : {
+				required : true
+			},
+			
+			phone : {
+				required : true
+			},  
+			
+			email : {
 				required : true
 			}  
 		 
 		},
 		messages : {
 			id : {
-				required : "아이디를 작성해주세요.",
-				remote : "이미 존재하는 아이디입니다."
+				required : "아이디를 작성 해주세요.",
+				remote : "이미 존재하는 아이디입니다.",
+				regex : "특수 문자 제외하고 영어와 숫자로 3~10글자 이내로 작성해주세요."
 			},
 			
 			pw : {
-				required : "비밀번호를 작성해 주세요.",
+				required : "비밀번호를 작성 해 주세요.",
 				minlength : "비밀번호는 최소 6자리 이상입니다.",
 				maxlength : "비밀번호는 최대 20자리까지 가능합니다."
 			},
 			repw : {
-				required : "비밀번호를 작성해 주세요.",
+				required : "비밀번호를 작성 해 주세요.",
 				minlength : "비밀번호는 최소 6자리 이상입니다.",
 				maxlength : "비밀번호는 최대 20자리까지 가능합니다.",
 				equalTo : "비밀번호가 일치하지 않습니다."
 			},
 			
 			name : {
-				required : "이름을 입력해 주세요.",
+				required : "이름을 입력 해 주세요.",
 				rangelength : "이름은 2~6글자 이내 작성해주세요."
 			},
 			
-			birth : {
-				required : "생일을 선택해 주세요."
+			nickname : {
+				required : "닉네임을 입력 해 주세요.",
+				remote : "이미 존재하는 닉네임 입니다.",
+				rangelength : "닉네임은 2~10글자 이내 작성해주세요."
 			},
 			
 			gender : {
-				required : "성별을 확인해 주세요."
+				required : "성별을 확인 해 주세요."
 			},
 			
 			addr : {
-				required : "주소를 입력해 주세요."
+				required : "주소를 입력 해 주세요."
+			},
+			
+			phone : {
+				required : "전화번호를 입력 해 주세요."
+			},
+			
+			email : {
+				required : "이메일을 입력 해 주세요."
 			} 
 			
 		},
@@ -343,7 +409,7 @@ $(function(){
 		errorPlacement : function(error, element){	
 			if(element.prop("type") === 'radio'){ 
 				element.removeClass("text-danger");
-				error.insertAfter(element.parent().parent());
+				error.insertAfter(element.parent(),parent());
 			}else{
 				error.insertAfter(element);
 			}
@@ -359,10 +425,7 @@ $(function(){
 				$(form).submit();
 			}
 		}
-	}); 
+	});  
 	
 });
 </script>
-
-
-

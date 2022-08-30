@@ -47,17 +47,17 @@ public class MemberTest {
 	@Test
 	public void joinOne() {
 		SignUpForm form = new SignUpForm();
-		form.setId("namu6749");
-		form.setPw("namu6748");
-		form.setRepw("namu6748");
-		form.setNickname("namu6749");
-		form.setName("namu6749");
-		form.setGender("namu6748");
-		form.setAddr("namu6748");
-		form.setBirth(java.sql.Date.valueOf("2011-05-05"));
-		form.setPhone("0100000001");
+		form.setId("namu6751");
+		form.setPw("namu6751");
+		form.setRepw("namu6751");
+		form.setNickname("namu6751");
+		form.setName("namu6751");
+		form.setGender("namu6751");
+		form.setAddr("namu6751");
+		form.setBirth(new Date(0));
+		form.setPhone("010_0000_0000");
 		form.setRights(3);
-		form.setEmail("namu6749@naver.com");
+		form.setEmail("namu6751@naver.com");
 		log.info("count = {} , form = {}",form);
 		signService.signUp(form);
 	}
