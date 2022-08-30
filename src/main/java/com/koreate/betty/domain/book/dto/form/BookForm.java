@@ -12,9 +12,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class BookUpdateForm {
-	
-	// 필수 X인 건 지워도 정상적으로 작동합니다 필요에 따라 제거
+public class BookForm {
 	
 	@Size(max = 50)
 	@NotBlank
@@ -37,10 +35,10 @@ public class BookUpdateForm {
 	private Timestamp pubDate;
 	
 	@NotBlank // 필수 X
-	private int page;
+	private Integer page;
 	
 	@NotBlank
-	private int genre;
+	private Integer genre;
 	
 	@NotBlank // 필수 X
 	private String intro;

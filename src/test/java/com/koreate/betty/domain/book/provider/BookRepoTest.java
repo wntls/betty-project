@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.koreate.betty.domain.book.dto.form.BookSearchForm;
-import com.koreate.betty.domain.book.dto.form.BookUpdateForm;
+import com.koreate.betty.domain.book.dto.form.BookForm;
 import com.koreate.betty.domain.book.service.BookService;
 import com.koreate.betty.domain.book.vo.Book;
 import com.koreate.betty.global.config.AppConfig;
@@ -35,7 +35,7 @@ public class BookRepoTest {
 		String targetCode = "9772950991004";
 		
 		Timestamp time = Timestamp.valueOf("2022-06-10 00:00:00");
-		BookUpdateForm form = new BookUpdateForm("9772950991004"
+		BookForm form = new BookForm("9772950991004"
 				, "더퍼슨스 the Persons No.4 : 브랜드 디렉터 Brand Director"
 				, "더퍼슨스"
 				, "더퍼슨스"

@@ -9,10 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.koreate.betty.domain.book.dao.BookRepository;
-import com.koreate.betty.domain.book.dto.form.BookBuyForm;
 import com.koreate.betty.domain.book.dto.form.BookDeleteForm;
+import com.koreate.betty.domain.book.dto.form.BookForm;
 import com.koreate.betty.domain.book.dto.form.BookSearchForm;
-import com.koreate.betty.domain.book.dto.form.BookUpdateForm;
 import com.koreate.betty.domain.book.vo.Book;
 import com.koreate.betty.domain.book.vo.JBookSingle;
 import com.koreate.betty.global.util.Criteria;
@@ -63,13 +62,13 @@ public class BookService {
 	
 	
 	// 도서 정보 등록
-	public int bookRegister(BookBuyForm form) {
+	public int bookRegister(BookForm form) {
 		Book book = form.createBook();
 		return bookRepository.insert(book);
 	}
 		
 	// 도서 정보 수정
-	public int update(String targetCode, BookUpdateForm form) {	
+	public int update(String targetCode, BookForm form) {	
 		Book book = form.createBook();		
 		return bookRepository.update(targetCode, book);
 	}
