@@ -142,7 +142,6 @@
 		</div>
 	</div>
 </div>
-<%@include file="/WEB-INF/views/offline/offline-test.jsp" %>
 
 </html>
 

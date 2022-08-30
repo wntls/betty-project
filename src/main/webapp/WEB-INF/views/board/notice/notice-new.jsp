@@ -22,15 +22,15 @@
 							</div>
 						</div>
 					</div>
-				<div class="col-md-6 text-white"
+					<div class="col-md-6 text-white"
 						style="line-height: 50px; text-align: right">2022-08-22</div>
 				</div>
-				<div class="spad">
-				<textarea id="editor" class="col-md-6 form-control"
-						style="resize: none;" placeholder="내용을 작성하세요.">
-				</textarea>
-				</div>
 				
+				<div class="spad">
+					<textarea id="editor" class="col-md-6 form-control"
+							style="resize: none;" placeholder="내용을 작성하세요.">
+					</textarea>
+				</div>
 				<div class="w-100"></div>
 
 				<div class="blog__details__btns">
@@ -47,6 +47,7 @@
 						</div>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</div>
