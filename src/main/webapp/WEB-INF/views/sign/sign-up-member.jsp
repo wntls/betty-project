@@ -10,7 +10,7 @@
 				<div class="login__form">
 					<h3>일반 회원가입!</h3>
 
-					<form id="signUpForm" action="" method="post">
+					<form id="signUpForm" method="post">
 						<input type="text" name="rights" value="0" hidden/>
 						아이디
 						<div class="input__item">
@@ -60,20 +60,18 @@
 						</div>
 						
 						주소
-						<!-- <div class="input__item"> -->
-							<!-- <span><i class="bi bi-house"></i></span> -->
 							<div class="row addr-box">
 								<div class="col-md-6">
-									<input type="text" class="form-control" name="post" id="post"/>
+									<input type="text" class="form-control" id="post"/>
 								</div>
 								<div class="col-md-4">
-									<input type="button" class="form-control btn btn-light" onclick="sample6_execDaumPostcode();" value="주소찾기"/>
+									<input type="button" class="form-control btn btn-light" onclick="sample6_execDaumPostcode()" value="주소찾기"/>
 								</div>
 							</div>
-							<br/>
+							<br/><!--  name="addr_detail" "post" -->
 							<input type="text" class="form-control" name="addr" id="addr"/>
 							<br/>
-							<input type="text" class="form-control" name="addr_detail" id="addr_detail" placeholder="상세주소를 입력해주세요"/>
+							<input type="text" class="form-control" id="addr_detail" placeholder="상세주소를 입력해주세요"/>
 							<div class="result"></div> 
 						
 						전화번호
@@ -103,7 +101,7 @@
 						</div>
 
 						<div class="btn-group justify-content-center">
-							<button type="submit" class="site-btn">가입 하기</button>
+							<input type="submit" class="btn btn-danger" value="회원가입">
 							<button type="button" class="cancel-btn">취소</button>
 						</div>
 					</form>
@@ -115,32 +113,59 @@
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 
+
 <script>
+
+function sample6_execDaumPostcode(){
+    new daum.Postcode({
+        oncomplete : function(data){
+            var fullAddr='';
+            var extraAddr = '';
+            if(data.userSelectedType === 'R'){ 
+                fullAddr = data.roadAddress;
+                if(data.bname !== ''){
+                    extraAddr += data.bname;
+                }
+                if(data.buildingName !== ''){
+                    extraAddr += (extraAddr !== '' ?','+data.buildingName : data.buildingName);
+                }
+                fullAddr += (extraAddr !== '' ? ' ('+extraAddr+')' : '');
+            }else{
+                fullAddr = data.jibunAddress;
+            }
+            $("#post").val(data.zonecode);
+            $("#addr").val(fullAddr);
+            $("#addr_detail").focus();
+        }
+    }).open();
+}
+
 $(function(){
 	
 	$.datepicker.setDefaults($.datepicker.regional["ko"]);
 	
 	$("#birth").datepicker({
-        dateFormat: 'yy-mm-dd' //달력 날짜 형태
-        ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
-        ,autoSize: false
-        ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
-        ,changeYear: true //option값 년 선택 가능
-        ,changeMonth: true //option값  월 선택 가능                
-        ,showAnim: "slideDown"
-       	,buttonImage: "${path}/resources/img/assets/datepciekr/ui-icons_444444_256x240.png" // 버튼 이미지
-    	,yearRange: 'c-50:c+50'
-        ,buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함 
-        ,buttonText: "선택" //버튼 호버 텍스트              
-        ,yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
-        ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 텍스트
-        ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip
-        ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
-        ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
-        ,minDate: "-50Y"
-        ,maxDate: "0" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
-    });            
-	
+	    dateFormat: 'yy-mm-dd' //달력 날짜 형태
+	    ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+	    ,autoSize: false
+	    ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
+	    ,changeYear: true //option값 년 선택 가능
+	    ,changeMonth: true //option값  월 선택 가능                
+	    ,showAnim: "slideDown"
+	       ,buttonImage: "${path}/resources/img/assets/datepciekr/ui-icons_444444_256x240.png" // 버튼 이미지
+	    ,yearRange: 'c-50:c+50'
+	    ,buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함 
+	    ,buttonText: "선택" //버튼 호버 텍스트              
+	    ,yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
+	    ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 텍스트
+	    ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip
+	    ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
+	    ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
+	    ,minDate: "-50Y"
+	    ,maxDate: "0" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
+	});   
+
+         
 	const regexEmail =/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;  // 이메일
 	const regexID = /^[0-9a-zA-Z]{3,10}$/;
 	const regexMobile = /^[0-9]{2,3}?[0-9]{3,4}?[0-9]{4}$/;	
@@ -148,6 +173,7 @@ $(function(){
 	let boolSMS = false;
 	let boolPhone = false;
 	let boolEmail = false;
+	let boolEmailCode = false;
 	
 	 function checkRegex(elP, valP, regexP, messageP, ajaxP){
 		if(regexP.test(valP) === false){
@@ -268,7 +294,7 @@ $(function(){
 				console.log(result);
 					alert("이메일인증 성공 " + result);
 					$("#emailCodeWrap").hide();
-					boolEmail = true;
+					boolEmailCode = true;
 					$(".email-code").val("");
 			},
 			error: function(err){
@@ -286,60 +312,54 @@ $(function(){
 	
 	
 	$("#signUpForm").validate({
+		ignore : 'button',
 		onkeyup : function(el){
 			$(el).valid();
 		},
 		rules : {	
 			id : { 
-				required : true,
-				remote : { type : "GET", url : "${path}/sign/up/idCheck" },
-				regex : regexID
+			    required : true,
+			    remote : { type : "GET", url : "${path}/sign/up/idCheck" },
+			    regex : regexID
 			}, 
-			
+
 			pw : {
-				required : true,
-				minlength : 6,
-				maxlength : 20
+			    required : true,
+			    minlength : 6,
+			    maxlength : 20
 			},
 			repw : {
-				required : true,
-				minlength : 6,
-				maxlength : 20,
-				equalTo : "#pw"
+			    required : true,
+			    minlength : 6,
+			    maxlength : 20,
+			    equalTo : "#pw"
 			},
-			
+
 			name : {
-				required : true,
-				rangelength : [2,6]
+			    required : true,
+			    rangelength : [2,6]
 			},
-			
 			nickname : {
-				required : true,
-				remote :{
-					type : "GET",
-					url : "${path}/sign/up/nicknameCheck"
-				},
-				rangelength : [2,10]
+			    required : true,
+			    remote :{
+			        type : "GET",
+			        url : "${path}/sign/up/nicknameCheck"
+			    },
+			    rangelength : [2,10]
 			},
 			gender : { required : true },
 			addr : { required : true },
 			phone : { 
-				required : true,
-				minlength : 9	
-			},  
+			    required : true,
+			    minlength : 9	
+			},
 			email : { 
-				required : true,
-				minlength : 4,
-				remote :{
-					type : "GET",
-					url : "${path}/sign/up/emailCheck",
-					success : function(data){
-						if(data === false){
-							console.log(data);
-							$("#sendEmail").attr("disabled", true);
-						}
-					}
-				}
+			    required : true,
+			    minlength : 4,
+			    remote :{
+			        type : "GET",
+			        url : "${path}/sign/up/emailCheck"
+			    }
 			}  
 		},
 		messages : {
@@ -391,7 +411,7 @@ $(function(){
 		errorPlacement : function(error, element){	
 			if(element.prop("type") === 'radio'){ 
 				element.removeClass("text-danger");
-				error.insertAfter(element.parent(),parent());
+				error.insertAfter(element.parent().parent());
 			}else{
 				error.insertAfter(element);
 			}
@@ -401,13 +421,13 @@ $(function(){
 			if(!boolSMS){
 				console.log("submitHandler2");
 				alert("핸드폰 인증코드 확인 해주세요.");
-			}else if(!boolEmail){
+			}else if(!boolEmailCode){
 				console.log("submitHandler3");
 				alert("이메일 인증코드 확인 해주세요.");
 			}else{
 				console.log("submitHandler4");
 				console.log(form);
-				$("#signUpForm").submit();
+				$(form).submit();
 			}
 		}
 	}); 
