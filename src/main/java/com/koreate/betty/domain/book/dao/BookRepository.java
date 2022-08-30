@@ -26,7 +26,7 @@ public interface BookRepository {
 	@SelectProvider(type=BookProvider.class, method="findAllCount")		// 전체 책 목록 총계  (findAll PageMaker) 
 	public int findAllCount();
 		
-	@SelectProvider(type=BookProvider.class, method="bookDetail")		// 전체 책 목록 총계  (findAll PageMaker) 
+	@SelectProvider(type=BookProvider.class, method="bookDetail")		// 책 상세정보 
 	public Book bookDetail(String code);
 	
 	@SelectProvider(type=BookSingleProvider.class, method="single")		// 번호 있는 책 한권
