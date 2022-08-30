@@ -3,6 +3,28 @@
 
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 
+<style>
+	.card{
+		padding:1rem;
+		width: 170px;
+		height: 300px;
+		overflow: hidden;
+	}
+
+	.card-img-top{
+		width:136px;
+		height:200px;
+	}
+	
+	.card-body, .card-title{
+		font-size: 1rem !important;
+		padding: 0;
+	}
+	
+	.card-title{
+		margin-top:1rem;
+	}
+</style>
 <section>
 	<div class="container-md spad">
 		<div class="row justify-content-center">
@@ -39,82 +61,40 @@
 			    <input type="radio" name="genre" value="900"> 역사
 			  </label>
 			</div>
-			
-				<div class="row justify-content-around">
-					<div class="card col-md-2">
-						<img src="${path}/resources/img/book/origin/9772383984000.jpg"
-							class="card-img-top" alt="...">
-						<div class="card-body">
-							<p class="card-text">{title}</p>
-						</div>
-					</div>
-
-					<div class="card col-md-2">
-						<img src="${path}/resources/img/book/origin/9772383984000.jpg"
-							class="card-img-top" alt="...">
-						<div class="card-body">
-							<p class="card-text">{title}</p>
-						</div>
-					</div>
-
-					<div class="card col-md-2">
-						<img src="${path}/resources/img/book/origin/9772383984000.jpg"
-							class="card-img-top" alt="...">
-						<div class="card-body">
-							<p class="card-text">{title}</p>
-						</div>
-					</div>
-
-
-					<div class="card col-md-2">
-						<img src="${path}/resources/img/book/origin/9772383984000.jpg"
-							class="card-img-top" alt="...">
-						<div class="card-body">
-							<p class="card-text">{title}</p>
-						</div>
-					</div>
+				<div class="row row-cols-1 row-cols-md-4">
+				  <div class="col mb-3">
+				    <div class="card">
+				      <img src="${path}/resources/img/book/origin/9772383984000.jpg" class="card-img-top">
+				      <div class="card-body">
+				        <h5 class="card-title">양자역학은 어떻게 세상을 바꾸ㅂㅈㄷㅂㅈㅈㅂㄷㅂ431234112412241214124ㅈㄷㅈㄷㅈㅂㄷ는가</h5>
+				      </div>
+				    </div>
+				  </div>
+				  <div class="col mb-3">
+				    <div class="card">
+				      <img src="${path}/resources/img/book/origin/9772383984000.jpg" class="card-img-top">
+				      <div class="card-body">
+				        <h5 class="card-title">Card title</h5>
+				      </div>
+				    </div>
+				  </div>
+				  <div class="col mb-3">
+				    <div class="card">
+				      <img src="${path}/resources/img/book/origin/9772383984000.jpg" class="card-img-top">
+				      <div class="card-body">
+				        <h5 class="card-title">Card title</h5>
+				      </div>
+				    </div>
+				  </div>
+				  <div class="col mb-4">
+				    <div class="card">
+				      <img src="${path}/resources/img/book/origin/9772383984000.jpg" class="card-img-top">
+				      <div class="card-body">
+				        <h5 class="card-title">Card title</h5>
+				      </div>
+				    </div>
+				  </div>
 				</div>
-					
-					<div class="w-100 mb-5"></div>
-				
-				<div class="row justify-content-around">
-
-					<div class="card col-md-2">
-						<img src="${path}/resources/img/book/origin/9772383984000.jpg"
-							class="card-img-top" alt="...">
-						<div class="card-body">
-							<p class="card-text">{title}</p>
-						</div>
-					</div>
-
-					<div class="card col-md-2">
-						<img src="${path}/resources/img/book/origin/9772383984000.jpg"
-							class="card-img-top" alt="...">
-						<div class="card-body">
-							<p class="card-text">{title}</p>
-						</div>
-					</div>
-
-					<div class="card col-md-2">
-						<img src="${path}/resources/img/book/origin/9772383984000.jpg"
-							class="card-img-top" alt="...">
-						<div class="card-body">
-							<p class="card-text">{title}</p>
-						</div>
-					</div>
-
-
-					<div class="card col-md-2">
-						<img src="${path}/resources/img/book/origin/9772383984000.jpg"
-							class="card-img-top" alt="...">
-						<div class="card-body">
-							<p class="card-text">{title}</p>
-						</div>
-					</div>
-
-				</div>
-
-
 				<div class="row justify-content-between mt-5">
 					<form>
 						<div class="form-row input-group mb-3">

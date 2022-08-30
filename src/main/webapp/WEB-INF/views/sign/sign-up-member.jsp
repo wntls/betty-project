@@ -3,6 +3,10 @@
 
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 
+<style>
+	
+</style>
+
 <section class="signup spad">
 	<div class="container-md">
 		<div class="row justify-content-center">
@@ -49,37 +53,37 @@
 							<div class="result"></div>
 						</div>
 						성별
-						<div class="btn-group btn-group-toggle w-100 mb-3"  data-toggle="buttons">
-							<label class="btn btn-primary text-white">
+						<div class="btn-group btn-group-toggle w-100"  data-toggle="buttons">
+							<label class="btn btn-outline-secondary text-white radio-gender">
 								<input type="radio" name="gender" id="male" value="male"> 남성
 							</label>
-							<label class="btn btn-primary ml-2 text-white">
+							<label class="btn btn-outline-secondary ml-2 text-white radio-gender">
 								<input type="radio" name="gender" id="female" value="female"> 여성
 							</label>
-							<div class="result"></div>
 						</div>
+							<div class="result mb-3"></div>
 						
 						주소
+						<div class="mb-4">
 							<div class="row addr-box">
-								<div class="col-md-6">
-									<input type="text" class="form-control" id="post"/>
+								<div class="col-md-8 mb-4 ">
+									<input type="text" class="form-control" name="post" id="post"/>
 								</div>
-								<div class="col-md-4">
+								<div class="col-md-3" style="padding-right:0">
 									<input type="button" class="form-control btn btn-light" onclick="sample6_execDaumPostcode()" value="주소찾기"/>
 								</div>
 							</div>
-							<br/><!--  name="addr_detail" "post" -->
-							<input type="text" class="form-control" name="addr" id="addr"/>
-							<br/>
-							<input type="text" class="form-control" id="addr_detail" placeholder="상세주소를 입력해주세요"/>
+							<input type="text" class="form-control mb-4" name="addr" id="addr"/>
+							<input type="text" class="form-control" name="addr_detail" id="addr_detail" placeholder="상세주소를 입력해주세요"/>
 							<div class="result"></div> 
+						</div>
 						
 						전화번호
 						<div class="input__item">
 							<span><i class="bi bi-phone"></i></span>
 							<input type="text" name="phone" id="phone" placeholder="01012345678" /> 
-							<div class="result"></div>
 							<input type="button" class="btn btn-danger" value="인증코드 전송" id="sendSMS" disabled/>
+							<div class="result"></div>
 						</div>
 						
 						<div class="input-group flex-nowrap justify-content-center mb-4" style="display: none" id="codeWrap">
@@ -91,8 +95,8 @@
 						<div class="input__item">
 							<span class="icon_mail"></span>
 							<input type="text" name="email" id="email" placeholder="이메일을 입력하세요" /> 
-							<div class="result"></div>
 							<input type="button" class="btn btn-danger" value="이메일 인증" id="sendEmail" disabled/>
+							<div class="result"></div>
 						</div>
 						
 						<div class="input-group flex-nowrap justify-content-center mb-4" style="display: none" id="emailCodeWrap">
@@ -100,9 +104,11 @@
 							<input type="button" class="btn btn-secondary emailAcceptCode" value="인증" />
 						</div>
 
-						<div class="btn-group justify-content-center">
-							<input type="submit" class="btn btn-danger" value="회원가입">
+						<div class="row justify-content-center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-danger mr-3" />회원가입</button>
 							<button type="button" class="cancel-btn">취소</button>
+						</div>
 						</div>
 					</form>
 				</div>
@@ -312,7 +318,6 @@ $(function(){
 	
 	
 	$("#signUpForm").validate({
-		ignore : 'button',
 		onkeyup : function(el){
 			$(el).valid();
 		},
@@ -347,6 +352,7 @@ $(function(){
 			    },
 			    rangelength : [2,10]
 			},
+			birth : { required : true },
 			gender : { required : true },
 			addr : { required : true },
 			phone : { 
@@ -370,26 +376,30 @@ $(function(){
 			},
 			
 			pw : {
-				required : "비밀번호를 작성 해 주세요.",
+				required : "비밀번호를 작성하세요.",
 				minlength : "비밀번호는 최소 6자리 이상입니다.",
 				maxlength : "비밀번호는 최대 20자리까지 가능합니다."
 			},
 			repw : {
-				required : "비밀번호를 작성 해 주세요.",
+				required : "비밀번호를 작성하세요.",
 				minlength : "비밀번호는 최소 6자리 이상입니다.",
 				maxlength : "비밀번호는 최대 20자리까지 가능합니다.",
 				equalTo : "비밀번호가 일치하지 않습니다."
 			},
 			
 			name : {
-				required : "이름을 입력 해 주세요.",
+				required : "이름을 입력 하세요.",
 				rangelength : "이름은 2~6글자 이내로 작성하세요."
 			},
 			
 			nickname : {
-				required : "닉네임을 입력하주세요.",
+				required : "닉네임을 입력하세요.",
 				remote : "이미 존재하는 닉네임 입니다.",
 				rangelength : "닉네임은 2~10글자 이내로 작성하세요."
+			},
+			
+			birth : {
+				required : "생년월일을 선택하세요."
 			},
 			
 			gender : { required : "성별을 확인하세요." },
@@ -405,14 +415,14 @@ $(function(){
 				} 
 		},
 		errorClass : "text-danger",
-		// error때 어떤 태그로 보여줄껀지 지정
 		errorElement : "div",
-		// error때 어디에다가 배치 시킬껀지 지정
-		errorPlacement : function(error, element){	
+		errorPlacement : function(error, element){
 			if(element.prop("type") === 'radio'){ 
 				element.removeClass("text-danger");
 				error.insertAfter(element.parent().parent());
-			}else{
+			 } else if($(element).attr('id') === 'addr' || $(element).attr('id') === 'phone' || $(element).attr('id') === 'email'){
+				error.insertAfter(element.next());		 		
+			} else {
 				error.insertAfter(element);
 			}
 		},

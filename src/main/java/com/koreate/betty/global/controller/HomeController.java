@@ -31,7 +31,4 @@ public class HomeController {
 		return "offline/offline";
 	}
 	
-	@GetMapping("knh")
-	public void calendarTest() {}
-	
 }

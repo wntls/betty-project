@@ -341,3 +341,7 @@ form .form-control::placeholder {
 .study-room .room02{
 	border: 2px solid #3898EC;
 }
+
+.radio-gender{
+		border: 1px solid white !important;
+}

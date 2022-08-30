@@ -8,10 +8,10 @@
 		<div class="row justify-content-center">
 			<div class="col-md-auto">
 				<div class="login__form">
-					<h3>직원 전용 회원가입!</h3>
+					<h3>직원 회원가입!</h3>
 
-					<form id="signUpForm" action="" method="post">
-						<input type="text" name="rights" value="0" hidden/>
+					<form id="signUpForm" method="post">
+						<input type="text" name="rights" value="1" hidden/>
 						아이디
 						<div class="input__item">
 							<span><i class="bi bi-person-circle"></i></span>
@@ -49,35 +49,30 @@
 							<div class="result"></div>
 						</div>
 						성별
-						<div class="btn-group btn-group-toggle w-100 mb-3"  data-toggle="buttons">
-							<label class="btn btn-primary text-white">
+						<div class="btn-group btn-group-toggle w-100"  data-toggle="buttons">
+							<label class="btn btn-outline-secondary text-white radio-gender">
 								<input type="radio" name="gender" id="male" value="male"> 남성
 							</label>
-							<label class="btn btn-primary ml-2 text-white">
+							<label class="btn btn-outline-secondary ml-2 text-white radio-gender">
 								<input type="radio" name="gender" id="female" value="female"> 여성
 							</label>
-							<div class="result"></div>
 						</div>
+							<div class="result mb-3"></div>
 						
 						주소
-						<!-- <div class="input__item"> -->
-							<!-- <span><i class="bi bi-house"></i></span> -->
+						<div class="mb-4">
 							<div class="row addr-box">
-								<div class="col-md-6">
+								<div class="col-md-8 mb-4 ">
 									<input type="text" class="form-control" name="post" id="post"/>
 								</div>
-								<div class="col-md-4">
-									<input type="button" class="form-control btn btn-light" onclick="sample6_execDaumPostcode();" value="주소찾기"/>
+								<div class="col-md-3" style="padding-right:0">
+									<input type="button" class="form-control btn btn-light" onclick="sample6_execDaumPostcode()" value="주소찾기"/>
 								</div>
 							</div>
-							<br/>
-							<input type="text" class="form-control" name="addr" id="addr"/>
-							<br/>
+							<input type="text" class="form-control mb-4" name="addr" id="addr"/>
 							<input type="text" class="form-control" name="addr_detail" id="addr_detail" placeholder="상세주소를 입력해주세요"/>
-							
-							<!-- <input type="text" name="addr" id="addr" placeholder="사랑시 고백구 행복동" /> -->
 							<div class="result"></div> 
-						<!-- </div> -->
+						</div>
 						
 						전화번호
 						<div class="input__item">
@@ -89,7 +84,7 @@
 						
 						<div class="input-group flex-nowrap justify-content-center mb-4" style="display: none" id="codeWrap">
 							<input type="text" class="phone-code" />
-							<input type="button" class="btn btn-secondary acceptCode" value="인증" />
+							<input type="button" class="btn btn-secondary smsAcceptCode" value="인증" />
 						</div> 
 						
 						이메일
@@ -101,16 +96,17 @@
 						</div>
 						
 						<div class="input-group flex-nowrap justify-content-center mb-4" style="display: none" id="emailCodeWrap">
-							<input type="text" class="user-email-code" />
-							<input type="button" class="emailAcceptCode" value="인증" />
+							<input type="text" class="email-code" />
+							<input type="button" class="btn btn-secondary emailAcceptCode" value="인증" />
 						</div>
 
-						<div class="btn-group justify-content-center">
-							<button type="submit" class="site-btn">가입 하기</button>
+						<div class="row justify-content-center">
+						<div class="btn-group">
+							<button type="submit" class="btn btn-danger mr-3" />회원가입</button>
 							<button type="button" class="cancel-btn">취소</button>
 						</div>
+						</div>
 					</form>
-						<div id="test"></div>
 				</div>
 			</div>
 		</div>
@@ -119,62 +115,86 @@
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 
+
 <script>
+
+function sample6_execDaumPostcode(){
+    new daum.Postcode({
+        oncomplete : function(data){
+            var fullAddr='';
+            var extraAddr = '';
+            if(data.userSelectedType === 'R'){ 
+                fullAddr = data.roadAddress;
+                if(data.bname !== ''){
+                    extraAddr += data.bname;
+                }
+                if(data.buildingName !== ''){
+                    extraAddr += (extraAddr !== '' ?','+data.buildingName : data.buildingName);
+                }
+                fullAddr += (extraAddr !== '' ? ' ('+extraAddr+')' : '');
+            }else{
+                fullAddr = data.jibunAddress;
+            }
+            $("#post").val(data.zonecode);
+            $("#addr").val(fullAddr);
+            $("#addr_detail").focus();
+        }
+    }).open();
+}
+
 $(function(){
+	
 	$.datepicker.setDefaults($.datepicker.regional["ko"]);
+	
 	$("#birth").datepicker({
-        dateFormat: 'yy-mm-dd' //달력 날짜 형태
-        ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
-        ,autoSize: false
-        ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
-        ,changeYear: true //option값 년 선택 가능
-        ,changeMonth: true //option값  월 선택 가능                
-        ,showAnim: "slideDown"
-       	,buttonImage: "${path}/resources/img/assets/datepciekr/ui-icons_444444_256x240.png" // 버튼 이미지
-    	,yearRange: 'c-50:c+0'
-        ,buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함 
-        ,buttonText: "선택" //버튼 호버 텍스트              
-        ,yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
-        ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 텍스트
-        ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip
-        ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
-        ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
-        ,maxDate: "0" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
-    });            
+	    dateFormat: 'yy-mm-dd' //달력 날짜 형태
+	    ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+	    ,autoSize: false
+	    ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
+	    ,changeYear: true //option값 년 선택 가능
+	    ,changeMonth: true //option값  월 선택 가능                
+	    ,showAnim: "slideDown"
+	       ,buttonImage: "${path}/resources/img/assets/datepciekr/ui-icons_444444_256x240.png" // 버튼 이미지
+	    ,yearRange: 'c-50:c+50'
+	    ,buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함 
+	    ,buttonText: "선택" //버튼 호버 텍스트              
+	    ,yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
+	    ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 텍스트
+	    ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip
+	    ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
+	    ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
+	    ,minDate: "-50Y"
+	    ,maxDate: "0" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
+	});   
+
+         
+	const regexEmail =/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;  // 이메일
+	const regexID = /^[0-9a-zA-Z]{3,10}$/;
+	const regexMobile = /^[0-9]{2,3}?[0-9]{3,4}?[0-9]{4}$/;	
+	let code = "";
+	let boolSMS = false;
+	let boolPhone = false;
+	let boolEmail = false;
+	let boolEmailCode = false;
 	
-	$('#sendSMS').removeAttr('hidden');
-	
-	
-	// element, value, regex, message, ajax
 	 function checkRegex(elP, valP, regexP, messageP, ajaxP){
-		// 정규 표현식이 일치 하지 않을 때
 		if(regexP.test(valP) === false){
 			showMessage(elP,messageP,false);
 			return false;
-		// 정규표현식 일치하고 ajax가 존재하지 않을 때
 		}else if(regexP.test(valP) !== false
 					&& ajaxP === null){
 			showMessage(elP, "", true);
 			return true;
 		}else{
-			if(ajaxP !== null){
-				ajaxP(elP);
-			}
+			if(ajaxP !== null)ajaxP(elP);
 		}
 	}
 	
 	function showMessage(elP,messageP,isCheck){
-		var html = "<sapn style='margin-left:5px;font-size:12px;";
-		html += isCheck ? "color:green;" : "color:red;"
-		html += "'>"; // 여기까지가 style 임
-		html += messageP;
-		html += "</span>";
-		$(elP).html(html);		
+		$(elP).html(`<sapn style='margin-left:5px;font-size:12px;${isCheck ? 'color:green;' : 'color:red;'}'>${messageP}</span>`);
 	}
 	
-	// 전화번호 확인 여부
-	var boolPhone = false;
-	var regexMobile = /^[0-9]{2,3}?[0-9]{3,4}?[0-9]{4}$/;					
+				
 	$("#phone").on("input", function(){
 		var tempVal = $("#phone").val();
 		var elP = $(this).parent().find(".result");
@@ -186,9 +206,6 @@ $(function(){
 		}
 	});
 	
-	// 인증 코드 저장
-	var code = "";
-	var boolSMS = false;
 	$("#sendSMS").click(function(){
 		if(!boolPhone){
 			alert("전화번호를 먼저 확인해 주세요.");
@@ -197,45 +214,47 @@ $(function(){
 			$("#sendSMS").attr("disabled", true);
 			$("#codeWrap").show();
 			$.ajax({
-				type : "POST",
-				dataType : "json",
-				url : "${path}/sendSMS",
+				type : "get",
+				url : "${path}/sign/up/sms",
 				data :{
 					phone : $("#phone").val()
 				},
-				success : function(data){
-					if(data['result'] == 2000){ 
-						code = data['code'];
-					} 
-					console.log(data);
-					console.log(code);
-				} // success end
-			});	// ajax end
+				success : function(){
+					alert("전화번호로 인증 코드가 전송되었습니다.");
+				},
+				error : function(){
+					$("#sendSMS").attr("disabled", false);
+				}
+			});
 		}
 	});
 	
-	$(".acceptCode").click(function(){
-		var userCode = $(".phone-code").val();
-		if(code != "" 
-				&& userCode.length != 0 
-				&& code == userCode){
-			alert("인증 완료");
-			boolSMS = true;
-			$("#codeWrap").hide();
-			$(".phone-code").val("");
-		}else{
-			alert("발송된 인증코드를 다시 확인해 주세요.");
-			$(".phone-code").focus();
-		}
+	$(".smsAcceptCode").click(function(){
+		$.ajax({
+			type: 'post',
+			url: '${path}/sign/up/sms',
+			data: { "code" : $(".phone-code").val() },
+			success: function(result){
+					alert("인증 성공 " + result);
+					$("#codeWrap").hide();
+					boolSMS = true;
+					$(".phone-code").val("");
+			},
+			error: function(error){
+				alert("인증 실패 ");
+				$(".phone-code").focus();
+			}
+		})
+		
 	});
+	
+	
 	
 	// 이메일 인증확인
-	var boolEmail = false;
-	var regexEmail =/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;  // 이메일
 	$("#email").on("input", function(){
-		var tempVal = $("#email").val();
-		var elP = $(this).parent().find(".result");
-		var message = "이메일을 제대로 확인 주세요";
+		let tempVal = $("#email").val();
+		let elP = $(this).parent().find(".result");
+		let message = "이메일을 제대로 확인 주세요";
 		boolEmail = checkRegex(elP, tempVal, regexEmail, message, null);
 		
 		if(boolEmail){
@@ -243,189 +262,181 @@ $(function(){
 		}
 	});
 	
-	var boolEmailCode = false;
+	
 	$("#sendEmail").click(function(){
 		if(!boolEmail){
 			alert("이메일을 확인해 주세요.");
 			$("#email").focus();
 		}else{
 			$("#sendEmail").attr("disabled", true);
+			$("#emailCodeWrap").show();
 			
 			$.ajax({
 				type : "GET",
-				url : "${path}/checkEmail",
+				url : "${path}/sign/up/email",
 				data : {
 					email : $("#email").val()
 				},
-				dataType : "json",
-				success : function(data){
-						if(data){
-							code = data;
-							console.log(code);
-							alert("메일 발송 완료 \n메일을 확인 해주세요.");
-							$("#emailCodeWrap").show();
-						}else{
-							alert("메일 발송 실패 \n관리자에게 문의해주세요.");
-						}
+				success : function(){
+					alert("이메일로 인증 코드가 전송되었습니다.");
+				},
+				error : function(){
+					$("#sendSMS").attr("disabled", false);
 				}
-			}); // ajax end
-		} // if end
+			});
+		}
 	});
 	
 	$(".emailAcceptCode").click(function(){
-		var userCode = $(".user-email-code").val();
-		console.log("code : " + code);
-		console.log("userCode : " + userCode);
-		if(code != ""
-				&& userCode.length != 0
-				&& code == userCode){
-			alert("이메일 인증 완료");
-			boolEmailCode = true;
-			$("#emailCodeWrap").hide();
-			$(".user-email-code").val("");
-		}else{
-			alert("발송된 이메일 인증코드를 다시 확인해 주세요.");
-			$(".user-email-code").focus();
-		}
+		$.ajax({
+			type: 'post',
+			url: '${path}/sign/up/email',
+			data: { "code" : $(".email-code").val() },
+			success: function(result){
+				console.log(result);
+					alert("이메일인증 성공 " + result);
+					$("#emailCodeWrap").hide();
+					boolEmailCode = true;
+					$(".email-code").val("");
+			},
+			error: function(err){
+				console.log(err)
+				alert("이메일인증 실패 "+ err);
+				$(".email-code").focus();
+			}
+		})
 	});
+	
 	
 	$.validator.addMethod("regex",function(value,element,regexpr){
 		return regexpr.test(value);
 	});
 	
-	var regexID = /^[0-9a-zA-Z]{3,10}$/;
 	
-	
-	// 유효성 검사(폰  / 이메일은 위에서 인증코드랑 같이해서 제외) 
-	// - 주소는 api쓰면 따로 안해도 되서 일단 제외시킴
 	$("#signUpForm").validate({
 		onkeyup : function(el){
 			$(el).valid();
 		},
 		rules : {	
 			id : { 
-				required : true,
-				remote : {
-					type : "GET",
-					url : "${path}/user/uidCheck"
-				},
-				regex : regexID
+			    required : true,
+			    remote : { type : "GET", url : "${path}/sign/up/idCheck" },
+			    regex : regexID
 			}, 
-			
+
 			pw : {
-				required : true,
-				minlength : 6,
-				maxlength : 20
+			    required : true,
+			    minlength : 6,
+			    maxlength : 20
 			},
 			repw : {
-				required : true,
-				minlength : 6,
-				maxlength : 20,
-				equalTo : "#pw"
+			    required : true,
+			    minlength : 6,
+			    maxlength : 20,
+			    equalTo : "#pw"
 			},
-			
+
 			name : {
-				required : true,
-				rangelength : [2,6]
+			    required : true,
+			    rangelength : [2,6]
 			},
-			
 			nickname : {
-				required : true,
-				remote :{
-					type : "GET",
-					url : "${path}/user/nicknameCheck"
-				},
-				rangelength : [2,10]
+			    required : true,
+			    remote :{
+			        type : "GET",
+			        url : "${path}/sign/up/nicknameCheck"
+			    },
+			    rangelength : [2,10]
 			},
-			
-			gender : {
-				required : true
+			birth : { required : true },
+			gender : { required : true },
+			addr : { required : true },
+			phone : { 
+			    required : true,
+			    minlength : 9	
 			},
-			
-			addr : {
-				required : true
-			},
-			
-			phone : {
-				required : true
-			},  
-			
-			email : {
-				required : true
+			email : { 
+			    required : true,
+			    minlength : 4,
+			    remote :{
+			        type : "GET",
+			        url : "${path}/sign/up/emailCheck"
+			    }
 			}  
-		 
 		},
 		messages : {
 			id : {
-				required : "아이디를 작성 해주세요.",
+				required : "아이디를 작성하세요.",
 				remote : "이미 존재하는 아이디입니다.",
-				regex : "특수 문자 제외하고 영어와 숫자로 3~10글자 이내로 작성해주세요."
+				regex : "특수 문자 제외하고 영어와 숫자로 3~10글자 이내로 작성하세요."
 			},
 			
 			pw : {
-				required : "비밀번호를 작성 해 주세요.",
+				required : "비밀번호를 작성하세요.",
 				minlength : "비밀번호는 최소 6자리 이상입니다.",
 				maxlength : "비밀번호는 최대 20자리까지 가능합니다."
 			},
 			repw : {
-				required : "비밀번호를 작성 해 주세요.",
+				required : "비밀번호를 작성하세요.",
 				minlength : "비밀번호는 최소 6자리 이상입니다.",
 				maxlength : "비밀번호는 최대 20자리까지 가능합니다.",
 				equalTo : "비밀번호가 일치하지 않습니다."
 			},
 			
 			name : {
-				required : "이름을 입력 해 주세요.",
-				rangelength : "이름은 2~6글자 이내 작성해주세요."
+				required : "이름을 입력 하세요.",
+				rangelength : "이름은 2~6글자 이내로 작성하세요."
 			},
 			
 			nickname : {
-				required : "닉네임을 입력 해 주세요.",
+				required : "닉네임을 입력하세요.",
 				remote : "이미 존재하는 닉네임 입니다.",
-				rangelength : "닉네임은 2~10글자 이내 작성해주세요."
+				rangelength : "닉네임은 2~10글자 이내로 작성하세요."
 			},
 			
-			gender : {
-				required : "성별을 확인 해 주세요."
+			birth : {
+				required : "생년월일을 선택하세요."
 			},
 			
-			addr : {
-				required : "주소를 입력 해 주세요."
+			gender : { required : "성별을 확인하세요." },
+			addr : { required : "주소를 입력하세요." },
+			phone : { 
+				required : "전화번호를 입력하세요.",
+				minlength : "전화번호를 입력해주세요."	
 			},
-			
-			phone : {
-				required : "전화번호를 입력 해 주세요."
-			},
-			
-			email : {
-				required : "이메일을 입력 해 주세요."
-			} 
-			
+			email : { 
+				required : "이메일을 입력하세요.",
+				minlength : "이메일 형식에 맞춰 입력해주세요.",
+				remote : "이미 존재하는 이메일입니다."
+				} 
 		},
 		errorClass : "text-danger",
-		// error때 어떤 태그로 보여줄껀지 지정
 		errorElement : "div",
-		// error때 어디에다가 배치 시킬껀지 지정
-		errorPlacement : function(error, element){	
+		errorPlacement : function(error, element){
 			if(element.prop("type") === 'radio'){ 
 				element.removeClass("text-danger");
-				error.insertAfter(element.parent(),parent());
-			}else{
+				error.insertAfter(element.parent().parent());
+			 } else if($(element).attr('id') === 'addr' || $(element).attr('id') === 'phone' || $(element).attr('id') === 'email'){
+				error.insertAfter(element.next());		 		
+			} else {
 				error.insertAfter(element);
 			}
 		},
-		//debug : true,	
 		submitHandler : function(form){
-			// submit 하기 전에 전처리 공간
+			console.log("submitHandler1");
 			if(!boolSMS){
+				console.log("submitHandler2");
 				alert("핸드폰 인증코드 확인 해주세요.");
 			}else if(!boolEmailCode){
+				console.log("submitHandler3");
 				alert("이메일 인증코드 확인 해주세요.");
 			}else{
+				console.log("submitHandler4");
+				console.log(form);
 				$(form).submit();
 			}
 		}
-	});  
+	}); 
 	
 });
 </script>
