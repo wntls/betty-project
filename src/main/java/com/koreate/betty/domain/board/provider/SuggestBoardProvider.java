@@ -14,13 +14,13 @@ public class SuggestBoardProvider {
 		SQL sql = new SQL();
 		sql.INSERT_INTO(SUGGEST_BOARD_TBL);
 		sql.INTO_COLUMNS("title,content");
-		if(board.getOrigin() != null && board.getOrigin() != 0) {
+		if(board.getOrigin() != null || board.getOrigin() != 0) {
 			sql.INTO_COLUMNS("origin,depth");
 		}
 		sql.INTO_COLUMNS("member_id");
 		sql.INTO_VALUES("#{title},#{content}");
-		if(board.getOrigin() != null && board.getOrigin() != 0) {
-			sql.INTO_VALUES("#{origin},1");
+		if(board.getOrigin() != null || board.getOrigin() != 0) {
+			sql.INTO_VALUES("#{origin},#{depth}");
 		}
 		sql.INTO_VALUES("#{memberId}");
 		return sql.toString();
@@ -43,7 +43,7 @@ public class SuggestBoardProvider {
 	}
 	
 	// 건의사항 삭제
-	public String suggestRemove(int bno) {
+	public String suggestRemove(SuggestBoard vo) {
 		return new SQL().UPDATE(SUGGEST_BOARD_TBL)
 				.SET("showboard = 'n'")
 				.WHERE("bno = #{bno}")
@@ -97,18 +97,20 @@ public class SuggestBoardProvider {
 	
 	// 검색
 	private void getSearchWhere(SearchCriteria cri, SQL sql) {
-		String titleQuery = "title LIKE CONCAT('%','"+cri.getKeyword()+"','%')";
-		String contentQuery = "content LIKE CONCAT('%',#{keyword},'%')";
-		String writerQuery = "member_id LIKE CONCAT('%',#{keyword},'%')";
-		if(cri.getSearchType() != null && !cri.getSearchType().trim().equals("")
-				&& !cri.getSearchType().trim().equals("n")) {
-			if(cri.getSearchType().contains("t")) {
+	    String type = cri.getSearchType();
+	    String keyword = cri.getKeyword();
+		String titleQuery = "title LIKE CONCAT('%','"+keyword+"','%')";
+		String contentQuery = "content LIKE CONCAT('%','"+keyword+"','%')";
+		String writerQuery = "member_id LIKE CONCAT('%','"+keyword+"','%')";
+		if(type != null && !type.trim().equals("")
+				&& !type.trim().equals("n")) {
+			if(type.contains("t")) {
 				sql.OR().WHERE(titleQuery);
 			}
-			if(cri.getSearchType().contains("c")) {
+			if(type.contains("c")) {
 				sql.OR().WHERE(contentQuery);
 			}
-			if(cri.getSearchType().contains("w")) {
+			if(type.contains("w")) {
 				sql.OR().WHERE(writerQuery);
 			}
 		}
