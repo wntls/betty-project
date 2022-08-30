@@ -2,7 +2,6 @@ package com.koreate.betty.domain.board.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.koreate.betty.domain.board.dao.NoticeBoardRepository;
@@ -12,13 +11,15 @@ import com.koreate.betty.global.util.PageMaker;
 import com.koreate.betty.global.util.SearchCriteria;
 import com.koreate.betty.global.util.SearchPageMaker;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class NoticeBoardService {
 
-	@Autowired
-	NoticeBoardRepository dao;
+	private final NoticeBoardRepository dao;
 
 	// 공지사항 등록
 	public int write(NoticeBoardForm form) {
@@ -49,7 +50,24 @@ public class NoticeBoardService {
 
 	// 공지사항 목록
 	public List<NoticeBoard> noticeList(SearchCriteria cri) {
-		return dao.noticeList(cri);
+		String type = cri.getSearchType();
+		log.info("type : {} ", type);
+		String word = cri.getKeyword();
+		log.info("word : {} ", word);
+		
+		
+		List<NoticeBoard> noticeList = dao.noticeList(cri);
+		log.info("noticeList 1 : {} ", noticeList);
+		if(type != null && !type.trim().equals("")) {
+			for(NoticeBoard vo : noticeList) {
+				vo.getTitle();
+				vo.getMemberId();
+				vo.getContent();
+				log.info("vo : {} ", vo);
+			}
+		}
+		log.info("noticeList 2 : {}" , noticeList);
+		return noticeList;
 	}
 	
 	// 페이징 처리

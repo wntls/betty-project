@@ -5,95 +5,140 @@
 
 <section>
 	<div class="container-md spad">
-	<div class="row justify-content-center">
-		<div class="col-md-8">
-			<div class="row justify-content-between">
-				<div class="col-auto">
-					<h2>공지사항</h2>
-				</div>
-				<div class="col-auto">
-					<select>
-						<option selected="selected">5</option>
-						<option>10</option>
-						<option>20</option>
-					</select>
-				</div>
-			</div>
-
-
-			<div class="table-responsive">
-				<div class="table-wrapper">
-					<table class="table table-bordered">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>조회수</th>
-								<th>작성일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<!-- 1 -->
-							<tr>
-								<td>1</td>
-								<td>{title}</td>
-								<td>{auth}</td>
-								<td>{viewcnt}</td>
-								<td>{regdate}</td>
-							</tr>
-							<!-- 2 -->
-							<tr>
-								<td>2</td>
-								<td>{title}</td>
-								<td>{auth}</td>
-								<td>{viewcnt}</td>
-								<td>{regdate}</td>
-							</tr>
-						</tbody>
-					</table>
-
-
-				</div>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col-6">
-					<form>
-						<div class="form-row input-group mb-3">
-							<div class="input-group-prepend">
-								<select>
-									<option value="">제목</option>
-									<option value="">작성자</option>
-									<option value="">내용</option>
-								</select>
-							</div>
-							<input type="text" class="form-control">
-							<div class="input-group-append">
-								<button type="submit" class="btn btn-primary">검색하기</button>
-							</div>
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<form id="boardForm">
+					<div class="row justify-content-between">
+						<div class="col-auto">
+							<h2>공지사항</h2>
 						</div>
-					</form>
+						<div class="col-auto">
+							<select id="pageNumSelect" name="perPageNum">
+								<option value="${pm.cri.perPageNum }">${pm.cri.perPageNum }개씩</option>
+								<option value="5">5</option>
+								<option value="10">10</option>
+								<option value="20">20</option>
+							</select>
+						</div>
+					</div>
+		
+					<div class="table-responsive">
+						<div class="table-wrapper">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>제목</th>
+										<th>작성자</th>
+										<th>조회수</th>
+										<th>작성일</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:choose>
+										<c:when test="${!empty noticeList }">
+											<c:forEach var="noticeBoard" items="${noticeList }">
+												<tr>
+													<td>${noticeBoard.bno }</td>
+													<td>
+														<a href="${path }/boards/notice/${noticeBoard.bno}${pm.makeQuery(pm.cri.page)}">${noticeBoard.title }</a>
+													</td>
+													<td>${noticeBoard.memberId }</td>
+													<td>${noticeBoard.viewcnt }</td>
+													<td>${noticeBoard.regdate }</td>
+												</tr>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<tr>
+												<td colspan="5">게시물이 존재 하지 않습니다</td>
+											</tr>
+										</c:otherwise>
+									</c:choose>
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</form>
+				
+				<div class="row">
+					<input type="button" value="글작성" id="notice-write" />
 				</div>
-				<div class="w-100"></div>
-
-				<!-- 페이징 처리 -->
-				<div class="form-row">
-					<ul class="pagination" id="pa">
-						<li><a href="#">Previous</a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">Next</a></li>
-					</ul>
+				
+				<div class="row justify-content-center">
+					<!-- 페이징 처리 -->
+					<div class="form-row">
+						<ul class="pagination" id="pa">
+							<c:if test="${pm.first }">
+								<li>
+									<a href="${path}/boards/notice${pm.makeQuery(1)}">&laquo;&laquo;</a>
+								</li>
+							</c:if>
+							<c:if test="${pm.prev }"> 
+								<li>
+									<a href="${path}/boards/notice${pm.makeQuery(pm.startPage-1) }">&laquo;</a>
+								</li>
+							</c:if>
+							<c:forEach var="i" begin="${pm.startPage }" end="${pm.endPage }">
+								<li ${pm.cri.page == i ? 'class=active' : '' }>
+									<a href="${path}/boards/notice${pm.makeQuery(i) }"> ${i }</a>
+								</li>
+							</c:forEach>
+							<c:if test="${pm.next }"> 
+								<li>
+									<a href="${path}/boards/notice${pm.makeQuery(pm.endPage+1) }">&raquo;</a>
+								</li>
+							</c:if>
+							<c:if test="${pm.last }"> 
+								<li>
+									<a href="${path}/boards/notice${pm.makeQuery(pm.maxPage) }">&raquo;&raquo;</a>
+								</li>
+							</c:if>
+						</ul>
+					</div>
+					<div class="w-100"></div>
+					
+					<div class="col-6">
+						<form id="searchTypeForm">
+							<div class="form-row input-group mb-3">
+								<div class="input-group-prepend">
+									<select name="searchType">
+										<option ${pm.cri.searchType == 't' ? 'selected' : ''} value="t">제목</option>
+										<option ${pm.cri.searchType == 'w' ? 'selected' : ''} value="w">작성자</option>
+				 						<option ${pm.cri.searchType == 'c' ? 'selected' : ''} value="c">내용</option>
+									</select>
+								</div>
+								<input type="text" class="form-control" name="keyword" value="${pm.cri.keyword}">
+								<div class="input-group-append">
+									<button type="submit" id="searchTypeBtn" class="btn btn-primary">검색하기</button>
+								</div>
+							</div>
+							<input type="hidden" name="perPageNum" value="${param.perPageNum}" />
+						</form>
+					</div>
 				</div>
+				
 			</div>
 		</div>
-	</div>
 	</div>
 </section>
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 </html>
-
+<script>
+	$("#notice-write").click(function(){
+		location.href='${path}/boards/notice/new'
+	});
+	
+	/* function perPage(event){
+		console.log(event.value);
+		location.href='${path}/boards/notice?perPage=' + event.value;
+	} */
+	
+	$("#pageNumSelect").on('change',function(){
+		$("#boardForm").submit();
+	});
+	
+	
+</script>

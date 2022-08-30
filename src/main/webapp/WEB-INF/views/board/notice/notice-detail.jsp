@@ -12,32 +12,23 @@
 					<span>공지사항</span>
 				</div>
 				<div class="w-100"></div>
-				<input class="board-detail board-title" type="text" value="공지사항 제목" readonly>
+				<input class="board-detail board-title" type="text" value="${noticeBoard.title }" readonly>
 				<hr />
 				<div class="row">
 					<div class="col-md-6">
 						<div class="blog__details">
 							<div class="thumb-list-profile">
 								<img src="${path}/resources/img/member/thumbnail/profile_male.jpg" />
-								<span class="text-white">닉네임</span>
+								<span class="text-white">${noticeBoard.memberId }</span>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6 text-white"
-						style="line-height: 50px; text-align: right">2050-12-10</div>
+						style="line-height: 50px; text-align: right">${noticeBoard.regdate }</div>
 				</div>
 				<div class="board-detail row spad-sm">
-					<textarea id="textArea" readonly>
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
+					${noticeBoard.content }
+					<!-- <textarea id="textArea" readonly>
 							[자유 게시판 내용]
 							[자유 게시판 내용]
 							[자유 게시판 내용]
@@ -48,14 +39,7 @@
 							[자유 게시판 내용]
 							[자유 게시판 내용]
 							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
 							[자유 게시판 내용]				[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
 							[자유 게시판 내용]
 							[자유 게시판 내용]
 							[자유 게시판 내용]
@@ -66,33 +50,32 @@
 							[자유 게시판 내용]
 							[자유 게시판 내용]
 							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							[자유 게시판 내용]
-							</textarea>
+							</textarea> -->
 				</div>
 				<div class="w-100"></div>
 
 				<div class="blog__details__btns">
 					<div class="row justify-content-between">
 						<div class="col-md float-left">
-							<button type="button" class="btn btn-danger">목록</button>
+							<button type="button" class="btn btn-danger notice-list">목록</button>
 
 						</div>
 						<div class="col-md">
 							<div class="btn-group float-right" role="group">
-								<button class="btn btn-danger">수정</button>
-								<button class="btn btn-secondary ml-3">삭제</button>
+								
+								<button class="btn btn-danger notice-modify">수정</button>
+								<button class="btn btn-secondary ml-3 notice-delete">삭제</button>
 							</div>
 						</div>
+						<form id="detail-form" method="get">
+							<input type="hidden" name="bno" value="${noticeBoard.bno }" />
+							<input type="hidden" name="page" value="${cri.page }" />
+							<input type="hidden" name="perPageNum" value="${cri.perPageNum }" />
+							<input type="hidden" name="searchType" value="${cri.searchType }" />
+							<input type="hidden" name="keyword" value="${cri.keyword }" />
+						</form>
 					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -105,10 +88,34 @@
 </html>
 
 <script>
-	$(document).ready(function (){
+	/* $(document).ready(function (){
 		var ta = $("#textArea");
 		ta.css('height','auto');
 		var taH = ta.prop('scrollHeight');
 		ta.css('height', taH);
+	}); */
+	
+	var formObj = $("#detail-form");
+	
+	$(".notice-modify").click(function(){
+		formObj.attr("action","${path}/boards/notice/${bno}/edit");
+		formObj.submit();
 	});
+	
+	$(".notice-delete").click(function(){
+		var isDelete = confirm("게시글을 삭제 하시겠습니까?");
+		if(isDelete){
+			formObj.attr("action","${path}/boards/notice/${bno}");
+			formObj.attr("method","POST");
+			formObj.submit();
+		}else{
+			alert('취소됨');
+		}
+	});
+	
+	$(".notice-list").click(function(){
+		formObj.attr("action","${path}/boards/notice");
+		formObj.submit();
+	});
+	
 </script>
