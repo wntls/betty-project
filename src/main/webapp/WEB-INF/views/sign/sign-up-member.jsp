@@ -74,10 +74,7 @@
 							<input type="text" class="form-control" name="addr" id="addr"/>
 							<br/>
 							<input type="text" class="form-control" name="addr_detail" id="addr_detail" placeholder="상세주소를 입력해주세요"/>
-							
-							<!-- <input type="text" name="addr" id="addr" placeholder="사랑시 고백구 행복동" /> -->
 							<div class="result"></div> 
-						<!-- </div> -->
 						
 						전화번호
 						<div class="input__item">
@@ -110,7 +107,6 @@
 							<button type="button" class="cancel-btn">취소</button>
 						</div>
 					</form>
-						<div id="test"></div>
 				</div>
 			</div>
 		</div>
@@ -210,7 +206,6 @@ $(function(){
 			type: 'post',
 			url: '${path}/sign/up/sms',
 			data: { "code" : $(".phone-code").val() },
-			dataType: 'json',
 			success: function(result){
 					alert("인증 성공 " + result);
 					$("#codeWrap").hide();
@@ -269,7 +264,6 @@ $(function(){
 			type: 'post',
 			url: '${path}/sign/up/email',
 			data: { "code" : $(".email-code").val() },
-			dataType: 'json',
 			success: function(result){
 				console.log(result);
 					alert("이메일인증 성공 " + result);
@@ -402,15 +396,18 @@ $(function(){
 				error.insertAfter(element);
 			}
 		},
-		//debug : true,	
 		submitHandler : function(form){
-			// submit 하기 전에 전처리 공간
+			console.log("submitHandler1");
 			if(!boolSMS){
+				console.log("submitHandler2");
 				alert("핸드폰 인증코드 확인 해주세요.");
-			}else if(!boolEmailCode){
+			}else if(!boolEmail){
+				console.log("submitHandler3");
 				alert("이메일 인증코드 확인 해주세요.");
 			}else{
-				$(form).submit();
+				console.log("submitHandler4");
+				console.log(form);
+				$("#signUpForm").submit();
 			}
 		}
 	}); 

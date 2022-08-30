@@ -16,12 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 @RestControllerAdvice(annotations = RestController.class)
 public class SignControllerAdvice {
 	
-	@PostConstruct
-	public void init() {
-		
-		log.info("======================= 사인 컨트롤러 어드바이스 이닛");
-	}
-
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler
 	public ErrorResult notFoundIdHandle(NotFoundIdException ex) {
