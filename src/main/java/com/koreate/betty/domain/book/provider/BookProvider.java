@@ -3,7 +3,6 @@ package com.koreate.betty.domain.book.provider;
 import static com.koreate.betty.domain.model.TableConst.BOOK_COMMENT_TBL;
 import static com.koreate.betty.domain.model.TableConst.BOOK_SINGLE_TBL;
 import static com.koreate.betty.domain.model.TableConst.BOOK_TBL;
-import static com.koreate.betty.domain.model.TableConst.RENTAL_TBL;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -11,7 +10,6 @@ import java.text.SimpleDateFormat;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
-import com.koreate.betty.domain.book.dto.form.BookDeleteForm;
 import com.koreate.betty.domain.book.dto.form.BookSearchForm;
 import com.koreate.betty.domain.book.vo.Book;
 import com.koreate.betty.domain.book.vo.BookComment;
@@ -351,7 +349,8 @@ public class BookProvider {
 //		return new SQL().SELECT("*").FROM(BOOK_TBL).JOIN(BOOK_SINGLE_TBL).WHERE("code = book_code")
 //				.WHERE("rental = " + rentOption).toString();
 //	}
-
+	
+	
 	// 크롤링
 	public String insertByCrawler(Book book) {
 		return "INSERT IGNORE INTO book VALUES(#{code}, #{title}, #{auth}, #{pub}, #{pubDate}, #{page}, #{genre}, #{intro})";
