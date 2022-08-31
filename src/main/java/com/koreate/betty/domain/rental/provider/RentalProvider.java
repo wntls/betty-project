@@ -1,6 +1,7 @@
 package com.koreate.betty.domain.rental.provider;
 import static com.koreate.betty.domain.model.TableConst.RENTAL_RESERVE_TBL;
 import static com.koreate.betty.domain.model.TableConst.RENTAL_TBL;
+import static com.koreate.betty.domain.model.TableConst.BOOK_TBL;
 
 import java.sql.Timestamp;
 
@@ -10,13 +11,15 @@ import org.apache.ibatis.jdbc.SQL;
 public class RentalProvider {
 	
 	public String rentalByMemberId(String id) {
-		return new SQL().SELECT("*").FROM(RENTAL_TBL)
+		return new SQL().SELECT("rental.*, book.title").FROM(RENTAL_TBL).JOIN(BOOK_TBL)
+				.WHERE("book_code = code")
 				.WHERE("member_id = #{id}")
 				.toString();
 	}
 	
 	public String reserveByMemberId(String id) {
-		return new SQL().SELECT("*").FROM(RENTAL_RESERVE_TBL)
+		return new SQL().SELECT("rental_reserve.*, book.title").FROM(RENTAL_RESERVE_TBL).JOIN(BOOK_TBL)
+				.WHERE("book_code = code")
 				.WHERE("member_id = #{id}")
 				.toString();
 	}
@@ -39,9 +42,16 @@ public class RentalProvider {
 				.toString();
 	}
 	
+	public String reserveCancle(@Param("id")String id, @Param("code")String code) {
+		return new SQL().DELETE_FROM(RENTAL_RESERVE_TBL)
+				.WHERE("member_id = #{id}")
+				.WHERE("book_code = #{code}")
+				.toString();
+	}
+	
 	public String returnBook(@Param("id")String id, @Param("code")String code) {
 		return new SQL().DELETE_FROM(RENTAL_TBL)
-				.WHERE("member_ = #{id}")
+				.WHERE("member_id = #{id}")
 				.WHERE("book_code = #{code}")
 				.toString();
 	}
