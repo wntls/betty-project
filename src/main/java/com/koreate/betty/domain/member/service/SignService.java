@@ -57,20 +57,6 @@ public class SignService {
 		return member;
 	}
 	
-	// 로그아웃
-	public void logout(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession(false);
-		Member user = (Member)session.getAttribute(SessionConst.USER);
-		session.invalidate();
-		Cookie cookieId = WebUtils.getCookie(request, CookieConst.COOKIE_USER);
-		if(cookieId != null) {
-			Cookie cookie = new Cookie(CookieConst.COOKIE_USER, user.getId());
-			cookie.setMaxAge(0);
-			cookie.setPath("/");
-			response.addCookie(cookie);
-		}
-	}
-	
 	// 아이디 중복 체크
 	public boolean checkIdDupl(String id) {
 		return isDupl(signRepository.findIdById(id));

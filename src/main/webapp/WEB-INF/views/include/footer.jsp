@@ -63,7 +63,9 @@
 
 <!-- 다음 주소 api -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<!-- <script src="${path}/resources/js/addr.js"></script> -->
+<script src="${path}/resources/js/addr.js"></script>
+
+<script src="${path}/resources/js/datepicker.js"></script>
 
 </body>
 </html>

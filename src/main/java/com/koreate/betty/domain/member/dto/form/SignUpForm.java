@@ -3,6 +3,7 @@ package com.koreate.betty.domain.member.dto.form;
 import java.util.Date;
 import java.sql.Timestamp;
 
+import javax.annotation.Nullable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -43,7 +44,13 @@ public class SignUpForm {
 	Date birth;
 	
 	@NotBlank
+	String post;
+	
+	@NotBlank
 	String addr;
+	
+	@Nullable
+	String addr_detail;
 	
 	@NotBlank
 	String phone;
@@ -63,7 +70,7 @@ public class SignUpForm {
 					.gender(gender)
 					.birth(new Timestamp(birth.getTime()))
 					.phone(phone)
-					.addr(addr)
+					.addr(String.format("[%s] %s %s", post, addr, addr_detail))
 					.email(email)
 					.rights(rights)
 					.build();
