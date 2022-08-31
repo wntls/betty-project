@@ -13,10 +13,9 @@ public class FreeBoardComment {
 	private final Integer cno;
 	private final Integer freeBno;
 	private final String memberId;
+	private final String nickname;
 	private final String comment;
 	private final Integer origin;
-	private final Integer depth;
-	private final Integer seq;
 	private final Timestamp regdate;
 	private final String showboard;		
 	

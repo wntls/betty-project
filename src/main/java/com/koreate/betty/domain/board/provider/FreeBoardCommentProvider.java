@@ -29,14 +29,6 @@ public class FreeBoardCommentProvider {
 		return sql.toString();
 	}
 	
-	// 댓글 수정
-	public String commentModify(@Param("loginUser") String loginUser, @Param("cvo") FreeBoardComment cvo) {
-		return new SQL().UPDATE(FREE_COMMENT_TBL)
-				.SET("comment = #{cvo.comment}")
-				.WHERE("cno = #{cvo.cno}")
-				.AND().WHERE("member_id = #{loginUser}")
-				.toString();
-	}
 	
 	// origin column 값 수정
 	public String updateOrigin() {

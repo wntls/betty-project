@@ -25,9 +25,6 @@ public class FreeBoardCommentForm {
 	
 	private Integer origin;
 	
-	private Integer depth;
-	
-	private Integer seq;
 	
 	public FreeBoardComment freeBoardComment() {
 		return FreeBoardComment.builder()
@@ -36,8 +33,6 @@ public class FreeBoardCommentForm {
 				.memberId(memberId)
 				.comment(comment)
 				.origin(origin)
-				.depth(depth)
-				.seq(seq)
 				.build();
 	}
 	

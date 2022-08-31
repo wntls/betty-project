@@ -13,8 +13,8 @@ public class FreeBoardProvider {
 	public String save(FreeBoard board) {
 		return new SQL()
 				.INSERT_INTO(FREE_BOARD_TBL)
-				.INTO_COLUMNS("member_id", "tag", "title", "content")
-				.INTO_VALUES("#{memberId},#{tag},#{title},#{content}")
+				.INTO_COLUMNS("member_id","nickname", "tag", "title", "content")
+				.INTO_VALUES("#{memberId},#{nickname},#{tag},#{title},#{content}")
 				.toString();
 	}
 	
@@ -77,7 +77,7 @@ public class FreeBoardProvider {
 	private void getSearchWhere(SearchCriteria cri, SQL sql) {
 		String titleQuery = "title LIKE CONCAT('%','"+cri.getKeyword()+"','%')";
 		String contentQuery = "content LIKE CONCAT('%',#{keyword},'%')";
-		String writerQuery = "member_id LIKE CONCAT('%',#{keyword},'%')";
+		String writerQuery = "nickname LIKE CONCAT('%',#{keyword},'%')";
 		if(cri.getSearchType() != null && !cri.getSearchType().trim().equals("")
 				&& !cri.getSearchType().trim().equals("n")) {
 			if(cri.getSearchType().contains("t")) {
