@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 import com.koreate.betty.domain.member.interceptor.SignInByCookieInterceptor;
 import com.koreate.betty.domain.member.service.MemberService;
-import com.koreate.betty.global.interceptor.ChooseNavInterceptor;
+import com.koreate.betty.global.interceptor.AuthInterceptor;
 
 @EnableWebMvc
 @EnableScheduling
@@ -37,10 +37,10 @@ public class AppConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new ChooseNavInterceptor())
+		registry.addInterceptor(new AuthInterceptor())
 		.order(0)
 		.addPathPatterns("/**")
-		.excludePathPatterns("/resources/**");
+		.excludePathPatterns("/resources/**", "/", "/sign/**", "/library","/books/**","/boards/**");
 		registry.addInterceptor(new SignInByCookieInterceptor(memberService))
 		.order(1)
 		.addPathPatterns("/**")
