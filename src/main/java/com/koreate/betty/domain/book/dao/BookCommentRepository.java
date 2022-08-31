@@ -18,6 +18,9 @@ public interface BookCommentRepository {
 	@SelectProvider(type=BookProvider.class, method="findCommentByCode")
 	public List<BookComment> findCommentByCode(@Param("code")String code, @Param("cri")Criteria cri);
 	
+	@SelectProvider(type=BookProvider.class, method="findCommentByCodeCount")
+	public int findCommentByCodeCount(String code);
+	
 	@InsertProvider(type=BookProvider.class, method="insertComment")
 	public int insertComment(BookComment bookComment);
 	

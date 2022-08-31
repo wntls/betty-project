@@ -15,9 +15,9 @@ local.properties
 .recommenders
 target/*
 META-INF/*
-##### log4j.xml
+log4j.xml
 **/database.properties
-**/resources/img/
+# **/resources/img/
 
 
 # External tool builders

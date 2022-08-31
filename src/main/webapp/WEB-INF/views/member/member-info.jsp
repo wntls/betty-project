@@ -13,7 +13,7 @@
 					</div>
 					<div class="col-auto">
 						<button class="btn btn-danger"
-							onclick="location.href='${path}/members/num/edit'">수정</button>
+							onclick="location.href='${path}/members/${user.id}/edit'">수정</button>
 						<button class="btn btn-secondary ml-3"
 						data-toggle="modal"
 						data-target="#withdrawMember" >탈퇴</button>

@@ -1,44 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<style>
+	#profileImgDiv {
+		position: relative;
+		border-raius: 1rem;
+		width: 300px;
+		height: 300px;
+		margin-right: 2rem;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: top center;
+		box-sizing: border-box;
+	}
+</style>
+
 <%@include file="/WEB-INF/views/include/header.jsp"%>
+
 
 <section class="signup spad">
 	<div class="container-md">
 		<div class="row justify-content-center">
 			<div class="col-md-auto">
-				
-				
 				<div class="section-title">
-				<div class="row justify-content-between">
-					<div class="col-auto">
 						<h4>회원 정보 수정</h4>
-					</div>
 				</div>
-			</div>
 
-			<img class="img-thumbnail" alt="..."
-				src="${path}/resources/img/member/origin/${user.img}" />
-			<div class="w-100 mb-5"></div>
-			
-			<hr/>
-			<h2>이미지 업로드 테스트</h2>
-			<form action="" method="post" enctype="multipart/form-data">
-				<input type="text" name="id" value="id001" hidden>
-				<div class="input-group mb-3">
-				  <div class="custom-file">
-				    <input type="file" class="custom-file-input" name="profileImg" id="profileImg" accept="image/*">
-				    <label class="custom-file-label" for="profileImg">프로필 이미지를 등록하세요</label>
-				  </div>
-				  <div class="input-group-append">
-				    <button class="btn btn-outline-secondary" type="submit" id="profileImgUploadBtn">업로드 요청</button>
-				  </div>
-				</div>
-			</form>
-			<hr/>
 				<div class="login__form">
-					<form id="editForm" action="" method="post">
-
+					<div class="row justify-content-center spad-sm">
+					<div class="img-thumbnail" id="profileImgDiv" style="background-image: url('${path}/resources/img/member/origin/${user.img}');"></div>
+					</div>
+					<form id="editForm" action="" method="post" enctype="multipart/form-data">
+							
+						<div class="input-group mb-3">
+						  <div class="custom-file">
+						    <input type="file" class="custom-file-input" name="profileImg" id="profileImg" accept="image/*">
+						    <label class="custom-file-label" for="profileImg">프로필 이미지를 등록하세요</label>
+						  </div>
+						</div>
 						<div class="input__item">
 							<span><i class="bi bi-person-video2"></i></span>
 							<input type="text" name="id" id="id" value="${user.id}" readonly/> 
@@ -86,15 +85,7 @@
 							  <label class="form-check-label" for="female">여성</label>
 							</div>
 						</div>
-						 
-						 <script>
-						 		console.log(${user.gender});
-						 	if(${user.gender} == 'male'){
-						 		console.log("male");
-						 	} else {
-						 		console.log("female");
-						 	}
-						 </script>
+						
 						 
 						<div class="input__item mt-3">
 							<span><i class="bi bi-house"></i></span>
@@ -115,6 +106,7 @@
 							<button type="submit" class="btn btn-danger mr-2">수정하기</button>
 							<button type="button" class="btn btn-secondary">취소</button>
 						</div>
+							<input type="text" id="datepicker" />
 					</form>
 					
 				</div>
@@ -126,8 +118,34 @@
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 
 <script>
+	function test(ev){
+		console.log(ev.value);
+		
+	}
+
 $(function(){
 	
+	
+	$("#birth").datepicker({
+        dateFormat: 'yy-mm-dd' //달력 날짜 형태
+        ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+        ,autoSize: false
+        ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
+        ,changeYear: true //option값 년 선택 가능
+        ,changeMonth: true //option값  월 선택 가능                
+        ,showAnim: "slideDown"
+        	,buttonImage: "${path}/resources/img/assets/datepciekr/ui-icons_444444_256x240.png" // 버튼 이미지
+        		 ,yearRange: 'c-100:c+0'
+        ,buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함 
+        ,buttonText: "선택" //버튼 호버 텍스트              
+        ,yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
+        ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 텍스트
+        ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip
+        ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
+        ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
+        ,maxDate: "0" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
+    });                    
+    
 	function checkRegex(elP, valP, regexP, messageP, ajaxP){
 		// 정규 표현식이 일치 하지 않을 때
 		if(regexP.test(valP) === false){
@@ -250,5 +268,16 @@ $(function(){
 });
 </script>
 
+ 
+ <script>
+ 		console.log('${user.gender}');
+ 	if('${user.gender}' == 'man'){
+ 		console.log("male");
+ 		$('#male').prop('checked','true');
+ 	} else {
+ 		console.log("female");
+ 		$('#female').prop('checked','true');
+ 	}
+ </script>
 
 

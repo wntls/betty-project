@@ -55,14 +55,15 @@
 <script src="${path}/resources/js/owl.carousel.min.js"></script>
 <script src="${path}/resources/js/jquery.nice-select.min.js"></script>
 <script src="${path}/resources/js/main.js"></script>
-<%-- <script src="${path}/resources/js/caleandar.js"></script> --%>
 <script src="${path}/resources/ckeditor/ckeditor.js"></script>
 <script src="${path}/resources/ckeditor/adapters/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 <script src="${path}/resources/js/jquery.simple-calendar.js"></script>
+<script src="${path}/resources/js/jquery-ui.min.js"></script>
+
 <!-- 다음 주소 api -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="${path}/resources/js/addr.js"></script>
+<!-- <script src="${path}/resources/js/addr.js"></script> -->
 
 </body>
 </html>

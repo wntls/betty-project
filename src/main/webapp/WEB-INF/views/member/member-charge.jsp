@@ -142,13 +142,10 @@
 		</div>
 	</div>
 </div>
-<%@include file="/WEB-INF/views/offline/offline-test.jsp" %>
 
 </html>
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
-
-
 
 <div class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">

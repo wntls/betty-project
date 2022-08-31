@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -19,8 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.koreate.betty.domain.book.service.BookService;
 import com.koreate.betty.domain.member.dto.form.PointForm;
 import com.koreate.betty.domain.member.dto.form.SignInForm;
-import com.koreate.betty.domain.member.dto.form.UpdateForm;
 import com.koreate.betty.domain.member.dto.form.SignUpForm;
+import com.koreate.betty.domain.member.dto.form.UpdateForm;
 import com.koreate.betty.domain.member.service.MemberService;
 import com.koreate.betty.domain.member.service.SignService;
 import com.koreate.betty.domain.member.vo.ChkLog;
@@ -43,7 +44,25 @@ public class MemberTest {
 	SignService signService;
 	BookService bs;
 	
-	@Test 
+	@Test
+	public void joinOne() {
+		SignUpForm form = new SignUpForm();
+		form.setId("namu6751");
+		form.setPw("namu6751");
+		form.setRepw("namu6751");
+		form.setNickname("namu6751");
+		form.setName("namu6751");
+		form.setGender("namu6751");
+		form.setAddr("namu6751");
+		form.setBirth(new Date(0));
+		form.setPhone("010_0000_0000");
+		form.setRights(3);
+		form.setEmail("namu6751@naver.com");
+		log.info("count = {} , form = {}",form);
+		signService.signUp(form);
+	}
+	
+	//@Test 
 	public void joinTest() {
 		IntStream.rangeClosed(1, 10).forEach(
 					i -> {
@@ -56,7 +75,7 @@ public class MemberTest {
 						String gender = i % 2 == 0 ? "man" : "woman";
 						form.setGender(gender);
 						form.setAddr("addr00"+i);
-						form.setBirth("2022-08-27 00:00:0"+i);
+						form.setBirth(new Date());
 						form.setPhone("0100000000"+i);
 						int count = i <= 3 ? i : 0;
 						form.setRights(count);
@@ -88,7 +107,7 @@ public class MemberTest {
 		String id = "123";
 		String phone = "2";
 		
-		int result = signService.forgetPw(id, phone);
+		String result = signService.forgetPw(id, phone);
 		
 		log.info("\n\n\n ::: confirmForChangePwTest : {}", result);
 	}

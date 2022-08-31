@@ -18,7 +18,6 @@ public class SuggestBoard {
 	private final String content;
 	private final Integer origin;
 	private final Integer depth;
-	private final Integer seq;
 	private final Timestamp regdate;
 	private final Integer viewcnt;
 	private final Integer recommend;

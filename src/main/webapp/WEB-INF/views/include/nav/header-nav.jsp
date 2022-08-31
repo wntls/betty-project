@@ -22,20 +22,21 @@
 						<!-- 가운데 메뉴바  .nav-link padding 나중에 1rem 으로 교체-->
 						<div class="col-md-4">
 							<nav class="nav">
-								<a class="nav-link" href="${path}/library">도서관 소개</a> 
-								<a class="nav-link" href="${path}/books">도서 목록</a> 
+								<a class="nav-link" href="${path}/library">도서관 소개 |</a> 
+								<a class="nav-link" href="${path}/books">도서 목록 |</a> 
 								<a class="nav-link" href="${path}/boards/notice">게시판</a>
 								<c:choose>
 									<c:when test="${user.rights == 0}">
-										<a class="nav-link" href="${path}/members/num/dashboard">회원 공간</a>
+										<a class="nav-link" href="${path}/members/num/dashboard">| 회원 공간</a>
+										<a class="nav-link" href="${path}/offline">| 오프라인</a>
 												
 									</c:when>
 									<c:when test="${user.rights == 2}">
-										<a class="nav-link" href="${path}/staff/books">직원</a>
+										<a class="nav-link" href="${path}/staff/books">| 직원</a>
 									
 									</c:when>
 									<c:when test="${user.rights == 3}">
-										<a class="nav-link" href="${path}/admin/members">관리자</a>
+										<a class="nav-link" href="${path}/admin/members">| 관리자</a>
 										
 									</c:when>
 								</c:choose>
@@ -48,7 +49,7 @@
 								<div class="col-md-3 float-right">
 									<nav class="nav float-right">
 										<a class="nav-link" href="${path}/sign/in">로그인</a> <a
-											class="nav-link" href="${path}/sign/up/member">회원가입</a>
+											class="nav-link" href="${path}/sign/up">회원가입</a>
 									</nav>
 								</div>
 							</c:when>

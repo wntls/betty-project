@@ -10,6 +10,8 @@ public class NoticeBoardForm {
 	
 	private String memberId;
 	
+	private String nickname;
+	
 	private String title;
 
 	private String content;
@@ -19,6 +21,7 @@ public class NoticeBoardForm {
 		return NoticeBoard.builder()
 				.bno(bno)
 				.memberId(memberId)
+				.nickname(nickname)
 				.title(title)
 				.content(content)
 				.build();

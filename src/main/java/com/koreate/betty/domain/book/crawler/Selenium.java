@@ -16,7 +16,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.koreate.betty.domain.book.dto.form.BookUpdateForm;
+import com.koreate.betty.domain.book.dto.form.BookForm;
 import com.koreate.betty.domain.book.vo.Book;
 
 public class Selenium {
@@ -253,7 +253,7 @@ public class Selenium {
 			int genre = Integer.parseInt(genreStr);
 			
 			
-			BookUpdateForm form = new BookUpdateForm(code, title, auth, pub, pubDate, pageCnt, genre, intro);
+			BookForm form = new BookForm(code, title, auth, pub, pubDate, pageCnt, genre, intro);
 			Book book = form.createBook();
 
 			bookList.add(book);

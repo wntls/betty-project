@@ -13,7 +13,6 @@
 		aria-labelledby="servicesDropdown">
 		<div class="d-md-flex align-items-start justify-content-start"  style="text-align:center; ">
 			<div class="col-md-4">
-				<div class="dropdown-header">권능환</div>
 				<br/>
 				sign
 				<a class="dropdown-item" href="${path}/sign/in">로그인</a>
@@ -35,10 +34,14 @@
 				book 
 				<a class="dropdown-item" href="${path}/books/num">책 상세보기</a> 
 				<a class="dropdown-item" href="${path}/books">책 리스트</a>
+				
+				<br/>
+				
+				offline
+				<a class="dropdown-item" href="${path}/offline">오프라인</a>
 			</div>
 			
 			<div class="col-md-4">
-				<div class="dropdown-header">김선기</div>
 				<br/>
 				staff
 				<a class="dropdown-item" href="${path}/staff">직원 영역</a>
@@ -63,7 +66,6 @@
 			</div>
 			
 			<div class="col-md-4">
-				<div class="dropdown-header">박주신</div>
 				<br/>
 				board
 				<a class="dropdown-item" href="${path}/boards/free">자유게시판</a> 
