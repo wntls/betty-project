@@ -64,9 +64,8 @@ public class BookController {
 	@PostMapping("{isbn}/single")
 	public String addWare(@PathVariable String isbn, String id, int amount) {
 		int result = 0;
-		for (int i = 0; i < amount; i++) {
-			result += bs.insertWare(isbn, id, amount);
-		}
+		Integer count = amount;		
+		result = bs.insertWare(isbn, id, count);
 		return "redirect:/staff/books/";
 	}
 	
