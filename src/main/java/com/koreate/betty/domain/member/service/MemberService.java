@@ -13,8 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.koreate.betty.domain.member.dao.MemberCardRepository;
 import com.koreate.betty.domain.member.dao.MemberRepository;
-import com.koreate.betty.domain.member.dto.form.SignUpForm;
-import com.koreate.betty.domain.member.dto.form.SignInForm;
 import com.koreate.betty.domain.member.dto.form.PointForm;
 import com.koreate.betty.domain.member.dto.form.UpdateForm;
 import com.koreate.betty.domain.member.exception.NotFoundIdException;

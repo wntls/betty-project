@@ -34,21 +34,16 @@ public class FreeCommentService {
 		return dao.commentReply(vo);
 	}
 	
-	// 댓글 수정
-	public int modify(FreeBoardCommentForm form, String loginUser) {
-		FreeBoardComment vo = form.freeBoardComment();
-		return dao.commentModify(loginUser, vo);
-	}
-	
 	// 댓글 삭제
 	public int remove(int cno, String loginUser) {
 		return dao.removeComment(loginUser, cno);	
 	}
 	
 	// 오리진 업데이트
+	/*
 	public int updateOrigin() {
 		return dao.updateOrigin();
-	}
+	}*/
 	
 	// 댓글 목록 출력
 	public List<FreeBoardComment> list(Criteria cri, int bno){

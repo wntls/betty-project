@@ -154,7 +154,7 @@ public class FreeBoardRepoTest {
 			//log.info("first={}, second={}, third={}",first,second,third);
 		}
 	
-	//@Test	
+	@Test	
 	public void listTest() {
 		List<FreeBoard> list = freeBoardService.freeList(cri);
 		log.info("list : "+ list.size());
@@ -162,7 +162,7 @@ public class FreeBoardRepoTest {
 		log.info(board.getTitle());
 	}
 	
-	@Test
+	//@Test
 	@Transactional
 	public void 통합테스트() {
 		// save

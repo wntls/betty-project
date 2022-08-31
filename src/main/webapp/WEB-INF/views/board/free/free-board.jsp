@@ -29,6 +29,8 @@
 					</div>
 					
 					<table class="table table-bordered">
+						<!-- 게시글 list -->
+						
 						<thead>
 							<tr>
 								<th>#</th>
@@ -39,22 +41,46 @@
 							</tr>
 						</thead>
 						<tbody>
-							<!-- 1 -->
-							<tr>
-								<td>1</td>
-								<td>{일상} {title}</td>
-								<td>{auth}</td>
-								<td>{viewcnt}</td>
-								<td>{regdate}</td>
-							</tr>
-							<!-- 2 -->
-							<tr>
-								<td>2</td>
-								<td>{일상} {title}</td>
-								<td>{auth}</td>
-								<td>{viewcnt}</td>
-								<td>{regdate}</td>
-							</tr>
+						<c:choose>
+							<c:when test="${!empty list}">
+								<c:forEach var="board" items="${list}">
+								<c:choose>
+									<c:when test="${board.showboard eq 'y'}">
+										<tr>
+											<td>${board.bno}</td>
+											<td>
+												<a href="free/${board.bno}?${pm.makeQuery(pm.cri.page)}">${board.tag}&nbsp;&nbsp;${board.title}</a>		
+											</td>
+											<td>${board.nickname}</td>
+											<td>${board.viewcnt}</td>
+											<td>
+												<f:formatDate value="${board.regdate}" pattern="yyyy-MM-dd (E) hh:mm"/>
+											</td>
+										</tr>	
+									</c:when>
+									<c:otherwise>
+										<tr>
+											<td></td>
+											<td>삭제된 게시물 입니다.</td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>										
+									</c:otherwise>
+								</c:choose>
+
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td></td>
+									<td>등록된 게시물이 없습니다.</td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>								
+							</c:otherwise>
+						</c:choose>
 						</tbody>
 					</table>
 
@@ -63,10 +89,9 @@
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-6">
-					<form id="searchForm" action="${path}/">
 						<div class="form-row input-group mb-3">
 							<div class="input-group-prepend">
-								<select id="searchType">
+								<select>
 									<option value="t">제목</option>
 									<option value="w">작성자</option>
 									<option value="c">내용</option>
@@ -74,23 +99,40 @@
 							</div>
 							<input type="text" class="form-control" id="keyword">
 							<div class="input-group-append">
-								<button type="submit" onclick="testPrint(event)" class="btn btn-primary">검색하기</button>
+								<button type="submit" id="searchBtn" class="btn btn-primary">검색하기</button>
 							</div>
 						</div>
-					</form>
 				</div>
 				<div class="w-100"></div>
 
 				<!-- 페이징 처리 -->
 				<div class="form-row">
 					<ul class="pagination" id="pa">
-						<li><a href="#">Previous</a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">Next</a></li>
+							<c:if test="${pm.first}">
+								<li>
+									<a href="free${pm.makeQuery(1)}">&laquo;&laquo;</a>
+								</li>
+							</c:if>
+							<c:if test="${pm.prev}">
+								<li>
+									<a href="free${pm.makeQuery(pm.startPage-1)}">Previous</a>
+								</li>
+							</c:if>
+							<c:forEach var="i" begin="${pm.startPage}" end="${pm.endPage}">
+								<li>
+									<a href="free${pm.makeQuery(i)}">${i}</a>
+								</li>
+							</c:forEach>
+							<c:if test="${pm.next}">
+									<li>
+										<a href="free${pm.makeQuery(pm.endPage+1)}">Next</a>
+									</li>
+							</c:if>		
+							<c:if test="${pm.last}">
+								<li>
+									<a href="free${pm.makeQuery(pm.maxPage)}">&raquo;&raquo;</a>
+								</li>
+							</c:if>
 					</ul>
 				</div>
 			</div>
@@ -100,4 +142,15 @@
 </section>
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
+</html>
+
+<script>
+$("#searchBtn").click(function() {
+	var searchType = $(".input-group-prepend select option:selected").val();
+	var keyword = $("#keyword").val();
+	console.log("selectType : "+searchType);
+	console.log("keyword : "+keyword);
+	location.href="free?searchType="+searchType+"&keyword="+keyword;
+});
+</script>
 

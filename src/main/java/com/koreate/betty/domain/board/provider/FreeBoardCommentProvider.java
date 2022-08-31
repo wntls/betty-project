@@ -2,10 +2,11 @@ package com.koreate.betty.domain.board.provider;
 
 import static com.koreate.betty.domain.model.TableConst.FREE_COMMENT_TBL;
 
+import static com.koreate.betty.domain.model.SessionConst.USER;
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
-import com.koreate.betty.domain.board.vo.FreeBoard;
 import com.koreate.betty.domain.board.vo.FreeBoardComment;
 import com.koreate.betty.global.util.Criteria;
 
@@ -28,14 +29,6 @@ public class FreeBoardCommentProvider {
 		return sql.toString();
 	}
 	
-	// 댓글 수정
-	public String commentModify(@Param("loginUser") String loginUser, @Param("cvo") FreeBoardComment cvo) {
-		return new SQL().UPDATE(FREE_COMMENT_TBL)
-				.SET("comment = #{cvo.comment}")
-				.WHERE("cno = #{cvo.cno}")
-				.AND().WHERE("member_id = #{loginUser}")
-				.toString();
-	}
 	
 	// origin column 값 수정
 	public String updateOrigin() {

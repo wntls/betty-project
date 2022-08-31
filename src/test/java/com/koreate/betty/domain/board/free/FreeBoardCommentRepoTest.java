@@ -93,11 +93,6 @@ public class FreeBoardCommentRepoTest {
 		log.info("re={}",re);
 	}
 	
-	//@Test
-	public void modify() {
-		int re = fc.modify(form4, "id002");
-		log.info("re={}",re);
-	}
 	
 	//@Test
 	public void add() {

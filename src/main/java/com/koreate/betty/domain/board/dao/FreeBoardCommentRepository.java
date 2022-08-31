@@ -26,11 +26,6 @@ public interface FreeBoardCommentRepository {
 	//@Options(useGeneratedKeys = true , keyProperty = "cno")
 	public int commentReply(FreeBoardComment cvo);	
 	
-	
-	// 댓글 수정
-	@UpdateProvider(type=FreeBoardCommentProvider.class, method="commentModify")
-	public int commentModify(@Param("loginUser") String loginUser, @Param("cvo") FreeBoardComment cvo);
-	
 	// 댓글 삭제
 	@UpdateProvider(type=FreeBoardCommentProvider.class, method="removeComment")
 	public int removeComment(@Param("loginUser") String loginUser, @Param("cno") int cno);
