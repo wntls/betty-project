@@ -29,7 +29,7 @@ public class BookCommentService {
 		PageMaker pageMaker = new PageMaker(cri, totalCount);
 		
 //		List<BookComment>
-		map.put("list", bookCommentRepository.findCommentByCode(code, cri));
+		map.put("list", bookCommentRepository.findCommentByCode(code, cri));	// img, nickname, regdate, comment
 		map.put("pm", pageMaker);
 		return map;
 	}
