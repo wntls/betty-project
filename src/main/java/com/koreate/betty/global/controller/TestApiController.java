@@ -1,18 +1,13 @@
 package com.koreate.betty.global.controller;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.Getter;
@@ -36,6 +31,11 @@ public class TestApiController {
 	@GetMapping("/test/date")
 	public void testDate (@DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
 		Timestamp.from(date.toInstant());
+	}
+	
+	@PostMapping("/test/boolean")
+	public String testBoolean(@RequestBody String text) {
+		return text;
 	}
 		
 	@Setter @Getter

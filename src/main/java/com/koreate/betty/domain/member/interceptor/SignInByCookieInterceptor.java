@@ -5,14 +5,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
 import com.koreate.betty.domain.member.service.MemberService;
-import com.koreate.betty.domain.member.service.SignService;
+import com.koreate.betty.domain.member.util.Base64Util;
 import com.koreate.betty.domain.member.vo.Member;
 import com.koreate.betty.domain.model.CookieConst;
 import com.koreate.betty.domain.model.SessionConst;
@@ -34,7 +32,9 @@ public class SignInByCookieInterceptor implements HandlerInterceptor {
 		
 		Cookie cookie = WebUtils.getCookie(request, CookieConst.COOKIE_USER);
 		if (cookie != null) {
-			Member user = memberService.findOne(cookie.getValue());
+			String encodedId = cookie.getValue();
+			String decodedId = Base64Util.decode(encodedId);
+			Member user = memberService.findOne(decodedId);
 			session.setAttribute(SessionConst.USER, user);
 		}
 		return true;

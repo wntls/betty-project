@@ -37,14 +37,16 @@ public class AppConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new AuthInterceptor())
+		registry.addInterceptor(new SignInByCookieInterceptor(memberService))
 		.order(0)
 		.addPathPatterns("/**")
-		.excludePathPatterns("/resources/**", "/", "/sign/**", "/library","/books/**","/boards/**");
-		registry.addInterceptor(new SignInByCookieInterceptor(memberService))
+		.excludePathPatterns("/resources/**");
+		
+		registry.addInterceptor(new AuthInterceptor())
 		.order(1)
 		.addPathPatterns("/**")
-		.excludePathPatterns("/resources/**");
+		.excludePathPatterns("/resources/**", "/", "/sign/**", "/library","/books/**","/boards/**");
+		
 	}
 
 	@Override 

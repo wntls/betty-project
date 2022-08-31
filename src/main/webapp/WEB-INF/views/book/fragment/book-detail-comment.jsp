@@ -6,7 +6,9 @@
 	<!-- 댓글 -->
 	<div class="anime__details__review">
 		<div class="section-title">
+
 			<h5>${pm}후기${list}</h5>
+
 		</div>
 		<div id="comments" class="anime__review__item">
 			

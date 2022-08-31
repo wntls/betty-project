@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Base64Utils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.util.WebUtils;
 import com.koreate.betty.domain.member.dto.form.SignInForm;
 import com.koreate.betty.domain.member.dto.form.SignUpForm;
 import com.koreate.betty.domain.member.service.SignService;
+import com.koreate.betty.domain.member.util.Base64Util;
 import com.koreate.betty.domain.member.vo.Member;
 import com.koreate.betty.domain.model.CookieConst;
 import com.koreate.betty.domain.model.SessionConst;
@@ -62,7 +64,7 @@ public class SignController {
 						.forEachRemaining(ex -> log.error("bindingResult = {}", ex));
 			return "redirect:/sign/up/member";
 		}
-
+		form.encode();
 		int result = signService.signUp(form);
 		String message = result != 0 ? "회원가입 완료" : "회원가입 실패";
 		rttr.addFlashAttribute("message", message);
@@ -72,19 +74,20 @@ public class SignController {
 	@PostMapping("in")
 	public String signIn(SignInForm form, HttpSession session, HttpServletResponse response, String redirectURL,
 			RedirectAttributes rttr) throws IOException {
+		form.encode();
 		Member user = signService.signIn(form);
-		boolean cookie = form.isLoginCookie();
 		if (user == null) {
 			rttr.addFlashAttribute("message", "로그인 실패");
 			return "redirect:/sign/in";
 		}
 		session.setAttribute("user", user);
 
-		if (cookie) {
-			Cookie idCookie = new Cookie(CookieConst.COOKIE_USER, user.getId());
-			idCookie.setMaxAge(24 * 60 * 60);
-			idCookie.setPath("/");
-			response.addCookie(idCookie);
+		if (form.isLoginCookie()) {
+			String encodedId = Base64Util.encode(user.getId());
+			Cookie cookie = new Cookie(CookieConst.COOKIE_USER, encodedId);
+			cookie.setMaxAge(24 * 60 * 60);
+			cookie.setPath("/");
+			response.addCookie(cookie);
 		}
 
 		if (redirectURL != null) {
@@ -101,9 +104,10 @@ public class SignController {
 		HttpSession session = request.getSession(false);
 		Member user = (Member) session.getAttribute(SessionConst.USER);
 		session.invalidate();
-		Cookie cookieId = WebUtils.getCookie(request, CookieConst.COOKIE_USER);
-		if (cookieId != null) {
-			Cookie cookie = new Cookie(CookieConst.COOKIE_USER, user.getId());
+		Cookie findCookie = WebUtils.getCookie(request, CookieConst.COOKIE_USER);
+		if (findCookie != null) {
+			String encodedId = Base64Util.encode(user.getId());
+			Cookie cookie = new Cookie(CookieConst.COOKIE_USER, encodedId);
 			cookie.setMaxAge(0);
 			cookie.setPath("/");
 			response.addCookie(cookie);

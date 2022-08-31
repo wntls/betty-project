@@ -24,7 +24,9 @@ public class Member {
 	private String gender;
 	private Timestamp birth;
 	private String phone;
+	private String post;
 	private String addr;
+	private String addrDetail;
 	private String email;
 	private Timestamp regDate;
 	private String del;

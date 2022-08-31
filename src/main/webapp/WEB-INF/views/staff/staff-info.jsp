@@ -14,7 +14,7 @@
 				</div>
 			</div>
 				<img class="img-thumbnail" alt="..."
-					src="${path}/resources/img/member/origin/profile_male.jpg" />
+					src="${path}/resources/img/member/middle/profile_male.jpg" />
 			<div class="w-100 mb-5"></div>
 
 
