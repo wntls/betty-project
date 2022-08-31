@@ -44,7 +44,7 @@ public class MemberTest {
 	SignService signService;
 	BookService bs;
 	
-	@Test
+//	@Test
 	public void joinOne() {
 		SignUpForm form = new SignUpForm();
 		form.setId("namu6751");
@@ -62,7 +62,7 @@ public class MemberTest {
 		signService.signUp(form);
 	}
 	
-	//@Test 
+	@Test 
 	public void joinTest() {
 		IntStream.rangeClosed(1, 10).forEach(
 					i -> {

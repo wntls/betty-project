@@ -6,13 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.koreate.betty.domain.book.dto.form.BookCommentForm;
 import com.koreate.betty.domain.book.service.BookCommentService;
 import com.koreate.betty.domain.book.service.BookService;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
+@RequestMapping("/books")
 public class BookCommentApiController {
 
 	@Autowired
@@ -30,10 +39,23 @@ public class BookCommentApiController {
 	
 	// 댓글 추가
 	@PostMapping("{isbn}/comment")
-	public String addComment(BookCommentForm form) {
+	public testDto addComment(BookCommentForm form) {
+		log.info("form = {} ",form);
 		int result = bcs.insertComment(form);
-		return result == 1 ? "성공" : "실패";
+		String str = result == 1 ? "성공" : "실패";
+		testDto dto = new testDto();
+		dto.setData(str);
+		return dto;
 	}
+	
+	@Data
+	@NoArgsConstructor
+	@AllArgsConstructor
+	static class testDto{
+		private String data;
+		
+	}
+	
 	
 	// 댓글 삭제
 	@DeleteMapping("{isbn}/comment/{cno}")
