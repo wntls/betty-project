@@ -41,11 +41,11 @@ public class AppConfig implements WebMvcConfigurer {
 		.order(0)
 		.addPathPatterns("/**")
 		.excludePathPatterns("/resources/**");
-		/*
+		
 		registry.addInterceptor(new AuthInterceptor())
 		.order(1)
 		.addPathPatterns("/**")
-		.excludePathPatterns("/resources/**", "/", "/sign/**", "/library","/books/**","/boards/**");*/
+		.excludePathPatterns("/resources/**", "/", "/sign/**", "/library","/books/**","/boards/**");
 		
 	}
 
