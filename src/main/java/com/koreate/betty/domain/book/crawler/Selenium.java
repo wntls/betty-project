@@ -249,11 +249,11 @@ public class Selenium {
 
 			int pageCnt = Integer.parseInt(page);
 			
-			Timestamp pubDate = Timestamp.valueOf(pubdateStr + " 00:00:00");
+//			Timestamp pubDate = Timestamp.valueOf(pubdateStr + " 00:00:00");
 			int genre = Integer.parseInt(genreStr);
 			
 			
-			BookForm form = new BookForm(code, title, auth, pub, pubDate, pageCnt, genre, intro);
+			BookForm form = new BookForm(code, title, auth, pub, pubdateStr, pageCnt, genre, intro);
 			Book book = form.createBook();
 
 			bookList.add(book);
