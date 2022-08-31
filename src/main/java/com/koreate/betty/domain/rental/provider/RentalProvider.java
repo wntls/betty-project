@@ -22,7 +22,7 @@ public class RentalProvider {
 	}
 
 	// num은 BookSingleProvider의 findExistNum 메소드 사용
-	public String rentalBook(@Param("id")String id, @Param("code")String code, @Param("num")String num) {
+	public String rentalBook(@Param("id")String id, @Param("code")String code, @Param("num")Integer num) {
 		return new SQL().INSERT_INTO(RENTAL_TBL)
 				.INTO_VALUES("#{code}, #{num}, #{id}, DATE_FORMAT(now(), '%Y-%m-%d'), DATE_FORMAT(DATE_ADD(now(), INTERVAL (SELECT lend_period FROM premium WHERE grade = (SELECT premium_grade FROM member_card WHERE member_id = #{id})) DAY), '%Y-%m-%d')")
 				.toString();
@@ -33,7 +33,17 @@ public class RentalProvider {
 //		return "";
 //	}
 	
-	public String reserveBook(@Param("id")String id, @Param("code")String code, @Param("date")Timestamp date) {
-		return "";
+	public String reserveBook(@Param("id")String id, @Param("code")String code, @Param("date")Timestamp date, @Param("num")Integer num) {
+		return new SQL().INSERT_INTO(RENTAL_RESERVE_TBL)
+				.INTO_VALUES("#{code}, #{num}, #{id}, DATE_FORMAT(#{date}, '%Y-%m-%d')")
+				.toString();
 	}
+	
+	public String returnBook(@Param("id")String id, @Param("code")String code) {
+		return new SQL().DELETE_FROM(RENTAL_TBL)
+				.WHERE("member_ = #{id}")
+				.WHERE("book_code = #{code}")
+				.toString();
+	}
+	
 }

@@ -1,5 +1,6 @@
 package com.koreate.betty.domain.rental.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -14,18 +15,36 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RentalService {
 	
+	
 	private final RentalRepository rentalRepository;
 	
 	
-	public List<Rental> rentalByMemberId(String id) {
-		// 대여 리스트를 들고와서 보내면 끝
-		// TODO Auto-generated method stub
-		return null;
+	// 회원의 대여한 책 리스트
+	public List<Rental> rentalByMemberId(String id) {		
+		return rentalRepository.rentalByMemberId(id);
 	}
 
+	// 회원의 예약한 책 리스트
 	public List<Reserve> reserveByMemberId(String id) {
-		// 예약 리스트
-		// TODO Auto-generated method stub
-		return null;
+		return rentalRepository.reserveByMemberId(id);
+	}
+	
+	// 도서 대여하기
+	public int rentalBook(String id, String code, Integer num) {
+		int result = rentalRepository.rentalBook(id, code, num);
+		return result;
+	}	
+	
+	// 도서 예약하기
+	public int reserveBook(String id, String code, String date, Integer num) {
+		Timestamp timedate = Timestamp.valueOf(date + " 00:00:00");  
+		int result = rentalRepository.reserveBook(id, code, timedate, num);
+		return result;
+	}
+	
+	// 도서 반납하기
+	public int returnBook(String id, String code) {
+		int result = rentalRepository.returnBook(id, code);
+		return result;
 	}
 }
