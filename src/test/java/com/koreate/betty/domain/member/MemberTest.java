@@ -155,31 +155,6 @@ public class MemberTest {
 	
 	
 //	@Test
-	public void updateMemberTest() {
-		// 대상
-		// 멤버 (수정 정보)
-		
-		String targetId = "1224";
-		MultipartFile img;
-		try {
-			img = new MockMultipartFile("testimg2.png", new FileInputStream(new File("src/test/resources/img", "testimg2.png")));
-						
-			boolean uploaded = memberService.imgUpload(targetId, img);
-			log.info("\n\n\n\n uploaded : {}", uploaded);
-			
-			UpdateForm updateform = new UpdateForm("1224","5", "5", "nick", "2", "male","2000-11-22", "3", img);
-			
-			int result = memberService.updateMember(targetId, updateform);
-			
-			log.info("\n\n\n\n result : {}", result);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}		
-	}
-	
-//	@Test
 	public void addPointTest() {
 		PointForm form = new PointForm("123", "1-1-1", 10000);
 		

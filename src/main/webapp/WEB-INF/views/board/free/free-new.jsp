@@ -18,8 +18,8 @@
 					<div class="col-md-6">
 						<div class="blog__details">
 							<div class="thumb-list-profile">
-								<img src="${path}/resources/img/member/thumbnail/profile_male.jpg" />
-								<span class="text-white">닉네임</span>
+								<img src="${path}/resources/img/member/thumbnail/${user.img}" />
+								<span class="text-white">${user.nickname}</span>
 							</div>
 						</div>
 					</div>

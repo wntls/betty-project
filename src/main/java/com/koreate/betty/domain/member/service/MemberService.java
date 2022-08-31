@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.koreate.betty.domain.member.dao.MemberCardRepository;
@@ -62,11 +63,11 @@ public class MemberService {
 		return result;
 	}
 
-	public int updateMember(String targetId, UpdateForm form) {
-		Member update = form.createMember();
-		int result = memberRepository.update(targetId, update); 
-		
-		return result;
+	public Member updateMember(UpdateForm form) {
+		Member member = form.createMember();
+		imgUpload(form.getId(), form.getImg());
+		memberRepository.update(member);
+		return memberRepository.findOne(form.getId());
 	}
 
 	public int addPoint(PointForm form) {
@@ -82,10 +83,11 @@ public class MemberService {
 	
 //	src\main\webapp\resources\img\member\origin
 	public boolean imgUpload(String targetId, MultipartFile img) {
+		log.info("img Upload Called");
 		
 		boolean uploaded = false;
 		
-		String originalName = img.getName();
+		String originalName = img.getOriginalFilename();
 		String formatName = originalName.substring(originalName.lastIndexOf(".") + 1);
 		log.info("\n\n\n\n originalName : {}", originalName);
 		log.info("\n\n\n\n formatName : {}", formatName);
@@ -98,6 +100,8 @@ public class MemberService {
 		String originPath = context.getRealPath(sp+"resources"+sp+"img"+sp+"member"+sp+"origin");
 		String middlePath = context.getRealPath(sp+"resources"+sp+"img"+sp+"member"+sp+"middle");
 		String thumbPath = context.getRealPath(sp+"resources"+sp+"img"+sp+"member"+sp+"thumbnail");
+		log.info("origin name = {}", originalName);
+		log.info("originPath = {}", originPath);
 		
 		String imgName = targetId + "_" + originalName; 
 		

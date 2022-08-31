@@ -84,5 +84,6 @@
 			or nav eq 'admin'}">
 	<jsp:include page="/WEB-INF/views/include/nav/${nav}-side-nav.jsp">
 		<jsp:param name="path" value="${path}"/>
+		<jsp:param name="user" value="${user}"/>
 	</jsp:include>
 </c:if>

@@ -70,14 +70,14 @@
 								</div>
 							</div>
 							<input type="text" class="form-control mb-4" name="addr" id="addr"/>
-							<input type="text" class="form-control" name="addr_detail" id="addr_detail" placeholder="상세주소를 입력해주세요"/>
+							<input type="text" class="form-control" name="addrDetail" id="addrDetail" placeholder="상세주소를 입력해주세요"/>
 							<div class="result"></div> 
 						</div>
 						
 						전화번호
 						<div class="input__item">
 							<span><i class="bi bi-phone"></i></span>
-							<input type="text" name="phone" id="phone" placeholder="01012345678" /> 
+							<input type="text" name="phone" id="phone" placeholder="01056556747" /> 
 							<input type="button" class="btn btn-danger" value="인증코드 전송" id="sendSMS" disabled/>
 							<div class="result"></div>
 						</div>

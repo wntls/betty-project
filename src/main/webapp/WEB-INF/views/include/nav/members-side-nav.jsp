@@ -8,16 +8,16 @@
 	    <a class="nav-link disabled" href="#">마이페이지</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" href="${path}/members/num/dashboard">대시보드</a>
+	    <a class="nav-link" href="${param.path}/members/${user.id}/dashboard">대시보드</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" href="${path}/members/num/charge">포인트충전</a>
+	    <a class="nav-link" href="${param.path}/members/${user.id}/charge">포인트충전</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" href="${path}/members/num/rentals">대여 이력</a>
+	    <a class="nav-link" href="${param.path}/members/${user.id}/rentals">대여 이력</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" href="${path}/members/num">회원정보</a>
+	    <a class="nav-link" href="${param.path}/members/${user.id}">회원정보</a>
 	  </li>
 	</ul>
 </div>

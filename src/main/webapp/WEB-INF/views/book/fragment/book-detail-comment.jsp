@@ -10,7 +10,7 @@
 		</div>
 		<div class="anime__review__item">
 			<div class="anime__review__item__pic">
-				<img src="${path}/resources/img/member/thumbnail/profile_male.jpg" alt="">
+				<img src="${path}/resources/img/member/thumbnail/${user.img} " alt="">
 			</div>
 			<div class="anime__review__item__text">
 				<h6>
@@ -22,7 +22,7 @@
 		</div>
 		<div class="anime__review__item">
 			<div class="anime__review__item__pic">
-				<img src="${path}/resources/img/member/thumbnail/profile_male.jpg" alt="">
+				<img src="${path}/resources/img/member/thumbnail/${user.img}" alt="">
 			</div>
 			<div class="anime__review__item__text">
 				<h6>
