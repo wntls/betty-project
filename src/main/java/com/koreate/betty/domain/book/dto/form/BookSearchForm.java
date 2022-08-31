@@ -14,10 +14,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BookSearchForm {
 
-	@NotNull
+	@Nullable
 	private String searchText;
 
-	@NotBlank
+	@Nullable
 	private String searchOption;
 
 	@Nullable
@@ -26,7 +26,7 @@ public class BookSearchForm {
 	@Nullable	// 태그의 입력 형태에 따라 바뀔 수 있음 > provider 변경 필요
 	private String pubDate;
 
-	@NotNull
+	@Nullable
 	private String pubDateOption;
 
 	@Nullable

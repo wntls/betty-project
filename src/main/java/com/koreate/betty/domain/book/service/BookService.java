@@ -166,6 +166,13 @@ public class BookService {
 
 		return map;
 	}
+	
+	public Integer findExistNum(String code) {	// 테스트 필요 (provider에서 Integer 반환이 가능한가?)
+		Integer find = bookRepository.findExistNum(code);
+		return find;
+	}
+	
+	
 
 	public int insertByCrawler(Book book) {
 		return bookRepository.insertByCrawler(book);

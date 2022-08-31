@@ -62,7 +62,7 @@ public interface BookRepository {
 	public int jRentalSearchCount(BookSearchForm form);
 	
 	@SelectProvider(type=BookSingleProvider.class, method="findExistNum")	// 렌탈 서비스에서 참조
-	public int findExistNum(String code);	
+	public Integer findExistNum(String code);	
 	
 	@InsertProvider(type=BookProvider.class, method="insert")
 	public int insert(Book book);

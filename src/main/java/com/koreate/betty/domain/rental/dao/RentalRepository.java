@@ -1,7 +1,9 @@
 package com.koreate.betty.domain.rental.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
+import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
@@ -21,11 +23,12 @@ public interface RentalRepository {
 	public List<Reserve> reserveByMemberId(String id);
 	
 	@InsertProvider(type=RentalProvider.class, method="rentalBook") // 도서 대여하기
-	public int rentalBook(@Param("id")String id, @Param("code")String code);
+	public int rentalBook(@Param("id")String id, @Param("code")String code, @Param("num")Integer num);
 	
 	@InsertProvider(type=RentalProvider.class, method="reserveBook") // 도서 예약하기
-	public int reserveBook(String id);
+	public int reserveBook(@Param("id")String id, @Param("code")String code, @Param("date")Timestamp date, @Param("num")Integer num);
 	
-	
+	@DeleteProvider(type=RentalProvider.class, method="returnBook") // 도서 반납하기
+	public int returnBook(@Param("id")String id, @Param("code")String code);
 	
 }
