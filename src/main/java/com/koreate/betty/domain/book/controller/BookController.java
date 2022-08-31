@@ -57,7 +57,7 @@ public class BookController {
 	// 도서 후기 목록 페이지 (목록 출력은 ajax 사용으로 인해 commentApi에서 처리)
 	@GetMapping("{isbn}/comments")
 	public String bookComment(@PathVariable String isbn) {
-		return isbn + "/comments";
+		return "redirect:/books/" + isbn;
 	}
 	
 	// 재고 추가
