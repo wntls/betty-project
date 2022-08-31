@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.koreate.betty.domain.rental.dao.RentalRepository;
-import com.koreate.betty.domain.rental.vo.Rental;
-import com.koreate.betty.domain.rental.vo.Reserve;
+import com.koreate.betty.domain.rental.vo.RentalBook;
+import com.koreate.betty.domain.rental.vo.ReserveBook;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,12 +20,12 @@ public class RentalService {
 	
 	
 	// 회원의 대여한 책 리스트
-	public List<Rental> rentalByMemberId(String id) {		
+	public List<RentalBook> rentalByMemberId(String id) {		
 		return rentalRepository.rentalByMemberId(id);
 	}
 
 	// 회원의 예약한 책 리스트
-	public List<Reserve> reserveByMemberId(String id) {
+	public List<ReserveBook> reserveByMemberId(String id) {
 		return rentalRepository.reserveByMemberId(id);
 	}
 	
@@ -39,6 +39,12 @@ public class RentalService {
 	public int reserveBook(String id, String code, String date, Integer num) {
 		Timestamp timedate = Timestamp.valueOf(date + " 00:00:00");  
 		int result = rentalRepository.reserveBook(id, code, timedate, num);
+		return result;
+	}
+	
+	// 도서 예약 취소
+	public int reserveCancle(String id, String code) {
+		int result = rentalRepository.reserveCancle(id, code);
 		return result;
 	}
 	
