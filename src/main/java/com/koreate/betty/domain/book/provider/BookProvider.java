@@ -68,7 +68,8 @@ public class BookProvider {
 	// 도서 상세 페이지 댓글 등록
 	public String insertComment(BookComment bookComment) {
 		return new SQL().INSERT_INTO(BOOK_COMMENT_TBL)
-				.INTO_VALUES("null", "#{bookCode}", "#{memberId}", "#{nickname}", "#{comment}", "null").toString();
+				.INTO_COLUMNS("book_code","member_id","nickname","comment" )
+				.INTO_VALUES("#{bookCode}", "#{memberId}", "#{nickname}", "#{comment}").toString();
 	}
 
 	// 도서 상세 페이지 댓글 삭제
