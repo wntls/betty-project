@@ -15,7 +15,7 @@
 					<div class="col-md-6">
 						<div class="blog__details">
 							<div class="thumb-list-profile">
-								<img src="${path}/resources/img/member/thumbnail/profile_male.jpg" /> <span class="text-white">"${board.memberId}"</span>
+								<img src="${path}/resources/img/member/thumbnail/${memberImg}" /> <span class="text-white">"${board.memberId}"</span>
 							</div>
 						</div>
 					</div>

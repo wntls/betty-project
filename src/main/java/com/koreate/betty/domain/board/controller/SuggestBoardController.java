@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.koreate.betty.domain.board.dto.SuggestBoardDTO;
 import com.koreate.betty.domain.board.dto.form.SuggestBoardForm;
 import com.koreate.betty.domain.board.service.SuggestBoardService;
+import com.koreate.betty.domain.member.service.MemberService;
 import com.koreate.betty.global.util.PageMaker;
 import com.koreate.betty.global.util.SearchCriteria;
 
@@ -49,11 +50,17 @@ public class SuggestBoardController {
 	return "redirect:/boards/suggest/detail";
     }
 
+    @Autowired
+    MemberService memberService;
     // 게시판 상세보기, Model 사용
     @GetMapping("detail")
     public String sBoardDetail(int bno, Model model) throws Exception {
 	SuggestBoardDTO board = sboardserv.suggestDetail(bno);
+	String id = board.getMemberId();
+	String memberImg = memberService.findOne(id).getImg();
+	
 	model.addAttribute("board", board);
+	model.addAttribute("memberImg",memberImg);
 	return "board/suggest/suggest-detail";
     }
 
