@@ -11,6 +11,7 @@
 		color: graytext;
 	}
 </style>
+
 <!-- 검색 -->
 <div class="advance-search">
 	<div class="container-md">
@@ -171,4 +172,33 @@
 </section>
 <!-- Product Section End -->
 
-<%@include file="./include/footer.jsp"%>
+<%@include file="/WEB-INF/views/include/footer.jsp"%>
+<script>
+	if("${message}" != ""){
+		alert("${message}");
+	}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,7 @@
 package com.koreate.betty.domain.book.vo;
 
+import java.sql.Timestamp;
+
 import lombok.Builder;
 import lombok.Getter;
 
@@ -11,6 +13,6 @@ public class BookComment {
 	private final String memberId;
 	private final String nickname;
 	private final String comment;
-	private final String showcomment;
-	
+	private final Timestamp regdate;
+	private final String showcomment;	
 }

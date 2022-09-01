@@ -43,11 +43,13 @@ public class MemberProvider {
 	}	
 	
 	// 회원 정보 수정 (이미지 수정도 이걸로 처리됩니다) // 본인 회원 수정, 스태프의 회원 수정
-	public String update(@Param("id")String targetId, @Param("member")Member member) {
-		return new SQL().UPDATE(MEMBER_TBL)
-				.SET("id = #{member.id}, pw = #{member.pw}, nickname = #{member.nickname}, name = #{member.name}, gender = #{member.gender}, birth = #{member.birth}, addr = #{member.addr}, img = #{member.img}")
-				.WHERE("id = #{id}")
-				.toString();
+	public String update(Member member) {
+		SQL sql = new SQL().UPDATE(MEMBER_TBL)
+		.SET("id = #{id}, pw = #{pw}, nickname = #{nickname}, name = #{name}, gender = #{gender}, birth = #{birth}, addr = #{addr}");
+		if(member.getImg() != null) {
+			sql.SET("img = #{img}");
+		}
+		return sql.WHERE("id = #{id}").toString();
 	}
 	
 	// 체크인
@@ -74,3 +76,4 @@ public class MemberProvider {
 //			.WHERE("id = #{id}")
 //			.toString();
 //}
+

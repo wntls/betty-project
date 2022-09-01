@@ -28,7 +28,7 @@ public class BookService {
 
 	// 페이징 처리가 필요한 뷰는 맵 객체로 반환합니다. 목록 key : list, PageMaker key : pm
 	// 책 목록 (books) : 매개변수가 null이면 해당 검색 옵션이 없이 출력합니다
-	public Map<String, Object> bookList(String title, Integer genre, Integer page) {
+	public Map<String, Object> bookList(String searchText, String searchOption, Integer genre, Integer page) {
 		Map<String, Object> map = new HashMap<>();
 
 		Criteria cri = new Criteria();
@@ -38,7 +38,7 @@ public class BookService {
 		int totalCount = bookRepository.findAllCount();
 		PageMaker pageMaker = new PageMaker(cri, totalCount);
 
-		map.put("list", bookRepository.findAll(title, genre, cri));
+		map.put("list", bookRepository.findAll(searchText, searchOption, genre, cri));
 		map.put("pm", pageMaker);
 		return map;
 	}
@@ -166,6 +166,13 @@ public class BookService {
 
 		return map;
 	}
+	
+	public Integer findExistNum(String code) {	// 테스트 필요 (provider에서 Integer 반환이 가능한가?)
+		Integer find = bookRepository.findExistNum(code);
+		return find;
+	}
+	
+	
 
 	public int insertByCrawler(Book book) {
 		return bookRepository.insertByCrawler(book);

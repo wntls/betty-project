@@ -23,7 +23,7 @@ import com.koreate.betty.global.util.Criteria;
 public interface BookRepository {
 
 	@SelectProvider(type=BookProvider.class, method="findAll")		// 책 목록
-	public List<Book> findAll(@Param("title")String title, @Param("genre")Integer genre, @Param("cri")Criteria cri);
+	public List<Book> findAll(@Param("searchText")String searchText, @Param("searchOption")String searchOption, @Param("genre")Integer genre, @Param("cri")Criteria cri);
 	
 	@SelectProvider(type=BookProvider.class, method="findAllCount")		// 전체 책 목록 총계  (findAll PageMaker) 
 	public int findAllCount();
@@ -60,6 +60,9 @@ public interface BookRepository {
 	
 	@SelectProvider(type=BookProvider.class, method="jRentalSearchCount")
 	public int jRentalSearchCount(BookSearchForm form);
+	
+	@SelectProvider(type=BookSingleProvider.class, method="findExistNum")	// 렌탈 서비스에서 참조
+	public Integer findExistNum(String code);	
 	
 	@InsertProvider(type=BookProvider.class, method="insert")
 	public int insert(Book book);

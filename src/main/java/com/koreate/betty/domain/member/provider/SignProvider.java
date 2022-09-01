@@ -14,8 +14,8 @@ public class SignProvider {
 	
 		public String create(Member member) {
 			return new SQL().INSERT_INTO(MEMBER_TBL)
-					.INTO_COLUMNS("id", "pw", "nickname", "name", "gender", "birth", "phone", "addr", "email", "rights")
-					.INTO_VALUES("#{id}, #{pw}, #{nickname}, #{name}, #{gender}, #{birth}, #{phone}, #{addr}, #{email}, #{rights}")
+					.INTO_COLUMNS("id", "pw", "nickname", "name", "gender", "birth", "phone", "post", "addr", "addr_detail", "email", "rights")
+					.INTO_VALUES("#{id}, #{pw}, #{nickname}, #{name}, #{gender}, #{birth}, #{phone}, #{post}, #{addr}, #{addrDetail}, #{email}, #{rights}")
 					.toString();
 		}
 		
@@ -40,7 +40,9 @@ public class SignProvider {
 		public String findOneBySignIn(Member member) {
 			return new SQL().SELECT("*")
 					.FROM(MEMBER_TBL)
-					.WHERE("id = #{id}").WHERE("pw = #{pw}")
+					.WHERE("id = #{id}")
+					.WHERE("pw = #{pw}")
+					.WHERE("del = 'n'")
 					.toString();
 		}
 		

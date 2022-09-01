@@ -3,7 +3,7 @@ package com.koreate.betty.domain.book.provider;
 import static com.koreate.betty.domain.model.TableConst.BOOK_COMMENT_TBL;
 import static com.koreate.betty.domain.model.TableConst.BOOK_SINGLE_TBL;
 import static com.koreate.betty.domain.model.TableConst.BOOK_TBL;
-import static com.koreate.betty.domain.model.TableConst.RENTAL_TBL;
+import static com.koreate.betty.domain.model.TableConst.MEMBER_TBL;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -11,7 +11,6 @@ import java.text.SimpleDateFormat;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
-import com.koreate.betty.domain.book.dto.form.BookDeleteForm;
 import com.koreate.betty.domain.book.dto.form.BookSearchForm;
 import com.koreate.betty.domain.book.vo.Book;
 import com.koreate.betty.domain.book.vo.BookComment;
@@ -20,16 +19,28 @@ import com.koreate.betty.global.util.Criteria;
 public class BookProvider {
 
 	// 전체 책 목록
-	public String findAll(@Param("title") String title, @Param("genre") Integer genre, @Param("cri") Criteria cri) {
+	public String findAll(@Param("searchText") String searchText, @Param("searchOption") String searchOption, @Param("genre") Integer genre, @Param("cri") Criteria cri) {
 		SQL sql = new SQL();
 		sql.SELECT("*").FROM(BOOK_TBL);
 
-		if (title != null) {
-			sql.WHERE("title LIKE CONCAT('%','#{title}','%'");
+		if (searchText != null) {
+			if (searchOption != null) {
+				switch(searchOption) {
+				case "title":
+					sql.WHERE("title LIKE CONCAT('%','#{searchText}','%'");
+					break;
+				case "auth":
+					sql.WHERE("auth LIKE CONCAT('%','#{searchText}','%'");
+					break;
+				case "intro":
+					sql.WHERE("intro LIKE CONCAT('%','#{searchText}','%'");
+					break;				
+				}
+			}			
 		}
 
 		if (genre != null) {
-			sql.WHERE("title LIKE CONCAT('%','#{genre}','%'");
+			sql.WHERE("genre = #{genre}");
 		}
 
 		if (cri != null) {
@@ -50,15 +61,16 @@ public class BookProvider {
 		return new SQL().SELECT("*").FROM(BOOK_TBL).WHERE("code = #{code}").toString();
 	}
 
-	// 도서 상세 정보 페이지의 댓글 목록
+	// 도서 상세 정보 페이지의 댓글 목록 (이미지, 아이디, 시간, 내용)
 	public String findCommentByCode(@Param("code") String code, @Param("cri") Criteria cri) {
-		return new SQL().SELECT("*").FROM(BOOK_COMMENT_TBL).WHERE("code = #{code}").OFFSET("#{cri.startRow}")
-				.LIMIT("#{cri.perPageNum}").toString();
+		return new SQL().SELECT("member.img, book_comment.nickname, book_comment.regdate, book_comment.comment")
+				.FROM(BOOK_COMMENT_TBL).JOIN(MEMBER_TBL).WHERE("book_comment.member_id = member.id")
+				.WHERE("book_code = #{code}").OFFSET("#{cri.startRow}").LIMIT("#{cri.perPageNum}").toString();
 	}
 
 	// 도서 상세 정보 페이지의 댓글 총계
 	public String findCommentByCodeCount(String code) {
-		return new SQL().SELECT("count(*)").FROM(BOOK_COMMENT_TBL).WHERE("code = #{code}").toString();
+		return new SQL().SELECT("count(*)").FROM(BOOK_COMMENT_TBL).WHERE("book_code = #{code}").toString();
 	}
 
 	// 신규 도서 등록
@@ -69,8 +81,8 @@ public class BookProvider {
 
 	// 도서 상세 페이지 댓글 등록
 	public String insertComment(BookComment bookComment) {
-		return new SQL().INSERT_INTO(BOOK_COMMENT_TBL)
-				.INTO_VALUES("null", "#{bookCode}", "#{memberId}", "#{nickname}", "#{comment}", "null").toString();
+		return new SQL().INSERT_INTO(BOOK_COMMENT_TBL).INTO_COLUMNS("book_code", "member_id", "nickname", "comment")
+				.INTO_VALUES("#{bookCode}", "#{memberId}", "#{nickname}", "#{comment}").toString();
 	}
 
 	// 도서 상세 페이지 댓글 삭제
@@ -118,37 +130,38 @@ public class BookProvider {
 
 		SQL sql = new SQL().SELECT("*").FROM(BOOK_TBL);
 
-		if (searchOption != null) {
+		if (searchOption != null && !searchOption.trim().equals("")) {
 			switch (searchOption) {
 			case "title":
-				sql.WHERE("title = " + search);
+				sql.WHERE("title = '" + search + "'");
 				break;
 			case "content":
-				sql.WHERE("content = " + search);
+				sql.WHERE("content = '" + search + "'");
 				break;
 			case "auth":
-				sql.WHERE("auth = " + search);
+				sql.WHERE("auth = '" + search + "'");
 				break;
 			case "pub":
-				sql.WHERE("pub = " + search);
+				sql.WHERE("pub = '" + search + "'");
 				break;
 			default:
 				break;
 			}
 		}
 
-		if (form.getPubDate() != null) { // 테스트 필요
+		if (form.getPubDate() != null && !form.getPubDate().trim().equals("")) { // 테스트 필요
+			System.out.println("pubdate : " + form.getPubDate() + "끝부분");
 			Timestamp pubDate = Timestamp.valueOf(form.getPubDate() + " 00:00:00");
 			String date = new SimpleDateFormat("yyyy-MM-dd").format(pubDate);
 			if (pubDateOption.equals("after")) {
-				sql.WHERE("pub_date >= " + date);
+				sql.WHERE("pub_date >= '" + date + "'");
 			} else {
-				sql.WHERE("pub_date <= " + date);
+				sql.WHERE("pub_date <= '" + date + "'");
 			}
 		}
 
 		String genre = form.getGenre();
-		if (genre != null && !genre.equals("")) {
+		if (genre != null && !genre.trim().equals("")) {
 			sql.WHERE("genre = " + genre);
 		}
 
@@ -167,40 +180,42 @@ public class BookProvider {
 
 		SQL sql = new SQL().SELECT("count(*)").FROM(BOOK_TBL);
 
-		if (searchOption != null) {
+		if (searchOption != null && !searchOption.trim().equals("")) {
 			switch (searchOption) {
 			case "title":
-				sql.WHERE("title = " + search);
+				sql.WHERE("title = '" + search + "'");
 				break;
 			case "content":
-				sql.WHERE("content = " + search);
+				sql.WHERE("content = '" + search + "'");
 				break;
 			case "auth":
-				sql.WHERE("auth = " + search);
+				sql.WHERE("auth = '" + search + "'");
 				break;
 			case "pub":
-				sql.WHERE("pub = " + search);
+				sql.WHERE("pub = '" + search + "'");
 				break;
 			default:
 				break;
 			}
 		}
 
-		if (form.getPubDate() != null) { // 테스트 필요
+		if (form.getPubDate() != null && !form.getPubDate().trim().equals("")) { // 테스트 필요
+			System.out.println("pubdate : " + form.getPubDate() + "끝부분");
 			Timestamp pubDate = Timestamp.valueOf(form.getPubDate() + " 00:00:00");
 			String date = new SimpleDateFormat("yyyy-MM-dd").format(pubDate);
 			if (pubDateOption.equals("after")) {
-				sql.WHERE("pub_date >= " + date);
+				sql.WHERE("pub_date >= '" + date + "'");
 			} else {
-				sql.WHERE("pub_date <= " + date);
+				sql.WHERE("pub_date <= '" + date + "'");
 			}
 		}
 
 		String genre = form.getGenre();
-		if (genre != null && !genre.equals("")) {
+		if (genre != null && !genre.trim().equals("")) {
 			sql.WHERE("genre = " + genre);
 		}
 
+		System.out.println("\n\n\n\nsql :" + sql.toString());
 		return sql.toString();
 	}
 
@@ -232,26 +247,26 @@ public class BookProvider {
 				.LEFT_OUTER_JOIN(
 						"rental_reserve ON book_single.num = rental_reserve.book_num AND book.code = rental_reserve.book_code");
 
-		if (searchOption != null) {
+		if (searchOption != null && !searchOption.trim().equals("")) {
 			switch (searchOption) {
 			case "title":
-				sql.WHERE("book.title = " + search);
+				sql.WHERE("title = '" + search + "'");
 				break;
 			case "content":
-				sql.WHERE("book.content = " + search);
+				sql.WHERE("content = '" + search + "'");
 				break;
 			case "auth":
-				sql.WHERE("book.auth = " + search);
+				sql.WHERE("auth = '" + search + "'");
 				break;
 			case "pub":
-				sql.WHERE("book.pub = " + search);
+				sql.WHERE("pub = '" + search + "'");
 				break;
 			default:
 				break;
 			}
 		}
 
-		if (rentOption != null) { // null일 경우 전체 검색이고, 옵션값을 rent 또는 reserve로 해주세요
+		if (rentOption != null && !rentOption.trim().equals("")) { // null일 경우 전체 검색이고, 옵션값을 rent 또는 reserve로 해주세요
 			switch (rentOption) {
 			case "able":
 				sql.WHERE("book_single.rental = 'n'");
@@ -267,13 +282,13 @@ public class BookProvider {
 			}
 		}
 
-		if (form.getPubDate() != null) { // 테스트 필요
+		if (form.getPubDate() != null && !form.getPubDate().trim().equals("")) { // 테스트 필요
 			Timestamp pubDate = Timestamp.valueOf(form.getPubDate() + " 00:00:00");
 			String date = new SimpleDateFormat("yyyy-MM-dd").format(pubDate);
 			if (pubDateOption.equals("after")) {
-				sql.WHERE("book.pub_date >= " + date);
+				sql.WHERE("book.pub_date >= '" + date + "'");
 			} else {
-				sql.WHERE("book.pub_date <= " + date);
+				sql.WHERE("book.pub_date <= '" + date + "'");
 			}
 		}
 
@@ -296,26 +311,31 @@ public class BookProvider {
 				.LEFT_OUTER_JOIN(
 						"rental_reserve ON book_single.num = rental_reserve.book_num AND book.code = rental_reserve.book_code");
 
-		if (searchOption != null) {
+		sql.LEFT_OUTER_JOIN("book_single ON book.code = book_single.book_code")
+				.LEFT_OUTER_JOIN("rental ON book_single.num = rental.book_num AND book.code = rental.book_code")
+				.LEFT_OUTER_JOIN(
+						"rental_reserve ON book_single.num = rental_reserve.book_num AND book.code = rental_reserve.book_code");
+
+		if (searchOption != null && !searchOption.trim().equals("")) {
 			switch (searchOption) {
 			case "title":
-				sql.WHERE("book.title = " + search);
+				sql.WHERE("title = '" + search + "'");
 				break;
 			case "content":
-				sql.WHERE("book.content = " + search);
+				sql.WHERE("content = '" + search + "'");
 				break;
 			case "auth":
-				sql.WHERE("book.auth = " + search);
+				sql.WHERE("auth = '" + search + "'");
 				break;
 			case "pub":
-				sql.WHERE("book.pub = " + search);
+				sql.WHERE("pub = '" + search + "'");
 				break;
 			default:
 				break;
 			}
 		}
 
-		if (rentOption != null) { // null일 경우 전체 검색이고, 옵션값을 rent 또는 reserve로 해주세요
+		if (rentOption != null && !rentOption.trim().equals("")) { // null일 경우 전체 검색이고, 옵션값을 rent 또는 reserve로 해주세요
 			switch (rentOption) {
 			case "able":
 				sql.WHERE("book_single.rental = 'n'");
@@ -331,13 +351,13 @@ public class BookProvider {
 			}
 		}
 
-		if (form.getPubDate() != null) { // 테스트 필요
+		if (form.getPubDate() != null && !form.getPubDate().trim().equals("")) { // 테스트 필요
 			Timestamp pubDate = Timestamp.valueOf(form.getPubDate() + " 00:00:00");
 			String date = new SimpleDateFormat("yyyy-MM-dd").format(pubDate);
 			if (pubDateOption.equals("after")) {
-				sql.WHERE("book.pub_date >= " + date);
+				sql.WHERE("book.pub_date >= '" + date + "'");
 			} else {
-				sql.WHERE("book.pub_date <= " + date);
+				sql.WHERE("book.pub_date <= '" + date + "'");
 			}
 		}
 

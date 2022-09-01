@@ -17,7 +17,7 @@ function sample6_execDaumPostcode(){
             }
             $("#post").val(data.zonecode);
             $("#addr").val(fullAddr);
-            $("#addr_detail").focus();
+            $("#addrDetail").focus();
         }
     }).open();
 }

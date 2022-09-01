@@ -28,7 +28,7 @@ public interface MemberRepository {
 	public List<ChkLog> findMyChkLog(String loginId);
 	
 	@UpdateProvider(type=MemberProvider.class, method="update")
-	public int update(@Param("id")String targetId, @Param("member")Member member);
+	public int update(Member member);
 	
 	@UpdateProvider(type=MemberProvider.class, method="updatePw")
 	public int updatePw(@Param("id")String id, @Param("pw")String pw);

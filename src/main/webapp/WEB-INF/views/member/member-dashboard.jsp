@@ -28,6 +28,9 @@ table td {
 }
 </style>
 
+${chkList}
+${rentalList }
+${reserveList}
 <section>
 	<div class="container-md spad">
 		<div class="row justify-content-center">
@@ -37,15 +40,14 @@ table td {
 						<div class="card">
 							<div class="row justify-content-around" style="padding:1rem">
 									<div class="text-center">
-										<img src="${path}/resources/img/member/thumbnail/profile_male.jpg"
+										<img src="${path}/resources/img/member/thumbnail/${user.img}"
 											style="width: 10rem" class="img-thumbnail"
 											alt="...">
 									</div>
 									<div>
 										<button class="btn btn-danger" onclick="location.href='${path}/members/num'">회원상세</button>
 										<div class="row justify-content-center align-items-center h-100">
-											<span><i class="bi bi-gem"> VIP</i></span>
-											<i class="bi bi-check-lg"></i>
+											${memberCard.premiumGrade}
 										</div>
 									</div>
 							</div>
@@ -54,15 +56,15 @@ table td {
 								<table class="table table-sm">
 									<tr>
 										<th>아이디 : </th>
-										<td colspan="2">namu6747</td>
+										<td colspan="2">${user.id}</td>
 									</tr>
 									<tr>
 										<th>닉네임 : </th>
-										<td colspan="2">jaemin</td>
+										<td colspan="2">${user.nickname}</td>
 									</tr>
 									<tr>
 										<th>이메일 : </th>
-										<td colspan="2">namu6747@naver.com</td>
+										<td colspan="2">${user.email}</td>
 									</tr>
 								</table>
 							</div>

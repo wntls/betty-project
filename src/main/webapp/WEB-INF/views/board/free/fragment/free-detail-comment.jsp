@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <div class="blog__details__comment">
-	<h4>총 3개의 댓글</h4>
+	<h4>총 2개의 댓글</h4>
 
 	<div class="blog__details__comment__item">
 		<div class="anime__review__item__pic">

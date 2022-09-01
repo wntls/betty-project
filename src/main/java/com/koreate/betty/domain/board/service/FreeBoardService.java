@@ -41,7 +41,8 @@ public class FreeBoardService {
 	
 	// 게시글 전체 목록
 	public List<FreeBoard> freeList(SearchCriteria cri) {
-		return freeBoardRepository.listAll(cri);
+		List<FreeBoard> list = freeBoardRepository.listAll(cri);
+		return list;
 	}
 	
 	// 조회수 증가

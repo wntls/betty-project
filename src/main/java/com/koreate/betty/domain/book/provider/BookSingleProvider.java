@@ -58,5 +58,15 @@ public class BookSingleProvider {	// single, dump
 		return new SQL().SELECT("count(*)").FROM(BOOK_SINGLE_TBL)
 				.WHERE("book_code = #{code}")
 				.toString();
-	}		
+	}
+	
+	/// 렌탈 서비스에서 참조	
+	// 아무 보유중인 책 번호 하나만 찾기
+	public String findExistNum(String code) {
+		return new SQL().SELECT("num").FROM(BOOK_SINGLE_TBL)
+				.WHERE("book_code = #{code}")
+				.WHERE("rental = 'n'")
+				.LIMIT(1)
+				.toString();
+	}
 }

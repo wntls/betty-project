@@ -16,30 +16,16 @@ import lombok.extern.slf4j.Slf4j;
 @RestControllerAdvice(annotations = RestController.class)
 public class SignControllerAdvice {
 	
-	@PostConstruct
-	public void init() {
-		
-		log.info("======================= 사인 컨트롤러 어드바이스 이닛");
-	}
-
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler
 	public ErrorResult notFoundIdHandle(NotFoundIdException ex) {
 		log.info("NotFoundIdHandle = {}", ex);
-		return new ErrorResult("NOT_FOUND_ID", "입력한 정보와 일치하는 아이디가 없습니다.");
-	}
-	
-	//@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-	//@ExceptionHandler(RuntimeException.class)
-	public ErrorResult validHandle(RuntimeException ex) {
-		log.info("validHandle 호출");
-		log.error(ex.getMessage());
-		return new ErrorResult("BAD", ex.getMessage());
+		return new ErrorResult(HttpStatus.BAD_REQUEST.value(), "입력한 정보와 일치하는 아이디가 없습니다.");
 	}
 	
 	@ExceptionHandler
-	public String testHandle(Exception e) {
+	public ErrorResult testHandle(Exception e) {
 		log.error("exception message ={}",e.getMessage());
-		return "failed";
+		return new ErrorResult(HttpStatus.INTERNAL_SERVER_ERROR.value(), "요청 오류");
 	}
 }

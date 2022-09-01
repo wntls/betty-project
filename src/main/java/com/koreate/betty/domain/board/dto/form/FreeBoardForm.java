@@ -18,6 +18,9 @@ public class FreeBoardForm {
 	@NotBlank
 	private String memberId;
 	
+	@NotBlank
+	private String nickname;
+	
 	// 한글,숫자,영문 상관없이 글자 수 50개까지만 통과
 	@Size(max = 50)
 	// "", null 모두 검증
@@ -37,6 +40,7 @@ public class FreeBoardForm {
 		return FreeBoard.builder()
 				.bno(bno)
 				.memberId(memberId)
+				.nickname(nickname)
 				.tag(tag)
 				.title(title)
 				.content(content)
