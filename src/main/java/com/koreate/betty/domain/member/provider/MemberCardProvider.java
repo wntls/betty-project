@@ -23,6 +23,11 @@ public class MemberCardProvider {
 				.toString();
 	}
 	
+	public String findOne(String id) {
+		return new SQL().SELECT("*").FROM(MEMBER_CARD_TBL).WHERE("member_id = #{id}").toString();
+		
+	}
+	
 	// 멤버십 갱신 / 등급 변경(?)
 	
 	

@@ -102,8 +102,8 @@
         </button>
       </div>
       <div class="modal-body" >
-        <p id="modal-body" style="color:black">회원 아이디를 입력하세요</p>
-        <input class="form-control" name="id"/>
+        <p id="modal-body"  style="color:black">회원 아이디를 입력하세요</p>
+        <input class="form-control" id="checkId" name="id"/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="withdrawMemberBtn">탈퇴 요청</button>
@@ -127,18 +127,28 @@
 	}
 	
 	$('#withdrawMemberBtn').click(function(){
+		let id = $('#checkId').val();
+		console.log(id);
 		$.ajax({
 			url: '${path}/members/${user.id}',
 			type: 'delete',
-			dataType: 'application/json',
-			success: function(){
+			data: { "id" : id },
+			dataType: 'json',
+			success: function(data){
+				console.log(data);
+				console.log(data.code);
 				alert("삭제 완료");
 				location.href='${path}/';
 			},
-			fail: function(){
+			error: function(request){
+				console.log(request);
+				let data = request.responseJSON;
+				alert(data.message);
+				console.log(data.code);
 			}
 		})
 	});
+	
 </script>
 
 

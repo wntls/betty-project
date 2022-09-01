@@ -208,10 +208,6 @@
 				},
 				nickname : {
 					required : true,
-					remote : {
-						type : "GET",
-						url : "${path}/sign/up/nicknameCheck"
-					},
 					rangelength : [ 2, 10 ]
 				},
 				gender : {
@@ -241,7 +237,6 @@
 
 				nickname : {
 					required : "닉네임을 입력하세요.",
-					remote : "이미 존재하는 닉네임 입니다.",
 					rangelength : "닉네임은 2~10글자 이내로 작성하세요."
 				},
 

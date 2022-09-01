@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,9 +46,8 @@ public class MemberController {
 	public String memberDashboard(@PathVariable String id, Model model) {
 		// id, checklog, rentallog, reservelog 
 
-		model.addAttribute("grade", memberService.findGradeById(id));
-		List<ChkLog> chkList = memberService.findMyChkLog(id);
-		model.addAttribute("chkList", chkList);
+		model.addAttribute("memberCard", memberService.findGradeById(id));
+		model.addAttribute("chkList", memberService.findMyChkLog(id));
 		// 회원 대여 정보 : book provider의 rental 참조 (현재 미구현)
 		model.addAttribute("rentalList", rentalService.rentalByMemberId(id));
 		// 회원 예약 정보 : book provider의 reserve 참조 (현재 미구현)

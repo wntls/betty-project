@@ -9,7 +9,6 @@ import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.koreate.betty.domain.member.dao.MemberCardRepository;
@@ -19,6 +18,7 @@ import com.koreate.betty.domain.member.dto.form.UpdateForm;
 import com.koreate.betty.domain.member.exception.NotFoundIdException;
 import com.koreate.betty.domain.member.vo.ChkLog;
 import com.koreate.betty.domain.member.vo.Member;
+import com.koreate.betty.domain.member.vo.MemberCard;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -136,8 +136,8 @@ public class MemberService {
 		return memberCardRepository.updateGrade(id, membershipGrade);
 	}
 
-	public String findGradeById(String id) {
-		return null;
+	public MemberCard findGradeById(String id) {
+		return memberCardRepository.findOne(id);
 	}
 	
 }

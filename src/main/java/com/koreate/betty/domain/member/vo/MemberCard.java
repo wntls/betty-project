@@ -8,7 +8,9 @@ import lombok.Getter;
 public class MemberCard {
 	
  	private final String memberId;
- 	private final String premium;
+ 	private final String premiumGrade;
+ 	private final String premiumDate;
     private final Integer demerit;
 	private final Integer point;
+	private final Integer spending;
 }
