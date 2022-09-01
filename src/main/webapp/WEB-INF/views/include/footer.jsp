@@ -45,7 +45,8 @@
     </div>
 </div>
 <!-- Search model end -->
-
+</body>
+</html>
 <!-- Js Plugins -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${path}/resources/js/bootstrap.min.js"></script>
@@ -66,6 +67,46 @@
 <script src="${path}/resources/js/addr.js"></script>
 
 <script src="${path}/resources/js/datepicker.js"></script>
+<script src="${path}/resources/js/jquery.cookie.js"></script>
 
-</body>
-</html>
+<script>
+
+	$(function (){
+		let lang = $.cookie('lang');
+		if(lang == 'ko'){
+			langToKo();
+		} else {
+			langToEn();
+		}
+	})
+
+	$('#ko').click(function(ev){
+		ev.preventDefault();
+		$.get('${path}?lang=ko',function(){
+			langToKo();
+			location.reload();
+		})
+	})
+	
+	$('#en').click(function(ev){
+		ev.preventDefault();
+		$.get('${path}?lang=en',function(){
+			langToEn();
+			location.reload();
+		})
+	})
+	
+	function langToKo(){
+		$('#ko').addClass('active');
+		$('#ko').removeClass('wait');
+		$('#en').removeClass('active');
+		$('#en').addClass('wait');
+	}
+	
+	function langToEn(){
+		$('#en').addClass('active');
+		$('#en').removeClass('wait');
+		$('#ko').removeClass('active');
+		$('#ko').addClass('wait');
+	}
+</script>

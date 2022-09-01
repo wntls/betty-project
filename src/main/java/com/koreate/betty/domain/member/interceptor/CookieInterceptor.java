@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-public class SignInByCookieInterceptor implements HandlerInterceptor {
+public class CookieInterceptor implements HandlerInterceptor {
 
 	private final MemberService memberService;
 	
