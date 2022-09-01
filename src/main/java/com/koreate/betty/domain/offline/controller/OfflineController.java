@@ -46,9 +46,8 @@ public class OfflineController {
 	public String rentalRecept(rentalDto rsv) {
 		String id = rsv.getId();
 		String code = rsv.getCode();
-		System.out.println("\n\n\n\n code : " + code);
-		Integer num = bs.findExistNum(code);
 		int result = rs.reserveCancle(id, code);
+		Integer num = bs.findExistNum(code);
 		result += rs.rentalBook(id, code, num);
 		
 		return "redirect:/offline";
