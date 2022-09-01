@@ -69,8 +69,10 @@ table td {
 										<tbody>
 												<!-- book code, book num, user id -->
 											<tr>
-												<td>${reserves.title }</td>
-												<td>2022-08-31</td>
+												<td>${reserves.title}</td>
+												<td>
+													<f:formatDate value="${reserves.date}" pattern="yyyy-MM-dd"/>
+												</td>
 												<td>
 													<button class="btn btn-danger btn-sm" name="id"
 														value="${user.id}">수령</button>
