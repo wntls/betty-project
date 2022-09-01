@@ -55,9 +55,8 @@ table td {
 							<div class="card-body">
 								<h5 class="card-title">도서 수령</h5>
 								<form action="${path}/offline/receipt" method="post">
-									<input type="text" name="code" value="159" hidden />
-									<input type="text" name="num" value="002" hidden />
-									
+									<input type="hidden" name="code" value="123" />
+									<input type="hidden" name="num" value="1" /> 
 									<table class="table">
 										<thead>
 											<tr>
@@ -67,21 +66,31 @@ table td {
 											</tr>
 										</thead>
 										<tbody>
-												<!-- book code, book num, user id -->
-											<tr>
-												<td>${reserves.title}</td>
-												<td>
-													<f:formatDate value="${reserves.date}" pattern="yyyy-MM-dd"/>
-												</td>
-												<td>
-													<button class="btn btn-danger btn-sm" name="id"
-														value="${user.id}">수령</button>
-												</td>
-											</tr>
+											<!-- book code, book num, user id -->
+											 <c:choose>
+												<c:when test="${!empty reserves}"> 
+													<c:forEach var="reserve" items="${reserves}">
+														<tr>
+															<td>${reserve.title}</td>
+															<td>
+																<f:formatDate value="${reserve.date}" pattern="yyyy-MM-dd"/>
+															</td>
+															<td>
+																<button class="btn btn-danger btn-sm" name="id"
+																	value="${user.id}">수령</button>
+															</td>
+														</tr>
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+													<tr>
+														<td>대여 예약된 책이 없습니다.</td>
+													</tr>
+												</c:otherwise>
+											</c:choose>
 										</tbody>
 									</table>
 								</form>
-								
 							</div>
 						</div>
 					</div>
@@ -90,28 +99,57 @@ table td {
 						<div class="card">
 							<div class="card-body">
 								<h5 class="card-title">도서 반납</h5>
-								<table class="table">
-									<thead>
+								<%-- 
+								<c:choose>
+										<c:when test="${!empty rentals}">
+											<c:forEach var="rental" items="${rentals}">
+											 --%>
+								<form action="${path}/offline/return" method="post">
+									<input type="hidden" name="code" value="123" />
+									<input type="hidden" name="num" value="3" />
+									<table class="table">
+										<thead>
+											<tr>
+												<th>도서명</th>
+												<th>반납예정일</th>
+												<th>반납하기</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:choose>
+												<c:when test="${!empty rentals}">
+													<c:forEach var="rental" items="${rentals}">
+														<!-- book code, book num, user id -->
+														<tr>
+															<td>${rental.title }</td>
+															<td>
+																<f:formatDate value="${rental.date}" pattern="yyyy-MM-dd"/>
+															</td>
+															<td>
+																<button class="btn btn-danger btn-sm" name="id"
+																		value="${user.id}">반납</button>
+															</td>
+														</tr>
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+														<tr>
+															<td>반납할 책이 없습니다.</td>
+														</tr>
+												</c:otherwise>
+											</c:choose>
+										</tbody>
+									</table>
+								</form>
+								<%-- 
+								</c:when>
+								<c:otherwise>
 										<tr>
-											<th>도서명</th>
-											<th>반납예정일</th>
-											<th>반납하기</th>
+											<td>반납할 책이 없습니다.</td>
 										</tr>
-									</thead>
-									<tbody>
-										<!-- book code, book num, user id -->
-										<tr>
-											<form action="${path}/offline/return" method="post">
-												<input type="text" name="code" value="6363531244" hidden />
-												<input type="text" name="num" value="003" hidden />
-												<td>강철의 연금술사</td>
-												<td>2022-09-05</td>
-												<td><button class="btn btn-danger btn-sm" name="id"
-														value="${user.id}">반납</button></td>
-											</form>
-										</tr>
-									</tbody>
-								</table>
+								</c:otherwise>
+							</c:choose>
+							 --%>
 							</div>
 						</div>
 					</div>
