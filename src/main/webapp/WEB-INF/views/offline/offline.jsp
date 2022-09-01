@@ -28,12 +28,13 @@ table td {
 	text-align: center;
 	line-height: 1.8rem;
 }
-.seat tr td{
+
+.seat tr td {
 	background: #dc3545;
 	border: 1px white solid !important;
 }
 
-.seat tr td:nth-child(2), .seat tr td:nth-child(5){
+.seat tr td:nth-child(2), .seat tr td:nth-child(5) {
 	background: none;
 	border-top: 0 !important;
 	border-bottom: 0 !important;
@@ -55,8 +56,7 @@ table td {
 							<div class="card-body">
 								<h5 class="card-title">도서 수령</h5>
 								<form action="${path}/offline/receipt" method="post">
-									<input type="hidden" name="code" value="123" />
-									<input type="hidden" name="num" value="1" /> 
+									<input type="hidden" name="id" value="${user.id}" />
 									<table class="table">
 										<thead>
 											<tr>
@@ -67,17 +67,17 @@ table td {
 										</thead>
 										<tbody>
 											<!-- book code, book num, user id -->
-											 <c:choose>
-												<c:when test="${!empty reserves}"> 
+											<c:choose>
+												<c:when test="${!empty reserves}">
 													<c:forEach var="reserve" items="${reserves}">
 														<tr>
 															<td>${reserve.title}</td>
+															<td><f:formatDate value="${reserve.date}"
+																	pattern="yyyy-MM-dd" /></td>
 															<td>
-																<f:formatDate value="${reserve.date}" pattern="yyyy-MM-dd"/>
-															</td>
-															<td>
-																<button class="btn btn-danger btn-sm" name="id"
-																	value="${user.id}">수령</button>
+
+																<button class="btn btn-danger btn-sm" name="code"
+																	value="${reserve.code}">수령</button>
 															</td>
 														</tr>
 													</c:forEach>
@@ -94,7 +94,7 @@ table td {
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="col mb-4">
 						<div class="card">
 							<div class="card-body">
@@ -105,8 +105,7 @@ table td {
 											<c:forEach var="rental" items="${rentals}">
 											 --%>
 								<form action="${path}/offline/return" method="post">
-									<input type="hidden" name="code" value="123" />
-									<input type="hidden" name="num" value="3" />
+									<input type="hidden" name="id" value="${user.id}" />
 									<table class="table">
 										<thead>
 											<tr>
@@ -122,34 +121,24 @@ table td {
 														<!-- book code, book num, user id -->
 														<tr>
 															<td>${rental.title }</td>
+															<td><f:formatDate value="${rental.date}"
+																	pattern="yyyy-MM-dd" /></td>
 															<td>
-																<f:formatDate value="${rental.date}" pattern="yyyy-MM-dd"/>
-															</td>
-															<td>
-																<button class="btn btn-danger btn-sm" name="id"
-																		value="${user.id}">반납</button>
+																<button class="btn btn-danger btn-sm" name="code"
+																	value="${rental.code}">반납</button>
 															</td>
 														</tr>
 													</c:forEach>
 												</c:when>
 												<c:otherwise>
-														<tr>
-															<td>반납할 책이 없습니다.</td>
-														</tr>
+													<tr>
+														<td>반납할 책이 없습니다.</td>
+													</tr>
 												</c:otherwise>
 											</c:choose>
 										</tbody>
 									</table>
 								</form>
-								<%-- 
-								</c:when>
-								<c:otherwise>
-										<tr>
-											<td>반납할 책이 없습니다.</td>
-										</tr>
-								</c:otherwise>
-							</c:choose>
-							 --%>
 							</div>
 						</div>
 					</div>
