@@ -38,10 +38,10 @@ public class BookController {
 	
 	// 도서 목록
 	@GetMapping
+
 	public String bookListPage(@ModelAttribute("cri") BookCriteria cri, Model model) {
 		log.info("booklistpage cri = {}", cri);
 		bookService.bookList(cri, model);
-		
 		return "book/book-board";
 	}
 	

@@ -155,16 +155,16 @@ public class BookProvider {
 		if (searchOption != null && !searchOption.trim().equals("")) {
 			switch (searchOption) {
 			case "title":
-				sql.WHERE("title = '" + search + "'");
+				sql.WHERE("title LIKE CONCAT('%', '" + search + "', '%')");
 				break;
 			case "content":
-				sql.WHERE("content = '" + search + "'");
+				sql.WHERE("content LIKE CONCAT('%', '" + search + "', '%')");
 				break;
 			case "auth":
-				sql.WHERE("auth = '" + search + "'");
+				sql.WHERE("auth LIKE CONCAT('%', '" + search + "', '%')");
 				break;
 			case "pub":
-				sql.WHERE("pub = '" + search + "'");
+				sql.WHERE("pub LIKE CONCAT('%', '" + search + "', '%')");
 				break;
 			default:
 				break;
@@ -172,7 +172,6 @@ public class BookProvider {
 		}
 
 		if (form.getPubDate() != null && !form.getPubDate().trim().equals("")) { // 테스트 필요
-			System.out.println("pubdate : " + form.getPubDate() + "끝부분");
 			Timestamp pubDate = Timestamp.valueOf(form.getPubDate() + " 00:00:00");
 			String date = new SimpleDateFormat("yyyy-MM-dd").format(pubDate);
 			if (pubDateOption.equals("after")) {
@@ -190,7 +189,6 @@ public class BookProvider {
 		sql.ORDER_BY("code");
 
 		sql.OFFSET(cri.getStartRow()).LIMIT(cri.getPerPageNum());
-
 		return sql.toString();
 	}
 
@@ -205,24 +203,24 @@ public class BookProvider {
 		if (searchOption != null && !searchOption.trim().equals("")) {
 			switch (searchOption) {
 			case "title":
-				sql.WHERE("title = '" + search + "'");
+				//LIKE CONCAT('%','#{searchText}','%'
+				sql.WHERE("title LIKE CONCAT('%', '" + search + "', '%')");
 				break;
 			case "content":
-				sql.WHERE("content = '" + search + "'");
+				sql.WHERE("content LIKE CONCAT('%', '" + search + "', '%')");
 				break;
 			case "auth":
-				sql.WHERE("auth = '" + search + "'");
+				sql.WHERE("auth LIKE CONCAT('%', '" + search + "', '%')");
 				break;
 			case "pub":
-				sql.WHERE("pub = '" + search + "'");
+				sql.WHERE("pub LIKE CONCAT('%', '" + search + "', '%')");
 				break;
 			default:
 				break;
 			}
 		}
 
-		if (form.getPubDate() != null && !form.getPubDate().trim().equals("")) { // 테스트 필요
-			System.out.println("pubdate : " + form.getPubDate() + "끝부분");
+		if (form.getPubDate() != null && !form.getPubDate().trim().equals("")) { // 테스트 필요			
 			Timestamp pubDate = Timestamp.valueOf(form.getPubDate() + " 00:00:00");
 			String date = new SimpleDateFormat("yyyy-MM-dd").format(pubDate);
 			if (pubDateOption.equals("after")) {
@@ -237,7 +235,7 @@ public class BookProvider {
 			sql.WHERE("genre = " + genre);
 		}
 
-		System.out.println("\n\n\n\nsql :" + sql.toString());
+		
 		return sql.toString();
 	}
 
@@ -272,16 +270,16 @@ public class BookProvider {
 		if (searchOption != null && !searchOption.trim().equals("")) {
 			switch (searchOption) {
 			case "title":
-				sql.WHERE("title = '" + search + "'");
+				sql.WHERE("title LIKE CONCAT('%', '" + search + "', '%')");
 				break;
 			case "content":
-				sql.WHERE("content = '" + search + "'");
+				sql.WHERE("content LIKE CONCAT('%', '" + search + "', '%')");
 				break;
 			case "auth":
-				sql.WHERE("auth = '" + search + "'");
+				sql.WHERE("auth LIKE CONCAT('%', '" + search + "', '%')");
 				break;
 			case "pub":
-				sql.WHERE("pub = '" + search + "'");
+				sql.WHERE("pub LIKE CONCAT('%', '" + search + "', '%')");
 				break;
 			default:
 				break;
@@ -333,24 +331,20 @@ public class BookProvider {
 				.LEFT_OUTER_JOIN(
 						"rental_reserve ON book_single.num = rental_reserve.book_num AND book.code = rental_reserve.book_code");
 
-		sql.LEFT_OUTER_JOIN("book_single ON book.code = book_single.book_code")
-				.LEFT_OUTER_JOIN("rental ON book_single.num = rental.book_num AND book.code = rental.book_code")
-				.LEFT_OUTER_JOIN(
-						"rental_reserve ON book_single.num = rental_reserve.book_num AND book.code = rental_reserve.book_code");
-
 		if (searchOption != null && !searchOption.trim().equals("")) {
 			switch (searchOption) {
 			case "title":
-				sql.WHERE("title = '" + search + "'");
+				//LIKE CONCAT('%','#{searchText}','%'
+				sql.WHERE("title LIKE CONCAT('%', '" + search + "', '%')");
 				break;
 			case "content":
-				sql.WHERE("content = '" + search + "'");
+				sql.WHERE("content LIKE CONCAT('%', '" + search + "', '%')");
 				break;
 			case "auth":
-				sql.WHERE("auth = '" + search + "'");
+				sql.WHERE("auth LIKE CONCAT('%', '" + search + "', '%')");
 				break;
 			case "pub":
-				sql.WHERE("pub = '" + search + "'");
+				sql.WHERE("pub LIKE CONCAT('%', '" + search + "', '%')");
 				break;
 			default:
 				break;
