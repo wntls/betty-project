@@ -27,7 +27,7 @@
 								<a class="nav-link" href="${path}/boards/notice">게시판</a>
 								<c:choose>
 									<c:when test="${user.rights == 0}">
-										<a class="nav-link" href="${path}/members/num/dashboard">| 회원 공간</a>
+										<a class="nav-link" href="${path}/members/${user.id}/dashboard">| 회원 공간</a>
 										<a class="nav-link" href="${path}/offline">| 오프라인</a>
 												
 									</c:when>

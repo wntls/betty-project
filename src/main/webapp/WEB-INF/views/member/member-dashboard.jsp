@@ -28,6 +28,9 @@ table td {
 }
 </style>
 
+${chkList}
+${rentalList }
+${reserveList}
 <section>
 	<div class="container-md spad">
 		<div class="row justify-content-center">
@@ -44,8 +47,7 @@ table td {
 									<div>
 										<button class="btn btn-danger" onclick="location.href='${path}/members/num'">회원상세</button>
 										<div class="row justify-content-center align-items-center h-100">
-											<span><i class="bi bi-gem"> VIP</i></span>
-											<i class="bi bi-check-lg"></i>
+											${memberCard.premiumGrade}
 										</div>
 									</div>
 							</div>
