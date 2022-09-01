@@ -8,7 +8,10 @@
 			<div class="col-md-8">
 				<div class="row justify-content-between">
 					<div class="col-auto">
-						<h2>건의사항 - ${pm.totalCount}</h2>
+						<div class="oneLine">
+							<h2>건의사항</h2>
+							<h5>- ${pm.totalCount} 개</h5>
+						</div>
 					</div>
 					<div class="col-auto">
 						<select id="pageNumSelect" name="perPageNum" class="form-control">
@@ -39,7 +42,8 @@
 										<f:formatDate var="now" value="${n}" pattern="yyyy-MM-dd" />
 										<!-- mav.addObject("list",list);  List<SuggestBoard> -->
 										<c:forEach var="sugBoard" items="${list}">
-											<tr>
+										<c:if test="${sugBoard.showboard ne 'n'}">
+											<tr onclick="location.href='${path}/boards/suggest/suggestDetail?bno=${sugBoard.bno}'">
 												<td>${sugBoard.bno}</td>
 												<td>${sugBoard.title}</td>
 												<td>${sugBoard.memberId}</td>
@@ -57,6 +61,7 @@
 												<td>${sugBoard.viewcnt}</td>
 												<td>VVIP</td>
 											</tr>
+										</c:if>
 										</c:forEach>
 									</c:when>
 									<c:otherwise>
@@ -70,7 +75,7 @@
 				</div>
 				<div class="row justify-content-center">
 					<div class="col-6">
-						<form id="searchForm" >
+						<form id="searchForm">
 							<div class="form-row input-group mb-3">
 								<div class="input-group-prepend">
 									<select id="typeSel" name="searchType">
@@ -87,7 +92,7 @@
 								</div>
 							</div>
 							<!-- 히든태그로 값 넣어준다. -->
-							<input type="number" id="perPageNum" name="perPageNum" hidden="true"/>
+							<input type="number" id="perPageNum" name="perPageNum" hidden="true" />
 							<input type="hidden" id="searchType" name="searchType" />
 						</form>
 					</div>
@@ -125,22 +130,17 @@
 		$("#perPageNum").val($(this).val());
 		$("#searchForm").submit();
 	});
-	
+
 	$("#typeSel").on('change', function() {
 		console.log($(this).val());
 		$("#searchType").val($(this).val());
 	});
-/* 		$("#perPageNum").val($("#pageNumSelect").val()); */
+	/* 		$("#perPageNum").val($("#pageNumSelect").val()); */
 
-	$("#btn").click(function(){
+	$("#btn").click(function() {
 		var searchType = $("#searchType").val();
 		var keyword = $("#keyword").val();
 		var perPageNum = $("#pageNumSelect").val();
-		location.href="suggest?searchType="+searchType+"&keyword="+keyword+"&perPageNum="+perPageNum;
+		location.href = "?searchType=" + searchType + "&keyword=" + keyword + "&perPageNum=" + perPageNum;
 	});
-	
-	
-	
-
-	
 </script>

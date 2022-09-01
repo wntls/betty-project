@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import com.koreate.betty.domain.book.dao.BookRepository;
 import com.koreate.betty.domain.book.dto.RentalStatusDTO;
@@ -15,8 +16,8 @@ import com.koreate.betty.domain.book.dto.form.BookDeleteForm;
 import com.koreate.betty.domain.book.dto.form.BookForm;
 import com.koreate.betty.domain.book.dto.form.BookSearchForm;
 import com.koreate.betty.domain.book.vo.Book;
-import com.koreate.betty.domain.book.vo.JBookRental;
 import com.koreate.betty.domain.book.vo.JBookSingle;
+import com.koreate.betty.global.util.BookCriteria;
 import com.koreate.betty.global.util.Criteria;
 import com.koreate.betty.global.util.PageMaker;
 
@@ -28,19 +29,13 @@ public class BookService {
 
 	// 페이징 처리가 필요한 뷰는 맵 객체로 반환합니다. 목록 key : list, PageMaker key : pm
 	// 책 목록 (books) : 매개변수가 null이면 해당 검색 옵션이 없이 출력합니다
-	public Map<String, Object> bookList(String searchText, String searchOption, Integer genre, Integer page) {
-		Map<String, Object> map = new HashMap<>();
-
-		Criteria cri = new Criteria();
-		if (page != null) {
-			cri.setPage(page);
-		}
-		int totalCount = bookRepository.findAllCount();
+	public void bookList(BookCriteria cri, Model model) {
+		int totalCount = bookRepository.findAllCount(cri);
 		PageMaker pageMaker = new PageMaker(cri, totalCount);
-
-		map.put("list", bookRepository.findAll(searchText, searchOption, genre, cri));
-		map.put("pm", pageMaker);
-		return map;
+		List<Book> list = bookRepository.findAll(cri);
+		model.addAttribute("list", list);
+		model.addAttribute("pm",pageMaker);
+		
 	}
 
 	// 책 상세 정보

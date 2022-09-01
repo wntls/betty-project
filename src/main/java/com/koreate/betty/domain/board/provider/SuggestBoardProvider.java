@@ -42,7 +42,7 @@ public class SuggestBoardProvider {
 				.toString();
 	}
 	
-	// 건의사항 삭제
+	// 건의사항 삭제(숨김처리)
 	public String suggestRemove(SuggestBoard vo) {
 		return new SQL().UPDATE(SUGGEST_BOARD_TBL)
 				.SET("showboard = 'n'")
@@ -62,6 +62,7 @@ public class SuggestBoardProvider {
 	public String listAllCount(SearchCriteria cri) {
 		SQL sql = new SQL().SELECT("count(*)");
 		sql.FROM(SUGGEST_BOARD_TBL);
+		sql.WHERE("showboard != 'n'");
 		getSearchWhere(cri, sql);
 		return sql.toString();
 	}
@@ -72,6 +73,7 @@ public class SuggestBoardProvider {
 		sql.FROM(SUGGEST_BOARD_TBL);
 		sql.ORDER_BY("origin, depth");
 		getSearchWhere(cri, sql);
+		sql.AND().WHERE("showboard != 'n'");
 		sql.OFFSET(cri.getStartRow());
 		sql.LIMIT(cri.getPerPageNum());
 		return sql.toString();

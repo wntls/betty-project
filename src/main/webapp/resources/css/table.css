@@ -232,3 +232,12 @@ table.table td i {
     margin-top: 10px;
     font-size: 13px;
 }
+
+.oneLine h2, .oneLine h5{
+	display: inline;
+}
+.inlineClass{
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+}
