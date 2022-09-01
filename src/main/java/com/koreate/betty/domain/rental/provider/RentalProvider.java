@@ -8,6 +8,8 @@ import java.sql.Timestamp;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
+import com.koreate.betty.domain.rental.vo.ReserveBook;
+
 public class RentalProvider {
 	
 	public String rentalByMemberId(String id) {
@@ -36,7 +38,7 @@ public class RentalProvider {
 //		return "";
 //	}
 	
-	public String reserveBook(@Param("id")String id, @Param("code")String code, @Param("date")Timestamp date, @Param("num")Integer num) {
+	public String reserveBook(ReserveBook reserveBook) {
 		return new SQL().INSERT_INTO(RENTAL_RESERVE_TBL)
 				.INTO_VALUES("#{code}, #{num}, #{id}, DATE_FORMAT(#{date}, '%Y-%m-%d')")
 				.toString();

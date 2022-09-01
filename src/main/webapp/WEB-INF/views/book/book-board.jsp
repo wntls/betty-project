@@ -3,6 +3,7 @@
 
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 
+
 <style>
 	.card{
 		padding:1rem;
@@ -61,8 +62,11 @@
 			    <input type="radio" name="genre" value="900"> 역사
 			  </label>
 			</div>
+			
+			
+			
 				<div class="row row-cols-1 row-cols-md-4">
-				  <div class="col mb-3">
+	<%-- 			  <div class="col mb-3">
 				    <div class="card">
 				      <img src="${path}/resources/img/book/origin/9772383984000.jpg" class="card-img-top">
 				      <div class="card-body">
@@ -70,6 +74,7 @@
 				      </div>
 				    </div>
 				  </div>
+				  
 				  <div class="col mb-3">
 				    <div class="card">
 				      <img src="${path}/resources/img/book/origin/9772383984000.jpg" class="card-img-top">
@@ -86,7 +91,8 @@
 				      </div>
 				    </div>
 				  </div>
-				  <div class="col mb-4">
+				  
+				  <div class="col mb-3">
 				    <div class="card">
 				      <img src="${path}/resources/img/book/origin/9772383984000.jpg" class="card-img-top">
 				      <div class="card-body">
@@ -94,7 +100,28 @@
 				      </div>
 				    </div>
 				  </div>
-				</div>
+				  
+				</div> --%>
+				
+				<c:choose>
+					<c:when test="${!empty list}">
+						<c:forEach var="board" items="${list}">
+							<div class="col mb-3">
+							    <div class="card">
+							      <img src="${path}/resources/img/book/origin/${board.code}.jpg" onclick="location.href='${path}/books/${board.code}${pm.makeQuery(pm.cri.page)}'" class="card-img-top">
+							      <div class="card-body">
+							        <h5 class="card-title">${board.title}</h5>
+							      </div>
+							    </div>
+							  </div>
+						</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<h1>도서가 존재하지 않습니다.</h1>
+					</c:otherwise>
+				</c:choose>
+				
+				
 				<div class="row justify-content-between mt-5">
 					<form id="searchForm">
 						<div class="form-row input-group mb-3">
