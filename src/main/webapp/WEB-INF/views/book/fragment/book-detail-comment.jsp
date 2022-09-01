@@ -1,38 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<style>
+	#pagination li {
+		list-style: none;
+		float: left;
+		padding: 3px;
+		border: 1px solid skyblue;
+		margin: 3px;
+	}
+	
+	#pagination li a{
+		text-decoration:none;
+		color: black;
+	}
+	
+	#pagination li a.active{
+		color: blue;
+	}
+</style>
 <hr/>
 <div class="container-md spad-sm">
 	<!-- 댓글 -->
 	<div class="anime__details__review">
 		<div class="section-title">
 
-			<h5>${pm}후기${list}</h5>
+			<h5>후기</h5>
 
 		</div>
 		<div id="comments" class="anime__review__item">
 			
 		</div>		
-		<ul id="pagination">
-		
-		</ul>
+		<div class="form-row">
+			<ul class="pagination" id="pa">
+							
+			</ul>
+		</div>
 	</div>
 
 	<div class="anime__details__form">
 		<div class="section-title">
 			<h5>후기 작성</h5>
 		</div>
-		<form id="book-comment" action="${path}/books/123/comment" method="POST">
+		<form id="form">
 			<input type="hidden" name="memberId" value="${user.id}">
 			<input type="hidden" name="nickname" value="${user.nickname}">
-			<input type="hidden" name="bookCode" value="">
+			<input type="hidden" name="bookCode" value="${book.code}">
 			<textarea id="" name="comment" placeholder="Your Comment"></textarea>
-			<button type="submit">
+			<button id="submit">
 				<i class="fa fa-location-arrow"></i> 확인
 			</button>
 		</form>
-		<button id="testBtn" onclick="testadd()" value="댓글 입력"></button>
-		<button id="testBtn" onclick="testlist()" value="댓글 리스트"></button>
 	</div>
 
 </div>
@@ -58,31 +76,38 @@ function testadd(){
 
 } */
 
+var isbn = ${book.code};
+
 $(function(){
-	testlist(1);
+	ajaxList(1);
 });
 
-function testadd(){
 
-	let comment = { memberId : "id001", nickname : "nick001", bookCode : "123", comment : "가자" };
-	
-	$.ajax({
-		
-		type: 'post',
-		url: "${path}/books/9772383984000/comment",
-		data: comment,
-		dataType: 'json',
-		success: function(data){
-			alert(data.data);
-		}
-	});
+$('#submit').on("click",function (e) {
+	e.preventDefault();
+    var formData = $("#form").serialize();
 
-}
+    $.ajax({
+        type: "post",
+        url: "${path}/books/"+isbn+"/comment",
+        data: formData,
+        dataType: 'text',
+        success: function (data) {
+            console.log(data);
+            ajaxList(1);
+        },
+        error: function (request, status, error) {
+            console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+        }
+    });
+});
 
-function testlist(pageNum){
+
+
+function ajaxList(pageNum){
 	$.ajax({
 		type : 'post',
-		url : "${path}/books/9772383984000/comments",
+		url : "${path}/books/"+isbn+"/comments",
 		data : {
 			page : pageNum
 		},
@@ -138,14 +163,14 @@ function printPage(pm) {
 		str  += "<li><a href='" + (pm.endPage + 1) + "'> >> </a></li>";
 	}
 	
-	$("#pagination").html(str);
+	$("#pa").html(str);
 }
 
-$("#pagination").on("click", "li a",function(e){																
+$("#pa").on("click", "li a",function(e){																
 	e.preventDefault();						
 	var commentPage = $(this).attr("href");
 	page = commentPage;
-	testlist(page);
+	ajaxList(page);
 });
 
 
