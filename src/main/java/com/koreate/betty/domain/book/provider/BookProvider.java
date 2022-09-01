@@ -14,46 +14,68 @@ import org.apache.ibatis.jdbc.SQL;
 import com.koreate.betty.domain.book.dto.form.BookSearchForm;
 import com.koreate.betty.domain.book.vo.Book;
 import com.koreate.betty.domain.book.vo.BookComment;
+import com.koreate.betty.global.util.BookCriteria;
 import com.koreate.betty.global.util.Criteria;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class BookProvider {
 
 	// 전체 책 목록
-	public String findAll(@Param("searchText") String searchText, @Param("searchOption") String searchOption, @Param("genre") Integer genre, @Param("cri") Criteria cri) {
+	public String findAll(BookCriteria cri) {
 		SQL sql = new SQL();
 		sql.SELECT("*").FROM(BOOK_TBL);
 
-		if (searchText != null) {
-			if (searchOption != null) {
-				switch(searchOption) {
-				case "title":
-					sql.WHERE("title LIKE CONCAT('%','#{searchText}','%'");
-					break;
-				case "auth":
-					sql.WHERE("auth LIKE CONCAT('%','#{searchText}','%'");
-					break;
-				case "intro":
-					sql.WHERE("intro LIKE CONCAT('%','#{searchText}','%'");
-					break;				
-				}
-			}			
+		if (cri.getSearchText() != null) {
+			switch(cri.getSearchOption()) {
+			case "title":
+				sql.WHERE("title LIKE CONCAT('%','#{searchText}','%'");
+				break;
+			case "auth":
+				sql.WHERE("auth LIKE CONCAT('%','#{searchText}','%'");
+				break;
+			case "intro":
+				sql.WHERE("intro LIKE CONCAT('%','#{searchText}','%'");
+				break;				
+			}
 		}
 
-		if (genre != null) {
+		if (cri.getGenre() != null && cri.getGenre() != "") {
 			sql.WHERE("genre = #{genre}");
 		}
 
 		if (cri != null) {
-			sql.OFFSET("#{cri.startRow}");
-			sql.LIMIT("#{cri.perPageNum");
+			sql.OFFSET("#{startRow}");
+			sql.LIMIT("#{perPageNum}");
 		}
 
 		return sql.toString();
 	}
 
 	// 전체 책 목록 총계
-	public String findAllCount() {
-		return new SQL().SELECT("count(*)").FROM(BOOK_TBL).toString();
+	public String findAllCount(BookCriteria cri) {
+		SQL sql = new SQL();
+		sql.SELECT("count(*)").FROM(BOOK_TBL);
+		if (cri.getSearchText() != null) {
+			switch(cri.getSearchOption()) {
+			case "title":
+				sql.WHERE("title LIKE CONCAT('%','#{searchText}','%'");
+				break;
+			case "auth":
+				sql.WHERE("auth LIKE CONCAT('%','#{searchText}','%'");
+				break;
+			case "intro":
+				sql.WHERE("intro LIKE CONCAT('%','#{searchText}','%'");
+				break;				
+			}
+		}
+
+		if (cri.getGenre() != null && cri.getGenre() != "") {
+			sql.WHERE("genre = #{genre}");
+		}
+		
+		return sql.toString();
 	}
 
 	// 도서 상세 정보

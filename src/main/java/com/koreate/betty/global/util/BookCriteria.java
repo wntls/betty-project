@@ -11,15 +11,19 @@ import lombok.ToString;
 @ToString(callSuper=true)
 public class BookCriteria extends Criteria {
 	
-	private String genre;
-	private String searchType;
-	private String keyword;
+	{
+		this.setPerPageNum(8);
+	}
 	
-	public BookCriteria(int page, int perPageNum, String genre, String searchType, String keyword) {
+	private String genre;
+	private String searchOption;
+	private String searchText;
+	
+	public BookCriteria(int page, int perPageNum, String genre, String searchOption, String searchText) {
 		super(page, perPageNum);
 		this.genre = genre;
-		this.searchType = searchType;
-		this.keyword = keyword;
+		this.searchOption = searchOption;
+		this.searchText = searchText;
 	}
 	
 	

@@ -3,6 +3,9 @@ package com.koreate.betty.global.util;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import lombok.Data;
+
+@Data
 public class PageMaker {
 	
 	private int totalCount;			// 전체 게시물의 개수

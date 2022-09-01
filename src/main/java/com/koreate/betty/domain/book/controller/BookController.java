@@ -39,18 +39,8 @@ public class BookController {
 	// 도서 목록
 	@GetMapping
 	public String bookListPage(@ModelAttribute("cri") BookCriteria cri, Model model) {
-		List<BookListPageDto> list = bookService.bookList(title, genre, page);
-				PageMaker pm = bookService.getPageMaker(cri);
-		log.info("cri page = {}",cri.getPage());
-		model.addAttribute("list",list);
-		model.addAttribute("pm",pm);
-		
-		
-		return "book/book-board";
-	}
-	
-	@PostMapping
-	public String bookListSearch(Model model) { // 매개변수 4개 추가 필요 
+		log.info("booklistpage cri = {}", cri);
+		bookService.bookList(cri, model);
 		
 		return "book/book-board";
 	}
