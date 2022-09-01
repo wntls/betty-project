@@ -56,7 +56,7 @@ public class SignController {
 		return "sign/sign-up-staff";
 	}
 
-	@PostMapping("up/member")
+	@PostMapping({"up/member", "up/staff"})
 	public String signUpMember(@Valid SignUpForm form, BindingResult bindingResult, RedirectAttributes rttr) {
 		if (bindingResult.hasErrors()) {
 			bindingResult.getAllErrors()
