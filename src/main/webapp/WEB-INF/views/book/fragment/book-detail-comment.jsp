@@ -76,6 +76,7 @@ $('#submit').on("click",function (e) {
         success: function (data) {
             console.log(data);
             ajaxList(1);
+            $("textarea[name='comment']").val('');
         },
         error: function (request, status, error) {
             console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

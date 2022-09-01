@@ -30,13 +30,13 @@ public class BookProvider {
 		if (cri.getSearchText() != null) {
 			switch(cri.getSearchOption()) {
 			case "title":
-				sql.WHERE("title LIKE CONCAT('%','#{searchText}','%'");
+				sql.WHERE("title LIKE CONCAT('%',#{searchText},'%')");
 				break;
 			case "auth":
-				sql.WHERE("auth LIKE CONCAT('%','#{searchText}','%'");
+				sql.WHERE("auth LIKE CONCAT('%',#{searchText},'%')");
 				break;
 			case "intro":
-				sql.WHERE("intro LIKE CONCAT('%','#{searchText}','%'");
+				sql.WHERE("intro LIKE CONCAT('%',#{searchText},'%')");
 				break;				
 			}
 		}
@@ -60,13 +60,13 @@ public class BookProvider {
 		if (cri.getSearchText() != null) {
 			switch(cri.getSearchOption()) {
 			case "title":
-				sql.WHERE("title LIKE CONCAT('%','#{searchText}','%'");
+				sql.WHERE("title LIKE CONCAT('%',#{searchText},'%')");
 				break;
 			case "auth":
-				sql.WHERE("auth LIKE CONCAT('%','#{searchText}','%'");
+				sql.WHERE("auth LIKE CONCAT('%',#{searchText},'%')");
 				break;
 			case "intro":
-				sql.WHERE("intro LIKE CONCAT('%','#{searchText}','%'");
+				sql.WHERE("intro LIKE CONCAT('%',#{searchText},'%')");
 				break;				
 			}
 		}

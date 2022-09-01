@@ -26,7 +26,7 @@ public interface RentalRepository {
 	public int rentalBook(@Param("id")String id, @Param("code")String code, @Param("num")Integer num);
 	
 	@InsertProvider(type=RentalProvider.class, method="reserveBook") // 도서 예약하기
-	public int reserveBook(@Param("id")String id, @Param("code")String code, @Param("date")Timestamp date, @Param("num")Integer num);
+	public int reserveBook(ReserveBook reserveBook);
 	
 	@DeleteProvider(type=RentalProvider.class, method="reserveCancle") // 예약 취소
 	public int reserveCancle(@Param("id")String id, @Param("code")String code);
