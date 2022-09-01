@@ -39,13 +39,10 @@ public class BookCommentApiController {
 	
 	// 댓글 추가
 	@PostMapping("{isbn}/comment")
-	public testDto addComment(BookCommentForm form) {
+	public String addComment(BookCommentForm form) {
 		log.info("form = {} ",form);
 		int result = bcs.insertComment(form);
-		String str = result == 1 ? "성공" : "실패";
-		testDto dto = new testDto();
-		dto.setData(str);
-		return dto;
+		return result == 1 ? "Success" : "Failed";
 	}
 	
 	@Data

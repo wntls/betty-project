@@ -62,7 +62,7 @@ public class MemberTest {
 		signService.signUp(form);
 	}
 	
-	@Test 
+//	@Test 
 	public void joinTest() {
 		IntStream.rangeClosed(1, 10).forEach(
 					i -> {
