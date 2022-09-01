@@ -139,7 +139,7 @@ public class BookProvider {
 			}
 		}
 
-		if (form.getPubDate() != null) { // 테스트 필요
+		if (form.getPubDate() != null && !form.getPubDate().trim().equals("")) { // 테스트 필요
 			Timestamp pubDate = Timestamp.valueOf(form.getPubDate() + " 00:00:00");
 			String date = new SimpleDateFormat("yyyy-MM-dd").format(pubDate);
 			if (pubDateOption.equals("after")) {
@@ -188,7 +188,8 @@ public class BookProvider {
 			}
 		}
 
-		if (form.getPubDate() != null) { // 테스트 필요
+		if (form.getPubDate() != null && !form.getPubDate().trim().equals("")) { // 테스트 필요
+			System.out.println("pubdate : " + form.getPubDate() + "끝부분");
 			Timestamp pubDate = Timestamp.valueOf(form.getPubDate() + " 00:00:00");
 			String date = new SimpleDateFormat("yyyy-MM-dd").format(pubDate);
 			if (pubDateOption.equals("after")) {
@@ -269,7 +270,7 @@ public class BookProvider {
 			}
 		}
 
-		if (form.getPubDate() != null) { // 테스트 필요
+		if (form.getPubDate() != null && !form.getPubDate().trim().equals("")) { // 테스트 필요
 			Timestamp pubDate = Timestamp.valueOf(form.getPubDate() + " 00:00:00");
 			String date = new SimpleDateFormat("yyyy-MM-dd").format(pubDate);
 			if (pubDateOption.equals("after")) {
@@ -333,7 +334,7 @@ public class BookProvider {
 			}
 		}
 
-		if (form.getPubDate() != null) { // 테스트 필요
+		if (form.getPubDate() != null && !form.getPubDate().trim().equals("")) { // 테스트 필요
 			Timestamp pubDate = Timestamp.valueOf(form.getPubDate() + " 00:00:00");
 			String date = new SimpleDateFormat("yyyy-MM-dd").format(pubDate);
 			if (pubDateOption.equals("after")) {

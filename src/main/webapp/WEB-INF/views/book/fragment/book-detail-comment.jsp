@@ -57,25 +57,6 @@
 
 <script>
 
-/* 
-function testadd(){
-
-	let comment = { memberId : "id001", nickname : "nick001", bookCode : "123", comment : "가자" };
-	
-	$.ajax({
-		
-		type: 'post',
-		url: "${path}/books/123/comment",
-		contentType : 'application/json',
-		data: JSON.stringify(comment),
-		dataType: 'json',
-		success: function(data){
-			alert(data.data);
-		}
-	})
-
-} */
-
 var isbn = ${book.code};
 
 $(function(){
