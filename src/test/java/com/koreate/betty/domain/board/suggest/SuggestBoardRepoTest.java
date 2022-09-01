@@ -61,8 +61,6 @@ public class SuggestBoardRepoTest {
 	
 	@Test
 	public void replyTest() {
-		SuggestBoard nn = ss.suggestDetail(12);
-		log.info("result={}",nn);
 	}
 	
 	//@Test

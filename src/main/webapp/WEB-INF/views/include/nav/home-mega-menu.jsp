@@ -67,7 +67,7 @@
 				<br/>
 				board
 				<a class="dropdown-item" href="${path}/boards/free">자유게시판</a> 
-				<a class="dropdown-item" href="${path}/boards/suggest">건의사항</a> 
+				<a class="dropdown-item" href="${path}/boards/suggest/">건의사항</a> 
 				<a class="dropdown-item" href="${path}/boards/notice">공지사항</a> 
 			  	<a class="dropdown-item" href="${path}/boards/free/num">자유게시판 상세보기</a> 
 			  	<a class="dropdown-item" href="${path}/boards/free/new">자유게시판 등록</a> 

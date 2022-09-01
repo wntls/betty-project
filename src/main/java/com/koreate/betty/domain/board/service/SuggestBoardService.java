@@ -35,18 +35,23 @@ public class SuggestBoardService {
     }
 
     // 건의사항 삭제
-    public int suggestRemove(int bno) {
-	return dao.suggestRemove(bno);
+    public int suggestRemove(SuggestBoardForm form) {
+	SuggestBoard board = form.suggestBoard();
+	int asdf = dao.suggestRemove(board);
+	System.out.println(asdf);
+	int no = 1;
+	return no;
     }
 
     // 건의사항 수정
     public int suggestUpdate(SuggestBoardForm form) {
-	SuggestBoard board = form.suggestBoard();
-	return dao.suggestUpdate(board);
+	SuggestBoard vo = form.suggestBoard();
+	System.out.println(vo.getBno()+"\n\n\n\n\n");
+	return dao.suggestUpdate(vo);
     }
 
     // 건의사항 상세
-    public SuggestBoard suggestDetail(int bno) {
+    public SuggestBoardDTO suggestDetail(int bno) {
 	return dao.suggestRead(bno);
     }
 

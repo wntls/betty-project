@@ -4,11 +4,17 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreate.betty.domain.board.dto.SuggestBoardDTO;
+import com.koreate.betty.domain.board.dto.form.SuggestBoardForm;
 import com.koreate.betty.domain.board.service.SuggestBoardService;
 import com.koreate.betty.global.util.PageMaker;
 import com.koreate.betty.global.util.SearchCriteria;
@@ -18,35 +24,65 @@ import com.koreate.betty.global.util.SearchCriteria;
 public class SuggestBoardController {
 
     @Autowired
-    SuggestBoardService sbs;
+    SuggestBoardService sboardserv;
 
+    // 게시판 목록 불러오기 : Model & View 사용
     @GetMapping
-    public ModelAndView suggestBoardList(SearchCriteria cri, ModelAndView mav) {
+    public ModelAndView suggestBoardList(SearchCriteria cri, ModelAndView mav) throws Exception {
 	mav.setViewName("board/suggest/suggest-board");
-	System.out.println(cri.getKeyword());
-	System.out.println(cri.getSearchType());
-	System.out.println("\n\n\n\n");
-	List<SuggestBoardDTO> list = sbs.SuggestList(cri);
+	List<SuggestBoardDTO> list = sboardserv.SuggestList(cri);
+	PageMaker pm = sboardserv.getPageMaker(cri);
 	mav.addObject("list", list);
-	PageMaker pm = sbs.getPageMaker(cri);
 	mav.addObject("pm", pm);
 	return mav;
     }
-    
 
     @GetMapping("new")
-    public String freeBoardNew() {
+    public String freeBoardNew() throws Exception {
 	return "board/suggest/suggest-new";
     }
 
-    @GetMapping("/{bno}")
-    public String suggestBoardDetail() {
+    // 조횟수 증가
+    @GetMapping("suggestDetail")
+    public String readCount(int bno, RedirectAttributes reatt) throws Exception {
+	reatt.addAttribute("bno", bno);
+	return "redirect:/boards/suggest/detail";
+    }
+
+    // 게시판 상세보기, Model 사용
+    @GetMapping("detail")
+    public String sBoardDetail(int bno, Model model) throws Exception {
+	SuggestBoardDTO board = sboardserv.suggestDetail(bno);
+	model.addAttribute("board", board);
 	return "board/suggest/suggest-detail";
     }
 
-    @GetMapping("{bno}/edit")
-    public String suggestBoardEdit() {
+    // 수정 페이지 요청. GET
+    @GetMapping("sugedit")
+    public String sugedit(int bno, Model model) throws Exception {
+	SuggestBoardDTO board = sboardserv.suggestDetail(bno);
+	model.addAttribute("board", board);
 	return "board/suggest/suggest-edit";
+    }
+
+    // 게시물 수정 처리
+    @PostMapping("sboardModify")
+    @ResponseBody
+    public int sboardModify(@RequestBody SuggestBoardForm sugboard) throws Exception {
+	int no = sboardserv.suggestUpdate(sugboard);
+	return no;
+    }
+
+    // 게시물 삭제(숨김처리)
+    @PostMapping("delete")
+    @ResponseBody
+    public int delete(@RequestBody SuggestBoardForm sugboard) throws Exception {
+	System.out.println("\n\n\n\n\n" + sugboard);
+
+	int success = sboardserv.suggestRemove(sugboard);
+	System.out.println("\n\n\n\n" + success);
+
+	return success;
     }
 
 }
