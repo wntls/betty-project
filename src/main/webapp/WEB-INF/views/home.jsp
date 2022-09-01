@@ -11,6 +11,7 @@
 		color: graytext;
 	}
 </style>
+
 <!-- 검색 -->
 <div class="advance-search">
 	<div class="container-md">

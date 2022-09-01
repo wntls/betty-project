@@ -40,6 +40,8 @@
 										
 									</c:when>
 								</c:choose>
+								
+								<s:message code="test.test"/>
 							</nav>
 						</div>
 						<!-- 우측 회원관련 -->
@@ -66,9 +68,9 @@
 						
 						<div class="col-md-2">
 							<nav class="nav">
-								<a class="nav-link active" href="#">KOR</a> <a
-									class="nav-link disabled" style="padding: 0.5rem 0.2rem">|</a>
-								<a class="nav-link wait" href="#">ENG</a>
+								<a class="nav-link" id="ko" href="#">KOR</a> 
+								<a class="nav-link disabled" style="padding: 0.5rem 0.2rem">|</a>
+								<a class="nav-link" id="en" href="#">ENG</a>
 							</nav>
 					</div>
 			</nav>
@@ -87,3 +89,4 @@
 		<jsp:param name="user" value="${user}"/>
 	</jsp:include>
 </c:if>
+
