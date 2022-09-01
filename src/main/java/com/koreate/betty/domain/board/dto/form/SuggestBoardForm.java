@@ -7,10 +7,10 @@ import org.springframework.lang.Nullable;
 
 import com.koreate.betty.domain.board.vo.SuggestBoard;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-@Getter
-@Setter
+@Data
 public class SuggestBoardForm {
 	
 	@Nullable
@@ -40,6 +40,4 @@ public class SuggestBoardForm {
 				.origin(origin)
 				.build();
 	} 
-	
-	
 }
