@@ -87,7 +87,10 @@ public class BookProvider {
 	public String findCommentByCode(@Param("code") String code, @Param("cri") Criteria cri) {
 		return new SQL().SELECT("member.img, book_comment.nickname, book_comment.regdate, book_comment.comment")
 				.FROM(BOOK_COMMENT_TBL).JOIN(MEMBER_TBL).WHERE("book_comment.member_id = member.id")
-				.WHERE("book_code = #{code}").OFFSET("#{cri.startRow}").LIMIT("#{cri.perPageNum}").toString();
+				.WHERE("book_code = #{code}")
+				.ORDER_BY("book_comment.num desc")
+				.OFFSET("#{cri.startRow}").LIMIT("#{cri.perPageNum}")				
+				.toString();
 	}
 
 	// 도서 상세 정보 페이지의 댓글 총계
