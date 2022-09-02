@@ -19,7 +19,7 @@
 				</div>
 
 
-				<form>
+				<form id="form">
 					<table class="table table-borderless table-dark mb-5">
 						<tbody>
 							<!-- 1행 -->
@@ -60,7 +60,7 @@
 								<td>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
-											<select id="searchType">
+											<select id="searchOption">
 												<option value="">키워드 선택</option>
 												<option value="title">도서명</option>
 												<option value="auth">작가</option>
@@ -72,7 +72,7 @@
 									</div>
 								</td>
 								<td></td>
-								<td><input class="btn btn-danger" type="submit" value="검색" /></td>
+								<td><input class="btn btn-danger" id="submit" type="submit" value="검색" /></td>
 							</tr>
 						</tbody>
 					</table>					
@@ -100,9 +100,9 @@
 var initBookStr = null;
 var num = 1;
 $(function() {
-	ajaxList(null, null, null, null, null, 1);	
+	ajaxList(1);	
 });
-;
+
 function initData(){
 	
 	initBookStr = `<tr>
@@ -116,28 +116,34 @@ function initData(){
 	</tr>`;
 }
 
-$('#submit').on("click", function(e) {
-	e.preventDefault();		
+$("#submit").on("click", function(e) {
+	e.preventDefault();
+	num = 1;
 	ajaxList(1);
 });
 
 
-function ajaxList(pageNum) {
-	let lst = $("#searchText").val();		
-	let lso = $("#searchOption").val();		
-	let lpd = $("#pubDate").val();
-	let lpdo = $("#pubDateOption").val();
-	let lro = $("input[type='radio']").val();
-		
+function ajaxList(pageNum) {	
+	
+	let st = $("#searchText").val();		
+	let so = $("#searchOption").val();		
+	let pd = $("#pubDate").val();
+	let pdo = $("#pubDateOption").val();
+	let ro = $("input[name=rental]:checked").val();
+	console.log("searchText : " + st);
+	console.log("searchOption : " + so);
+	console.log("pubDate : " + pd);
+	console.log("pubDateOption : " + pdo);
+	console.log("rentalOption : " + ro);
 	$.ajax({
 		type : 'get',
 		url : "${path}/staff/rentals/cond",
 		data : {
-			searchText : lst,
-			searchOption : lso,
-			pubDate : lpd,
-			pubDateOption : lpdo,
-			rentOption : lro,
+			searchText : st,
+			searchOption : so,
+			pubDate : pd,
+			pubDateOption : pdo,
+			rentOption : ro,
 			page : pageNum
 		},
 		dataType : 'json',
@@ -229,62 +235,5 @@ $("#pa").on("click", "li a", function(e) {
 	ajaxList(p);
 });
 
-/* 
-<!-- 1 -->
-					<tr>
-						<td>번호</td>
-						<td>도서명</td>
-						<td>ISBN</td>
-						<td>대여여부</td>
-						<!-- Y : 대여자,  R : 예약자 , N : none -->
-						<td>대여자</td>
-						<!-- stat.equals('R') => 예약자 -->
-						<td>도서 대여일</td>
-						<td>반납 예정일</td>
-					</tr>
-					<!-- 2 -->
-					<tr>
-						<td>1</td>
-						<td>리 제로1</td>
-						<td>123456789098</td>
-						<td>R</td>
-						<td>김선기</td>
-						<td>2022-08-23</td>
-						<td>2022-09-15</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>리 제로2</td>
-						<td>123456789098</td>
-						<td>R</td>
-						<td>김선기</td>
-						<td>2022-08-23</td>
-						<td>2022-09-15</td>
-					</tr>
-					
-					initBookStr += `<tr>
-						<td>\${i}</td>
-						<td>\${title}</td>
-						<td>\${code}</td>
-						<td>\${rental} </td>						
-						<c:choose>
-						<c:when test="${rental == 'y'}">							
-						<td>\${rentalId}</td>
-						<td>\${formatRentalDate}</td>
-						<td>\${formatReturnDate}</td>
-						</c:when>
-						<c:when test="${rental eq 'r'}">
-						<td>\${rentalId}</td>
-						<td>\${formatReserveDate}</td>
-						<td> - </td>
-						</c:when>
-						<c:otherwise>
-						<td> - </td>
-						<td> - </td>
-						<td> - </td>
-						</c:otherwise>
-						</c:choose>
-					</tr>`;
-*/
 </script>
 
