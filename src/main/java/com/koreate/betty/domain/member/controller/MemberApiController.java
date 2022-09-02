@@ -14,10 +14,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.WebUtils;
+
+
+import com.koreate.betty.domain.member.dto.form.PointForm;
+import com.koreate.betty.domain.member.exception.MessageException;
+import com.koreate.betty.domain.member.exception.NotFoundIdException;
 
 import com.koreate.betty.domain.member.service.MemberService;
 import com.koreate.betty.domain.member.service.SignService;
@@ -87,3 +94,31 @@ public class MemberApiController {
 		}
 		throw new NotFoundIdException();
 	}
+
+	
+	@ExceptionHandler
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ErrorResult mailHandle(NotFoundIdException ex) {
+		log.error("error = {}",ex.getMessage());
+		return new ErrorResult(HttpStatus.BAD_REQUEST.value(), "아이디 검색 실패");
+	}
+	
+	@PutMapping("charge/add")
+	public int pointAdd(
+			@PathVariable("id") String userId,
+			@RequestBody Map<String,Object> map) {
+		log.info("-- userId : {} ", userId);
+		log.info("-- point : {} ", map.get("point").toString());
+		PointForm form = new PointForm();
+		form.setId(userId);
+		Integer point = Integer.parseInt((String)map.get("point"));
+		form.setPoint(point);
+		memberService.addPoint(form);
+		
+		return memberService.findPointById(userId);
+	}
+
+	
+}
+
+
