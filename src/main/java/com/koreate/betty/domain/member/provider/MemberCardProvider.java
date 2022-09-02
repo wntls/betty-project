@@ -22,6 +22,13 @@ public class MemberCardProvider {
 	
 	// 멤버십 갱신 / 등급 변경(?)
 	
+	// 포인트 아이디로 검색
+	public String findPointById(String id) {		
+		return new SQL().SELECT("point").FROM(MEMBER_CARD_TBL)
+				.WHERE("member_id = #{id}")				
+				.toString();
+	}
+	
 	
 	// 포인트 충전
 	public String updatePoint(@Param("id")String id, @Param("point")int point) {

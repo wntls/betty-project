@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.koreate.betty.domain.member.dto.form.PointForm;
 import com.koreate.betty.domain.member.service.MemberService;
 import com.koreate.betty.domain.member.service.SignService;
 import com.koreate.betty.domain.member.util.SignHelper;
@@ -75,4 +78,23 @@ public class MemberApiController {
 		}
 		throw new NotFoundIdException();
 	}
+	
+	@PutMapping("charge/add")
+	public int pointAdd(
+			@PathVariable("id") String userId,
+			@RequestBody Map<String,Object> map) {
+		log.info("-- userId : {} ", userId);
+		log.info("-- point : {} ", map.get("point").toString());
+		PointForm form = new PointForm();
+		form.setId(userId);
+		Integer point = Integer.parseInt((String)map.get("point"));
+		form.setPoint(point);
+		memberService.addPoint(form);
+		
+		return memberService.findPointById(userId);
+	}
+
+	
 }
+
+
