@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LogAOP {
 
-	@Around("execution(* com.koreate.betty..*.*(..))")
+	@Around("execution(* com.koreate.betty.domain..*.*(..))")
 	public Object service(ProceedingJoinPoint pjp) {
 
 		log.info("================aop start ==============");

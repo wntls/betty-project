@@ -1,6 +1,9 @@
 package com.koreate.betty.global.util;
 
+import lombok.Data;
+
 // 게시물 페이징 전용 클래스
+@Data
 public class Criteria {
 	
 	private int page;		// 현재 페이지
@@ -11,7 +14,7 @@ public class Criteria {
 	}
 	
 	public Criteria(int page, int perPageNum) {
-		this.page = page;
+		setPage(page);
 		this.perPageNum = perPageNum;
 	}
 

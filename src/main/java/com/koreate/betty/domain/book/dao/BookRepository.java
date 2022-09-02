@@ -17,16 +17,17 @@ import com.koreate.betty.domain.book.provider.BookSingleProvider;
 import com.koreate.betty.domain.book.vo.Book;
 import com.koreate.betty.domain.book.vo.JBookRental;
 import com.koreate.betty.domain.book.vo.JBookSingle;
+import com.koreate.betty.global.util.BookCriteria;
 import com.koreate.betty.global.util.Criteria;
 
 @Mapper
 public interface BookRepository {
 
 	@SelectProvider(type=BookProvider.class, method="findAll")		// 책 목록
-	public List<Book> findAll(@Param("title")String title, @Param("genre")Integer genre, @Param("cri")Criteria cri);
+	public List<Book> findAll(BookCriteria cri);
 	
 	@SelectProvider(type=BookProvider.class, method="findAllCount")		// 전체 책 목록 총계  (findAll PageMaker) 
-	public int findAllCount();
+	public Integer findAllCount(BookCriteria cri);
 		
 	@SelectProvider(type=BookProvider.class, method="bookDetail")		// 책 상세정보 
 	public Book bookDetail(String code);
@@ -62,7 +63,7 @@ public interface BookRepository {
 	public int jRentalSearchCount(BookSearchForm form);
 	
 	@SelectProvider(type=BookSingleProvider.class, method="findExistNum")	// 렌탈 서비스에서 참조
-	public int findExistNum(String code);	
+	public Integer findExistNum(String code);	
 	
 	@InsertProvider(type=BookProvider.class, method="insert")
 	public int insert(Book book);

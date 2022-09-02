@@ -73,7 +73,7 @@
 .header-lantern-right {
 	position: absolute;
 	background-size: 80%;
-	right: -4rem;
+	right: 0;
 	z-index: 2;
 	background-repeat: no-repeat;
 	width: 20%;
@@ -355,7 +355,7 @@ form .form-control::placeholder {
   border-right-color: #e53637;
   animation: spin 800ms infinite linear;
   position: fixed;
-  z-index: 1000;
+  z-index: 1100;
   top: 45%;
   left: 50%;
 }

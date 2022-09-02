@@ -34,29 +34,4 @@ public class FreeBoardApiController {
 		return null;
 	}
 	
-	// 게시글 등록 요청
-	@PostMapping("new")
-	public Object freeBoardNewReq(@RequestBody @Valid FreeBoardForm form, BindingResult bindingResult){
-		if(bindingResult.hasErrors()) {
-			// form error logic
-			log.info("*************************************************");
-			log.info("exception occured");
-			log.info("form = {}", form);
-			log.info("form tag.length = {}", form.getTag().length());
-			log.info("form title.length = {}", form.getTitle().length());
-			return bindingResult.getAllErrors();
-		}
-		log.info("form = {}", form);
-		
-		int result = freeBoardService.write(form);
-		
-		if(result == 0) {
-			// insert error logic
-			return new ErrorResult("success", "good");
-		}
-		return new ErrorResult("success", "good");
-		// complete : location 이동
-		// redirect:/boards/free/bno
-	}
-
 }

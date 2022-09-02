@@ -32,7 +32,7 @@ public interface SuggestBoardRepository {
 		
 		// 건의사항 삭제
 		@UpdateProvider(type=SuggestBoardProvider.class, method="suggestRemove")
-		public int suggestRemove(int bno);
+		public int suggestRemove(SuggestBoard vo);
 		
 		// 건의사항 수정
 		@UpdateProvider(type=SuggestBoardProvider.class, method="suggestUpdate")
@@ -40,7 +40,7 @@ public interface SuggestBoardRepository {
 		
 		// 건의사항 상세
 		@SelectProvider(type=SuggestBoardProvider.class, method="suggestDetail")
-		public SuggestBoard suggestRead(int bno);
+		public SuggestBoardDTO suggestRead(int bno);
 		
 		// 건의사항 목록 출력
 		@SelectProvider(type=SuggestBoardProvider.class, method = "suggestList")

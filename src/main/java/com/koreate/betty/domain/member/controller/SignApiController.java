@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.koreate.betty.domain.member.service.SignService;
+import com.koreate.betty.domain.member.util.SignHelper;
+import com.koreate.betty.domain.model.SessionConst;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,51 +45,52 @@ public class SignApiController {
 	}
 
 	@GetMapping("find/id")
-	public String forgetIdTakeCode(FindIdDto dto, HttpSession session) {
-		String code = signService.forgetId(dto.getName(), dto.getPhone());
-		session.setAttribute("code", code);
-		session.setMaxInactiveInterval(180);
-		return code;
+	public String sendSMS(FindIdDto dto, HttpSession session) {
+		signService.forgetId(dto.getName(), dto.getPhone());
+		SignHelper.makeCodeForSMS(session);
+		return "1";
 	}
 
 	@PostMapping("find/id")
-	public String forgetIdValidCode(FindIdDto dto, @SessionAttribute("code") String code) {
-		if (dto.getCode().equals(code)) {
+	public String smsValid(FindIdDto dto, HttpSession session) {
+		String sessionCode = (String)session.getAttribute(SessionConst.SMS_CODE);
+		String code = dto.getCode();
+		if (code.equals(sessionCode)) {
 			return signService.forgetId(dto.getName(), dto.getPhone());
 		}
-		return "코드가 일치하지 않습니다";
+		return "0";
 	}
 
 	@GetMapping("up/sms")
 	public String sendSMS(String phone, HttpSession session) {
 		signService.sendSMS(phone, session);
-		return "SMS 전송 완료";
+		return "1";
 	}
 
 	@PostMapping("up/sms")
 	public String smsValid(String code, HttpSession session) {
-		String sessionCode = (String)session.getAttribute("code");
+		String sessionCode = (String)session.getAttribute(SessionConst.SMS_CODE);
 		if(code.equals(sessionCode)) {
 			session.invalidate();
-			return "일치";
+			return "1";
 		}
-		return "불일치";
+		return "0";
 	}
 
 	@GetMapping("up/email")
 	public String sendEmail(String email, HttpSession session) {
 		signService.sendEmail(email, session);
-		return "이메일 전송 완료";
+		return "1";
 	}
 
 	@PostMapping("up/email")
 	public String emailValid(String code, HttpSession session) {
-		String sessionCode = (String)session.getAttribute("code");
+		String sessionCode = (String)session.getAttribute(SessionConst.EMAIL_CODE);
 		if(code.equals(sessionCode)) {
 			session.invalidate();
-			return "일치";
+			return "1";
 		}
-		return "불일치";
+		return "0";
 	}
 	
 	@Data
@@ -103,11 +107,4 @@ public class SignApiController {
 		private String code;
 	}
 	
-	private void storeCodeInSession(HttpSession session) {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("code", "12345");
-		session.setAttribute("code", "12345");
-		session.setMaxInactiveInterval(180);
-	}
-
 }

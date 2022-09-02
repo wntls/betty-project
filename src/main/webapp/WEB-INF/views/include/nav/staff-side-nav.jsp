@@ -8,16 +8,16 @@
 	    <a class="nav-link disabled">직원 화면</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" href="${path}/staff/num">내 정보</a>
+	    <a class="nav-link" href="${param.path}/staff/${user.id}">내 정보</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" href="${path}/staff/rentals">대여 현황</a>
+	    <a class="nav-link" href="${param.path}/staff/rentals">대여 현황</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" href="${path}/staff/books">도서 현황</a>
+	    <a class="nav-link" href="${param.path}/staff/books">도서 현황</a>
 	  </li>
 	  <li class="nav-item">
-	    <a class="nav-link" href="${path}/staff/books/new">도서 입고</a>
+	    <a class="nav-link" href="${param.path}/staff/books/new">도서 입고</a>
 	  </li>
 	</ul>
 </div>

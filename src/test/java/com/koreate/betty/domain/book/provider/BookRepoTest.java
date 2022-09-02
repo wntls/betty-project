@@ -39,7 +39,7 @@ public class BookRepoTest {
 
 		Timestamp time = Timestamp.valueOf("2022-06-10 00:00:00");
 		BookForm form = new BookForm("9772950991004", "더퍼슨스 the Persons No.4 : 브랜드 디렉터 Brand Director", "더퍼슨스", "더퍼슨스",
-				time, 330, 300,
+				"2022-06-10", 330, 300,
 				"책소개\r\n"
 						+ " 우리는 매일 브랜드를 마주하며 살아간다. 때로는 브랜드의 메시지에 공감하기도 하고, 그들의 아름다움과 뛰어남에 감탄하기도 한다. 더불어 다른 이들이 어떤 브랜드를 좋아하는지 열심히 관찰한다. 각자가 좋아하는 브랜드가 곧 각자의 정체성을 대변하기 때문이다.\r\n"
 						+ " \r\n"
@@ -49,16 +49,6 @@ public class BookRepoTest {
 		log.info("result : " + result);
 	}
 
-	// @Test
-	public void joinTest() { // 테스트 완료 (jbooksList)
-		Map<String, Object> map = bs.bookList(null, null, null);
-		List<Book> list = (List<Book>) map.get("list");
-		log.info("size : " + list.size());
-		Book b1 = list.get(1);
-		log.info(b1.getCode());
-		log.info(b1.getTitle());
-		log.info(b1.getAuth());
-	}
 
 	// @Test
 	public void jBooksSearchTest() {

@@ -27,25 +27,26 @@ table td {
 	text-align: center;
 }
 </style>
+${chkList}
+
 
 <section>
 	<div class="container-md spad">
 		<div class="row justify-content-center">
-			<div class="col-md-8">
+			<div class="col-md-10">
 				<div class="row row-cols-md-2">
 					<div class="col mb-4">
 						<div class="card">
 							<div class="row justify-content-around" style="padding:1rem">
 									<div class="text-center">
-										<img src="${path}/resources/img/member/thumbnail/profile_male.jpg"
+										<img src="${path}/resources/img/member/thumbnail/${user.img}"
 											style="width: 10rem" class="img-thumbnail"
 											alt="...">
 									</div>
 									<div>
 										<button class="btn btn-danger" onclick="location.href='${path}/members/num'">회원상세</button>
 										<div class="row justify-content-center align-items-center h-100">
-											<span><i class="bi bi-gem"> VIP</i></span>
-											<i class="bi bi-check-lg"></i>
+											${memberCard.premiumGrade}
 										</div>
 									</div>
 							</div>
@@ -54,15 +55,15 @@ table td {
 								<table class="table table-sm">
 									<tr>
 										<th>아이디 : </th>
-										<td colspan="2">namu6747</td>
+										<td colspan="2">${user.id}</td>
 									</tr>
 									<tr>
 										<th>닉네임 : </th>
-										<td colspan="2">jaemin</td>
+										<td colspan="2">${user.nickname}</td>
 									</tr>
 									<tr>
 										<th>이메일 : </th>
-										<td colspan="2">namu6747@naver.com</td>
+										<td colspan="2">${user.email}</td>
 									</tr>
 								</table>
 							</div>
@@ -87,42 +88,58 @@ table td {
 								<button class="btn btn-danger"
 									onclick="location.href='${path}/members/num/rentals'">대여상세</button>
 							</div>
+							
+
 							<div class="card-body">
 								<table class="table table-sm">
 									<thead class="thead-dark">
 										<tr>
 											<th>예약</th>
-											<th colspan="2">도서</th>
+											<th colspan="3">도서</th>
 											<th colspan="2">수령예정</th>
 										</tr>
+									<c:choose>
+										<c:when test="${!empty reserveList}">
+											<c:forEach var="reserve" items="${reserveList}">
+												<tr>
+													<td></td>
+													<td colspan="3">${reserve.title}</td>
+													<td colspan="3"><f:formatDate value="${reserve.date}"
+															pattern="yyyy-MM-dd" /></td>
+												</tr>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<tr>
+												<td colspan='6'>대여 예약된 책이 없습니다.</td>
+											</tr>
+										</c:otherwise>
+									</c:choose>
 									</thead>
-									<tr>
-										<td></td>
-										<td colspan="2">리제로</td>
-										<td colspan="2">2022-08-25</td>
-									</tr>
 									<thead class="thead-dark">
 										<tr>
 											<th>대여</th>
-											<th colspan="2">도서</th>
+											<th colspan="3">도서</th>
 											<th colspan="2">반납예정</th>
 										</tr>
 									</thead>
-									<tr>
-										<td></td>
-										<td colspan="2">진격의 거인dddddddddddd</td>
-										<td colspan="2">2022-09-05</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td colspan="2">진격의 거인</td>
-										<td colspan="2">2022-09-05</td>
-									</tr>
-									<tr>
-										<td></td>
-										<td colspan="2">진격의 거인</td>
-										<td colspan="2">2022-09-05</td>
-									</tr>
+									<c:choose>
+										<c:when test="${!empty rentalList}">
+											<c:forEach var="rental" items="${rentalList}">
+												<tr>
+													<td></td>
+													<td colspan="3">${rental.title}</td>
+													<td colspan="2"><f:formatDate value="${rental.date}"
+															pattern="yyyy-MM-dd" /></td>
+												</tr>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<tr>
+												<td colspan='6'>대여 예약된 책이 없습니다.</td>
+											</tr>
+										</c:otherwise>
+									</c:choose>
 
 								</table>
 							</div>
@@ -175,21 +192,21 @@ table td {
 						<div class="input-group-prepend">
 							<div class="input-group-text">작성자</div>
 						</div>
-						<input type="text" class="form-control" value="{yourName}"
+						<input type="text" class="form-control" value="${user.name}"
 							readonly="readonly">
 					</div>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
 							<div class="input-group-text">제목</div>
 						</div>
-						<input type="text" class="form-control">
+						<input type="text" id="title" class="form-control">
 					</div>
 					<br />
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
 							<div class="input-group-text">내용</div>
 						</div>
-						<textarea class="form-control" rows="" cols=""></textarea>
+						<textarea class="form-control" id="content" rows="" cols=""></textarea>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -202,8 +219,38 @@ table td {
 	</div>
 </div>
 
+<div class="custom-Loader"></div>
+
 <script>
+	$('#inqSubBtn').on('click', function(){
+		let memberId = '${user.id}';
+		let title = $('#title').val();
+		let content =  $('#content').val();
+			
+		let data = { memberId : memberId, title : title, content : content };
+		$.ajax({
+			type: 'post',
+			url: '${path}/members/{user.id}/inquiry',
+			data: data,
+			beforeSend : function(){
+				$('.custom-Loader').delay(100).fadeIn("slow");
+			},
+			complete : function(){
+			    $(".custom-Loader").delay(100).fadeOut("slow");
+			},
+			success: function(data){
+				console.log("data");
+				alert('전송 완료');
+				location.href="${path}/members/${user.id}/dashboard";
+			},
+			error : function(data){
+				alert("전송 실패");
+			}
+		})
+	})	
+
 $(function(){
+	$('.custom-Loader').hide();
 	$("#container").simpleCalendar({
 	 
 		fixedStartDay: 0, // 일요일부터 시작
@@ -242,34 +289,3 @@ $(function(){
  	});
 });
 </script>
-
-
-<!-- <script>
-caleandar(element, events, settings);
-
-var element = caleandar($('#caleandar'));
-
-var events = [
-    {'Date': new Date(2016, 6, 7), 'Title': 'Doctor appointment at 3:25pm.'},
-    {'Date': new Date(2016, 6, 18), 'Title': 'New Garfield movie comes out!', 'Link': 'https://garfield.com'},
-    {'Date': new Date(2016, 6, 27), 'Title': '25 year anniversary', 'Link': 'https://www.google.com.au/#q=anniversary+gifts'},
-];
-
-var settings = {
-	    Color: 'black',
-	    LinkColor: 'black',
-	    NavShow: true,
-	    NavVertical: false,
-	    NavLocation: 'top',
-	    DateTimeShow: true,
-	    DateTimeFormat: 'mmm, yyyy',
-	    DatetimeLocation: 'ko',
-	    EventClick: 'none',
-	    EventTargetWholeDay: false,
-	    DisabledDays: [],
-	    ModelChange: model
-	};
-	
-var element = document.getElementById('caleandar');
-caleandar(element, events, settings);
-</script> -->

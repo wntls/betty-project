@@ -9,9 +9,11 @@ import com.koreate.betty.domain.book.vo.Book;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class BookForm {
 	
 	@Size(max = 50)
@@ -32,15 +34,15 @@ public class BookForm {
 	
 	@Size(max = 50)
 	@NotBlank
-	private Timestamp pubDate;
+	private String pubDate;
 	
-	@NotBlank // 필수 X
+//	@NotBlank // 필수 X
 	private Integer page;
 	
 	@NotBlank
 	private Integer genre;
 	
-	@NotBlank // 필수 X
+//	@NotBlank // 필수 X
 	private String intro;
 	
 	public Book createBook() {
@@ -50,7 +52,7 @@ public class BookForm {
 				.title(title)
 				.auth(auth)
 				.pub(pub)
-				.pubDate(pubDate)
+				.pubDate(Timestamp.valueOf(pubDate + " 00:00:00"))
 				.page(page)
 				.genre(genre)
 				.intro(intro)

@@ -8,7 +8,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.util.Base64Utils;
 
+import com.koreate.betty.domain.member.util.Base64Util;
 import com.koreate.betty.domain.member.vo.Member;
 
 import lombok.AllArgsConstructor;
@@ -50,7 +52,7 @@ public class SignUpForm {
 	String addr;
 	
 	@Nullable
-	String addr_detail;
+	String addrDetail;
 	
 	@NotBlank
 	String phone;
@@ -61,20 +63,27 @@ public class SignUpForm {
 	@NotNull
 	Integer rights;
 		
-		public Member convertToMember(){
-			return Member.builder()
-					.id(id)
-					.pw(pw)
-					.nickname(nickname)
-					.name(name)
-					.gender(gender)
-					.birth(new Timestamp(birth.getTime()))
-					.phone(phone)
-					.addr(String.format("[%s] %s %s", post, addr, addr_detail))
-					.email(email)
-					.rights(rights)
-					.build();
-		}
-		
+	public void encode() {
+		pw = Base64Util.encode(pw);
+		repw = Base64Util.encode(repw);
+	}
+	
+	public Member convertToMember(){
+		return Member.builder()
+				.id(id)
+				.pw(pw)
+				.nickname(nickname)
+				.name(name)
+				.gender(gender)
+				.birth(new Timestamp(birth.getTime()))
+				.phone(phone)
+				.post(post)
+				.addr(addr)
+				.addrDetail(addrDetail)
+				.email(email)
+				.rights(rights)
+				.build();
+	}
+	
 		
 }

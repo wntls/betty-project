@@ -15,9 +15,12 @@ import com.koreate.betty.domain.member.dao.MemberCardRepository;
 import com.koreate.betty.domain.member.dao.MemberRepository;
 import com.koreate.betty.domain.member.dto.form.PointForm;
 import com.koreate.betty.domain.member.dto.form.UpdateForm;
-import com.koreate.betty.domain.member.exception.NotFoundIdException;
 import com.koreate.betty.domain.member.vo.ChkLog;
+import com.koreate.betty.domain.member.vo.Inquiry;
 import com.koreate.betty.domain.member.vo.Member;
+import com.koreate.betty.domain.member.vo.MemberCard;
+import com.koreate.betty.global.error.exception.NotFoundIdException;
+import com.koreate.betty.infra.email.EmailSender;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +35,7 @@ public class MemberService {
 	private final MemberRepository memberRepository;
 	private final MemberCardRepository memberCardRepository;
 	private final ServletContext context;
+	private final EmailSender emailSender;
 	
 	public Member findOne(String id) {
 		Member findMember = memberRepository.findOne(id);
@@ -62,11 +66,11 @@ public class MemberService {
 		return result;
 	}
 
-	public int updateMember(String targetId, UpdateForm form) {
-		Member update = form.createMember();
-		int result = memberRepository.update(targetId, update); 
-		
-		return result;
+	public Member updateMember(UpdateForm form) {
+		Member member = form.createMember();
+		imgUpload(form.getId(), form.getImg());
+		memberRepository.update(member);
+		return memberRepository.findOne(form.getId());
 	}
 
 	public int addPoint(PointForm form) {
@@ -76,16 +80,22 @@ public class MemberService {
 		return result;
 	}
 
+	public int findPointById(String id) {
+		int point = memberCardRepository.findPointById(id);
+		return point;
+	}
+	
 	public List<ChkLog> findMyChkLog(String id) {
 		return memberRepository.findMyChkLog(id);
 	}
 	
 //	src\main\webapp\resources\img\member\origin
 	public boolean imgUpload(String targetId, MultipartFile img) {
+		log.info("img Upload Called");
 		
 		boolean uploaded = false;
 		
-		String originalName = img.getName();
+		String originalName = img.getOriginalFilename();
 		String formatName = originalName.substring(originalName.lastIndexOf(".") + 1);
 		log.info("\n\n\n\n originalName : {}", originalName);
 		log.info("\n\n\n\n formatName : {}", formatName);
@@ -98,6 +108,8 @@ public class MemberService {
 		String originPath = context.getRealPath(sp+"resources"+sp+"img"+sp+"member"+sp+"origin");
 		String middlePath = context.getRealPath(sp+"resources"+sp+"img"+sp+"member"+sp+"middle");
 		String thumbPath = context.getRealPath(sp+"resources"+sp+"img"+sp+"member"+sp+"thumbnail");
+		log.info("origin name = {}", originalName);
+		log.info("originPath = {}", originPath);
 		
 		String imgName = targetId + "_" + originalName; 
 		
@@ -132,8 +144,24 @@ public class MemberService {
 		return memberCardRepository.updateGrade(id, membershipGrade);
 	}
 
-	public String findGradeById(String id) {
-		return null;
+	public MemberCard findGradeById(String id) {
+		return memberCardRepository.findOne(id);
 	}
+	
+	public int updateLend(String id, String grade) {
+		return memberCardRepository.updateGrade(id, grade);
+	}
+	
+	public void inquiry(Inquiry inquiry) {
+		emailSender.inquiry(inquiry);
+		memberRepository.createInquiry(inquiry);
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 }

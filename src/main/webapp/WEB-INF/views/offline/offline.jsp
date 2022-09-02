@@ -28,12 +28,13 @@ table td {
 	text-align: center;
 	line-height: 1.8rem;
 }
-.seat tr td{
+
+.seat tr td {
 	background: #dc3545;
 	border: 1px white solid !important;
 }
 
-.seat tr td:nth-child(2), .seat tr td:nth-child(5){
+.seat tr td:nth-child(2), .seat tr td:nth-child(5) {
 	background: none;
 	border-top: 0 !important;
 	border-bottom: 0 !important;
@@ -54,57 +55,88 @@ table td {
 						<div class="card">
 							<div class="card-body">
 								<h5 class="card-title">도서 수령</h5>
-								<table class="table">
-									<thead>
-										<tr>
-											<th>도서명</th>
-											<th>예약일</th>
-											<th>수령하기</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
+								<form action="${path}/offline/${user.id}/receipt" method="post">
+									<table class="table">
+										<thead>
+											<tr>
+												<th>도서명</th>
+												<th>예약일</th>
+												<th>수령하기</th>
+											</tr>
+										</thead>
+										<tbody>
 											<!-- book code, book num, user id -->
-											<form action="${path}/offline/receipt" method="post">
-												<input type="text" name="code" value="1244561244" hidden />
-												<input type="text" name="num" value="002" hidden />
-												<td>전생에 슬라임이었던 건에 대해서</td>
-												<td>2022-08-31</td>
-												<td><button class="btn btn-danger btn-sm" name="id"
-														value="${user.id}">수령</button></td>
-											</form>
-										</tr>
-									</tbody>
-								</table>
+											<c:choose>
+												<c:when test="${!empty reserves}">
+													<c:forEach var="reserve" items="${reserves}">
+														<tr>
+															<td>${reserve.title}</td>
+															<td><f:formatDate value="${reserve.date}"
+																	pattern="yyyy-MM-dd" /></td>
+															<td>
+
+																<button class="btn btn-danger btn-sm" name="code"
+																	value="${reserve.code}">수령</button>
+															</td>
+														</tr>
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+													<tr>
+														<td>대여 예약된 책이 없습니다.</td>
+													</tr>
+												</c:otherwise>
+											</c:choose>
+										</tbody>
+									</table>
+								</form>
 							</div>
 						</div>
 					</div>
+
 					<div class="col mb-4">
 						<div class="card">
 							<div class="card-body">
 								<h5 class="card-title">도서 반납</h5>
-								<table class="table">
-									<thead>
-										<tr>
-											<th>도서명</th>
-											<th>반납예정일</th>
-											<th>반납하기</th>
-										</tr>
-									</thead>
-									<tbody>
-										<!-- book code, book num, user id -->
-										<tr>
-											<form action="${path}/offline/return" method="post">
-												<input type="text" name="code" value="6363531244" hidden />
-												<input type="text" name="num" value="003" hidden />
-												<td>강철의 연금술사</td>
-												<td>2022-09-05</td>
-												<td><button class="btn btn-danger btn-sm" name="id"
-														value="${user.id}">반납</button></td>
-											</form>
-										</tr>
-									</tbody>
-								</table>
+								<%-- 
+								<c:choose>
+										<c:when test="${!empty rentals}">
+											<c:forEach var="rental" items="${rentals}">
+											 --%>
+								<form action="${path}/offline/${user.id}/return" method="post">
+									<table class="table">
+										<thead>
+											<tr>
+												<th>도서명</th>
+												<th>반납예정일</th>
+												<th>반납하기</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:choose>
+												<c:when test="${!empty rentals}">
+													<c:forEach var="rental" items="${rentals}">
+														<!-- book code, book num, user id -->
+														<tr>
+															<td>${rental.title }</td>
+															<td><f:formatDate value="${rental.date}"
+																	pattern="yyyy-MM-dd" /></td>
+															<td>
+																<button class="btn btn-danger btn-sm" name="code"
+																	value="${rental.code}">반납</button>
+															</td>
+														</tr>
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+													<tr>
+														<td>반납할 책이 없습니다.</td>
+													</tr>
+												</c:otherwise>
+											</c:choose>
+										</tbody>
+									</table>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -154,10 +186,10 @@ table td {
 					<div class="col mb-4">
 						<div class="card">
 							<div class="card-body">
-								<h5 class="card-title">체크인 & 체크아웃</h5>
+								<h5 class="card-title">체크인 &amp; 체크아웃</h5>
 								<div class="d-flex flex-column" style="padding: 3rem">
-									<button type="button" class="btn btn-danger btn-lg mb-3">체크인</button>
-									<button type="button" class="btn btn-danger btn-lg">체크아웃</button>
+									<button type="button" id="checkIn" class="btn btn-danger btn-lg mb-3">체크인</button>
+									<button type="button" id="checkOut" class="btn btn-danger btn-lg">체크아웃</button>
 								</div>
 							</div>
 						</div>
