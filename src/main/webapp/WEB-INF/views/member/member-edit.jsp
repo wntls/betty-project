@@ -134,6 +134,17 @@
 <script>
 
 
+/*	var imgTemp = $("#profileImgDiv").attr("src");*/
+	$("#img").on("change",function(){
+		var files = $(this)[0].files[0];
+		if(files != null && files.type.startsWith("image/")){
+			var path = window.URL.createObjectURL(files);
+			$("#profileImgDiv").css("background-image",`url(\${path})`);
+		}else{
+			alert("이미지를 선택해 주세요.");
+		}
+	});
+
 	$('#img').on('change', function(event){
 		var reader = new FileReader();
 		console.log(reader);
