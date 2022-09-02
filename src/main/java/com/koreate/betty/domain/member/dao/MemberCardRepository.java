@@ -14,6 +14,9 @@ public interface MemberCardRepository {
 	@SelectProvider(type=MemberCardProvider.class, method="findOne")
 	public MemberCard findOne(String id);
 	
+	@SelectProvider(type=MemberCardProvider.class, method="findPointById")
+	public int findPointById(String id);
+	
 	@UpdateProvider(type=MemberCardProvider.class, method="demerit")
 	public int updateDemerit(@Param("id")String id, @Param("point")Integer demerit);
 	
@@ -25,5 +28,7 @@ public interface MemberCardRepository {
 	
 	@UpdateProvider(type=MemberCardProvider.class, method="updateLend")
 	public int updateLend(@Param("id")String id, @Param("grade")String grade);
+
+	
 	
 }

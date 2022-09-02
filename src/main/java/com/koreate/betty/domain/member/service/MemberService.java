@@ -77,6 +77,11 @@ public class MemberService {
 		return result;
 	}
 
+	public int findPointById(String id) {
+		int point = memberCardRepository.findPointById(id);
+		return point;
+	}
+	
 	public List<ChkLog> findMyChkLog(String id) {
 		return memberRepository.findMyChkLog(id);
 	}
