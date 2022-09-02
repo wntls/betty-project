@@ -39,7 +39,6 @@ public class EmailSender {
 		}
 	}
 	
-	// 현재 보내는 이의 이메일을 변경하지 못함 But, 받는 사람의 이메일은 지정할 수 있음.
 	public void inquiry(Inquiry inquiry) {
 		String id = inquiry.getMemberId();
 		String title = inquiry.getTitle();

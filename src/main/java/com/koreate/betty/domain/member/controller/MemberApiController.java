@@ -5,7 +5,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +23,7 @@ import com.koreate.betty.domain.member.service.SignService;
 import com.koreate.betty.domain.member.util.SignHelper;
 import com.koreate.betty.domain.member.vo.Inquiry;
 import com.koreate.betty.domain.rental.service.RentalService;
+import com.koreate.betty.global.error.BettyInvalidValueException;
 import com.koreate.betty.global.error.exception.NotFoundIdException;
 import com.koreate.betty.infra.email.EmailSender;
 
@@ -33,19 +36,20 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/members/{id}")
 public class MemberApiController {
 	
-	private final EmailSender emailSender;
+	
 	private final MemberService memberService;
 	private final SignService SignService;
 	private final RentalService rentalService;
 	
 	
 	@PostMapping("inquiry")
-	public boolean memberSendMail(@PathVariable String id, Inquiry inquiry) {
-		if (inquiry == null) {
-			throw new RuntimeException("요청 오류");
+	public String inquiry(@PathVariable String id, @Valid Inquiry inquiry, BindingResult bindingResult) {
+		log.info("inquiry = {}", inquiry);
+		if (bindingResult.hasErrors()) {
+			throw new BettyInvalidValueException("요청 실패");
 		}
-		emailSender.inquiry(inquiry);
-		return true;
+		memberService.inquiry(inquiry);
+		return "1";
 	}
 	
 	@GetMapping("rentals/cond")

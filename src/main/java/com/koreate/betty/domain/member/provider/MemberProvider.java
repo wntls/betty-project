@@ -1,12 +1,11 @@
 package com.koreate.betty.domain.member.provider;
 
-import static com.koreate.betty.domain.model.TableConst.MEMBER_TBL;
-import static com.koreate.betty.domain.model.TableConst.MEMBER_CARD_TBL;
-import static com.koreate.betty.domain.model.TableConst.CHK_LOG_TBL;
+import static com.koreate.betty.domain.model.TableConst.*;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
+import com.koreate.betty.domain.member.vo.Inquiry;
 import com.koreate.betty.domain.member.vo.Member;
 
 public class MemberProvider {
@@ -64,16 +63,13 @@ public class MemberProvider {
 				.WHERE("id = #{loginId}")
 				.toString();
 	}
+	
+	public String createInquiry(Inquiry inquiry) {
+		return new SQL().INSERT_INTO(INQUIRY_TBL)
+				.INTO_COLUMNS("member_id", "title", "content")
+				.INTO_VALUES("#{memberId}","#{title}","#{content}")
+				.toString();
+	}
 		
 }
-
-// 사용하지 않을 듯 한 코드를 임시로 옮겼습니다. 완성 단계에 다다르면 지워주세요
-
-// 프로필 이미지 업데이트 
-//public String changeImg(@Param("id")String id, @Param("id")String img) {
-//	return new SQL().UPDATE(MEMBER_TBL)
-//			.SET("img = #{img}")
-//			.WHERE("id = #{id}")
-//			.toString();
-//}
 
