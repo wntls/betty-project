@@ -168,7 +168,7 @@
 <script>
 	
 	$(function() {
-		ajaxList(null, null, null, null, null, 1);
+		ajaxList(1);
 	});
 
 	$('#submit').on("click", function(e) {

@@ -19,7 +19,7 @@
 				</div>
 
 
-				<form>
+				<form id="form">
 					<table class="table table-borderless table-dark mb-5">
 						<tbody>
 							<!-- 1행 -->
@@ -60,7 +60,7 @@
 								<td>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
-											<select id="searchType">
+											<select id="searchOption">
 												<option value="">키워드 선택</option>
 												<option value="title">도서명</option>
 												<option value="auth">작가</option>
@@ -72,7 +72,7 @@
 									</div>
 								</td>
 								<td></td>
-								<td><input class="btn btn-danger" type="submit" value="검색" /></td>
+								<td><input class="btn btn-danger" id="submit" type="submit" value="검색" /></td>
 							</tr>
 						</tbody>
 					</table>					
@@ -100,9 +100,9 @@
 var initBookStr = null;
 var num = 1;
 $(function() {
-	ajaxList(null, null, null, null, null, 1);	
+	ajaxList(1);	
 });
-;
+
 function initData(){
 	
 	initBookStr = `<tr>
@@ -116,28 +116,34 @@ function initData(){
 	</tr>`;
 }
 
-$('#submit').on("click", function(e) {
-	e.preventDefault();		
+$("#submit").on("click", function(e) {
+	e.preventDefault();
+	num = 1;
 	ajaxList(1);
 });
 
 
-function ajaxList(pageNum) {
-	let lst = $("#searchText").val();		
-	let lso = $("#searchOption").val();		
-	let lpd = $("#pubDate").val();
-	let lpdo = $("#pubDateOption").val();
-	let lro = $("input[type='radio']").val();
-		
+function ajaxList(pageNum) {	
+	
+	let st = $("#searchText").val();		
+	let so = $("#searchOption").val();		
+	let pd = $("#pubDate").val();
+	let pdo = $("#pubDateOption").val();
+	let ro = $("input[name=rental]:checked").val();
+	console.log("searchText : " + st);
+	console.log("searchOption : " + so);
+	console.log("pubDate : " + pd);
+	console.log("pubDateOption : " + pdo);
+	console.log("rentalOption : " + ro);
 	$.ajax({
 		type : 'get',
 		url : "${path}/staff/rentals/cond",
 		data : {
-			searchText : lst,
-			searchOption : lso,
-			pubDate : lpd,
-			pubDateOption : lpdo,
-			rentOption : lro,
+			searchText : st,
+			searchOption : so,
+			pubDate : pd,
+			pubDateOption : pdo,
+			rentOption : ro,
 			page : pageNum
 		},
 		dataType : 'json',
