@@ -59,11 +59,12 @@ public class RentalController {
 	public ReserveBook reserve(@RequestBody @Valid ReserveBookDto reserveBookDto, BindingResult bindingResult) {
 		log.info("reservDtd = {} ", reserveBookDto);
 		if(bindingResult.hasErrors()) {
+			log.info("binding error", bindingResult.getAllErrors());
 			throw new RuntimeException("잘못된 값이 넘어옴");
 		}
 		Integer num = bs.findExistNum(reserveBookDto.getIsbn());
 		if (num == null) {
-			throw new NotFoundISBNException("존재하지 않는 isbn");
+			throw new NotFoundISBNException("해당 도서는 대여중입니다.");
 		}
 		
 		ReserveBook reserve = reserveBookDto.createReservBook(num);

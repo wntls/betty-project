@@ -21,7 +21,7 @@ public class ReserveBookDto{
 	private String memberId;
 	@NotBlank
 	private String isbn;
-	@NotBlank
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date;
 	
