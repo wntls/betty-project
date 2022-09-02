@@ -1,5 +1,25 @@
 $.datepicker.setDefaults($.datepicker.regional["ko"]);
 	
+	const regexBirth = /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/; 
+	
+	 function checkRegex(elP, valP, regexP, messageP, ajaxP){
+		if(regexP.test(valP) === false){
+			showMessage(elP,messageP,false);
+			return false;
+		}else if(regexP.test(valP) !== false
+					&& ajaxP === null){
+			showMessage(elP, "", true);
+			return true;
+		}else{
+			if(ajaxP !== null)ajaxP(elP);
+		}
+	}
+	
+	function showMessage(elP,messageP,isCheck){
+		$(elP).html(`<sapn style='margin-left:5px;font-size:12px;${isCheck ? 'color:green;' : 'color:red;'}'>${messageP}</span>`);
+	}
+	
+	
 	$("#birth").datepicker({
 	    dateFormat: 'yy-mm-dd' //달력 날짜 형태
 	    ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
@@ -19,4 +39,10 @@ $.datepicker.setDefaults($.datepicker.regional["ko"]);
 	    ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
 	    ,minDate: "-50Y"
 	    ,maxDate: "0" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
+	    ,onClose : function(){
+			var temVal = $(this).val();
+			var message = "생년월일을 선택하세요.";
+			var elP = $(this).parent().find(".result");
+			boolBirth = checkRegex(elP, temVal, regexBirth, message, null);
+		}
 	});   
