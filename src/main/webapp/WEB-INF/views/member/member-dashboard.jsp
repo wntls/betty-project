@@ -27,8 +27,6 @@ table td {
 	text-align: center;
 }
 </style>
-${chkList}
-
 
 <section>
 	<div class="container-md spad">

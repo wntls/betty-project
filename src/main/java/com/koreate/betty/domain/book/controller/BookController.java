@@ -1,7 +1,5 @@
 package com.koreate.betty.domain.book.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -15,16 +13,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
-import com.koreate.betty.domain.board.vo.FreeBoard;
-import com.koreate.betty.domain.book.dto.BookListPageDto;
 import com.koreate.betty.domain.book.dto.form.BookForm;
 import com.koreate.betty.domain.book.service.BookService;
 import com.koreate.betty.domain.book.vo.Book;
 import com.koreate.betty.global.error.exception.NotFoundISBNException;
 import com.koreate.betty.global.util.BookCriteria;
-import com.koreate.betty.global.util.PageMaker;
-import com.koreate.betty.global.util.SearchCriteria;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -49,8 +44,8 @@ public class BookController {
 	@GetMapping("{isbn}")
 	public String bookDetail(@PathVariable String isbn, Model model) { // key : book
 		Book book = bookService.bookDetail(isbn);
-		if (book == null) {
-			throw new NotFoundISBNException();
+		if(book == null) {
+			//throw new NoHandlerFoundException(isbn, isbn, null);
 		}
 		model.addAttribute("book", book);
 		return "book/book-detail";
