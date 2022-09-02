@@ -78,7 +78,7 @@ public class MemberApiController {
 		}
 		throw new NotFoundIdException();
 	}
-	
+  
 	@PutMapping("charge/add")
 	public int pointAdd(
 			@PathVariable("id") String userId,
