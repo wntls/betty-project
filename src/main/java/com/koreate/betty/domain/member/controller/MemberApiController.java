@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,7 @@ import com.koreate.betty.domain.member.vo.Inquiry;
 import com.koreate.betty.domain.member.vo.Member;
 import com.koreate.betty.domain.model.CookieConst;
 import com.koreate.betty.domain.model.SessionConst;
+import com.koreate.betty.domain.rental.service.RentalService;
 import com.koreate.betty.global.error.ErrorResult;
 import com.koreate.betty.infra.email.EmailSender;
 
@@ -42,6 +44,8 @@ public class MemberApiController {
 	private final EmailSender emailSender;
 	private final MemberService memberService;
 	private final SignService SignService;
+	private final RentalService rentalService;
+	
 	
 	@PostMapping("inquiry")
 	public boolean memberSendMail(@PathVariable String id, Inquiry inquiry) {
@@ -51,6 +55,23 @@ public class MemberApiController {
 		emailSender.inquiry(inquiry);
 		return true;
 	}
+	
+	@GetMapping("rentals/cond")
+	public Map<String, Object> rentalCond(String id, String rentOption){
+		System.out.println("\n\n\n\n" + id + rentOption);
+		Map<String, Object> map = new HashMap<>();
+		if (rentOption.equals("rent")) {
+			map.put("rentals", rentalService.rentalByMemberId(id));			
+		} else if (rentOption.equals("reserv")) {
+			map.put("reserves", rentalService.reserveByMemberId(id));
+		} else {
+			map.put("rentals", rentalService.rentalByMemberId(id));
+			map.put("reserves", rentalService.reserveByMemberId(id));
+		}
+		
+		return map;
+	}
+	
 	
 	@ExceptionHandler
 	@ResponseStatus(HttpStatus.BAD_GATEWAY)
@@ -82,6 +103,9 @@ public class MemberApiController {
 		}
 		throw new NotFoundIdException();
 	}
+	
+
+	
 	
 	@ExceptionHandler
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
