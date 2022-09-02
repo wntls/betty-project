@@ -87,7 +87,7 @@ $("#reserv").datepicker({
 $(function(){
 	
 	$('#reservBtn').on('click', function(){
-		let isbn = '${board.code}';
+		let isbn = '${book.code}';
 		let memberId = '${user.id}';
 		let date = $('#reserv').val();
 		
@@ -96,6 +96,9 @@ $(function(){
 		if(date == ''){
 			return;
 		} else {
+			console.log(isbn);
+			console.log(memberId);
+			console.log(date);
 			$.ajax({
 				type: 'post',
 				url: '${path}/rentals/reserve',
@@ -103,7 +106,7 @@ $(function(){
 				data: JSON.stringify(data),
 				dataType: 'json',
 				success: function(data){
-					alert("success");
+					alert(data.date + ' 예약 완료');
 					console.log(data);
 				},
 				error: function(request,status,error){
