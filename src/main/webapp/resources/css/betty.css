@@ -73,7 +73,7 @@
 .header-lantern-right {
 	position: absolute;
 	background-size: 80%;
-	right: -4rem;
+	right: 0;
 	z-index: 2;
 	background-repeat: no-repeat;
 	width: 20%;

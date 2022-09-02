@@ -79,7 +79,7 @@
 					생년월일
 					<div class="input__item">
 						<span><i class="bi bi-calendar3"></i></span> <input type="text"
-							name="birth" value="${user.birth}" readonly />
+							name="birth" value="<f:formatDate value="${user.birth}" pattern="yyyy-MM-dd"/>" readonly />
 					</div>
 					성별
 					<div class="btn-group btn-group-toggle w-100" data-toggle="buttons">

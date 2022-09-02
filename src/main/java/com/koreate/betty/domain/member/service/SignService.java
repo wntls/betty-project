@@ -14,10 +14,11 @@ import org.springframework.web.util.WebUtils;
 import com.koreate.betty.domain.member.dao.SignRepository;
 import com.koreate.betty.domain.member.dto.form.SignInForm;
 import com.koreate.betty.domain.member.dto.form.SignUpForm;
-import com.koreate.betty.domain.member.exception.NotFoundIdException;
+import com.koreate.betty.domain.member.util.SignHelper;
 import com.koreate.betty.domain.member.vo.Member;
 import com.koreate.betty.domain.model.CookieConst;
 import com.koreate.betty.domain.model.SessionConst;
+import com.koreate.betty.global.error.exception.NotFoundIdException;
 import com.koreate.betty.infra.email.EmailSender;
 import com.koreate.betty.infra.sms.SMSSender;
 
@@ -78,7 +79,7 @@ public class SignService {
 		if(id == null) { 
 			throw new NotFoundIdException(); 
 		}
-		return generateForgetCode();
+		return id;
 	}
 	
 	// 비밀번호 찾기
@@ -87,34 +88,21 @@ public class SignService {
 		if(result == 0) {
 			throw new NotFoundIdException();
 		}
-		return generateForgetCode();
+		return null; // generateForgetCode();
 	}
 	
 	public void sendEmail(String email, HttpSession session) {
-		String code = generateForgetCode();
-		session.setAttribute("code", code);
-		session.setMaxInactiveInterval(180);
+		String code = SignHelper.makeCodeForEmail(session);
 		emailSender.send(email,code);
 	}
 	
 	public Map<String, String> sendSMS(String phone, HttpSession session) {
-		String code = generateForgetCode();
-		session.setAttribute("code", code);
-		session.setMaxInactiveInterval(180);
+		String code = SignHelper.makeCodeForSMS(session);
 		return smsSender.send(phone,code);
 	}
 	
 	// 중복 검사 결과
 	private boolean isDupl(String target) {
 		return target == null ? true : false;
-	}
-	
-	// 아이디, 패스워드 찾기용 코드
-	private String generateForgetCode() {
-		String code = "";
-		for (int i = 0; i < 5; i++) {
-			code += (int) (Math.random() * 10);
-		}
-		return code;
 	}
 }

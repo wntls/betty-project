@@ -1,4 +1,4 @@
-package com.koreate.betty.domain.member.interceptor;
+package com.koreate.betty.global.interceptor;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

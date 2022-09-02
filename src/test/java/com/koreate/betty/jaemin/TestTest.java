@@ -1,5 +1,9 @@
 package com.koreate.betty.jaemin;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.util.Base64Utils;
 
 import lombok.extern.slf4j.Slf4j;
@@ -20,5 +24,7 @@ public class TestTest {
 		
 		String decodeing = new String(result);
 		System.out.println(decodeing); // 얘로 비교해야함.
+		
+		
 	}
 }

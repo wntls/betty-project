@@ -41,7 +41,7 @@ public class MemberController {
 	public String memberCharge() { return "member/member-charge"; }
 
 	@GetMapping("rentals")
-	public String memberRendal() { return "member/member-rental-list"; }
+	public String memberRental() { return "member/member-rental-list"; }
 	
 	@GetMapping("dashboard")
 	public String memberDashboard(@PathVariable String id, Model model) {

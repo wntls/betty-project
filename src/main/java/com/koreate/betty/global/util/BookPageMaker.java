@@ -14,11 +14,15 @@ public class BookPageMaker extends PageMaker{
 	public String makeQuery(int page) {
 		BookCriteria bcr = (BookCriteria)super.getCri();
 		UriComponents uri = UriComponentsBuilder.newInstance()
-				.queryParam("genre",bcr.getGenre())
 				.queryParam("page", page)
 				.queryParam("perPageNum", bcr.getPerPageNum())
 				.queryParam("searchOption",bcr.getSearchOption())
-				.queryParam("searchText",bcr.getSearchText()).build();
+				.queryParam("searchText",bcr.getSearchText())
+				.queryParam("auth",bcr.getAuth())
+				.queryParam("pub", bcr.getPub())
+				.queryParam("pubDate", bcr.getPubDate())
+				.queryParam("genre",bcr.getGenre())
+				.build();
 		return uri.toUriString();
 	}
 	

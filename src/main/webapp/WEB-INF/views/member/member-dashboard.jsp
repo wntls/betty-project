@@ -29,7 +29,7 @@ table td {
 </style>
 
 ${chkList}
-${rentalList }
+${rentalList}
 ${reserveList}
 <section>
 	<div class="container-md spad">
