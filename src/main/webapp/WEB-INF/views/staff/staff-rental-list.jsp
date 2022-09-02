@@ -69,6 +69,7 @@
 										</div>
 										<input type="text" id="searchText" class="form-control"
 											style="max-height: 36.5px">
+									</div>
 								</td>
 								<td></td>
 								<td><input class="btn btn-danger" type="submit" value="검색" /></td>
@@ -76,8 +77,6 @@
 						</tbody>
 					</table>					
 				</form>
-
-
 
 				<!-- table -->
 				<h6 id="info">* 책 표지나 테이블 클릭시 해당 도서를 상세보기 할수 있습니다</h6>
@@ -99,11 +98,13 @@
 
 <script>
 var initBookStr = null;
+var num = 1;
 $(function() {
-	ajaxList(null, null, null, null, null, 1);
+	ajaxList(null, null, null, null, null, 1);	
 });
-
+;
 function initData(){
+	
 	initBookStr = `<tr>
 		<td>번호</td>
 		<td>도서명</td>
@@ -149,11 +150,11 @@ function ajaxList(pageNum) {
 }
 
 function printList(list) {
-	var i = 1;
 	initData();
 	$(list)
 			.each(
 					function() {
+						
 						let title = this.title;
 						let code = this.code;
 						let rental = this.rental;
@@ -162,26 +163,20 @@ function printList(list) {
 						let rentalDate = new Date(this.rentalDate);
 						let formatRentalDate = rentalDate.getFullYear() + "/"
 								+ (rentalDate.getMonth() + 1) + "/"
-								+ rentalDate.getDate() + " " + rentalDate.getHours()
-								+ ":" + rentalDate.getMinutes() + ":"
-								+ rentalDate.getSeconds();//asdfadfssafasdfdsa
+								+ rentalDate.getDate();
 						
 						let returnDate = new Date(this.returnDate);
 						let formatReturnDate = returnDate.getFullYear() + "/"
 								+ (returnDate.getMonth() + 1) + "/"
-								+ returnDate.getDate() + " " + returnDate.getHours()
-								+ ":" + returnDate.getMinutes() + ":"
-								+ returnDate.getSeconds();
+								+ returnDate.getDate();
 						
 						let reserveDate = new Date(this.reserveDate);
 						let formatReserveDate = reserveDate.getFullYear() + "/"
 								+ (reserveDate.getMonth() + 1) + "/"
-								+ reserveDate.getDate() + " " + reserveDate.getHours()
-								+ ":" + reserveDate.getMinutes() + ":"
-								+ reserveDate.getSeconds();
+								+ reserveDate.getDate();
 								
 						initBookStr += `<tr>
-							<td>\${i}</td>
+							<td>\${num}</td>
 							<td>\${title}</td>
 							<td>\${code}</td>
 							<td>\${rental} </td>`;
@@ -199,7 +194,7 @@ function printList(list) {
 								<td> - </td>`
 						}
 						initBookStr += `</tr>`;
-						i = i + 1;
+						num = num + 1;
 					});
 	$("#blackTable").html(initBookStr);
 }
@@ -230,6 +225,7 @@ $("#pa").on("click", "li a", function(e) {
 	e.preventDefault();
 	var commentPage = $(this).attr("href");
 	let p = commentPage;
+	num = (p - 1) * 10 + 1;
 	ajaxList(p);
 });
 
