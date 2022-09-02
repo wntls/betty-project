@@ -1,6 +1,7 @@
 package com.koreate.betty.global.config;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.http.CacheControl;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -25,6 +27,7 @@ import org.springframework.web.servlet.view.JstlView;
 import com.koreate.betty.domain.member.service.MemberService;
 import com.koreate.betty.global.interceptor.AuthInterceptor;
 import com.koreate.betty.global.interceptor.CookieInterceptor;
+import com.koreate.betty.global.resolver.UserArgumentResolver;
 
 @EnableWebMvc
 @EnableScheduling
@@ -39,6 +42,13 @@ public class AppConfig implements WebMvcConfigurer {
 	
 	@Autowired
 	MemberService memberService;
+
+	
+	
+	@Override
+	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+		resolvers.add(new UserArgumentResolver());
+	}
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {

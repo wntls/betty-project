@@ -37,17 +37,10 @@ public class SignController {
 
 	private final SignService signService;
 
-	@GetMapping("in")
-	public String signIn() { return "sign/sign-in"; }
-
-	@GetMapping("up")
-	public String signUpChoose() { return "sign/sign-up-choose"; }
-
-	@GetMapping("up/member")
-	public String signUpMember() { return "sign/sign-up-member"; }
-
-	@GetMapping("up/staff")
-	public String signUpStaff() { return "sign/sign-up-staff"; }
+	@GetMapping("in") public String signIn() { return "sign/sign-in"; }
+	@GetMapping("up") public String signUpChoose() { return "sign/sign-up-choose"; }
+	@GetMapping("up/member") public String signUpMember() { return "sign/sign-up-member"; }
+	@GetMapping("up/staff") public String signUpStaff() { return "sign/sign-up-staff"; }
 
 	@PostMapping({"up/member", "up/staff"})
 	public String signUpMember(@Valid SignUpForm form, BindingResult bindingResult, RedirectAttributes rttr) {
@@ -71,7 +64,7 @@ public class SignController {
 			rttr.addFlashAttribute("message", "로그인 실패");
 			return "redirect:/sign/in";
 		}
-		session.setAttribute("user", user);
+		session.setAttribute(SessionConst.USER, user);
 
 		if (form.isLoginCookie()) {
 			Cookie cookie = SignHelper.createSignInCookie(user.getId());

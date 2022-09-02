@@ -55,8 +55,7 @@ table td {
 						<div class="card">
 							<div class="card-body">
 								<h5 class="card-title">도서 수령</h5>
-								<form action="${path}/offline/receipt" method="post">
-									<input type="hidden" name="id" value="${user.id}" />
+								<form action="${path}/offline/${user.id}/receipt" method="post">
 									<table class="table">
 										<thead>
 											<tr>
@@ -104,8 +103,7 @@ table td {
 										<c:when test="${!empty rentals}">
 											<c:forEach var="rental" items="${rentals}">
 											 --%>
-								<form action="${path}/offline/return" method="post">
-									<input type="hidden" name="id" value="${user.id}" />
+								<form action="${path}/offline/${user.id}/return" method="post">
 									<table class="table">
 										<thead>
 											<tr>
@@ -190,8 +188,8 @@ table td {
 							<div class="card-body">
 								<h5 class="card-title">체크인 &amp; 체크아웃</h5>
 								<div class="d-flex flex-column" style="padding: 3rem">
-									<button type="button" class="btn btn-danger btn-lg mb-3">체크인</button>
-									<button type="button" class="btn btn-danger btn-lg">체크아웃</button>
+									<button type="button" id="checkIn" class="btn btn-danger btn-lg mb-3">체크인</button>
+									<button type="button" id="checkOut" class="btn btn-danger btn-lg">체크아웃</button>
 								</div>
 							</div>
 						</div>
