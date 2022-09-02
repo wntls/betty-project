@@ -2,19 +2,19 @@ package com.koreate.betty.domain.member.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.DeleteProvider;
-import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.UpdateProvider;
-import org.springframework.stereotype.Repository;
 
+import com.koreate.betty.domain.member.dto.MemberForAdminDTO;
+import com.koreate.betty.domain.member.dto.form.AdminSearchForm;
 import com.koreate.betty.domain.member.provider.MemberProvider;
 import com.koreate.betty.domain.member.vo.ChkLog;
 import com.koreate.betty.domain.member.vo.Inquiry;
 import com.koreate.betty.domain.member.vo.Member;
+import com.koreate.betty.global.util.Criteria;
 
 @Mapper
 public interface MemberRepository {
@@ -29,6 +29,15 @@ public interface MemberRepository {
 	@SelectProvider(type=MemberProvider.class, method="findMyChkLog")
 	public List<ChkLog> findMyChkLog(String loginId);
 	
+	@SelectProvider(type=MemberProvider.class, method="findMemberForAdmin")
+	public List<MemberForAdminDTO> findMemberForAdmin(@Param("form")AdminSearchForm form, @Param("cri")Criteria cri);
+	
+	@SelectProvider(type=MemberProvider.class, method="findMemberForAdminCount")
+	public int findMemberForAdminCount(AdminSearchForm form);
+	
+	@SelectProvider(type=MemberProvider.class, method="blackCheckById")
+	public int blackCheckById(String id);
+	
 	@UpdateProvider(type=MemberProvider.class, method="update")
 	public int update(Member member);
 	
@@ -37,6 +46,10 @@ public interface MemberRepository {
 
 	@UpdateProvider(type=MemberProvider.class, method="delete")
 	public int delete(String id);
+
+	
+
+	
 	
 	@InsertProvider(type=MemberProvider.class, method="createInquiry")
 	@Options(useGeneratedKeys = true , keyProperty = "bno")

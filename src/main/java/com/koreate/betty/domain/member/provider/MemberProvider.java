@@ -5,8 +5,13 @@ import static com.koreate.betty.domain.model.TableConst.*;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
+
+import com.koreate.betty.domain.member.dto.form.AdminSearchForm;
+
 import com.koreate.betty.domain.member.vo.Inquiry;
+
 import com.koreate.betty.domain.member.vo.Member;
+import com.koreate.betty.global.util.Criteria;
 
 public class MemberProvider {
 	
@@ -64,12 +69,115 @@ public class MemberProvider {
 				.toString();
 	}
 	
+
+	// 관리자가 보는 회원정보 기반(서비스에서 데이터 추가 필요)
+	public String findMemberForAdmin(@Param("form")AdminSearchForm form, @Param("cri")Criteria cri) {
+		String allow = form.getAllowOption();
+		String rights = form.getRightsOption();
+		String grade = form.getGradeOption();
+		String searchOption = form.getSearchOption();
+		String searchText = form.getSearchText().trim();		
+		
+		SQL sql = new SQL().SELECT("id, nickname, name, gender, birth, phone, email, addr, rights, premium_grade, point, reg_date").FROM(MEMBER_TBL).JOIN(MEMBER_CARD_TBL)
+				.WHERE("id = member_id");
+		if (allow != null) {
+			switch(allow) {
+			case "all" :
+				break;
+			case "allow" :
+				sql.WHERE("rights != 1");
+				break;
+			case "disallow" :
+				sql.WHERE("rights = 1");
+				break;
+			}
+		}
+		
+		if (rights != null) {
+			switch(rights) {
+			case "all" :
+				break;
+			case "member" :
+				sql.WHERE("rights = 0");
+				break;
+			case "staff" :
+				sql.WHERE("rights != 0");
+				break;
+			}
+		}
+		
+		if (grade != null && !grade.equals("all")) {
+			sql.WHERE("premium_grade = #{form.gradeOption}");
+		}
+		
+		if (searchText != null && !searchText.equals("") && searchOption != null) {
+			sql.WHERE(searchOption + " LIKE CONCAT('%', #{form.searchText}, '%')");
+		}		
+		
+		sql.OFFSET("#{cri.startRow}").LIMIT("#{cri.perPageNum}");
+		
+		return sql.toString();
+	}
+	
+	public String findMemberForAdminCount(AdminSearchForm form) {
+		String allow = form.getAllowOption();
+		String rights = form.getRightsOption();
+		String grade = form.getGradeOption();
+		String searchOption = form.getSearchOption();
+		String searchText = form.getSearchText().trim();		
+		
+		SQL sql = new SQL().SELECT("count(*)").FROM(MEMBER_TBL).JOIN(MEMBER_CARD_TBL)
+				.WHERE("id = member_id");
+		if (allow != null) {
+			switch(allow) {
+			case "all" :
+				break;
+			case "allow" :
+				sql.WHERE("rights != 1");
+				break;
+			case "disallow" :
+				sql.WHERE("rights = 1");
+				break;
+			}
+		}
+		
+		if (rights != null) {
+			switch(rights) {
+			case "all" :
+				break;
+			case "member" :
+				sql.WHERE("rights = 0");
+				break;
+			case "staff" :
+				sql.WHERE("rights != 0");
+				break;
+			}
+		}
+		
+		if (grade != null && !grade.equals("all")) {
+			sql.WHERE("premium_grade = #{gradeOption}");
+		}
+		if (searchText != null && !searchText.equals("") && searchOption != null) {			
+			sql.WHERE(searchOption + " LIKE CONCAT('%', #{searchText}, '%')");				
+		}
+
 	public String createInquiry(Inquiry inquiry) {
 		return new SQL().INSERT_INTO(INQUIRY_TBL)
 				.INTO_COLUMNS("member_id", "title", "content")
 				.INTO_VALUES("#{memberId}","#{title}","#{content}")
 				.toString();
 	}
+
 		
+		return sql.toString();
+	}
+	
+	// 블랙 아이디 확인
+	public String blackCheckById(String id) {
+		return new SQL().SELECT("count(*)").FROM(BLACK_LIST_TBL)
+				.WHERE("member_id = #{id}")
+				.toString();
+	}
+	
 }
 

@@ -21,6 +21,12 @@ public class OfflineProvider {
 	
 	public String seatStatus() {
 		return new SQL().SELECT("seat").FROM(CHK_REAL_TBL)
-				.toString();			
+				.toString();
+	}
+	
+	public String checkMember(String id) {
+		return new SQL().SELECT("count(*)").FROM(CHK_REAL_TBL)
+				.WHERE("member_id = #{id}")
+				.toString();
 	}
 }

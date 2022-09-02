@@ -57,6 +57,18 @@ public class RentalProvider {
 				.WHERE("member_id = #{id}")
 				.WHERE("book_code = #{code}")
 				.toString();
-	}	
+	}
+	
+	public String rentalBookCountById(String id) {
+		return new SQL().SELECT("count(*)").FROM(RENTAL_TBL)
+				.WHERE("member_id = #{id}")
+				.toString();
+	}
+	
+	public String rentalBookLogCountById(String id) {
+		return new SQL().SELECT("count(*)").FROM(RENTAL_LOG_TBL)
+				.WHERE("member_id = #{id}")
+				.toString();
+	}
 	
 }
