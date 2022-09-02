@@ -218,11 +218,9 @@
 							let pub = this.pub;
 							let genre = this.genre;
 							let date = new Date(this.pubDate);
-							let formatDate = date.getFullYear() + "/"
-									+ (date.getMonth() + 1) + "/"
-									+ date.getDate() + " " + date.getHours()
-									+ ":" + date.getMinutes() + ":"
-									+ date.getSeconds();
+							let formatDate = date.getFullYear() + "년 "
+									+ (date.getMonth() + 1) + "월 "
+									+ date.getDate() + "일";
 
 							let nowCount = now[i];
 							let allCount = all[i];

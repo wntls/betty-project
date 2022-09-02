@@ -1,13 +1,16 @@
 package com.koreate.betty.domain.member.provider;
 
-import static com.koreate.betty.domain.model.TableConst.MEMBER_TBL;
-import static com.koreate.betty.domain.model.TableConst.MEMBER_CARD_TBL;
+import static com.koreate.betty.domain.model.TableConst.BLACK_LIST_TBL;
 import static com.koreate.betty.domain.model.TableConst.CHK_LOG_TBL;
+import static com.koreate.betty.domain.model.TableConst.MEMBER_CARD_TBL;
+import static com.koreate.betty.domain.model.TableConst.MEMBER_TBL;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
+import com.koreate.betty.domain.member.dto.form.AdminSearchForm;
 import com.koreate.betty.domain.member.vo.Member;
+import com.koreate.betty.global.util.Criteria;
 
 public class MemberProvider {
 	
@@ -64,16 +67,107 @@ public class MemberProvider {
 				.WHERE("id = #{loginId}")
 				.toString();
 	}
+	
+	// 관리자가 보는 회원정보 기반(서비스에서 데이터 추가 필요)
+	public String findMemberForAdmin(@Param("form")AdminSearchForm form, @Param("cri")Criteria cri) {
+		String allow = form.getAllowOption();
+		String rights = form.getRightsOption();
+		String grade = form.getGradeOption();
+		String searchOption = form.getSearchOption();
+		String searchText = form.getSearchText().trim();		
 		
+		SQL sql = new SQL().SELECT("id, nickname, name, gender, birth, phone, email, addr, rights, premium_grade, point, reg_date").FROM(MEMBER_TBL).JOIN(MEMBER_CARD_TBL)
+				.WHERE("id = member_id");
+		if (allow != null) {
+			switch(allow) {
+			case "all" :
+				break;
+			case "allow" :
+				sql.WHERE("rights != 1");
+				break;
+			case "disallow" :
+				sql.WHERE("rights = 1");
+				break;
+			}
+		}
+		
+		if (rights != null) {
+			switch(rights) {
+			case "all" :
+				break;
+			case "member" :
+				sql.WHERE("rights = 0");
+				break;
+			case "staff" :
+				sql.WHERE("rights != 0");
+				break;
+			}
+		}
+		
+		if (grade != null && !grade.equals("all")) {
+			sql.WHERE("premium_grade = #{form.gradeOption}");
+		}
+		
+		if (searchText != null && !searchText.equals("") && searchOption != null) {
+			sql.WHERE(searchOption + " LIKE CONCAT('%', #{form.searchText}, '%')");
+		}		
+		
+		sql.OFFSET("#{cri.startRow}").LIMIT("#{cri.perPageNum}");
+		
+		return sql.toString();
+	}
+	
+	public String findMemberForAdminCount(AdminSearchForm form) {
+		String allow = form.getAllowOption();
+		String rights = form.getRightsOption();
+		String grade = form.getGradeOption();
+		String searchOption = form.getSearchOption();
+		String searchText = form.getSearchText().trim();		
+		
+		SQL sql = new SQL().SELECT("count(*)").FROM(MEMBER_TBL).JOIN(MEMBER_CARD_TBL)
+				.WHERE("id = member_id");
+		if (allow != null) {
+			switch(allow) {
+			case "all" :
+				break;
+			case "allow" :
+				sql.WHERE("rights != 1");
+				break;
+			case "disallow" :
+				sql.WHERE("rights = 1");
+				break;
+			}
+		}
+		
+		if (rights != null) {
+			switch(rights) {
+			case "all" :
+				break;
+			case "member" :
+				sql.WHERE("rights = 0");
+				break;
+			case "staff" :
+				sql.WHERE("rights != 0");
+				break;
+			}
+		}
+		
+		if (grade != null && !grade.equals("all")) {
+			sql.WHERE("premium_grade = #{gradeOption}");
+		}
+		if (searchText != null && !searchText.equals("") && searchOption != null) {			
+			sql.WHERE(searchOption + " LIKE CONCAT('%', #{searchText}, '%')");				
+		}
+		
+		return sql.toString();
+	}
+	
+	// 블랙 아이디 확인
+	public String blackCheckById(String id) {
+		return new SQL().SELECT("count(*)").FROM(BLACK_LIST_TBL)
+				.WHERE("member_id = #{id}")
+				.toString();
+	}
+	
 }
-
-// 사용하지 않을 듯 한 코드를 임시로 옮겼습니다. 완성 단계에 다다르면 지워주세요
-
-// 프로필 이미지 업데이트 
-//public String changeImg(@Param("id")String id, @Param("id")String img) {
-//	return new SQL().UPDATE(MEMBER_TBL)
-//			.SET("img = #{img}")
-//			.WHERE("id = #{id}")
-//			.toString();
-//}
 

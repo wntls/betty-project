@@ -51,4 +51,12 @@ public class RentalService {
 		int result = rentalRepository.returnBook(id, code);
 		return result;
 	}
+
+	public Integer rentalBookCountById(String id) {		
+		return rentalRepository.rentalBookCountById(id);
+	}
+
+	public Integer rentalBookLogCountById(String id) {
+		return rentalRepository.rentalBookLogCountById(id);
+	}
 }

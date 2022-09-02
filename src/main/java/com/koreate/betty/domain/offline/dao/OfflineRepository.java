@@ -16,10 +16,14 @@ public interface OfflineRepository {
 	@SelectProvider(type=OfflineProvider.class, method="seatStatus")	// 좌석 현황
 	public List<Integer> seatStatus();
 	
+	@SelectProvider(type=OfflineProvider.class, method="checkMember")	// 좌석 현황
+	public int checkMember();
+	
 	@InsertProvider(type=OfflineProvider.class, method="checkIn")
 	public int checkIn(@Param("id")String id, @Param("seat")Integer seat);
 	
 	@DeleteProvider(type=OfflineProvider.class, method="checkOut")
 	public int checkOut(String id);
 
+	
 }

@@ -148,4 +148,8 @@ public class MemberService {
 	public int updateLend(String id, String grade) {
 		return memberCardRepository.updateGrade(id, grade);
 	}
+	
+	public int blackCheckById(String id) {
+		return memberRepository.blackCheckById(id);
+	}
 }
