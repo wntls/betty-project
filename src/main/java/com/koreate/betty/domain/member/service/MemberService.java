@@ -15,10 +15,10 @@ import com.koreate.betty.domain.member.dao.MemberCardRepository;
 import com.koreate.betty.domain.member.dao.MemberRepository;
 import com.koreate.betty.domain.member.dto.form.PointForm;
 import com.koreate.betty.domain.member.dto.form.UpdateForm;
-import com.koreate.betty.domain.member.exception.NotFoundIdException;
 import com.koreate.betty.domain.member.vo.ChkLog;
 import com.koreate.betty.domain.member.vo.Member;
 import com.koreate.betty.domain.member.vo.MemberCard;
+import com.koreate.betty.global.error.exception.NotFoundIdException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

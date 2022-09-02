@@ -65,46 +65,10 @@
 			
 			
 			
-				<div class="row row-cols-1 row-cols-md-4">
-	<%-- 			  <div class="col mb-3">
-				    <div class="card">
-				      <img src="${path}/resources/img/book/origin/9772383984000.jpg" class="card-img-top">
-				      <div class="card-body">
-				        <h5 class="card-title">양자역학은 어떻게 세상을 바꾸ㅂㅈㄷㅂㅈㅈㅂㄷㅂ431234112412241214124ㅈㄷㅈㄷㅈㅂㄷ는가</h5>
-				      </div>
-				    </div>
-				  </div>
-				  
-				  <div class="col mb-3">
-				    <div class="card">
-				      <img src="${path}/resources/img/book/origin/9772383984000.jpg" class="card-img-top">
-				      <div class="card-body">
-				        <h5 class="card-title">Card title</h5>
-				      </div>
-				    </div>
-				  </div>
-				  <div class="col mb-3">
-				    <div class="card">
-				      <img src="${path}/resources/img/book/origin/9772383984000.jpg" class="card-img-top">
-				      <div class="card-body">
-				        <h5 class="card-title">Card title</h5>
-				      </div>
-				    </div>
-				  </div>
-				  
-				  <div class="col mb-3">
-				    <div class="card">
-				      <img src="${path}/resources/img/book/origin/9772383984000.jpg" class="card-img-top">
-				      <div class="card-body">
-				        <h5 class="card-title">Card title</h5>
-				      </div>
-				    </div>
-				  </div>
-				  
-				</div> --%>
 				
 				<c:choose>
 					<c:when test="${!empty list}">
+				<div class="row row-cols-1 row-cols-md-4">
 						<c:forEach var="board" items="${list}">
 							<div class="col mb-3">
 							    <div class="card">
@@ -115,12 +79,13 @@
 							    </div>
 							  </div>
 						</c:forEach>
+										</div>
 					</c:when>
 					<c:otherwise>
-						<h1>도서가 존재하지 않습니다.</h1>
+						<h1 style="height: 600px">도서가 존재하지 않습니다.</h1>
 					</c:otherwise>
 				</c:choose>
-				
+
 				
 				<div class="row justify-content-between mt-5">
 					<form id="searchForm">
@@ -128,7 +93,7 @@
 							<input name="genre" id="hiddenGenre" hidden/>
 							<input name="page" id="hiddenPage" hidden/>
 							<div class="input-group-prepend">
-								<select name="searchOption" id="searchOption">
+								<select name="searchOption" id="searchOption" >
 									<option value="title">제목</option>
 									<option value="auth">작성자</option>
 									<option value="intro">내용</option>
@@ -170,7 +135,6 @@
 								</li>
 							</c:if>
 						</ul>
-					</div>
 				</div>
 			</div>
 		</div>

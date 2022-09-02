@@ -35,6 +35,7 @@ public class AuthInterceptor implements HandlerInterceptor{
 		boolean memberPath = area.startsWith(PathConst.MEMBERS);  
 		boolean staffPath = area.startsWith(PathConst.STAFF);
 		boolean adminPath = area.startsWith(PathConst.ADMIN);  
+		boolean offlinePath = area.startsWith(PathConst.OFFLINE);
 		boolean isMember = (right == 0);
 		boolean isStaff = (right == 2);
 		boolean isAdmin = (right == 3);
@@ -46,6 +47,10 @@ public class AuthInterceptor implements HandlerInterceptor{
 		} else if (staffPath && !isStaff) {
 			response.sendRedirect(path);
 			request.setAttribute("message", "직원회원만 접근할 수 있습니다.");
+			return false;
+		} else if(offlinePath && !isMember) {
+			response.sendRedirect(path);
+			request.setAttribute("message", "일반회원만 접근할 수 있습니다.");
 			return false;
 		} else if(adminPath && !isAdmin) {
 			response.sendRedirect(path);

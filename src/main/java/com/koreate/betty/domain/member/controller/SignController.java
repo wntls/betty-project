@@ -21,6 +21,7 @@ import com.koreate.betty.domain.member.dto.form.SignInForm;
 import com.koreate.betty.domain.member.dto.form.SignUpForm;
 import com.koreate.betty.domain.member.service.SignService;
 import com.koreate.betty.domain.member.util.Base64Util;
+import com.koreate.betty.domain.member.util.SignHelper;
 import com.koreate.betty.domain.member.vo.Member;
 import com.koreate.betty.domain.model.CookieConst;
 import com.koreate.betty.domain.model.SessionConst;
@@ -36,32 +37,14 @@ public class SignController {
 
 	private final SignService signService;
 
-	@GetMapping("in")
-	public String signIn() {
-		return "sign/sign-in";
-	}
-
-	@GetMapping("up")
-	public String signUpChoose() {
-		return "sign/sign-up-choose";
-	}
-
-	@GetMapping("up/member")
-	public String signUpMember() {
-		return "sign/sign-up-member";
-	}
-
-	@GetMapping("up/staff")
-	public String signUpStaff() {
-		return "sign/sign-up-staff";
-	}
+	@GetMapping("in") public String signIn() { return "sign/sign-in"; }
+	@GetMapping("up") public String signUpChoose() { return "sign/sign-up-choose"; }
+	@GetMapping("up/member") public String signUpMember() { return "sign/sign-up-member"; }
+	@GetMapping("up/staff") public String signUpStaff() { return "sign/sign-up-staff"; }
 
 	@PostMapping({"up/member", "up/staff"})
 	public String signUpMember(@Valid SignUpForm form, BindingResult bindingResult, RedirectAttributes rttr) {
 		if (bindingResult.hasErrors()) {
-			bindingResult.getAllErrors()
-						.iterator()
-						.forEachRemaining(ex -> log.error("bindingResult = {}", ex));
 			return "redirect:/sign/up/member";
 		}
 		form.encode();
@@ -76,17 +59,15 @@ public class SignController {
 			RedirectAttributes rttr) throws IOException {
 		form.encode();
 		Member user = signService.signIn(form);
+		
 		if (user == null) {
 			rttr.addFlashAttribute("message", "로그인 실패");
 			return "redirect:/sign/in";
 		}
-		session.setAttribute("user", user);
+		session.setAttribute(SessionConst.USER, user);
 
 		if (form.isLoginCookie()) {
-			String encodedId = Base64Util.encode(user.getId());
-			Cookie cookie = new Cookie(CookieConst.COOKIE_USER, encodedId);
-			cookie.setMaxAge(24 * 60 * 60);
-			cookie.setPath("/");
+			Cookie cookie = SignHelper.createSignInCookie(user.getId());
 			response.addCookie(cookie);
 		}
 
@@ -101,20 +82,11 @@ public class SignController {
 
 	@GetMapping("logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
-		HttpSession session = request.getSession(false);
-		Member user = (Member) session.getAttribute(SessionConst.USER);
-		session.invalidate();
-		Cookie findCookie = WebUtils.getCookie(request, CookieConst.COOKIE_USER);
-		if (findCookie != null) {
-			String encodedId = Base64Util.encode(user.getId());
-			Cookie cookie = new Cookie(CookieConst.COOKIE_USER, encodedId);
-			cookie.setMaxAge(0);
-			cookie.setPath("/");
-			response.addCookie(cookie);
-		}
+		SignHelper.logout(request, response);
 		return "redirect:/";
 	}
 
-	// @@ 로그인 뷰에서 비밀번호 변경 버튼 눌렀을 때 ajax service : findForChangePw, changePw
-
+	
+	
+	
 }
