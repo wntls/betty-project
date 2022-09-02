@@ -140,4 +140,7 @@ public class MemberService {
 		return memberCardRepository.findOne(id);
 	}
 	
+	public int updateLend(String id, String grade) {
+		return memberCardRepository.updateGrade(id, grade);
+	}
 }
