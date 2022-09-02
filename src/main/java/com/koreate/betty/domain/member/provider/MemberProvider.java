@@ -1,15 +1,16 @@
 package com.koreate.betty.domain.member.provider;
 
-import static com.koreate.betty.domain.model.TableConst.*;
+import static com.koreate.betty.domain.model.TableConst.BLACK_LIST_TBL;
+import static com.koreate.betty.domain.model.TableConst.CHK_LOG_TBL;
+import static com.koreate.betty.domain.model.TableConst.INQUIRY_TBL;
+import static com.koreate.betty.domain.model.TableConst.MEMBER_CARD_TBL;
+import static com.koreate.betty.domain.model.TableConst.MEMBER_TBL;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
-
 import com.koreate.betty.domain.member.dto.form.AdminSearchForm;
-
 import com.koreate.betty.domain.member.vo.Inquiry;
-
 import com.koreate.betty.domain.member.vo.Member;
 import com.koreate.betty.global.util.Criteria;
 
@@ -159,8 +160,11 @@ public class MemberProvider {
 		}
 		if (searchText != null && !searchText.equals("") && searchOption != null) {			
 			sql.WHERE(searchOption + " LIKE CONCAT('%', #{searchText}, '%')");				
-		}
-
+		}	
+		
+		return sql.toString();
+	}
+	
 	public String createInquiry(Inquiry inquiry) {
 		return new SQL().INSERT_INTO(INQUIRY_TBL)
 				.INTO_COLUMNS("member_id", "title", "content")
@@ -168,9 +172,6 @@ public class MemberProvider {
 				.toString();
 	}
 
-		
-		return sql.toString();
-	}
 	
 	// 블랙 아이디 확인
 	public String blackCheckById(String id) {
