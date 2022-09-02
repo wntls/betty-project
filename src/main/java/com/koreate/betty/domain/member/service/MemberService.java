@@ -16,9 +16,11 @@ import com.koreate.betty.domain.member.dao.MemberRepository;
 import com.koreate.betty.domain.member.dto.form.PointForm;
 import com.koreate.betty.domain.member.dto.form.UpdateForm;
 import com.koreate.betty.domain.member.vo.ChkLog;
+import com.koreate.betty.domain.member.vo.Inquiry;
 import com.koreate.betty.domain.member.vo.Member;
 import com.koreate.betty.domain.member.vo.MemberCard;
 import com.koreate.betty.global.error.exception.NotFoundIdException;
+import com.koreate.betty.infra.email.EmailSender;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +35,7 @@ public class MemberService {
 	private final MemberRepository memberRepository;
 	private final MemberCardRepository memberCardRepository;
 	private final ServletContext context;
+	private final EmailSender emailSender;
 	
 	public Member findOne(String id) {
 		Member findMember = memberRepository.findOne(id);
@@ -149,7 +152,14 @@ public class MemberService {
 		return memberCardRepository.updateGrade(id, grade);
 	}
 	
+
 	public int blackCheckById(String id) {
 		return memberRepository.blackCheckById(id);
 	}
+
+	public void inquiry(Inquiry inquiry) {
+		emailSender.inquiry(inquiry);
+		memberRepository.createInquiry(inquiry);
+	}
+	
 }

@@ -3,6 +3,7 @@ package com.koreate.betty.domain.member.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.UpdateProvider;
@@ -11,6 +12,7 @@ import com.koreate.betty.domain.member.dto.MemberForAdminDTO;
 import com.koreate.betty.domain.member.dto.form.AdminSearchForm;
 import com.koreate.betty.domain.member.provider.MemberProvider;
 import com.koreate.betty.domain.member.vo.ChkLog;
+import com.koreate.betty.domain.member.vo.Inquiry;
 import com.koreate.betty.domain.member.vo.Member;
 import com.koreate.betty.global.util.Criteria;
 
@@ -49,8 +51,9 @@ public interface MemberRepository {
 
 	
 	
-
-	
+	@InsertProvider(type=MemberProvider.class, method="createInquiry")
+	@Options(useGeneratedKeys = true , keyProperty = "bno")
+	public int createInquiry(Inquiry inquiry);
 	
 }
 

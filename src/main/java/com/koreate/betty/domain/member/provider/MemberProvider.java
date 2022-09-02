@@ -1,14 +1,15 @@
 package com.koreate.betty.domain.member.provider;
 
-import static com.koreate.betty.domain.model.TableConst.BLACK_LIST_TBL;
-import static com.koreate.betty.domain.model.TableConst.CHK_LOG_TBL;
-import static com.koreate.betty.domain.model.TableConst.MEMBER_CARD_TBL;
-import static com.koreate.betty.domain.model.TableConst.MEMBER_TBL;
+import static com.koreate.betty.domain.model.TableConst.*;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
+
 import com.koreate.betty.domain.member.dto.form.AdminSearchForm;
+
+import com.koreate.betty.domain.member.vo.Inquiry;
+
 import com.koreate.betty.domain.member.vo.Member;
 import com.koreate.betty.global.util.Criteria;
 
@@ -68,6 +69,7 @@ public class MemberProvider {
 				.toString();
 	}
 	
+
 	// 관리자가 보는 회원정보 기반(서비스에서 데이터 추가 필요)
 	public String findMemberForAdmin(@Param("form")AdminSearchForm form, @Param("cri")Criteria cri) {
 		String allow = form.getAllowOption();
@@ -158,6 +160,14 @@ public class MemberProvider {
 		if (searchText != null && !searchText.equals("") && searchOption != null) {			
 			sql.WHERE(searchOption + " LIKE CONCAT('%', #{searchText}, '%')");				
 		}
+
+	public String createInquiry(Inquiry inquiry) {
+		return new SQL().INSERT_INTO(INQUIRY_TBL)
+				.INTO_COLUMNS("member_id", "title", "content")
+				.INTO_VALUES("#{memberId}","#{title}","#{content}")
+				.toString();
+	}
+
 		
 		return sql.toString();
 	}

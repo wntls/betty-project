@@ -5,29 +5,36 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreate.betty.domain.member.dto.form.UpdateForm;
 import com.koreate.betty.domain.member.service.MemberService;
 import com.koreate.betty.domain.member.vo.ChkLog;
+import com.koreate.betty.domain.member.vo.Inquiry;
 import com.koreate.betty.domain.member.vo.Member;
+import com.koreate.betty.domain.member.vo.MemberCard;
 import com.koreate.betty.domain.model.SessionConst;
 import com.koreate.betty.domain.rental.service.RentalService;
+import com.koreate.betty.domain.rental.vo.RentalBook;
+import com.koreate.betty.domain.rental.vo.ReserveBook;
+import com.koreate.betty.infra.email.EmailSender;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/members/{id}")
 public class MemberController {
 	
+	private final EmailSender emailSender;
 	private final MemberService memberService;
 	private final RentalService rentalService;
 
@@ -47,12 +54,16 @@ public class MemberController {
 	public String memberDashboard(@PathVariable String id, Model model) {
 		// id, checklog, rentallog, reservelog 
 
-		model.addAttribute("memberCard", memberService.findGradeById(id));
-		model.addAttribute("chkList", memberService.findMyChkLog(id));
+		MemberCard memberCard = memberService.findGradeById(id);
+		model.addAttribute("memberCard", memberCard);
+		List<ChkLog> chkList = memberService.findMyChkLog(id);
+		model.addAttribute("chkList", chkList);
 		// 회원 대여 정보 : book provider의 rental 참조 (현재 미구현)
-		model.addAttribute("rentalList", rentalService.rentalByMemberId(id));
+		List<RentalBook> rentalList =  rentalService.rentalByMemberId(id);
+		model.addAttribute("rentalList", rentalList);
 		// 회원 예약 정보 : book provider의 reserve 참조 (현재 미구현)
-		model.addAttribute("reserveList", rentalService.reserveByMemberId(id));
+		List<ReserveBook> reserveList = rentalService.reserveByMemberId(id);
+		model.addAttribute("reserveList", reserveList);
 		return "member/member-dashboard";
 	}
 
