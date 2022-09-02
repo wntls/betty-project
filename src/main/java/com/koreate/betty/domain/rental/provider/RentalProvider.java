@@ -2,6 +2,7 @@ package com.koreate.betty.domain.rental.provider;
 import static com.koreate.betty.domain.model.TableConst.RENTAL_RESERVE_TBL;
 import static com.koreate.betty.domain.model.TableConst.RENTAL_TBL;
 import static com.koreate.betty.domain.model.TableConst.BOOK_TBL;
+import static com.koreate.betty.domain.model.TableConst.RENTAL_LOG_TBL;
 
 import java.sql.Timestamp;
 
@@ -54,6 +55,6 @@ public class RentalProvider {
 				.WHERE("member_id = #{id}")
 				.WHERE("book_code = #{code}")
 				.toString();
-	}
+	}	
 	
 }
