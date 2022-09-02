@@ -4,13 +4,16 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.koreate.betty.domain.book.service.BookService;
+import com.koreate.betty.domain.member.service.MemberService;
 import com.koreate.betty.domain.member.vo.Member;
+import com.koreate.betty.domain.member.vo.MemberCard;
 import com.koreate.betty.domain.offline.service.OfflineService;
 import com.koreate.betty.domain.rental.service.RentalService;
 
@@ -25,6 +28,9 @@ public class OfflineController {
 	
 	@Autowired
 	OfflineService os;
+	
+	@Autowired
+	MemberService ms;
 	
 	@Autowired
 	BookService bs;
@@ -43,13 +49,15 @@ public class OfflineController {
 	}
 	
 	@PostMapping("receipt")
+	@Transactional
 	public String rentalRecept(rentalDto rsv) {
 		String id = rsv.getId();
 		String code = rsv.getCode();
 		int result = rs.reserveCancle(id, code);
 		Integer num = bs.findExistNum(code);
 		result += rs.rentalBook(id, code, num);
-		
+		MemberCard mc = ms.findGradeById(id);		
+		result += ms.updateLend(id, mc.getPremiumGrade());		
 		return "redirect:/offline";
 	}
 	

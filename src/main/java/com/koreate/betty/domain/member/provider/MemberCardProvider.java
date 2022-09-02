@@ -6,27 +6,19 @@ import org.apache.ibatis.jdbc.SQL;
 import static com.koreate.betty.domain.model.TableConst.*;
 
 public class MemberCardProvider {
-
-	// 멤버십 가입
-	public String membershipJoin(String memberId, String grade) {
-		return new SQL().INSERT_INTO(MEMBER_CARD_TBL)
-				.INTO_COLUMNS("member_id","premium_grade")
-				.INTO_VALUES("#{memberId}, #{grade}")
-				.toString();
+		
+	public String findOne(String id) {
+		return new SQL().SELECT("*").FROM(MEMBER_CARD_TBL).WHERE("member_id = #{id}").toString();
 	}
 	
 	// 벌점 갱신
-	public String demerit(String id, int demerit) {
+	public String demerit(@Param("id")String id, @Param("demerit")Integer demerit) {
 		return new SQL().UPDATE(MEMBER_CARD_TBL)
 				.SET("demerit = demerit + #{demerit}")
 				.WHERE("member_id = #{id}")
 				.toString();
 	}
 	
-	public String findOne(String id) {
-		return new SQL().SELECT("*").FROM(MEMBER_CARD_TBL).WHERE("member_id = #{id}").toString();
-		
-	}
 	
 	// 멤버십 갱신 / 등급 변경(?)
 	
@@ -45,4 +37,20 @@ public class MemberCardProvider {
 				.WHERE("member_id = #{id}")
 				.toString();
 	}
+	
+	
+	public String updateLend(@Param("id")String id, @Param("grade")String grade) {
+		SQL sql = new SQL();
+		sql.UPDATE(MEMBER_CARD_TBL);
+		if (grade.equals("Bronze")) {
+			sql.SET("spending = spending + 1000");
+		} else if (grade.equals("Silver")) {
+			sql.SET("spending = spending + 500");
+		} else {
+			sql.SET("spending = spending");
+		}
+		sql.WHERE("id = #{id}");
+		return sql.toString();
+	}
+	
 }
