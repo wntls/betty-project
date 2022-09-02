@@ -7,27 +7,28 @@
 	<div class="container-md spad">
 		<div class="row justify-content-center">
 			<div class="col-md-8">
+			<!-- <form method="POST" action="modifyPage"> -->
 				<div class="board-detail board-title text-secondary mb-5">
 					<span>자유게시판 글 수정</span>
 				</div>
 				<div class="w-100"></div>
-				<input class="board-detail board-title" type="text" value="제목">
+				<input class="board-detail board-title" type="text" value="${board.title}">
 				<hr />
 				<div class="row">
 					<div class="col-md-6">
 						<div class="blog__details">
 							<div class="thumb-list-profile">
 								<img src="${path}/resources/img/member/thumbnail/profile_male.jpg" />
-								<span class="text-white">닉네임</span>
+								<span class="text-white">${board.nickname}</span>
 							</div>
 						</div>
 					</div>
 				<div class="col-md-6 text-white"
-						style="line-height: 50px; text-align: right">2022-08-22</div>
+						style="line-height: 50px; text-align: right">${board.regdate}</div>
 				</div>
 				<div class="spad">
 				<textarea id="editor" class="col-md-6 form-control"
-						style="resize: none;" placeholder="데이터 입력되어야함.">
+						style="resize: none;" placeholder="데이터 입력되어야함.">${board.content}
 				</textarea>
 				</div>
 				
@@ -41,12 +42,14 @@
 						</div>
 						<div class="col-md">
 							<div class="btn-group float-right" role="group">
-								<button onclick="check()" class="btn btn-danger ml-3">수정</button>
+								<!-- <input type="submit" class="btn btn-danger ml-3" value="수정"/> -->
+								<button id="modify" class="btn btn-danger ml-3">수정</button>
 								<button class="btn btn-secondary ml-3">취소</button>
 							</div>
 						</div>
 					</div>
 				</div>
+				<!-- </form> -->
 			</div>
 		</div>
 	</div>
@@ -74,6 +77,8 @@
 		// ckeditor 내부에 텍스트를 넣는 방법
 		CKEDITOR.instances.editor.setData(innerContent);
 	}
+	
+	
 </script>
 
 

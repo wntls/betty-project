@@ -20,11 +20,17 @@
 							</div>
 						</div>
 						<div class="col-auto">
+						<form id="boardForm">
 							<select id="perPageNum">
-								<option selected="selected">5</option>
+								<option value="${pm.cri.perPageNum}">${pm.cri.perPageNum}개씩</option>
+								<option value="5">5</option>
+								<option value="10">10</option>
+								<option value="20">20</option>								
+								<%-- <option value="${pm.cri.perPageNum}">5</option>
 								<option>10</option>
-								<option>20</option>
+								<option>20</option> --%>
 							</select>
+							</form>
 						</div>
 					</div>
 					
@@ -87,7 +93,11 @@
 
 				</div>
 			</div>
+			<div class="row">
+					<input type="button" class="btn btn-secondary" value="글작성" id="free-write" />
+				</div>
 			<div class="row justify-content-center">
+			
 				<div class="col-6">
 						<div class="form-row input-group mb-3">
 							<div class="input-group-prepend">
@@ -103,7 +113,10 @@
 							</div>
 						</div>
 				</div>
+				
+				
 				<div class="w-100"></div>
+				
 
 				<!-- 페이징 처리 -->
 				<div class="form-row">
@@ -152,5 +165,14 @@ $("#searchBtn").click(function() {
 	console.log("keyword : "+keyword);
 	location.href="free?searchType="+searchType+"&keyword="+keyword;
 });
+
+$("#perPageNum").on('change',function(){
+	$("#boardForm").submit();
+});
+
+$("#free-write").click(function(){
+	location.href='${path}/boards/free/new'
+});
+
 </script>
 
