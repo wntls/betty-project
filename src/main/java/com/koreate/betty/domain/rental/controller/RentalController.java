@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreate.betty.domain.book.dto.form.BookSearchForm;
-import com.koreate.betty.domain.book.exception.NotFoundISBNException;
 import com.koreate.betty.domain.book.service.BookService;
 import com.koreate.betty.domain.rental.dto.ReserveBookDto;
 import com.koreate.betty.domain.rental.service.RentalService;
 import com.koreate.betty.domain.rental.vo.ReserveBook;
+import com.koreate.betty.global.error.exception.NotFoundISBNException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

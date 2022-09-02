@@ -9,8 +9,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
-import com.koreate.betty.domain.member.exception.MessageException;
 import com.koreate.betty.domain.member.vo.Inquiry;
+import com.koreate.betty.global.error.exception.MessageException;
 
 import lombok.RequiredArgsConstructor;
 

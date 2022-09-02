@@ -22,9 +22,9 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import com.koreate.betty.domain.member.interceptor.CookieInterceptor;
 import com.koreate.betty.domain.member.service.MemberService;
 import com.koreate.betty.global.interceptor.AuthInterceptor;
+import com.koreate.betty.global.interceptor.CookieInterceptor;
 
 @EnableWebMvc
 @EnableScheduling
