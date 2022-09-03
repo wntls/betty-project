@@ -32,6 +32,10 @@ public class OfflineService {
 		return result;
 	}
 	
-	
+	// 멤버가 안에 있는지 확인한다
+	public boolean checkMember(String id) {
+		int result = offlineRepository.checkMember();
+		return result == 1 ? true : false;
+	}
 	
 }

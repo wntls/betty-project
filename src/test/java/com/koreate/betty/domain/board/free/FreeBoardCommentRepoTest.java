@@ -13,9 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.koreate.betty.domain.board.dto.form.FreeBoardCommentForm;
-import com.koreate.betty.domain.board.dto.form.FreeBoardForm;
 import com.koreate.betty.domain.board.service.FreeCommentService;
-import com.koreate.betty.domain.board.vo.FreeBoard;
 import com.koreate.betty.domain.board.vo.FreeBoardComment;
 import com.koreate.betty.global.config.AppConfig;
 import com.koreate.betty.global.config.RootConfig;
@@ -89,23 +87,23 @@ public class FreeBoardCommentRepoTest {
 	
 	//@Test
 	public void remove() {
-		int re = fc.remove(47, "id002");
-		log.info("re={}",re);
+		//int re = fc.remove(47, "id002");
+		//log.info("re={}",re);
 	}
 	
 	
 	//@Test
 	public void add() {
 		//FreeBoard board = form5.createFreeBoard();
-		int re = fc.add(form1);
-		log.info("re={}",re);
+		//int re = fc.add(form1);
+		//log.info("re={}",re);
 	}
 	
 	//@Test
 	public void reply() {
 		//FreeBoard board = form5.createFreeBoard();
-		int re = fc.reply(form1);
-		log.info("re={}",re);
+		//int re = fc.reply(form1);
+		//log.info("re={}",re);
 	}
 	
 
@@ -123,7 +121,7 @@ public class FreeBoardCommentRepoTest {
 		log.info("list={}",list);
 		
 		//5번 참조하는 댓글
-		int r5 = fc.add(form5);
+		//int r5 = fc.add(form5);
 		list = fc.list(cri, 5);
 		System.out.println("=========5번 참조 댓글");
 		list.stream().forEach(System.out::println);
@@ -132,8 +130,8 @@ public class FreeBoardCommentRepoTest {
 		System.out.println("=========3번 참조 댓글");
 		list.stream().forEach(System.out::println);
 		//5번의 댓글의 댓글
-		fc.add(form5);
-		fc.reply(form2);
+		//fc.add(form5);
+		//fc.reply(form2);
 		list = fc.list(cri, 5);
 		System.out.println("=========5번 댓글의 댓글");
 		list.stream().forEach(System.out::println);

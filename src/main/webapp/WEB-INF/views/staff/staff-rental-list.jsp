@@ -19,7 +19,7 @@
 				</div>
 
 
-				<form>
+				<form id="form">
 					<table class="table table-borderless table-dark mb-5">
 						<tbody>
 							<!-- 1행 -->
@@ -43,9 +43,10 @@
 								<th scope="row">도서 발행일 별</th>
 								<td colspan="3">
 									<div class="input-group text-secondary">
-										<input type="date" id="dateSel" name="pubDate" style="height: 37px"/>
+										<input type="date" id="pubDate" name="pubDate"
+											style="height: 37px" />
 										<div class="input-group-append">
-											<select>
+											<select id="pubDateOption">
 												<option value="before">-이전</option>
 												<option value="after">-이후</option>
 											</select>
@@ -59,52 +60,180 @@
 								<td>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
-											<select>
+											<select id="searchOption">
 												<option value="">키워드 선택</option>
 												<option value="title">도서명</option>
 												<option value="auth">작가</option>
 												<option value="pub">출판사</option>
 											</select>
 										</div>
-										<input type="text" class="form-control" style="max-height: 36.5px">
+										<input type="text" id="searchText" class="form-control"
+											style="max-height: 36.5px">
+									</div>
 								</td>
 								<td></td>
-								<td><input class="btn btn-danger" type="submit" value="검색" /></td>
+								<td><input class="btn btn-danger" id="submit" type="submit" value="검색" /></td>
 							</tr>
 						</tbody>
-					</table>
+					</table>					
 				</form>
-
-
 
 				<!-- table -->
 				<h6 id="info">* 책 표지나 테이블 클릭시 해당 도서를 상세보기 할수 있습니다</h6>
 				<table id="blackTable"
 					class="table-data-list table-striped table-dark text-center">
-					<!-- 1 -->
-					<tr>
-						<td>번호</td>
-						<td>도서명</td>
-						<td>ISBN</td>
-						<td>대여여부</td> <!-- Y : 대여자,  R : 예약자 , N : none -->
-						<td>대여자</td> <!-- stat.equals('R') => 예약자 -->
-						<td>도서 대여일</td>
-						<td>반납 예정일</td>
-					</tr>
-					<!-- 2 -->
-					<tr>
-						<td>1</td>
-						<td>리 제로부터ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㄹ 시작하는 이세계 생활</td>
-						<td>123456789098</td>
-						<td>R</td>
-						<td>김선기</td>
-						<td>2022-08-23</td>
-						<td>2022-09-15</td>
-					</tr>
+					
 				</table>
+				<div class="form-row">
+					<ul class="pagination" id="pa">
+
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
 </section>
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
+
+
+<script>
+var initBookStr = null;
+var num = 1;
+$(function() {
+	ajaxList(1);	
+});
+
+function initData(){
+	
+	initBookStr = `<tr>
+		<td>번호</td>
+		<td>도서명</td>
+		<td>ISBN</td>
+		<td>대여여부</td>
+		<td>대여자</td>
+		<td>도서 대여일</td>
+		<td>반납 예정일</td>
+	</tr>`;
+}
+
+$("#submit").on("click", function(e) {
+	e.preventDefault();
+	num = 1;
+	ajaxList(1);
+});
+
+
+function ajaxList(pageNum) {	
+	
+	let st = $("#searchText").val();		
+	let so = $("#searchOption").val();		
+	let pd = $("#pubDate").val();
+	let pdo = $("#pubDateOption").val();
+	let ro = $("input[name=rental]:checked").val();
+	console.log("searchText : " + st);
+	console.log("searchOption : " + so);
+	console.log("pubDate : " + pd);
+	console.log("pubDateOption : " + pdo);
+	console.log("rentalOption : " + ro);
+	$.ajax({
+		type : 'get',
+		url : "${path}/staff/rentals/cond",
+		data : {
+			searchText : st,
+			searchOption : so,
+			pubDate : pd,
+			pubDateOption : pdo,
+			rentOption : ro,
+			page : pageNum
+		},
+		dataType : 'json',
+		success : function(result) {
+			console.log(result.list);
+			printList(result.list);
+			printPage(result.pm);
+		}
+	});
+}
+
+function printList(list) {
+	initData();
+	$(list)
+			.each(
+					function() {
+						
+						let title = this.title;
+						let code = this.code;
+						let rental = this.rental;
+						let rentalId = this.rentalId;
+						let reserveId = this.reserveId;
+						let rentalDate = new Date(this.rentalDate);
+						let formatRentalDate = rentalDate.getFullYear() + "/"
+								+ (rentalDate.getMonth() + 1) + "/"
+								+ rentalDate.getDate();
+						
+						let returnDate = new Date(this.returnDate);
+						let formatReturnDate = returnDate.getFullYear() + "/"
+								+ (returnDate.getMonth() + 1) + "/"
+								+ returnDate.getDate();
+						
+						let reserveDate = new Date(this.reserveDate);
+						let formatReserveDate = reserveDate.getFullYear() + "/"
+								+ (reserveDate.getMonth() + 1) + "/"
+								+ reserveDate.getDate();
+								
+						initBookStr += `<tr>
+							<td>\${num}</td>
+							<td>\${title}</td>
+							<td>\${code}</td>
+							<td>\${rental} </td>`;
+						if (rental == 'y') {
+							initBookStr += `<td>\${rentalId}</td>
+								<td>\${formatRentalDate}</td>
+								<td>\${formatReturnDate}</td>`;
+						} else if (rental == 'r'){
+							initBookStr += `<td>\${reserveId}</td>
+								<td>\${formatReserveDate}</td>
+								<td> - </td>`;
+						} else {
+							initBookStr += `<td> - </td>
+								<td> - </td>
+								<td> - </td>`
+						}
+						initBookStr += `</tr>`;
+						num = num + 1;
+					});
+	$("#blackTable").html(initBookStr);
+}
+
+function printPage(pm) {
+	var str = "";
+	if (pm.prev) {
+		str += "<li><a href='" + (pm.startPage - 1) + "'> << </a></li>";
+	}
+
+	for (var i = pm.startPage; i <= pm.endPage; i++) {
+		if (pm.cri.page == i) {
+			str += "<li><a href='" + i + "' class='active'>" + i
+					+ "</a></li>";
+		} else {
+			str += "<li><a href='" + i + "'>" + i + "</a></li>";
+		}
+	}
+
+	if (pm.next) {
+		str += "<li><a href='" + (pm.endPage + 1) + "'> >> </a></li>";
+	}
+
+	$("#pa").html(str);
+}
+
+$("#pa").on("click", "li a", function(e) {
+	e.preventDefault();
+	var commentPage = $(this).attr("href");
+	let p = commentPage;
+	num = (p - 1) * 10 + 1;
+	ajaxList(p);
+});
+
+</script>
 

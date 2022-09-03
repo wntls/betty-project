@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
 
 import com.koreate.betty.domain.book.dto.BookCommentDTO;
+import com.koreate.betty.domain.book.provider.BookCommentProvider;
 import com.koreate.betty.domain.book.provider.BookProvider;
 import com.koreate.betty.domain.book.vo.BookComment;
 import com.koreate.betty.global.util.Criteria;
@@ -16,16 +17,16 @@ import com.koreate.betty.global.util.Criteria;
 @Mapper
 public interface BookCommentRepository {
 	
-	@SelectProvider(type=BookProvider.class, method="findCommentByCode")
+	@SelectProvider(type=BookCommentProvider.class, method="findCommentByCode")
 	public List<BookCommentDTO> findCommentByCode(@Param("code")String code, @Param("cri")Criteria cri);
 	
-	@SelectProvider(type=BookProvider.class, method="findCommentByCodeCount")
+	@SelectProvider(type=BookCommentProvider.class, method="findCommentByCodeCount")
 	public int findCommentByCodeCount(String code);
 	
-	@InsertProvider(type=BookProvider.class, method="insertComment")
+	@InsertProvider(type=BookCommentProvider.class, method="insertComment")
 	public int insertComment(BookComment bookComment);
 	
-	@DeleteProvider(type=BookProvider.class, method="deleteComment")
+	@DeleteProvider(type=BookCommentProvider.class, method="deleteComment")
 	public int deleteComment(Integer num);
 	
 }

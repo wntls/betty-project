@@ -38,7 +38,9 @@
 							</div>
 						</div>
 						<div class="anime__details__btn float-right">
-							<a href="#" class="watch-btn">대여 예약</a>
+							<button id="reservBtn" class="btn btn-danger">
+								<input id="reserv">
+							대여 예약</button>
 						</div>
 					</div>
 				</div>
@@ -57,3 +59,46 @@
 </section>
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
+
+<script>
+
+$(function(){
+	
+	$('#reservBtn').on('click', function(){
+		let isbn = '${book.code}';
+		let memberId = '${user.id}';
+		let date = $('#reserv').val();
+		
+		let data = { "memberId" : memberId, "isbn" : isbn, "date" : date };
+		
+		if(date == ''){
+			return;
+		} else {
+			console.log(isbn);
+			console.log(memberId);
+			console.log(date);
+			$.ajax({
+				type: 'post',
+				url: '${path}/rentals/reserve',
+				contentType: 'application/json',
+				data: JSON.stringify(data),
+				dataType: 'json',
+				success: function(data){
+					alert(data.date + ' 예약 완료');
+					console.log(data);
+				},
+				error: function(request,status,error){
+					alert("fail");
+					console.log(request);
+					console.log(status);
+					console.log(error);
+				}	
+				
+			})
+		}
+		
+	})
+	
+})
+
+</script>

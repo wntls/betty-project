@@ -12,21 +12,22 @@ import org.apache.ibatis.annotations.UpdateProvider;
 import com.koreate.betty.domain.book.dto.RentalStatusDTO;
 import com.koreate.betty.domain.book.dto.form.BookDeleteForm;
 import com.koreate.betty.domain.book.dto.form.BookSearchForm;
+import com.koreate.betty.domain.book.dto.form.NewBookForm;
 import com.koreate.betty.domain.book.provider.BookProvider;
 import com.koreate.betty.domain.book.provider.BookSingleProvider;
 import com.koreate.betty.domain.book.vo.Book;
-import com.koreate.betty.domain.book.vo.JBookRental;
 import com.koreate.betty.domain.book.vo.JBookSingle;
+import com.koreate.betty.global.util.BookCriteria;
 import com.koreate.betty.global.util.Criteria;
 
 @Mapper
 public interface BookRepository {
 
 	@SelectProvider(type=BookProvider.class, method="findAll")		// 책 목록
-	public List<Book> findAll(@Param("searchText")String searchText, @Param("searchOption")String searchOption, @Param("genre")Integer genre, @Param("cri")Criteria cri);
+	public List<Book> findAll(BookCriteria cri);
 	
 	@SelectProvider(type=BookProvider.class, method="findAllCount")		// 전체 책 목록 총계  (findAll PageMaker) 
-	public int findAllCount();
+	public Integer findAllCount(BookCriteria cri);
 		
 	@SelectProvider(type=BookProvider.class, method="bookDetail")		// 책 상세정보 
 	public Book bookDetail(String code);
@@ -65,7 +66,7 @@ public interface BookRepository {
 	public Integer findExistNum(String code);	
 	
 	@InsertProvider(type=BookProvider.class, method="insert")
-	public int insert(Book book);
+	public int insert(NewBookForm book);
 	
 	@InsertProvider(type=BookSingleProvider.class, method="insertWare")
 	public int insertWare(@Param("code")String code, @Param("id")String id);

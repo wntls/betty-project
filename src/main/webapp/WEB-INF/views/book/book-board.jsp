@@ -3,6 +3,7 @@
 
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 
+
 <style>
 	.card{
 		padding:1rem;
@@ -30,8 +31,8 @@
 		<div class="row justify-content-center">
 			<div class="col-md-10">
 			<div class="btn-group btn-group-toggle mb-5" data-toggle="buttons">
-			  <label class="btn btn-secondary active">
-			    <input type="radio" name="genre" value="" checked> 전체
+			  <label class="btn btn-secondary">
+			    <input type="radio" name="genre" value=""> 전체
 			  </label>
 			  <label class="btn btn-secondary">
 			    <input type="radio" name="genre" value="100"> 철학
@@ -61,51 +62,44 @@
 			    <input type="radio" name="genre" value="900"> 역사
 			  </label>
 			</div>
+			
+			
+			
+				
+				<c:choose>
+					<c:when test="${!empty list}">
 				<div class="row row-cols-1 row-cols-md-4">
-				  <div class="col mb-3">
-				    <div class="card">
-				      <img src="${path}/resources/img/book/origin/9772383984000.jpg" class="card-img-top">
-				      <div class="card-body">
-				        <h5 class="card-title">양자역학은 어떻게 세상을 바꾸ㅂㅈㄷㅂㅈㅈㅂㄷㅂ431234112412241214124ㅈㄷㅈㄷㅈㅂㄷ는가</h5>
-				      </div>
-				    </div>
-				  </div>
-				  <div class="col mb-3">
-				    <div class="card">
-				      <img src="${path}/resources/img/book/origin/9772383984000.jpg" class="card-img-top">
-				      <div class="card-body">
-				        <h5 class="card-title">Card title</h5>
-				      </div>
-				    </div>
-				  </div>
-				  <div class="col mb-3">
-				    <div class="card">
-				      <img src="${path}/resources/img/book/origin/9772383984000.jpg" class="card-img-top">
-				      <div class="card-body">
-				        <h5 class="card-title">Card title</h5>
-				      </div>
-				    </div>
-				  </div>
-				  <div class="col mb-4">
-				    <div class="card">
-				      <img src="${path}/resources/img/book/origin/9772383984000.jpg" class="card-img-top">
-				      <div class="card-body">
-				        <h5 class="card-title">Card title</h5>
-				      </div>
-				    </div>
-				  </div>
-				</div>
+						<c:forEach var="board" items="${list}">
+							<div class="col mb-3">
+							    <div class="card">
+							      <img src="${path}/resources/img/book/origin/${board.code}.jpg" onclick="location.href='${path}/books/${board.code}${pm.makeQuery(pm.cri.page)}'" class="card-img-top">
+							      <div class="card-body">
+							        <h5 class="card-title">${board.title}</h5>
+							      </div>
+							    </div>
+							  </div>
+						</c:forEach>
+										</div>
+					</c:when>
+					<c:otherwise>
+						<h1 style="height: 600px">도서가 존재하지 않습니다.</h1>
+					</c:otherwise>
+				</c:choose>
+
+				
 				<div class="row justify-content-between mt-5">
-					<form>
+					<form id="searchForm">
 						<div class="form-row input-group mb-3">
+							<input name="genre" id="hiddenGenre" hidden/>
+							<input name="page" id="hiddenPage" hidden/>
 							<div class="input-group-prepend">
-								<select>
-									<option value="">제목</option>
-									<option value="">작성자</option>
-									<option value="">내용</option>
+								<select name="searchOption" id="searchOption" >
+									<option value="title">제목</option>
+									<option value="auth">작성자</option>
+									<option value="intro">내용</option>
 								</select>
 							</div>
-							<input type="text" class="form-control">
+							<input name="searchText" class="form-control">
 							<div class="input-group-append">
 								<button type="submit" class="btn btn-primary">검색하기</button>
 							</div>
@@ -114,15 +108,33 @@
 					<!-- 페이징 처리 -->
 					<div class="form-row">
 						<ul class="pagination" id="pa">
-							<li><a href="#">Previous</a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">Next</a></li>
+							<c:if test="${pm.first}">
+								<li>
+									<a href="${path}/books${pm.makeQuery(1)}">&laquo;&laquo;</a>
+								</li>
+							</c:if>
+							<c:if test="${pm.prev}">
+								<li>
+									<a href="${path}/books${pm.makeQuery(pm.startPage-1)}">&laquo;</a>
+								</li>
+							</c:if>
+							<c:forEach var="i" begin="${pm.startPage}" 
+											   end="${pm.endPage}">
+								<li ${pm.cri.page == i ? 'class=active' : ''}>
+									<a href="${path}/books${pm.makeQuery(i)}">${i}</a>
+								</li>
+							</c:forEach>
+							<c:if test="${pm.next}">
+								<li>
+									<a href="${path}/books${pm.makeQuery(pm.endPage+1)}">&raquo;</a>
+								</li>
+							</c:if>
+							<c:if test="${pm.last}">
+								<li>
+									<a href="${path}/books${pm.makeQuery(pm.maxPage)}">&raquo;&raquo;</a>
+								</li>
+							</c:if>
 						</ul>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -132,4 +144,33 @@
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 
-</html>
+<script>
+	let genreBtn = $('#hiddenGenre');
+	let hiddenPage = $('#hiddenPage');
+	
+	$(function(){
+		
+		if(hiddenPage.val() == ''){
+			hiddenPage.val(1);
+		}
+		
+		console.log('${cri}');		
+		console.log('${cri.genre}');
+		
+		if('${cri.genre}' != ''){
+			let genre = $("input:radio[name=genre][value='${cri.genre}']");
+			genre.parent().addClass('focus');
+			genreBtn.val(genre.val());
+		} else {
+			let clicked = $("input:radio[name=genre][value='']");
+			clicked.parent().addClass('focus');
+		}
+	})
+	
+	$('input:radio[name=genre]').on('click', function(ev){
+		let genreValue = this.value;
+		genreBtn.val(genreValue);
+		location.href=`${path}/books?genre=\${genreValue}`;
+	})
+
+</script>

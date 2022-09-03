@@ -27,7 +27,7 @@
 							<!-- 1행 -->
 							<tr>
 								<th scope="row">장르지정</th>
-								<td><select name="genre">
+								<td><select id="genre" name="genre">
 										<option selected value="">장르 선택</option>
 										<option value="100">철학(100)</option>
 										<option value="200">종교(200)</option>
@@ -46,10 +46,10 @@
 								<th scope="row">도서 발행일 별</th>
 								<td colspan="2">
 									<div class="input-group text-secondary">
-										<input type="date" id="dateSel" name="pubDate"
+										<input type="date" id="pubDate" name="pubDate"
 											style="height: 37px" />
 										<div class="input-group-append">
-											<select name="pubDateOption">
+											<select id="pubDateOption" name="pubDateOption">
 												<option value="before">-이전</option>
 												<option value="after">-이후</option>
 											</select>
@@ -63,14 +63,14 @@
 								<td>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
-											<select name="searchOption">
+											<select id="searchOption" name="searchOption">
 												<option value="">키워드 선택</option>
 												<option value="title">도서명</option>
 												<option value="auth">작가</option>
 												<option value="pub">출판사</option>
 											</select>
 										</div>
-										<input type="text" name="searchText" class="form-control"
+										<input type="text" id="searchText" name="searchText" class="form-control"
 											style="max-height: 36.5px">
 									</div>
 								</td>
@@ -166,54 +166,41 @@
 <!-- 도서재고 수정 -->
 
 <script>
-	var init = null;
-
+	
 	$(function() {
-		ajaxList(init, 1);
+		ajaxList(1);
 	});
 
-	$('#submit').on(
-			"click",
-			function(e) {
-				e.preventDefault();
-				var formData = $("#form").serialize();
-				console.log(formData);
-				$.ajax({
-					type : "get",
-					url : "${path}/staff/books/cond",
-					data : formData,
-					dataType : 'json',
-					success : function(formData) {
-						console.log(formData.list);
-						ajaxList(formData, 1);
-						init = formData;
-					},
-					error : function(request, status, error) {
-						console.log("code:" + request.status + "\n"
-								+ "message:" + request.responseText + "\n"
-								+ "error:" + error);
-					}
-				});
-			});
+	$('#submit').on("click", function(e) {
+		e.preventDefault();		
+		ajaxList(1);
+	});
 
-	function ajaxList(formData, pageNum) {
+	
+	function ajaxList(pageNum) {
+		let lst = $("#searchText").val();		
+		let lso = $("#searchOption").val();		
+		let lpd = $("#pubDate").val();
+		let lpdo = $("#pubDateOption").val();
+		let lgr = $("#genre").val();
+		
+		
 		$.ajax({
 			type : 'get',
 			url : "${path}/staff/books/cond",
 			data : {
-				form : formData,
+				searchText : lst,
+				searchOption : lso,
+				pubDate : lpd,
+				pubDateOption : lpdo,
+				genre : lgr,
 				page : pageNum
 			},
 			dataType : 'json',
 			success : function(result) {
 				console.log(result.list);
-				console.log(result.pm);
-				console.log(result.nowCount);
-				console.log(result.allCount);
-				console.log(pageNum);
 				printList(result.list, result.nowCount, result.allCount);
 				printPage(result.pm);
-				init = formData;
 			}
 		});
 	}
@@ -231,11 +218,9 @@
 							let pub = this.pub;
 							let genre = this.genre;
 							let date = new Date(this.pubDate);
-							let formatDate = date.getFullYear() + "/"
-									+ (date.getMonth() + 1) + "/"
-									+ date.getDate() + " " + date.getHours()
-									+ ":" + date.getMinutes() + ":"
-									+ date.getSeconds();
+							let formatDate = date.getFullYear() + "년 "
+									+ (date.getMonth() + 1) + "월 "
+									+ date.getDate() + "일";
 
 							let nowCount = now[i];
 							let allCount = all[i];
@@ -297,8 +282,8 @@
 	$("#pa").on("click", "li a", function(e) {
 		e.preventDefault();
 		var commentPage = $(this).attr("href");
-		page = commentPage;
-		ajaxList(init, page);
+		let p = commentPage;
+		ajaxList(p);
 	});
 
 	function throwData(ev) {

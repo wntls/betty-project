@@ -36,6 +36,11 @@
 								</tr>
 							</thead>
 							<tbody>
+
+						<tbody>
+						<c:choose>
+							<c:when test="${!empty list}">
+								<c:forEach var="board" items="${list}">
 								<c:choose>
 									<c:when test="${!empty list}">
 										<c:forEach var="board" items="${list}">
@@ -79,8 +84,13 @@
 						</table>
 					</div>
 				</div>
-				<div class="row justify-content-center">
-					<div class="col-6">
+			</div>
+			<div class="row">
+					<input type="button" class="btn btn-secondary" value="글작성" id="free-write" />
+				</div>
+			<div class="row justify-content-center">
+			
+				<div class="col-6">
 						<div class="form-row input-group mb-3">
 							<div class="input-group-prepend">
 								<select>
@@ -131,4 +141,13 @@
 		console.log("keyword : " + keyword);
 		location.href = "free?searchType=" + searchType + "&keyword=" + keyword;
 	});
+
+$("#perPageNum").on('change',function(){
+	$("#boardForm").submit();
+});
+
+$("#free-write").click(function(){
+	location.href='${path}/boards/free/new'
+});
+
 </script>

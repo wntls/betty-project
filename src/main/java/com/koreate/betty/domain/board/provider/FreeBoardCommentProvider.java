@@ -7,25 +7,26 @@ import static com.koreate.betty.domain.model.SessionConst.USER;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
+import com.koreate.betty.domain.board.vo.FreeBoard;
 import com.koreate.betty.domain.board.vo.FreeBoardComment;
 import com.koreate.betty.global.util.Criteria;
 
 public class FreeBoardCommentProvider {
 	
 	// 댓글 작성
-	public String commentAdd(FreeBoardComment cvo) {
+	public String commentAdd(@Param("cvo") FreeBoardComment cvo, @Param("bno") int bno) {
 		SQL sql = new SQL();
 		sql.INSERT_INTO(FREE_COMMENT_TBL);
 		sql.INTO_COLUMNS("free_bno, comment");
 		if(cvo.getOrigin() != null && cvo.getOrigin() != 0) {
 			sql.INTO_COLUMNS("origin");
 		}
-		sql.INTO_COLUMNS("member_id");
-		sql.INTO_VALUES("#{freeBno}, #{comment}");
+		sql.INTO_COLUMNS("member_id, nickname");
+		sql.INTO_VALUES("#{bno}, #{cvo.comment}");
 		if(cvo.getOrigin() != null && cvo.getOrigin() != 0) {
-			sql.INTO_VALUES("#{origin}");
+			sql.INTO_VALUES("#{cvo.origin}");
 		}
-		sql.INTO_VALUES("#{memberId}");
+		sql.INTO_VALUES("#{cvo.memberId},#{cvo.nickname}");
 		return sql.toString();
 	}
 	
@@ -40,11 +41,10 @@ public class FreeBoardCommentProvider {
 	
 	
 	// 댓글 삭제
-	public String removeComment(@Param("loginUser") String loginUser, @Param("cno") int cno) {
+	public String removeComment(int cno) {
 		return new SQL().UPDATE(FREE_COMMENT_TBL)
 				.SET("showboard = 'n'")
 				.WHERE("cno = #{cno}")
-				.AND().WHERE("member_id = #{loginUser}")
 				.toString();
 	}
 	
@@ -54,7 +54,8 @@ public class FreeBoardCommentProvider {
 				.SELECT("*")
 				.FROM(FREE_COMMENT_TBL)
 				.WHERE("free_bno = #{bno}")
-				.ORDER_BY("origin ASC")
+				.WHERE("showboard = 'y'")
+				.ORDER_BY("origin DESC")
 				.OFFSET(cri.getStartRow())
 				.LIMIT(cri.getPerPageNum())
 				.toString();
@@ -66,6 +67,7 @@ public class FreeBoardCommentProvider {
 				.SELECT("count(*)")
 				.FROM(FREE_COMMENT_TBL)
 				.WHERE("free_bno = #{bno}")
+				.WHERE("showboard = 'y'")
 				.toString();
 	}
 }

@@ -29,13 +29,13 @@
 								<td colspan="2">
 									<div class="btn-group btn-group-toggle" data-toggle="buttons">
 										<label class="btn btn-secondary active"> 
-											<input type="radio" name="" value="" checked> 전체
+											<input type="radio" name="allow" value="all" checked> 전체
 										</label> 
 										<label class="btn btn-secondary"> 
-											<input type="radio"	name="" value=""> 승인 
+											<input type="radio"	name="allow" value="allow"> 승인 
 										</label> 
 										<label class="btn btn-secondary"> 
-											<input type="radio" name="" value=""> 미승인
+											<input type="radio" name="allow" value="disallow"> 미승인
 										</label>
 									</div>
 								</td>
@@ -48,13 +48,13 @@
 								<td colspan="2">
 									<div class="btn-group btn-group-toggle" data-toggle="buttons">
 										<label class="btn btn-secondary active"> 
-											<input type="radio" name="" value="all" checked> 전체
+											<input type="radio" name="rank" value="all" checked> 전체
 										</label> 
 										<label class="btn btn-secondary"> 
-											<input type="radio"	name="" value=""> 일반회원
+											<input type="radio"	name="rank" value="member"> 일반회원
 										</label> 
 										<label class="btn btn-secondary"> 
-											<input type="radio"name="" value=""> 직원
+											<input type="radio" name="rank" value="staff"> 직원
 										</label>
 									</div>
 								</td>
@@ -65,10 +65,10 @@
 								<th scope="row">회원 등급</th>
 								<td colspan="3">
 									<div class="input-group text-secondary">
-										<select>
-											<option value="">전체</option>
-											<option value="bronze">브론즈</option>
-											<option value="siver">실버</option>
+										<select id="gradeOption">
+											<option value="all">전체</option>
+											<option value="Bronze">브론즈</option>
+											<option value="Silver">실버</option>
 											<option value="VIP">VIP</option>
 										</select>
 									</div>
@@ -80,18 +80,18 @@
 								<td>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
-											<select>
-												<option value="">키워드 선택</option>
-												<option value="id">아이디</option>
+											<select id="searchOption">
+												<option value="id" selected>아이디</option>
 												<option value="name">이름</option>
 												<option value="addr">주소</option>
 											</select>
 										</div>
-										<input type="text" class="form-control"
+										<input type="text" id="searchText" class="form-control"
 											style="max-height: 36.5px">
+									</div>
 								</td>
 								<td></td>
-								<td><input class="btn btn-danger" type="submit" value="검색" /></td>
+								<td><input id="submit" class="btn btn-danger" type="submit" value="검색" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -99,116 +99,15 @@
 
 
 				<!-- table -->
-				<table class="table-data-list table-striped table-dark">
-					<!-- 1 -->
-					<tr class="text-center">
-						<td>번호</td>
-						<td>회원사진</td>
-						<td>아이디</td>
-						<td>닉네임</td>
-						<td>이름</td>
-						<td>성별</td>
-						<td>생년월일</td>
-						<td>전화번호</td>
-						<td>이메일</td>
-						<td colspan="2">주소</td>
-					</tr>
+				<table id="tbody" class="table-data-list table-striped table-dark">				
 
-					<!-- 2 -->
-					<tr>
-						<td rowspan="3">1</td>
-						<td rowspan="3" class="thumb-list-profile"><img
-							src="${path}/resources/img/member/thumbnail/${user.img}" /></td>
-						<td>namu6747</td>
-						<td>namu6747</td>
-						<td>박재민</td>
-						<td>남</td>
-						<td>960205</td>
-						<td>01056556747</td>
-						<td>namu6747@naver.com</td>
-						<td colspan="2">부산시 금정구 남산동 1234-5</td>
-					</tr>
-
-					<!-- 3 -->
-					<tr>
-						<td>회원구분</td>
-						<td>회원등급</td>
-						<td>포인트</td>
-						<td>대여권수</td>
-						<td>대여횟수</td>
-						<td>체크인여부</td>
-						<td>회원가입일</td>
-						<td>가입승인</td>
-						<td>블랙리스트</td>
-					</tr>
-
-					<!-- 4 -->
-					<tr>
-						<td>일반</td>
-						<td>VIP</td>
-						<td>30000</td>
-						<td>2</td>
-						<td>8</td>
-						<td>OK</td>
-						<td>2022-08-18</td>
-						<td>OK</td>
-						<td>NO</td>
-					</tr>
-
-					<!-- 1 -->
-					<tr class="text-center">
-						<td>번호</td>
-						<td>회원사진</td>
-						<td>아이디</td>
-						<td>닉네임</td>
-						<td>이름</td>
-						<td>성별</td>
-						<td>생년월일</td>
-						<td>전화번호</td>
-						<td>이메일</td>
-						<td colspan="2">주소</td>
-					</tr>
-
-					<!-- 2 -->
-					<tr>
-						<td rowspan="3">1</td>
-						<td rowspan="3" class="thumb-list-profile"><img
-							src="${path}/resources/img/member/thumbnail/${user.img}" /></td>
-						<td>namu6747</td>
-						<td>namu6747</td>
-						<td>박재민</td>
-						<td>남</td>
-						<td>960205</td>
-						<td>01056556747</td>
-						<td>namu6747@naver.com</td>
-						<td colspan="2">부산시 금정구 남산동 1234-5</td>
-					</tr>
-					<!-- 3 -->
-					<tr>
-						<td>회원구분</td>
-						<td>회원등급</td>
-						<td>포인트</td>
-						<td>대여권수</td>
-						<td>대여횟수</td>
-						<td>체크인여부</td>
-						<td>회원가입일</td>
-						<td>가입승인</td>
-						<td>블랙리스트</td>
-					</tr>
-					<!-- 4 -->
-					<tr>
-						<td>일반</td>
-						<td>VIP</td>
-						<td>30000</td>
-						<td>2</td>
-						<td>8</td>
-						<td>OK</td>
-						<td>2022-08-18</td>
-						<td>OK</td>
-						<td>NO</td>
-					</tr>
 				</table>
 
+				<div class="form-row">
+					<ul class="pagination" id="pa">
+
+					</ul>
+				</div>
 
 				<!-- col-md-10 -->
 			</div>
@@ -219,3 +118,197 @@
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 
 </html>
+
+<script>
+var initBookStr = null;
+var num = 1;
+$(function() {
+	ajaxList(1);
+});
+
+function initData(){	
+	initBookStr = ``;
+}
+
+$("#submit").on("click", function(e) {
+	e.preventDefault();
+	num = 1;
+	ajaxList(1);
+});
+
+
+function ajaxList(pageNum) {	
+	
+	let ao = $("input[name=allow]:checked").val();		
+	let ro = $("input[name=rank]:checked").val();		
+	let go = $("#gradeOption").val();
+	let so = $("#searchOption").val();
+	let st = $("#searchText").val();
+	$.ajax({
+		type : 'get',
+		url : "${path}/admin/members/cond",
+		data : {
+			allowOption : ao,
+			rightsOption : ro,
+			gradeOption : go,
+			searchOption : so,
+			searchText : st,
+			page : pageNum
+		},
+		dataType : 'json',
+		success : function(result) {
+			printList(result.list);
+			printPage(result.pm);
+		}
+	});
+}
+
+function printList(list) {
+	initData();
+	$(list)
+			.each(
+					function() {
+						let rights = this.rights;
+						
+						let rank = '';			
+						if (rights == 0) {
+							rank = '일반';
+						} else if (rights == 3) {
+							rank = '관리자';
+						} else {
+							rank = '직원';
+						}
+						
+						let allow = 'OK';
+						if (rights == 1) {
+							allow = `<button onclick='approve("\${this.id}")'>승인</button>`;
+						}
+						
+						let checkIn = 'NO';
+						if (this.checkIn) {
+							checkIn = 'YES';
+						}
+						
+						let black = "NO";
+						if (this.black) {
+							black = "YES";
+						}
+						
+						let birth = new Date(this.birth);
+						let formatBirth = birth.getFullYear() + "-"
+								+ (birth.getMonth() + 1) + "-"
+								+ birth.getDate();
+						
+						let regDate = new Date(this.regDate);
+						let formatRegDate = regDate.getFullYear() + "-"
+								+ (regDate.getMonth() + 1) + "-"
+								+ regDate.getDate();
+								
+						initBookStr += `<tr class="text-center">
+							<td>번호</td>
+							<td>회원사진</td>
+							<td>아이디</td>
+							<td>닉네임</td>
+							<td>이름</td>
+							<td>성별</td>
+							<td>생년월일</td>
+							<td>전화번호</td>
+							<td>이메일</td>
+							<td colspan="2">주소</td>
+							</tr>`;
+						
+						initBookStr += `						
+							<tr>
+							<td rowspan="3">${num}</td>
+							<td rowspan="3" class="thumb-list-profile"><img
+								src="${path}/resources/img/member/thumbnail/\${this.img}" /></td>
+							<td>\${this.id}</td>
+							<td>\${this.nickname}</td>
+							<td>\${this.name}</td>
+							<td>\${this.gender}</td>
+							<td>\${formatBirth}</td>
+							<td>\${this.phone}</td>
+							<td>\${this.email}</td>
+							<td colspan="2">\${this.addr}</td>
+							</tr>`;
+							
+						initBookStr += `
+							<tr>
+							<td>회원구분</td>
+							<td>회원등급</td>
+							<td>포인트</td>
+							<td>대여권수</td>
+							<td>대여횟수</td>
+							<td>체크인여부</td>
+							<td>회원가입일</td>
+							<td>가입승인</td>
+							<td>블랙리스트</td>
+							</tr>`;
+							
+						initBookStr += `
+							<tr>
+							<td>\${rights}</td>
+							<td>\${this.premiumGrade}</td>
+							<td>\${this.point}</td>
+							<td>\${this.nowRentCount}</td>
+							<td>\${this.allRentCount}</td>
+							<td>\${checkIn}</td>
+							<td>\${formatRegDate}</td>
+							<td>\${allow}</td>
+							<td>\${black}</td>
+							</tr>`;
+							
+						num = num + 1;
+					});
+	$("#tbody").html(initBookStr);
+}
+
+
+function printPage(pm) {
+	var str = "";
+	if (pm.prev) {
+		str += "<li><a href='" + (pm.startPage - 1) + "'> << </a></li>";
+	}
+
+	for (var i = pm.startPage; i <= pm.endPage; i++) {
+		if (pm.cri.page == i) {
+			str += "<li><a href='" + i + "' class='active'>" + i
+					+ "</a></li>";
+		} else {
+			str += "<li><a href='" + i + "'>" + i + "</a></li>";
+		}
+	}
+
+	if (pm.next) {
+		str += "<li><a href='" + (pm.endPage + 1) + "'> >> </a></li>";
+	}
+
+	$("#pa").html(str);
+}
+
+$("#pa").on("click", "li a", function(e) {
+	e.preventDefault();
+	var commentPage = $(this).attr("href");
+	let p = commentPage;
+	num = (p - 1) * 10 + 1;
+	ajaxList(p);
+});
+
+function approve(e){
+	var allowId = e;
+	$.ajax({
+		type : 'post',
+		url : "${path}/admin/members/allow",
+		data : {
+			id : allowId
+		},
+		dataType : 'text',
+		success : function(result) {
+			console.log(result);
+			alert(allowId + '님이 가입승인 되었습니다.');
+			ajaxList(1);
+		}
+	});	
+}
+
+</script>

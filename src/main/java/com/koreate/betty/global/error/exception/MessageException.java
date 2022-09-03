@@ -1,6 +1,8 @@
-package com.koreate.betty.domain.member.exception;
+package com.koreate.betty.global.error.exception;
 
-public class MessageException extends RuntimeException {
+import com.koreate.betty.global.error.BettyInvalidValueException;
+
+public class MessageException extends BettyInvalidValueException {
 
 	public MessageException() {
 		super();

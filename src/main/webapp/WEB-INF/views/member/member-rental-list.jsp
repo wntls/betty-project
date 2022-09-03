@@ -28,11 +28,11 @@
 								<td colspan="2">
 									<div class="btn-group btn-group-toggle" data-toggle="buttons">
 										<label class="btn btn-secondary active"> <input
-											type="radio" name="rental" value="all" checked> 전체
+											type="radio" id="all" name="rental" value="all" checked> 전체
 										</label> <label class="btn btn-secondary"> <input type="radio"
-											name="rental" value="rent"> 대여중인 도서
+											id="rent" name="rental" value="rent"> 대여중인 도서
 										</label> <label class="btn btn-secondary"> <input type="radio"
-											name="rental" value="reserv"> 예약중인 도서
+											id="reserv" name="rental" value="reserv"> 예약중인 도서
 										</label>
 									</div>
 								</td>
@@ -48,28 +48,114 @@
 				<h6 id="info">* 대여 상태에 따른 대여 이력을 확인할 수 있습니다.</h6>
 				<table id="blackTable"
 					class="table-data-list table-striped table-dark text-center">
-					<!-- 1 -->
-					<tr>
-						<td>번호</td>
-						<td>도서명</td>
-						<td>ISBN</td>
-						<td>대여여부</td> <!-- Y : 대여자,  R : 예약자 , N : none -->
-						<td>도서 대여일</td>
-						<td>반납 예정일</td>
-					</tr>
-					<!-- 2 -->
-					<tr>
-						<td>1</td>
-						<td>리 제로부터ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㄹ 시작하는 이세계 생활</td>
-						<td>123456789098</td>
-						<td>R</td>
-						<td>2022-08-23</td>
-						<td>2022-09-15</td>
-					</tr>
+					
 				</table>
 			</div>
 		</div>
 	</div>
 </section>
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
+
+<script>
+var initBookStr = null;
+var initOption = "all";
+$(function() {
+	ajaxList(initOption);
+});
+
+function initData(){
+	initBookStr = `<tr>
+		<td>번호</td>
+		<td>도서명</td>
+		<td>ISBN</td>
+		<td>대여여부</td>
+		<td>도서 대여일</td>
+		<td>반납 예정일</td>
+		</tr>`;
+}
+
+$("#all").on("click", function() {
+	ajaxList("all");
+});
+
+$("#rent").on("click", function() {
+	ajaxList("rent");
+});
+
+$("#reserv").on("click", function() {
+	ajaxList("reserv");
+});
+
+function ajaxList(ro) {
+	let memberId = "${user.id}";
+	console.log("ro : " + ro);
+	$.ajax({
+		type : 'get',
+		url : "${path}/members/" + memberId + "/rentals/cond",
+		data : {
+			id : memberId,
+			rentOption : ro
+		},
+		dataType : 'json',
+		success : function(result) {
+			printList(result.rentals, result.reserves);
+		}
+	});
+}
+
+function printList(rentals, reserves) {
+	initData();
+	$(rentals)
+			.each(
+					function() {
+						let bookNum = this.num;
+						let title = this.title;
+						let code = this.code;
+						let rental = this.rental;
+						let rentalDate = new Date(this.date);
+						let formatRentalDate = rentalDate.getFullYear() + "/"
+								+ (rentalDate.getMonth() + 1) + "/"
+								+ rentalDate.getDate();
+						
+						let returnDate = new Date(this.returnDate);
+						let formatReturnDate = returnDate.getFullYear() + "/"
+								+ (returnDate.getMonth() + 1) + "/"
+								+ returnDate.getDate();
+										
+						initBookStr += `<tr>
+							<td>\${bookNum}</td>
+							<td>\${title}</td>
+							<td>\${code}</td>
+							<td>대여</td>
+							<td>\${formatRentalDate}</td>
+							<td>\${formatReturnDate}</td>`;
+						initBookStr += `</tr>`;
+					});
+	
+	$(reserves)
+	.each(
+			function() {
+				let bookNum = this.num;
+				let title = this.title;
+				let code = this.code;
+				let reserveDate = new Date(this.date);
+				let formatReserveDate = reserveDate.getFullYear() + "/"
+						+ (reserveDate.getMonth() + 1) + "/"
+						+ reserveDate.getDate();
+						
+				initBookStr += `<tr>
+					<td>\${bookNum}</td>
+					<td>\${title}</td>
+					<td>\${code}</td>
+					<td>예약</td>
+					<td>\${formatReserveDate}</td>
+					<td> - </td>`;
+					
+				initBookStr += `</tr>`;
+			});
+	$("#blackTable").html(initBookStr);
+}
+
+
+</script>
 

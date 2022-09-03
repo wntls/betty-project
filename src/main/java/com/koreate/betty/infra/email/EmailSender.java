@@ -9,8 +9,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
-import com.koreate.betty.domain.member.exception.MessageException;
 import com.koreate.betty.domain.member.vo.Inquiry;
+import com.koreate.betty.global.error.exception.MessageException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -39,7 +39,6 @@ public class EmailSender {
 		}
 	}
 	
-	// 현재 보내는 이의 이메일을 변경하지 못함 But, 받는 사람의 이메일은 지정할 수 있음.
 	public void inquiry(Inquiry inquiry) {
 		String id = inquiry.getMemberId();
 		String title = inquiry.getTitle();

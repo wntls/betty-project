@@ -1,18 +1,21 @@
 package com.koreate.betty.domain.offline.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.koreate.betty.domain.book.service.BookService;
+import com.koreate.betty.domain.member.service.MemberService;
 import com.koreate.betty.domain.member.vo.Member;
+import com.koreate.betty.domain.member.vo.MemberCard;
 import com.koreate.betty.domain.offline.service.OfflineService;
 import com.koreate.betty.domain.rental.service.RentalService;
+import com.koreate.betty.global.resolver.User;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,11 +23,14 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("/offline")
+@RequestMapping("/offline/{id}")
 public class OfflineController {
 	
 	@Autowired
 	OfflineService os;
+	
+	@Autowired
+	MemberService ms;
 	
 	@Autowired
 	BookService bs;
@@ -33,9 +39,8 @@ public class OfflineController {
 	RentalService rs;
 	
 	@GetMapping
-	public String offline(HttpSession session, Model model) {
-		Member loginUser = (Member)session.getAttribute("user");
-		String userId = loginUser.getId();
+	public String offline(@PathVariable String id, @User Member user, Model model) {
+		String userId = user.getId();
 		model.addAttribute("seats", os.seatStatus());	// List<Integer>
 		model.addAttribute("reserves", rs.reserveByMemberId(userId));	// List<ReserveBook>
 		model.addAttribute("rentals", rs.rentalByMemberId(userId));		// List<RentalBook>
@@ -43,37 +48,35 @@ public class OfflineController {
 	}
 	
 	@PostMapping("receipt")
-	public String rentalRecept(rentalDto rsv) {
-		String id = rsv.getId();
+	@Transactional
+	public String rentalRecept(@PathVariable String id, rentalDto rsv) {
 		String code = rsv.getCode();
+		int result = rs.reserveCancle(id, code);
 		Integer num = bs.findExistNum(code);
-		int result = rs.reserveCancle(id, code); 
 		result += rs.rentalBook(id, code, num);
-		
-		return "redirect:/offline";
+		MemberCard mc = ms.findGradeById(id);		
+		result += ms.updateLend(id, mc.getPremiumGrade());		
+		return "redirect:/offline/"+id;
 	}
 	
 	
 	@PostMapping("return")
-	public String rentalReturn(rentalDto rental) {
-		String id = rental.getId();
+	public String rentalReturn(@PathVariable String id, rentalDto rental) {
 		String code = rental.getCode();
-		
 		int result = rs.returnBook(id, code);
-		
-		return "redirect:/offline";
+		return "redirect:/offline/"+id;
 	}
 	
 	@PostMapping("checkIn")
-	public String checkIn(String id, Integer seat) {
+	public String checkIn(@PathVariable String id, Integer seat) {
 		int result = os.checkIn(id, seat);
-		return "redirect:/offline";
+		return "redirect:/offline/"+id;
 	}
 	
 	@PostMapping("checkOut")
-	public String checkOut(String id) {
+	public String checkOut(@PathVariable String id) {
 		int result = os.checkOut(id);
-		return "redirect:/offline";
+		return "redirect:/offline/"+id;
 	}
 	
 	// Rental 가져올 곳 많으면 따로 클래스 만들어도됨
@@ -82,7 +85,6 @@ public class OfflineController {
 	static class rentalDto{
 		private String code;
 		private String num;
-		private String id;
 	}
 	
 }

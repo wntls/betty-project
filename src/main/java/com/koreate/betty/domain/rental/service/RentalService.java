@@ -36,10 +36,8 @@ public class RentalService {
 	}	
 	
 	// 도서 예약하기
-	public int reserveBook(String id, String code, String date, Integer num) {
-		Timestamp timedate = Timestamp.valueOf(date + " 00:00:00");  
-		int result = rentalRepository.reserveBook(id, code, timedate, num);
-		return result;
+	public int reserveBook(ReserveBook reserveBook) {
+		return rentalRepository.reserveBook(reserveBook);
 	}
 	
 	// 도서 예약 취소
@@ -52,5 +50,13 @@ public class RentalService {
 	public int returnBook(String id, String code) {
 		int result = rentalRepository.returnBook(id, code);
 		return result;
+	}
+
+	public Integer rentalBookCountById(String id) {		
+		return rentalRepository.rentalBookCountById(id);
+	}
+
+	public Integer rentalBookLogCountById(String id) {
+		return rentalRepository.rentalBookLogCountById(id);
 	}
 }

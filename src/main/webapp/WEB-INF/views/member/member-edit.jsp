@@ -79,7 +79,7 @@
 					생년월일
 					<div class="input__item">
 						<span><i class="bi bi-calendar3"></i></span> <input type="text"
-							name="birth" value="${user.birth}" readonly />
+							name="birth" value="<f:formatDate value="${user.birth}" pattern="yyyy-MM-dd"/>" readonly />
 					</div>
 					성별
 					<div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
@@ -133,6 +133,17 @@
 
 <script>
 
+
+/*	var imgTemp = $("#profileImgDiv").attr("src");*/
+	$("#img").on("change",function(){
+		var files = $(this)[0].files[0];
+		if(files != null && files.type.startsWith("image/")){
+			var path = window.URL.createObjectURL(files);
+			$("#profileImgDiv").css("background-image",`url(\${path})`);
+		}else{
+			alert("이미지를 선택해 주세요.");
+		}
+	});
 
 	$('#img').on('change', function(event){
 		var reader = new FileReader();

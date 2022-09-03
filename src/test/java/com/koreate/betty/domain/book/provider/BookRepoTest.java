@@ -49,16 +49,6 @@ public class BookRepoTest {
 		log.info("result : " + result);
 	}
 
-	// @Test
-	public void joinTest() { // 테스트 완료 (jbooksList)
-		Map<String, Object> map = bs.bookList(null, null, null, null);
-		List<Book> list = (List<Book>) map.get("list");
-		log.info("size : " + list.size());
-		Book b1 = list.get(1);
-		log.info(b1.getCode());
-		log.info(b1.getTitle());
-		log.info(b1.getAuth());
-	}
 
 	// @Test
 	public void jBooksSearchTest() {

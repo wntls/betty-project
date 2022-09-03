@@ -22,16 +22,26 @@ public interface RentalRepository {
 	@SelectProvider(type=RentalProvider.class, method="reserveByMemberId") // 내 예약
 	public List<ReserveBook> reserveByMemberId(String id);
 	
+	@SelectProvider(type=RentalProvider.class, method="rentalBookCountById")
+	public Integer rentalBookCountById(String id);
+	
+	@SelectProvider(type=RentalProvider.class, method="rentalBookLogCountById")
+	public Integer rentalBookLogCountById(String id);
+	
 	@InsertProvider(type=RentalProvider.class, method="rentalBook") // 도서 대여하기
 	public int rentalBook(@Param("id")String id, @Param("code")String code, @Param("num")Integer num);
 	
 	@InsertProvider(type=RentalProvider.class, method="reserveBook") // 도서 예약하기
-	public int reserveBook(@Param("id")String id, @Param("code")String code, @Param("date")Timestamp date, @Param("num")Integer num);
+	public int reserveBook(ReserveBook reserveBook);
 	
 	@DeleteProvider(type=RentalProvider.class, method="reserveCancle") // 예약 취소
 	public int reserveCancle(@Param("id")String id, @Param("code")String code);
 	
 	@DeleteProvider(type=RentalProvider.class, method="returnBook") // 도서 반납하기
 	public int returnBook(@Param("id")String id, @Param("code")String code);
+
+	
+
+	
 	
 }

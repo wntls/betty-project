@@ -45,7 +45,7 @@
 						생년월일
 						<div class="input__item">
 							<span><i class="bi bi-calendar3"></i></span>
-							<input type="text" name="birth" id="birth" placeholder="생년월일을 선택해주세요" /> 
+							<input type="text" name="birth" id="birth" placeholder="생년월일을 선택해주세요" autocomplete="off"/> 
 							<div class="result"></div>
 						</div>
 						성별
@@ -102,7 +102,7 @@
 
 						<div class="row justify-content-center">
 						<div class="btn-group">
-							<button type="submit" class="btn btn-danger mr-3" />회원가입</button>
+							<button type="submit" class="btn btn-danger mr-3">회원가입</button>
 							<button type="button" class="cancel-btn">취소</button>
 						</div>
 						</div>
@@ -316,7 +316,7 @@ $(function(){
 			    },
 			    rangelength : [2,10]
 			},
-			birth : { required : true },
+//			birth : { required : true },
 			gender : { required : true },
 			addr : { required : true },
 			phone : { 
@@ -361,10 +361,10 @@ $(function(){
 				remote : "이미 존재하는 닉네임 입니다.",
 				rangelength : "닉네임은 2~10글자 이내로 작성하세요."
 			},
-			
+			/* 
 			birth : {
 				required : "생년월일을 선택하세요."
-			},
+			},  */
 			
 			gender : { required : "성별을 확인하세요." },
 			addr : { required : "주소를 입력하세요." },

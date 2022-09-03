@@ -57,7 +57,7 @@ public class StaffController {
 		form.setPubDate(pubDate);
 		form.setPubDateOption(pubDateOption);
 		form.setGenre(genre);
-
+		System.out.println("\n\n\nform : " + form);
 		Map<String, Object> map = bs.bookSearch(form, page);
 		
 		return map;
