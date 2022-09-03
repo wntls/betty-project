@@ -1,7 +1,5 @@
 package com.koreate.betty.domain.book.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -16,15 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.koreate.betty.domain.board.vo.FreeBoard;
-import com.koreate.betty.domain.book.dto.BookListPageDto;
 import com.koreate.betty.domain.book.dto.form.BookForm;
+import com.koreate.betty.domain.book.dto.form.NewBookForm;
 import com.koreate.betty.domain.book.service.BookService;
 import com.koreate.betty.domain.book.vo.Book;
 import com.koreate.betty.global.error.exception.NotFoundISBNException;
 import com.koreate.betty.global.util.BookCriteria;
-import com.koreate.betty.global.util.PageMaker;
-import com.koreate.betty.global.util.SearchCriteria;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -69,7 +64,7 @@ public class BookController {
 	
 	// 신규 도서 입고
 	@PostMapping
-	public String newBook(BookForm form) {
+	public String newBook(NewBookForm form) {
 		int result = bookService.bookRegister(form);
 		return "redirect:/books/" + form.getCode();
 	}
