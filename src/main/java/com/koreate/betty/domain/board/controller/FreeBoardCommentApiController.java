@@ -61,7 +61,7 @@ public class FreeBoardCommentApiController {
 	*/
 	
 	@DeleteMapping("boards/free/comments/{cno}")
-	public int remove(int cno, Model model) {
+	public int remove(@PathVariable Integer cno, Model model) {
 		FreeBoardCommentDto dto = new FreeBoardCommentDto(); 
 		model.addAttribute("cm",dto.getCno());
 		return freeCommentService.remove(cno);

@@ -54,6 +54,7 @@ public class FreeBoardCommentProvider {
 				.SELECT("*")
 				.FROM(FREE_COMMENT_TBL)
 				.WHERE("free_bno = #{bno}")
+				.WHERE("showboard = 'y'")
 				.ORDER_BY("origin DESC")
 				.OFFSET(cri.getStartRow())
 				.LIMIT(cri.getPerPageNum())
@@ -66,6 +67,7 @@ public class FreeBoardCommentProvider {
 				.SELECT("count(*)")
 				.FROM(FREE_COMMENT_TBL)
 				.WHERE("free_bno = #{bno}")
+				.WHERE("showboard = 'y'")
 				.toString();
 	}
 }
