@@ -19,16 +19,16 @@ public interface FreeBoardCommentRepository {
 	// 댓글 등록
 	@InsertProvider(type=FreeBoardCommentProvider.class, method="commentAdd")
 	//@Options(useGeneratedKeys = true , keyProperty = "cno")
-	public int commentAdd(FreeBoardComment cvo);
+	public int commentAdd(@Param("cvo") FreeBoardComment cvo, @Param("bno") int bno);
 
 	// 대댓글 등록
 	@InsertProvider(type=FreeBoardCommentProvider.class, method="commentAdd")
 	//@Options(useGeneratedKeys = true , keyProperty = "cno")
-	public int commentReply(FreeBoardComment cvo);	
+	public int commentReply(@Param("cvo") FreeBoardComment cvo, @Param("bno") int bno);	
 	
 	// 댓글 삭제
 	@UpdateProvider(type=FreeBoardCommentProvider.class, method="removeComment")
-	public int removeComment(@Param("loginUser") String loginUser, @Param("cno") int cno);
+	public int removeComment(int cno);
 	
 	// 업데이트 오리진
 	@UpdateProvider(type=FreeBoardCommentProvider.class, method="updateOrigin")

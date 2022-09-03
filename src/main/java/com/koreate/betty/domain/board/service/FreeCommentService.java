@@ -21,22 +21,23 @@ public class FreeCommentService {
 	FreeBoardCommentRepository dao;
 	
 	// 댓글 등록
-	public int add(FreeBoardCommentForm form) {
+	public int add(FreeBoardCommentForm form, int bno) {
 		FreeBoardComment vo = form.freeBoardComment();
-		int result = dao.commentAdd(vo);
+		System.out.println(vo.getComment());
+		int result = dao.commentAdd(vo, bno);
 		dao.updateOrigin();
 		return result;
 	}
 	
 	// 대댓글
-	public int reply(FreeBoardCommentForm form) {
+	public int reply(FreeBoardCommentForm form, int bno) {
 		FreeBoardComment vo = form.freeBoardComment();
-		return dao.commentReply(vo);
+		return dao.commentReply(vo, bno);
 	}
 	
 	// 댓글 삭제
-	public int remove(int cno, String loginUser) {
-		return dao.removeComment(loginUser, cno);	
+	public int remove(int cno) {
+		return dao.removeComment(cno);	
 	}
 	
 	// 오리진 업데이트

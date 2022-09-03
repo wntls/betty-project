@@ -4,11 +4,9 @@ import javax.validation.constraints.NotBlank;
 
 import com.koreate.betty.domain.board.vo.FreeBoardComment;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class FreeBoardCommentForm {
 	
 	private Integer cno;
@@ -22,6 +20,8 @@ public class FreeBoardCommentForm {
 	@NotBlank
 	private String comment;
 	
+	@NotBlank
+	private String nickname;
 	
 	private Integer origin;
 	
@@ -32,6 +32,7 @@ public class FreeBoardCommentForm {
 				.freeBno(freeBno)
 				.memberId(memberId)
 				.comment(comment)
+				.nickname(nickname)
 				.origin(origin)
 				.build();
 	}
