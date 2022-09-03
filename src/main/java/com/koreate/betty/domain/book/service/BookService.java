@@ -219,7 +219,7 @@ public class BookService {
 			
 			File mFile = new File(originPath, imgName);
 			ImageIO.write(originImg, formatName, mFile);
-			File tFile = new File(thumbPath, imgName);			
+			File tFile = new File(thumbPath, imgName);
 			ImageIO.write(thumbImg, formatName, tFile);
 			
 			uploaded = true;
