@@ -65,6 +65,9 @@ public interface BookRepository {
 	@SelectProvider(type=BookSingleProvider.class, method="findExistNum")	// 렌탈 서비스에서 참조
 	public Integer findExistNum(String code);	
 	
+	@SelectProvider(type=BookProvider.class, method="findRecentBooks")
+	public List<Book> findRecentBooks();
+	
 	@InsertProvider(type=BookProvider.class, method="insert")
 	public int insert(NewBookForm book);
 	
@@ -83,5 +86,7 @@ public interface BookRepository {
 	// 크롤링
 	@InsertProvider(type=BookProvider.class, method="insertByCrawler")
 	public int insertByCrawler(Book book);
+
+	
 	
 }

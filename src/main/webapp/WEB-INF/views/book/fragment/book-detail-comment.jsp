@@ -183,7 +183,8 @@ function delComment(e) {
 			}			
 		},
 		error : function(result) {
-			alert('비밀번호를 확인해주세요. 오류발생');
+			alert('비밀번호를 확인해주세요.');
+			console.log('오류발생');
 		}
 	});
 }
