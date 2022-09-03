@@ -63,10 +63,8 @@ public class MemberProvider {
 	
 	// 체크인 이력 (출결 이력 표기)
 	public String findMyChkLog(String loginId) {
-		return new SQL().SELECT("*").FROM(MEMBER_TBL)
-				.JOIN(CHK_LOG_TBL)
-				.WHERE("id = member_id")
-				.WHERE("id = #{loginId}")
+		return new SQL().SELECT("*").FROM(CHK_LOG_TBL)
+				.WHERE("member_id = #{loginId}")
 				.toString();
 	}
 	

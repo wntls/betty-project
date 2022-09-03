@@ -52,19 +52,23 @@ public class MemberController {
 	
 	@GetMapping("dashboard")
 	public String memberDashboard(@PathVariable String id, Model model) {
-		// id, checklog, rentallog, reservelog 
 
 		MemberCard memberCard = memberService.findGradeById(id);
 		model.addAttribute("memberCard", memberCard);
-		List<ChkLog> chkList = memberService.findMyChkLog(id);
-		model.addAttribute("chkList", chkList);
-		// 회원 대여 정보 : book provider의 rental 참조 (현재 미구현)
+		
 		List<RentalBook> rentalList =  rentalService.rentalByMemberId(id);
 		model.addAttribute("rentalList", rentalList);
-		// 회원 예약 정보 : book provider의 reserve 참조 (현재 미구현)
+		
 		List<ReserveBook> reserveList = rentalService.reserveByMemberId(id);
 		model.addAttribute("reserveList", reserveList);
+		
 		return "member/member-dashboard";
+	}
+
+	@GetMapping("dashboard/chkLog")
+	@ResponseBody
+	public List<ChkLog> memberChkLog(@PathVariable String id){
+		return memberService.findMyChkLog(id);
 	}
 
 	@PostMapping("membership")

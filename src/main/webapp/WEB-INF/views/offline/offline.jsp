@@ -30,8 +30,12 @@ table td {
 }
 
 .seat tr td {
-	background: #dc3545;
+	background: #21223A; 
 	border: 1px white solid !important;
+}
+
+.seat tr td:hover {
+	cursor: pointer;
 }
 
 .seat tr td:nth-child(2), .seat tr td:nth-child(5) {
@@ -39,12 +43,37 @@ table td {
 	border-top: 0 !important;
 	border-bottom: 0 !important;
 }
+
+.seat tr td:nth-child(2):hover, .seat tr td:nth-child(5):hover{
+	cursor: default;
+}
+
+
+.seat .able {
+	background: #21223A;
+}
+
+.seat .disabled {
+	background: #dc3545;
+}
+.seat .disabled:hover {
+	cursor: default;
+}
+
+.seat .active {
+	background: white;
+	color: black;
+}
+
+.seat .active:hover{
+ cursor: default;
+}
 </style>
 
 <section>
 	<div class="container-md spad">
 		<div class="row justify-content-center">
-			<div class="col-md-8">
+			<div class="col-md-10">
 				<h2 class="mb-5">
 					<c:if test="${not empty user}">
 						${user.name}님의 오프라인 화면
@@ -59,9 +88,9 @@ table td {
 									<table class="table">
 										<thead>
 											<tr>
-												<th>도서명</th>
-												<th>예약일</th>
-												<th>수령하기</th>
+												<th colspan="3">도서명</th>
+												<th colspan="2">예약일</th>
+												<th>수령</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -70,8 +99,8 @@ table td {
 												<c:when test="${!empty reserves}">
 													<c:forEach var="reserve" items="${reserves}">
 														<tr>
-															<td>${reserve.title}</td>
-															<td><f:formatDate value="${reserve.date}"
+															<td colspan="3">${reserve.title}</td>
+															<td colspan="2"><f:formatDate value="${reserve.date}"
 																	pattern="yyyy-MM-dd" /></td>
 															<td>
 
@@ -83,7 +112,7 @@ table td {
 												</c:when>
 												<c:otherwise>
 													<tr>
-														<td>대여 예약된 책이 없습니다.</td>
+														<td colspan="6">대여 예약된 책이 없습니다.</td>
 													</tr>
 												</c:otherwise>
 											</c:choose>
@@ -98,28 +127,22 @@ table td {
 						<div class="card">
 							<div class="card-body">
 								<h5 class="card-title">도서 반납</h5>
-								<%-- 
-								<c:choose>
-										<c:when test="${!empty rentals}">
-											<c:forEach var="rental" items="${rentals}">
-											 --%>
 								<form action="${path}/offline/${user.id}/return" method="post">
 									<table class="table">
 										<thead>
 											<tr>
-												<th>도서명</th>
-												<th>반납예정일</th>
-												<th>반납하기</th>
+												<th colspan="3">도서명</th>
+												<th colspan="2">반납예정일</th>
+												<th>반납</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:choose>
 												<c:when test="${!empty rentals}">
 													<c:forEach var="rental" items="${rentals}">
-														<!-- book code, book num, user id -->
 														<tr>
-															<td>${rental.title }</td>
-															<td><f:formatDate value="${rental.date}"
+															<td colspan="3">${rental.title }</td>
+															<td colspan="2"><f:formatDate value="${rental.date}"
 																	pattern="yyyy-MM-dd" /></td>
 															<td>
 																<button class="btn btn-danger btn-sm" name="code"
@@ -130,7 +153,7 @@ table td {
 												</c:when>
 												<c:otherwise>
 													<tr>
-														<td>반납할 책이 없습니다.</td>
+														<td colspan="6">반납할 책이 없습니다.</td>
 													</tr>
 												</c:otherwise>
 											</c:choose>
@@ -144,40 +167,7 @@ table td {
 						<div class="card">
 							<div class="card-body">
 								<h5 class="card-title">스터디룸</h5>
-
-								<table class="table seat">
-									<tr>
-										<td>1</td>
-										<td></td>
-										<td>2</td>
-										<td>3</td>
-										<td></td>
-										<td>4</td>
-									</tr>
-									<tr>
-										<td>5</td>
-										<td></td>
-										<td>6</td>
-										<td>7</td>
-										<td></td>
-										<td>8</td>
-									</tr>
-									<tr>
-										<td>9</td>
-										<td></td>
-										<td>10</td>
-										<td>11</td>
-										<td></td>
-										<td>12</td>
-									</tr>
-									<tr>
-										<td>13</td>
-										<td></td>
-										<td>14</td>
-										<td>15</td>
-										<td></td>
-										<td>16</td>
-									</tr>
+								<table class="table seat" id="room">
 								</table>
 
 							</div>
@@ -188,8 +178,8 @@ table td {
 							<div class="card-body">
 								<h5 class="card-title">체크인 &amp; 체크아웃</h5>
 								<div class="d-flex flex-column" style="padding: 3rem">
-									<button type="button" id="checkIn" class="btn btn-danger btn-lg mb-3">체크인</button>
-									<button type="button" id="checkOut" class="btn btn-danger btn-lg">체크아웃</button>
+									<button type="button" id="checkInBtn" data-seat="dataseat" class="btn btn-danger btn-lg mb-3">체크인</button>
+									<button type="button" id="checkOutBtn" class="btn btn-danger btn-lg">체크아웃</button>
 								</div>
 							</div>
 						</div>
@@ -201,3 +191,120 @@ table td {
 </section>
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
+
+<script>
+
+	$(function(){
+		
+		let checkUserCheckIn = checkReal();
+		console.log("checkUserCheckIn : "+checkUserCheckIn);
+		
+		initRoom();
+		initSeats();
+		
+		$('.seat .able').on('click', function(){
+			if(checkUserCheckIn) return;
+			console.log($(this).hasClass("active"));
+			if($(this).hasClass("disabled") || $(this).hasClass("active")){
+				$(this).removeClass("active");
+				return;
+			}
+			let seat = this.innerText;
+			console.log(seat);
+			$(this).addClass('active');
+			hasActive = true;
+			
+			$('#checkInBtn').data('seat', seat);
+			//console.log($('#room .active'));
+		})
+		
+		$('#checkInBtn').on('click',function(){
+			let seat = $(this).data('seat');
+			
+			$.ajax({
+				type: 'post',
+				url: "${path}/offline/${user.id}/checkIn",
+				data: { seat : seat },
+				success: function(data){
+					alert("클라이언트 요청  "+ seat + " 서버 응답 "+ data);
+					location.reload();
+				},
+				error: function(data){
+					alert("요청실패");
+				} 
+			})
+		})
+		
+		$('#checkOutBtn').on('click', function(){
+			
+			$.ajax({
+				
+				type: 'post',
+				url: '${path}/offline/${user.id}/checkOut',
+				success: function(data){
+					alert('서버 응답 : '+ data);
+					location.reload();
+				},
+				error: function(data){
+					alert('요청 실패' + data);
+				}
+			})
+		})
+	})
+	
+	function initRoom(){
+		
+			let room = "";
+			let row = "";
+			let cell = "";
+		
+			for(let i = 0; i <= 3; i++){
+				let k = i * 4;
+				for(let j = 1+k; j <= 4+k; j++){
+					if(j==(1+k) || j==(3+k)){
+						cell =`<td class="able" value="\${j}">\${j}</td>`;
+						cell +=`<td></td>`;
+					} else{
+						cell =`<td class="able" value="\${j}">\${j}</td>`;
+					}
+					row += cell;
+				}
+				room = `<tr>\${row}</tr>`;
+				$('#room').append(room);
+				row = "";
+			}
+		}
+	
+	function initSeats(){
+		$.getJSON("${path}/offline/${user.id}/room",
+				function(data){
+			$(data).each(function(i,e){
+				console.log(e);
+				console.log($(`td[value='\${e}']`));
+				$(`td[value='\${e}']`).switchClass('able', 'disabled');
+			})
+		})
+	}
+	
+	function checkReal(){
+		let isReal = "";
+		$.ajax({
+			async: false,
+			type: "get",
+			url: "${path}/offline/${user.id}/checkReal",
+			dataType: 'json',
+			success: function(data){
+				console.log(data)
+				isReal = data;
+			}
+		})
+		console.log("isReal "+isReal);
+		return isReal;
+	}
+	
+
+</script>
+
+
+
+

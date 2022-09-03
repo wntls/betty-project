@@ -41,20 +41,24 @@ public class AuthInterceptor implements HandlerInterceptor{
 		boolean isAdmin = (right == 3);
 		
 		if(memberPath && !isMember) {
-			response.sendRedirect(path);
 			request.setAttribute("message", "일반회원만 접근할 수 있습니다.");
+			log.info("member uri = {}", uri.split("/")[3]);
+			response.sendRedirect(path);
 			return false;
 		} else if (staffPath && !isStaff) {
-			response.sendRedirect(path);
 			request.setAttribute("message", "직원회원만 접근할 수 있습니다.");
+			log.info("staff uri = {}", uri.split("/")[3]);
+			response.sendRedirect(path);
 			return false;
 		} else if(offlinePath && !isMember) {
-			response.sendRedirect(path);
 			request.setAttribute("message", "일반회원만 접근할 수 있습니다.");
+			log.info("member uri = {}", uri.split("/")[3]);
+			response.sendRedirect(path);
 			return false;
 		} else if(adminPath && !isAdmin) {
-			response.sendRedirect(path);
 			request.setAttribute("message", "관리자만 접근할 수 있습니다.");
+			log.info("admin uri = {}", uri.split("/")[3]);
+			response.sendRedirect(path);
 			return false;
 		}
 			
