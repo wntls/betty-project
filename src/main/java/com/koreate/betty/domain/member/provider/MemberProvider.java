@@ -79,7 +79,7 @@ public class MemberProvider {
 		String searchOption = form.getSearchOption();
 		String searchText = form.getSearchText().trim();		
 		
-		SQL sql = new SQL().SELECT("id, nickname, name, gender, birth, phone, email, addr, rights, premium_grade, point, reg_date").FROM(MEMBER_TBL).JOIN(MEMBER_CARD_TBL)
+		SQL sql = new SQL().SELECT("img, id, nickname, name, gender, birth, phone, email, addr, rights, premium_grade, point, reg_date").FROM(MEMBER_TBL).JOIN(MEMBER_CARD_TBL)
 				.WHERE("id = member_id");
 		if (allow != null) {
 			switch(allow) {
@@ -177,6 +177,13 @@ public class MemberProvider {
 	public String blackCheckById(String id) {
 		return new SQL().SELECT("count(*)").FROM(BLACK_LIST_TBL)
 				.WHERE("member_id = #{id}")
+				.toString();
+	}
+	
+	// 직원 승인
+	public String updateAllow(String id) {
+		return new SQL().UPDATE(MEMBER_TBL).SET("rights = 2")
+				.WHERE("id = #{id}")
 				.toString();
 	}
 	

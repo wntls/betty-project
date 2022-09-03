@@ -123,7 +123,7 @@
 var initBookStr = null;
 var num = 1;
 $(function() {
-	ajaxList(1);	
+	ajaxList(1);
 });
 
 function initData(){	
@@ -144,11 +144,6 @@ function ajaxList(pageNum) {
 	let go = $("#gradeOption").val();
 	let so = $("#searchOption").val();
 	let st = $("#searchText").val();
-	console.log(" : " + ao);
-	console.log(" : " + ro);
-	console.log(" : " + go);
-	console.log(" : " + so);
-	console.log(" : " + st);
 	$.ajax({
 		type : 'get',
 		url : "${path}/admin/members/cond",
@@ -162,7 +157,6 @@ function ajaxList(pageNum) {
 		},
 		dataType : 'json',
 		success : function(result) {
-			console.log(result.list);
 			printList(result.list);
 			printPage(result.pm);
 		}
@@ -174,7 +168,6 @@ function printList(list) {
 	$(list)
 			.each(
 					function() {
-						
 						let rights = this.rights;
 						
 						let rank = '';			
@@ -188,7 +181,7 @@ function printList(list) {
 						
 						let allow = 'OK';
 						if (rights == 1) {
-							allow = `<button class='allowBtn' value='\${this.id}'>승인</button>`;
+							allow = `<button onclick='approve("\${this.id}")'>승인</button>`;
 						}
 						
 						let checkIn = 'NO';
@@ -300,5 +293,22 @@ $("#pa").on("click", "li a", function(e) {
 	num = (p - 1) * 10 + 1;
 	ajaxList(p);
 });
+
+function approve(e){
+	var allowId = e;
+	$.ajax({
+		type : 'post',
+		url : "${path}/admin/members/allow",
+		data : {
+			id : allowId
+		},
+		dataType : 'text',
+		success : function(result) {
+			console.log(result);
+			alert(allowId + '님이 가입승인 되었습니다.');
+			ajaxList(1);
+		}
+	});	
+}
 
 </script>

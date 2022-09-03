@@ -37,5 +37,10 @@ public class AdminService {
 	public boolean blackCheckById(String id) {
 		return memberRepository.blackCheckById(id) == 1 ? true : false;
 	}
+
+	public int updateAllow(String id) {
+		int result = memberRepository.updateAllow(id);
+		return result;
+	}
 	
 }
