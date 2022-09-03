@@ -14,6 +14,7 @@ public class SuggestBoard {
 	
 	private final Integer bno;
 	private final String memberId;
+	private final String nickname;
 	private final String title;
 	private final String content;
 	private final Integer origin;

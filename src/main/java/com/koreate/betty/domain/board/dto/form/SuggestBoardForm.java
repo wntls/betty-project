@@ -19,6 +19,8 @@ public class SuggestBoardForm {
 	@NotBlank
 	private String memberId;
 	
+	private String nickname;
+	
 	@Size(max = 50)
 	@NotBlank
 	private String title;
@@ -28,12 +30,14 @@ public class SuggestBoardForm {
 	
 	private Integer depth;
 	
+	
 	private Integer origin;
 	
 	public SuggestBoard suggestBoard() {
 		return SuggestBoard.builder()
 				.bno(bno)
 				.memberId(memberId)
+				.nickname(nickname)
 				.title(title)
 				.content(content)
 				.depth(depth)

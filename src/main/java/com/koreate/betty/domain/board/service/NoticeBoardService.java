@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.koreate.betty.domain.board.dao.NoticeBoardRepository;
 import com.koreate.betty.domain.board.dto.form.NoticeBoardForm;
 import com.koreate.betty.domain.board.vo.NoticeBoard;
-import com.koreate.betty.global.util.PageMaker;
 import com.koreate.betty.global.util.SearchCriteria;
 import com.koreate.betty.global.util.SearchPageMaker;
 
@@ -71,9 +70,9 @@ public class NoticeBoardService {
 	}
 	
 	// 페이징 처리
-	public PageMaker getPageMaker(SearchCriteria cri) {
+	public SearchPageMaker getPageMaker(SearchCriteria cri) {
 		int totalCount = dao.listAllCount(cri);
-		PageMaker pm = new SearchPageMaker();
+		SearchPageMaker pm = new SearchPageMaker();
 		pm.setCri(cri);
 		pm.setDisplayPageNum(5);
 		pm.setTotalCount(totalCount);

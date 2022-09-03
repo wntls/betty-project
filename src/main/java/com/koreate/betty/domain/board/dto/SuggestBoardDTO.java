@@ -10,6 +10,7 @@ public class SuggestBoardDTO {
 	
 	private Integer bno;
 	private String memberId;
+	private String nickname;
 	private String title;
 	private String content;
 	private Integer origin;

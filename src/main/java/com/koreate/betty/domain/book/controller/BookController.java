@@ -36,12 +36,7 @@ public class BookController {
 	public String bookListPage() {
 		return "book/book-board";
 	}
-	
-	@PostMapping
-	public String bookListSearch(Model model) { // 매개변수 4개 추가 필요 
-		
-		return "book/book-board";
-	}
+
 	
 	// 도서 상세 정보
 	@GetMapping("{isbn}")
