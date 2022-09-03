@@ -152,16 +152,14 @@ public class MemberService {
 		return memberCardRepository.updateGrade(id, grade);
 	}
 	
+
+	public int blackCheckById(String id) {
+		return memberRepository.blackCheckById(id);
+	}
+
 	public void inquiry(Inquiry inquiry) {
 		emailSender.inquiry(inquiry);
 		memberRepository.createInquiry(inquiry);
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }

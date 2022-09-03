@@ -1,9 +1,5 @@
 package com.koreate.betty.domain.member;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -11,17 +7,16 @@ import java.util.stream.IntStream;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.koreate.betty.domain.book.service.BookService;
+import com.koreate.betty.domain.member.dto.MemberForAdminDTO;
 import com.koreate.betty.domain.member.dto.form.PointForm;
 import com.koreate.betty.domain.member.dto.form.SignInForm;
 import com.koreate.betty.domain.member.dto.form.SignUpForm;
-import com.koreate.betty.domain.member.dto.form.UpdateForm;
+import com.koreate.betty.domain.member.service.AdminService;
 import com.koreate.betty.domain.member.service.MemberService;
 import com.koreate.betty.domain.member.service.SignService;
 import com.koreate.betty.domain.member.vo.ChkLog;
@@ -43,6 +38,9 @@ public class MemberTest {
 	@Autowired
 	SignService signService;
 	BookService bs;
+	
+	@Autowired
+	AdminService as;
 	
 //	@Test
 	public void joinOne() {
@@ -182,5 +180,13 @@ public class MemberTest {
 		
 		int result = memberService.updateMembership(id, grade);
 		log.info("\n\n\n\n result : {}", result);
+	}
+	
+	@Test
+	public void memberAdminTest() {
+//		List<MemberForAdminDTO> list = as.memberList();
+//		for (MemberForAdminDTO m : list) {
+//			log.info("\n member : {}", m);
+//		}		
 	}
 }
