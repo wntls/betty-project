@@ -51,16 +51,17 @@
 						</div>
 					</div>
 					<div class="row justify-content-around">
+					<c:forEach var="recentBook" items="${recentBooks}">
 						<div class="col-md-3">
 							<div class="product__item">
 								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/origin/9772383984000.jpg">
-									<div class="ep">18 / 18</div>
+									data-setbg="${path}/resources/img/book/origin/${recentBook.code}.jpg">
+									<div class="ep">${recentBook.pub}</div>
 									<div class="comment">
-										<i class="fa fa-comments"></i> 11
+										<!-- <i class="fa fa-comments"></i> 11 -->
 									</div>
 									<div class="view">
-										<i class="fa fa-eye"></i> 9141
+										<!-- <i class="fa fa-eye"></i> 9141 -->${recentBook.auth}
 									</div>
 								</div>
 								<div class="product__item__text">
@@ -69,58 +70,12 @@
 										<li>Movie</li>
 									</ul>
 									<h5>
-										<a href="#">Fate/stay night Movie: Heaven's Feel - II.
-											Lost</a>
+										<a href="${path}/books/${recentBook.code}">${recentBook.title}</a>
 									</h5>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-3">
-							<div class="product__item">
-								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/origin/9772383984000.jpg">
-									<div class="ep">18 / 18</div>
-									<div class="comment">
-										<i class="fa fa-comments"></i> 11
-									</div>
-									<div class="view">
-										<i class="fa fa-eye"></i> 9141
-									</div>
-								</div>
-								<div class="product__item__text">
-									<ul>
-										<li>Active</li>
-										<li>Movie</li>
-									</ul>
-									<h5>
-										<a href="#">Mushishi Zoku Shou: Suzu no Shizuku</a>
-									</h5>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="product__item">
-								<div class="product__item__pic set-bg"
-									data-setbg="${path}/resources/img/book/origin/9772383984000.jpg">
-									<div class="ep">18 / 18</div>
-									<div class="comment">
-										<i class="fa fa-comments"></i> 11
-									</div>
-									<div class="view">
-										<i class="fa fa-eye"></i> 9141
-									</div>
-								</div>
-								<div class="product__item__text">
-									<ul>
-										<li>Active</li>
-										<li>Movie</li>
-									</ul>
-									<h5>
-										<a href="#">Mushishi Zoku Shou: Suzu no Shizuku</a>
-									</h5>
-								</div>
-							</div>
-						</div>
+					</c:forEach>
 					</div>
 				</div>
 			</div>
