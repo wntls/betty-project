@@ -48,13 +48,17 @@ public interface MemberRepository {
 	@UpdateProvider(type=MemberProvider.class, method="delete")
 	public int delete(String id);
 
-	
+	@UpdateProvider(type=MemberProvider.class, method="updateAllow")
+	public int updateAllow(String id);
 
 	
 	
 	@InsertProvider(type=MemberProvider.class, method="createInquiry")
 	@Options(useGeneratedKeys = true , keyProperty = "bno")
 	public int createInquiry(Inquiry inquiry);
+
+	
+	
 	
 }
 
