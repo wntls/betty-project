@@ -42,6 +42,16 @@ public class SuggestBoardController {
     public String freeBoardNew() throws Exception {
 	return "board/suggest/suggest-new";
     }
+     // 건의사항 등록
+    @PostMapping("writeSubmit")
+    @ResponseBody
+    public int freeBoardNew(@RequestBody SuggestBoardForm sugboard) throws Exception {
+	sugboard.setBno(0);
+	System.out.println(sugboard.getNickname());
+	int bno = sboardserv.suggestWrite(sugboard);
+	System.out.println("endwrite \n\n\n\n\n\n\n");
+	return bno;
+    }
 
     // 조횟수 증가
     @GetMapping("suggestDetail")
@@ -52,15 +62,16 @@ public class SuggestBoardController {
 
     @Autowired
     MemberService memberService;
+
     // 게시판 상세보기, Model 사용
     @GetMapping("detail")
     public String sBoardDetail(int bno, Model model) throws Exception {
 	SuggestBoardDTO board = sboardserv.suggestDetail(bno);
 	String id = board.getMemberId();
 	String memberImg = memberService.findOne(id).getImg();
-	
+
 	model.addAttribute("board", board);
-	model.addAttribute("memberImg",memberImg);
+	model.addAttribute("memberImg", memberImg);
 	return "board/suggest/suggest-detail";
     }
 

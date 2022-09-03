@@ -13,13 +13,13 @@ public class SuggestBoardProvider {
 	public String suggestRegist(SuggestBoard board) {
 		SQL sql = new SQL();
 		sql.INSERT_INTO(SUGGEST_BOARD_TBL);
-		sql.INTO_COLUMNS("title,content");
-		if(board.getOrigin() != null || board.getOrigin() != 0) {
+		sql.INTO_COLUMNS("title,content,nickname");
+		if(board.getOrigin() != null && board.getOrigin() != 0) {
 			sql.INTO_COLUMNS("origin,depth");
 		}
 		sql.INTO_COLUMNS("member_id");
-		sql.INTO_VALUES("#{title},#{content}");
-		if(board.getOrigin() != null || board.getOrigin() != 0) {
+		sql.INTO_VALUES("#{title},#{content},#{nickname}");
+		if(board.getOrigin() != null && board.getOrigin() != 0) {
 			sql.INTO_VALUES("#{origin},#{depth}");
 		}
 		sql.INTO_VALUES("#{memberId}");

@@ -11,14 +11,17 @@
 					<span>건의사항 글 작성</span>
 				</div>
 				<div class="w-100"></div>
-				<input class="board-detail board-title" type="text" value="제목">
+				<input class="board-detail board-title" type="text" id="title" placeholder="제목 을 작성 하세요">
 				<hr />
 				<div class="row">
 					<div class="col-md-6">
 						<div class="blog__details">
 							<div class="thumb-list-profile">
 								<img src="${path}/resources/img/member/thumbnail/${user.img}" />
-								<span class="text-white">${user.nickname}</span>
+								<span class="text-white" >${user.nickname}</span>
+								<input type="text" id="memberId" hidden="true" value="${user.id}">
+								<input type="text" id="nickname" hidden="true" value="${user.nickname}">
+								<input type="text" id="origin" hidden="true" value="${board.origin}">
 							</div>
 						</div>
 					</div>
@@ -36,13 +39,13 @@
 				<div class="blog__details__btns">
 					<div class="row justify-content-between">
 						<div class="col-md float-left">
-							<button type="button" class="btn btn-danger">목록</button>
+							<button type="button" class="btn btn-danger" onclick="location.href='${path}/boards/suggest'">목록</button>
 
 						</div>
 						<div class="col-md">
 							<div class="btn-group float-right" role="group">
-								<button class="btn btn-danger ml-3">작성</button>
-								<button class="btn btn-secondary ml-3">취소</button>
+								<button class="btn btn-danger ml-3" id="sugsubmit">작성 완료</button>
+								<button class="btn btn-secondary ml-3" id="back">취소</button>
 							</div>
 						</div>
 					</div>
@@ -71,8 +74,50 @@
 	function check(){
 		// ckeditor 내부의 텍스트를 가져오는 방법
 		let innerContent = CKEDITOR.instances.editor.getData();
-		console.log(innerContent);
+		return innerContent;
 		// ckeditor 내부에 텍스트를 넣는 방법
 		// CKEDITOR.instances.editor2.setData(innerContent);
 	}
+	
+	$("#sugsubmit").on('click', function(){
+		var title=$("#title").val();
+		var content = check();
+		var origin = $("#origin").val();
+		var memberId = $("#memberId").val();
+		var nickname = $("#nickname").val();
+		
+		
+		var param = {
+				"memberId" : memberId,
+				"title" : title,
+				"content" : check(),
+				"origin" : origin,
+				"nickname" : nickname
+			}
+		
+		if (title == "" || content == "") {
+			alert("제목과 내용을 모두 입력해 주세요.");
+		} else {
+			$.ajax({
+				type : 'POST',
+				data : JSON.stringify(param),
+				url : "${path}/boards/suggest/writeSubmit",
+				dataType : "text",
+				contentType : "application/json; charset=UTF-8",
+				success : function(data) {
+					console.log(data +" <- bno");
+					alert("건의사항 등록이 완료 되었습니다.");
+					location.href = "${path}/boards/suggest";
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					alert("등록 실패 : 관리자에게 문의해주세요");
+				}
+			});
+		}
+	});
+	
+	$("#back").on('click', function() {
+		history.go(-1);
+	});
+	
 </script>

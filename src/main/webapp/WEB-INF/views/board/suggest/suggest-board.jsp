@@ -32,7 +32,7 @@
 									<th>작성자</th>
 									<th>작성 시간</th>
 									<th>조회수</th>
-									<th>회원등급?</th>
+									<th>추천수 </th>
 								</tr>
 							</thead>
 							<tbody id="comments">
@@ -42,26 +42,36 @@
 										<f:formatDate var="now" value="${n}" pattern="yyyy-MM-dd" />
 										<!-- mav.addObject("list",list);  List<SuggestBoard> -->
 										<c:forEach var="sugBoard" items="${list}">
-										<c:if test="${sugBoard.showboard ne 'n'}">
-											<tr onclick="location.href='${path}/boards/suggest/suggestDetail?bno=${sugBoard.bno}'">
-												<td>${sugBoard.bno}</td>
-												<td>${sugBoard.title}</td>
-												<td>${sugBoard.memberId}</td>
-												<td>
-													<f:formatDate var="reg" pattern="yyyy-MM-dd" value="${sugBoard.regdate}" />
+											<c:if test="${sugBoard.showboard ne 'n'}">
+												<tr onclick="location.href='${path}/boards/suggest/suggestDetail?bno=${sugBoard.bno}'">
 													<c:choose>
-														<c:when test="${now eq reg}">
-															<f:formatDate value="${sugBoard.regdate}" pattern="HH:mm" />
+														<c:when test="${sugBoard.depth != 0}">
+															<td colspan="2">
+																<!-- ㅂ 한자 키 + 6 -->
+																&nbsp;&nbsp;&nbsp;└ 답글 : ${sugBoard.title}
+															</td>
 														</c:when>
 														<c:otherwise>
-													${reg}
-												</c:otherwise>
+															<td>${sugBoard.bno}</td>
+															<td>${sugBoard.title}</td>
+														</c:otherwise>
 													</c:choose>
-												</td>
-												<td>${sugBoard.viewcnt}</td>
-												<td>VVIP</td>
-											</tr>
-										</c:if>
+													<td>${sugBoard.memberId}</td>
+													<td>
+														<f:formatDate var="reg" pattern="yyyy-MM-dd" value="${sugBoard.regdate}" />
+														<c:choose>
+															<c:when test="${now eq reg}">
+																<f:formatDate value="${sugBoard.regdate}" pattern="HH:mm" />
+															</c:when>
+															<c:otherwise>
+																${reg}
+															</c:otherwise>
+														</c:choose>
+													</td>
+													<td>${sugBoard.viewcnt}</td>
+													<td>${sugBoard.viewcnt }</td>
+												</tr>
+											</c:if>
 										</c:forEach>
 									</c:when>
 									<c:otherwise>
@@ -136,7 +146,7 @@
 		$("#searchType").val($(this).val());
 	});
 	/* 		$("#perPageNum").val($("#pageNumSelect").val()); */
-
+	
 	$("#btn").click(function() {
 		var searchType = $("#searchType").val();
 		var keyword = $("#keyword").val();
