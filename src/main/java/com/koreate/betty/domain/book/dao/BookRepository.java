@@ -12,10 +12,10 @@ import org.apache.ibatis.annotations.UpdateProvider;
 import com.koreate.betty.domain.book.dto.RentalStatusDTO;
 import com.koreate.betty.domain.book.dto.form.BookDeleteForm;
 import com.koreate.betty.domain.book.dto.form.BookSearchForm;
+import com.koreate.betty.domain.book.dto.form.NewBookForm;
 import com.koreate.betty.domain.book.provider.BookProvider;
 import com.koreate.betty.domain.book.provider.BookSingleProvider;
 import com.koreate.betty.domain.book.vo.Book;
-import com.koreate.betty.domain.book.vo.JBookRental;
 import com.koreate.betty.domain.book.vo.JBookSingle;
 import com.koreate.betty.global.util.BookCriteria;
 import com.koreate.betty.global.util.Criteria;
@@ -66,7 +66,7 @@ public interface BookRepository {
 	public Integer findExistNum(String code);	
 	
 	@InsertProvider(type=BookProvider.class, method="insert")
-	public int insert(Book book);
+	public int insert(NewBookForm book);
 	
 	@InsertProvider(type=BookSingleProvider.class, method="insertWare")
 	public int insertWare(@Param("code")String code, @Param("id")String id);

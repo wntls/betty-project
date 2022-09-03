@@ -1,9 +1,7 @@
 package com.koreate.betty.domain.book.provider;
 
-import static com.koreate.betty.domain.model.TableConst.BOOK_COMMENT_TBL;
 import static com.koreate.betty.domain.model.TableConst.BOOK_SINGLE_TBL;
 import static com.koreate.betty.domain.model.TableConst.BOOK_TBL;
-import static com.koreate.betty.domain.model.TableConst.MEMBER_TBL;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -12,8 +10,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
 import com.koreate.betty.domain.book.dto.form.BookSearchForm;
+import com.koreate.betty.domain.book.dto.form.NewBookForm;
 import com.koreate.betty.domain.book.vo.Book;
-import com.koreate.betty.domain.book.vo.BookComment;
 import com.koreate.betty.global.util.BookCriteria;
 import com.koreate.betty.global.util.Criteria;
 
@@ -52,7 +50,7 @@ public class BookProvider {
 	}
 
 	// 신규 도서 등록
-	public String insert(Book book) {
+	public String insert(NewBookForm form) {
 		return new SQL().INSERT_INTO(BOOK_TBL)
 				.INTO_VALUES("#{code}, #{title}, #{auth}, #{pub}, #{pubDate}, #{page}, #{genre}, #{intro}").toString();
 	}
