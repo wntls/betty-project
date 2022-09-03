@@ -308,7 +308,7 @@ function approve(e){
 			alert(allowId + '님이 가입승인 되었습니다.');
 			ajaxList(1);
 		}
-	});	
+	});
 }
 
 </script>

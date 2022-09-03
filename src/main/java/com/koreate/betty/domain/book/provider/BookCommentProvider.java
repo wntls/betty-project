@@ -24,7 +24,7 @@ public class BookCommentProvider {
 
 	// 도서 상세 정보 페이지의 댓글 목록 (이미지, 아이디, 시간, 내용)
 	public String findCommentByCode(@Param("code") String code, @Param("cri") Criteria cri) {
-		return new SQL().SELECT("member.img, book_comment.nickname, book_comment.regdate, book_comment.comment")
+		return new SQL().SELECT("book_comment.num, member.img, book_comment.nickname, book_comment.regdate, book_comment.comment")
 				.FROM(BOOK_COMMENT_TBL).JOIN(MEMBER_TBL).WHERE("book_comment.member_id = member.id")
 				.WHERE("book_code = #{code}").OFFSET("#{cri.startRow}").LIMIT("#{cri.perPageNum}").toString();
 	}
