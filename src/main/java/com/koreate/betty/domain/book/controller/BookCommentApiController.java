@@ -6,13 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.koreate.betty.domain.book.dto.form.BookCommentForm;
 import com.koreate.betty.domain.book.service.BookCommentService;
 import com.koreate.betty.domain.book.service.BookService;
+import com.koreate.betty.domain.member.dto.form.SignInForm;
+import com.koreate.betty.domain.member.service.SignService;
+import com.koreate.betty.domain.member.vo.Member;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,6 +31,9 @@ public class BookCommentApiController {
 	
 	@Autowired
 	BookCommentService bcs;
+	
+	@Autowired
+	SignService ss;
 	
 	// 댓글 출력
 	@PostMapping("{isbn}/comments")  // json
@@ -56,9 +61,17 @@ public class BookCommentApiController {
 	
 	// 댓글 삭제
 	@DeleteMapping("{isbn}/comment/{cno}")
-	public String delComment(@PathVariable Integer cno) {
+	public String delComment(@PathVariable Integer cno, String id, String pw) {
+		
+		SignInForm form = new SignInForm(id, pw, false);
+		form.encode();
+		Member member = ss.signIn(form);
+		
+		if (member == null) {
+			return "Not match";
+		}
 		int result = bcs.deleteComment(cno);
-		return result == 1 ? "성공" : "실패";
+		return result == 1 ? "Success" : "Failed";
 	}
 	
 }
