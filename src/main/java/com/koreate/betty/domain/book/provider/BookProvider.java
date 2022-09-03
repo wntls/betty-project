@@ -179,8 +179,11 @@ public class BookProvider {
 		}			
 		
 		if (cri.getPubDate() != null && !cri.getPubDate().trim().equals("")) { 
-			sql.WHERE("pub_date LIKE CONCAT('%', '" + cri.getPubDate() + "', '%')");
+			Timestamp pubDate = Timestamp.valueOf(cri.getPubDate() + " 00:00:00");
+			String date = new SimpleDateFormat("yyyy-MM-dd").format(pubDate);
+			sql.WHERE("pub_date >= '" + date + "'");
 		}
+		
 	}
 	
 	

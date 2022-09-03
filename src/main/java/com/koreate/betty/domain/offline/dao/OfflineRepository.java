@@ -17,7 +17,7 @@ public interface OfflineRepository {
 	public List<Integer> seatStatus();
 	
 	@SelectProvider(type=OfflineProvider.class, method="checkMember")	// 좌석 현황
-	public int checkMember();
+	public int checkMember(String id);
 	
 	@InsertProvider(type=OfflineProvider.class, method="checkIn")
 	public int checkIn(@Param("id")String id, @Param("seat")Integer seat);
