@@ -23,6 +23,7 @@ public class MemberForAdminDTO {
 	String premiumGrade;
 	Integer point;
 	Timestamp regDate;
+	Integer demerit;
 	Integer nowRentCount;
 	Integer allRentCount;
 	Boolean checkIn;
