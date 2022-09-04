@@ -73,6 +73,11 @@ public class SignService {
 		return isDupl(signRepository.findEmailByEmail(email));
 	}
 	
+	// 전화번호 중복 체크
+	public boolean checkPhoneDupl(String phone) {
+		return isDupl(signRepository.findPhoneByPhone(phone));
+	}
+	
 	// 아이디 찾기
 	public String forgetId(String name, String phone) {
 		String id = signRepository.findIdByForget(name, phone);

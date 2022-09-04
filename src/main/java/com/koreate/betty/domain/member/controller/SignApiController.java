@@ -36,12 +36,18 @@ public class SignApiController {
 
 	@GetMapping("up/nicknameCheck")
 	public boolean nicknameCheck(String nickname) {
-		return signService.checkIdDupl(nickname);
+		System.out.println("\n\n\n\nnickname : " + nickname);
+		return signService.checkNicknameDupl(nickname);
 	}
 
 	@GetMapping("up/emailCheck")
 	public boolean emailCheck(String email) {
 		return signService.checkEmailDupl(email);
+	}
+	
+	@GetMapping("up/phoneCheck")
+	public boolean phoneCheck(String phone) {
+		return signService.checkPhoneDupl(phone);
 	}
 
 	@GetMapping("find/id")

@@ -158,6 +158,8 @@ $(function(){
 		
 		if(boolPhone){
 			$("#sendSMS").attr("disabled", false);
+		} else {
+			$("#sendSMS").attr("disabled", true);
 		}
 	});
 	
@@ -167,6 +169,7 @@ $(function(){
 			$("#phone").focus();
 		}else{
 			$("#sendSMS").attr("disabled", true);
+			$("#phone").attr("readonly", true);
 			$.ajax({
 				type : "get",
 				url : "${path}/sign/up/sms",
@@ -220,6 +223,8 @@ $(function(){
 		
 		if(boolEmail){
 			$("#sendEmail").attr("disabled", false);
+		} else {
+			$("#sendEmail").attr("disabled", true);
 		}
 	});
 	
@@ -230,6 +235,7 @@ $(function(){
 			$("#email").focus();
 		}else{
 			$("#sendEmail").attr("disabled", true);
+			$("#email").attr("readonly", true);
 			let userEmail = $("#email").val();
 			$.ajax({
 				type : "GET",
@@ -321,7 +327,11 @@ $(function(){
 			addr : { required : true },
 			phone : { 
 			    required : true,
-			    minlength : 9	
+			    minlength : 9,
+			    remote :{
+			        type : "GET",
+			        url : "${path}/sign/up/phoneCheck"
+			    }
 			},
 			email : { 
 			    required : true,
@@ -370,7 +380,8 @@ $(function(){
 			addr : { required : "주소를 입력하세요." },
 			phone : { 
 				required : "전화번호를 입력하세요.",
-				minlength : "전화번호를 입력해주세요."	
+				minlength : "전화번호를 입력해주세요.",
+				remote : "이미 존재하는 번호입니다."
 			},
 			email : { 
 				required : "이메일을 입력하세요.",

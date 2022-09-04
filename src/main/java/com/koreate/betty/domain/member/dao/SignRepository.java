@@ -23,6 +23,9 @@ public interface SignRepository {
 		@SelectProvider(type=SignProvider.class, method="findEmailByEmail")
 		public String findEmailByEmail(String email);
 		
+		@SelectProvider(type=SignProvider.class, method="findPhoneByPhone")
+		public String findPhoneByPhone(String phone);
+		
 		@SelectProvider(type=SignProvider.class, method="findOneBySignIn")
 		public Member findOneBySignIn(Member member);
 		
@@ -31,5 +34,7 @@ public interface SignRepository {
 		
 		@SelectProvider(type=SignProvider.class, method="findPwByForget")
 		public int findPwByForget(@Param("id")String id, @Param("phone")String phone);
+
+		
 	
 }
