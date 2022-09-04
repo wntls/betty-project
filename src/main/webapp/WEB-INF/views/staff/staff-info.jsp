@@ -14,7 +14,7 @@
 							</div>
 							<div class="col-auto">
 								<button class="btn btn-danger"
-									onclick="location.href='${path}/members/${user.id}/edit'"><s:message code="btn.modify"/></button>
+									onclick="location.href='${path}/staff/${user.id}/edit'"><s:message code="btn.modify"/></button>
 								<button class="btn btn-secondary ml-3"
 								data-toggle="modal"
 								data-target="#withdrawMember" ><s:message code="btn.member.delete"/></button>
@@ -71,13 +71,13 @@
 							<input type="text" class="form-control" name="addrDetail" id="addrDetail" value="${user.addrDetail}" readonly/>
 						</div>
 						
-						 <s:message code="text.phone/>
+						 <s:message code="text.phone"/>
 						<div class="input__item">
 							<span><i class="bi bi-phone"></i></span>
 							<input type="text" name="phone" id="phone"  value="${user.phone}" /> 
 						</div>
 						
-						<s:message code="text.email/>
+						<s:message code="text.email"/>
 						<div class="input__item">
 							<span class="icon_mail"></span>
 							<input type="text" name="email" id="email"  value="${user.email}" /> 
