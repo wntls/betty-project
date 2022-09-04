@@ -1,5 +1,7 @@
 package com.koreate.betty.domain.offline.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreate.betty.domain.book.service.BookService;
 import com.koreate.betty.domain.member.service.MemberService;
@@ -41,10 +44,16 @@ public class OfflineController {
 	@GetMapping
 	public String offline(@PathVariable String id, @User Member user, Model model) {
 		String userId = user.getId();
-		model.addAttribute("seats", os.seatStatus());	// List<Integer>
+		//model.addAttribute("seats", os.seatStatus());	// List<Integer>
 		model.addAttribute("reserves", rs.reserveByMemberId(userId));	// List<ReserveBook>
 		model.addAttribute("rentals", rs.rentalByMemberId(userId));		// List<RentalBook>
 		return "offline/offline";
+	}
+	
+	@GetMapping("room")
+	@ResponseBody
+	public List<Integer> initSeat(){
+		return os.seatStatus();
 	}
 	
 	@PostMapping("receipt")
@@ -68,15 +77,25 @@ public class OfflineController {
 	}
 	
 	@PostMapping("checkIn")
-	public String checkIn(@PathVariable String id, Integer seat) {
+	@ResponseBody
+	public int checkIn(@PathVariable String id, Integer seat) {
 		int result = os.checkIn(id, seat);
-		return "redirect:/offline/"+id;
+		return result;
 	}
 	
 	@PostMapping("checkOut")
-	public String checkOut(@PathVariable String id) {
-		int result = os.checkOut(id);
-		return "redirect:/offline/"+id;
+	@ResponseBody
+	public int checkOut(@User Member user) {
+		log.info("@User ={}", user);
+		int result = os.checkOut(user.getId());
+		return result;
+	}
+	
+	@GetMapping("checkReal")
+	@ResponseBody
+	public boolean checkReal(@User Member user) {
+		log.info("@User ={}", user);
+		return os.checkMember(user.getId());
 	}
 	
 	// Rental 가져올 곳 많으면 따로 클래스 만들어도됨

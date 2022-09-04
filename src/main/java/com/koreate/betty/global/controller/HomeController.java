@@ -7,16 +7,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.koreate.betty.domain.book.service.BookService;
+
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
 @RequestMapping("/")
+@RequiredArgsConstructor
 public class HomeController {
+	
+	private final BookService bs;
 	
 	@GetMapping
 	public String home(Locale locale, Model model) {
 		log.info("locale = {}",locale);
+		model.addAttribute("recentBooks", bs.findRecentBooks());
 		return "home";
 	}
 	

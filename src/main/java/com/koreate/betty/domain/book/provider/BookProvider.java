@@ -1,9 +1,7 @@
 package com.koreate.betty.domain.book.provider;
 
-import static com.koreate.betty.domain.model.TableConst.BOOK_COMMENT_TBL;
 import static com.koreate.betty.domain.model.TableConst.BOOK_SINGLE_TBL;
 import static com.koreate.betty.domain.model.TableConst.BOOK_TBL;
-import static com.koreate.betty.domain.model.TableConst.MEMBER_TBL;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -12,8 +10,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
 import com.koreate.betty.domain.book.dto.form.BookSearchForm;
+import com.koreate.betty.domain.book.dto.form.NewBookForm;
 import com.koreate.betty.domain.book.vo.Book;
-import com.koreate.betty.domain.book.vo.BookComment;
 import com.koreate.betty.global.util.BookCriteria;
 import com.koreate.betty.global.util.Criteria;
 
@@ -52,7 +50,7 @@ public class BookProvider {
 	}
 
 	// 신규 도서 등록
-	public String insert(Book book) {
+	public String insert(NewBookForm form) {
 		return new SQL().INSERT_INTO(BOOK_TBL)
 				.INTO_VALUES("#{code}, #{title}, #{auth}, #{pub}, #{pubDate}, #{page}, #{genre}, #{intro}").toString();
 	}
@@ -64,6 +62,13 @@ public class BookProvider {
 				.SET("auth = #{book.auth}").SET("pub = #{book.pub}").SET("pub_date = #{book.pubDate}")
 				.SET("page = #{book.page}").SET("genre = #{book.genre}").SET("intro = #{book.intro}")
 				.WHERE("code = #{targetCode}").toString();
+	}
+	//select * from book ORDER BY pub_date DESC limit 3;
+	public String findRecentBooks() {
+		return new SQL().SELECT("*").FROM(BOOK_TBL)
+				.ORDER_BY("pub_date DESC")
+				.LIMIT("3")
+				.toString();
 	}
 
 	/*
@@ -139,14 +144,6 @@ public class BookProvider {
 		return sql.toString();
 	}
 
-//	둘중 하나로 검색, 대시보드와 내 대여 현황에 사용(Rental 패키지로 이동하는게 좋을듯 함) 
-//	Rental 패키지에 제대로 있으면 지워주세요
-
-//	public String jRentalOrReserve(String rentOption, String id) {
-//		return new SQL().SELECT("*").FROM(BOOK_TBL).JOIN(BOOK_SINGLE_TBL).WHERE("code = book_code")
-//				.WHERE("rental = " + rentOption).toString();
-//	}
-
 	// 크롤링
 	public String insertByCrawler(Book book) {
 		return "INSERT IGNORE INTO book VALUES(#{code}, #{title}, #{auth}, #{pub}, #{pubDate}, #{page}, #{genre}, #{intro})";
@@ -181,8 +178,11 @@ public class BookProvider {
 		}			
 		
 		if (cri.getPubDate() != null && !cri.getPubDate().trim().equals("")) { 
-			sql.WHERE("pub_date LIKE CONCAT('%', '" + cri.getPubDate() + "', '%')");
+			Timestamp pubDate = Timestamp.valueOf(cri.getPubDate() + " 00:00:00");
+			String date = new SimpleDateFormat("yyyy-MM-dd").format(pubDate);
+			sql.WHERE("pub_date >= '" + date + "'");
 		}
+		
 	}
 	
 	

@@ -48,14 +48,14 @@
 				<div class="blog__details__btns">
 					<div class="row justify-content-between">
 						<div class="col-md float-left">
-							<button type="button" class="btn btn-danger">목록</button>
+							<button type="button" class="btn btn-danger"><s:message code="btn.list"/></button>
 
 						</div>
 						<div class="col-md">
 							<div class="btn-group float-right" role="group">
 								<!-- <input type="submit" class="btn btn-danger ml-3" value="수정"/> -->
-								<button id="modify" class="btn btn-danger ml-3">수정</button>
-								<button class="btn btn-secondary ml-3">취소</button>
+								<button id="modify" class="btn btn-danger ml-3"><s:message code="btn.modify"/></button>
+								<button class="btn btn-secondary ml-3"><s:message code="btn.delete"/></button>
 							</div>
 						</div>
 					</div>

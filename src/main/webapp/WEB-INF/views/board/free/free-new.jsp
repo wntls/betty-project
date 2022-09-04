@@ -50,8 +50,7 @@
 							</div>
 							<div class="col-md">
 								<div class="btn-group float-right" role="group">
-									<input type="submit" class="btn btn-danger ml-3" value="작성"/>
-									<!-- <button onclick="check()" class="btn btn-danger ml-3">작성</button> -->
+									<button onclick="check()" class="btn btn-danger ml-3">작성</button>
 									<button class="btn btn-secondary ml-3">취소</button>
 								</div>
 							</div>

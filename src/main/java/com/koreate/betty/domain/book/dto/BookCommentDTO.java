@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BookCommentDTO {
 
+	private Integer num;
 	private String img;
 	private String nickname;
 	private Timestamp regdate;

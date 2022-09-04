@@ -25,10 +25,10 @@
 				<div class="section-title">
 						<div class="row justify-content-between">
 							<div class="col-auto">
-								<h4>회원 정보 수정</h4>
+								<h4><s:message code="text.user.modify"/></h4>
 							</div>
 							<div class="col-auto">
-								<button id="editBtn" class="btn btn-danger" >수정 요청</button>
+								<button id="editBtn" class="btn btn-danger" ><s:message code="btn.modify"/></button>
 							</div>
 					</div>
 				</div>
@@ -41,47 +41,45 @@
 					<div class="input-group mb-3">
 						<div class="custom-file">
 							<input type="file" class="custom-file-input" name="img"
-								id="img" accept="image/*"> <label
-								class="custom-file-label" for="img">프로필 이미지를
-								등록하세요</label>
+								id="img" accept="image/*"> <label class="custom-file-label" for="img"><s:message code="text.user.modify.profile"/></label>
 						</div>
 					</div>
-					<input type="text" name="rights" value="0" hidden /> 아이디
+					<input type="text" name="rights" value="0" hidden /> <s:message code="text.id"/>
 					<div class="input__item">
 						<span><i class="bi bi-person-circle"></i></span> <input
 							type="text" name="id" id="id" value="${user.id}" readonly />
 					</div>
-					비밀번호
+					<s:message code="text.pw"/>
 					<div class="input__item">
 						<span class="icon_lock"></span> 
 						<input type="password" name="pw" id="pw" placeholder="비밀번호 입력하세요" />
 						<div class="result"></div>
 					</div>
-					비밀번호 확인
+					<s:message code="sign.repw"/>
 					<div class="input__item">
 						<span class="icon_lock"></span> 
 						<input type="password" name="repw" id="repw" placeholder="비밀번호 재입력하세요" />
 						<div class="result"></div>
 					</div>
-					이름
+					<s:message code="text.name"/>
 					<div class="input__item">
 						<span class="icon_profile"></span> <input type="text" name="name"
 							id="name" value="${user.name}" />
 							<div class="result"></div>
 					</div>
-					닉네임
+					<s:message code="text.nickname"/>
 					<div class="input__item">
 						<span><i class="bi bi-person-video2"></i></span> <input
 							type="text" name="nickname" id="nickname"
 							value="${user.nickname}" />
 							<div class="result"></div>
 					</div>
-					생년월일
+					<s:message code="text.birth"/>
 					<div class="input__item">
 						<span><i class="bi bi-calendar3"></i></span> <input type="text"
 							name="birth" value="<f:formatDate value="${user.birth}" pattern="yyyy-MM-dd"/>" readonly />
 					</div>
-					성별
+					<s:message code="text.gender"/>
 					<div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
 						<label class="btn btn-outline-secondary text-white radio-gender">
 							<input type="radio" name="gender" id="male" value="male" /> 남성
@@ -93,7 +91,7 @@
 					</div>
 					<div class=" result mb-3"></div>
 
-					주소
+					<s:message code="text.address"/>
 					<div class="mb-4">
 						<div class="row addr-box">
 							<div class="col-md-8 mb-4 ">
@@ -101,7 +99,7 @@
 									value="${user.post}"  />
 							</div>
 							<div class="col-md-3" style="padding-right: 0">
-								<input type="button" class="form-control btn btn-light" onclick="sample6_execDaumPostcode()" value="주소찾기"/>
+								<input type="button" class="form-control btn btn-light" onclick="sample6_execDaumPostcode()" value="<s:message code="text.search.address/>"/>
 							</div>
 						</div>
 						<input type="text" class="form-control mb-4" name="addr" id="addr"
@@ -111,13 +109,13 @@
 							<div class="result"></div> 
 					</div>
 
-					전화번호
+					<s:message code="text.phone"/>
 					<div class="input__item">
 						<span><i class="bi bi-phone"></i></span> <input type="text"
 							name="phone" id="phone" value="${user.phone}" readonly />
 					</div>
 
-					이메일
+					<s:message code="text.email"/>
 					<div class="input__item">
 						<span class="icon_mail"></span> <input type="text" name="email"
 							id="email" value="${user.email}" readonly />

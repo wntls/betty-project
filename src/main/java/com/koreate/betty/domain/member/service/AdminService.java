@@ -42,5 +42,19 @@ public class AdminService {
 		int result = memberRepository.updateAllow(id);
 		return result;
 	}
+
+	public long findTotalProfit() {
+		long totalProfit = memberRepository.findTotalProfit();
+		return totalProfit;
+	}
+	
+	public int updateDemerit(String id, Integer demerit) {
+		return memberRepository.updateDemerit(id, demerit);
+	}
+
+	public int blackRelease(String id) {
+		int result = memberRepository.blackRelease(id);
+		return result;
+	}
 	
 }

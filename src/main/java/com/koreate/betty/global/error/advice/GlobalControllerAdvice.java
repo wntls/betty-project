@@ -11,7 +11,7 @@ import com.koreate.betty.global.error.exception.MessageException;
 import com.koreate.betty.global.error.exception.NotFoundISBNException;
 import com.koreate.betty.global.error.exception.NotFoundIdException;
 
-@ControllerAdvice(annotations = Controller.class)
+@ControllerAdvice
 public class GlobalControllerAdvice {
 
 	@ExceptionHandler

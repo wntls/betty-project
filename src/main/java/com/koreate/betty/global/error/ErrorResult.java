@@ -13,16 +13,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ErrorResult {
 
-	private String message;
-	private int status;
-	private List<FieldError> errors;
 	private String code;
+	private String message;
 	
-	@Getter
-	@NoArgsConstructor(access = AccessLevel.PROTECTED)
-	public static class FieldError{
-		
-		
-	}
 	
 }

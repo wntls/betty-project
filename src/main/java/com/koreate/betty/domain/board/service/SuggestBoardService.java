@@ -56,14 +56,14 @@ public class SuggestBoardService {
     }
 
     // 건의사항 목록
-    public List<SuggestBoardDTO> SuggestList(SearchCriteria cri) {
-	String type = cri.getSearchType();
-	String word = cri.getKeyword();
-	List<SuggestBoardDTO> list = dao.SuggestList(cri);
-	if (type != null && !type.trim().equals("") && !type.equals("n")) {
-	    for (SuggestBoardDTO board : list) {
-		board.setTitle(mark(board.getTitle(), word));
-		board.setMemberId(mark(board.getMemberId(), word));
+    public List<SuggestBoardDTO> SuggestList(SearchCriteria cri) {             
+	String type = cri.getSearchType();                                     
+	String word = cri.getKeyword();                                        
+	List<SuggestBoardDTO> list = dao.SuggestList(cri);                     
+	if (type != null && !type.trim().equals("") && !type.equals("n")) {    
+	    for (SuggestBoardDTO board : list) {                               
+		board.setTitle(mark(board.getTitle(), word));                  
+		board.setMemberId(mark(board.getMemberId(), word));            
 	    }
 	}
 	System.out.println(list);
