@@ -55,8 +55,16 @@ public class SignController {
 	}
 
 	@PostMapping("in")
-	public String signIn(SignInForm form, HttpSession session, HttpServletResponse response, String redirectURL,
-			RedirectAttributes rttr) throws IOException {
+	public String signIn(
+			@Valid SignInForm form, 
+			BindingResult bindingResult, 
+			HttpSession session, 
+			HttpServletResponse response, 
+			String redirectURL,
+			RedirectAttributes rttr
+			) throws IOException {
+		if(bindingResult.hasErrors()) return "redirect:/sign/in";
+		
 		form.encode();
 		Member user = signService.signIn(form);
 		
@@ -64,19 +72,19 @@ public class SignController {
 			rttr.addFlashAttribute("message", "로그인 실패");
 			return "redirect:/sign/in";
 		}
+		
 		session.setAttribute(SessionConst.USER, user);
-
+		
 		if (form.isLoginCookie()) {
 			Cookie cookie = SignHelper.createSignInCookie(user.getId());
 			response.addCookie(cookie);
 		}
-
+		
 		if (redirectURL != null) {
 			response.sendRedirect(redirectURL);
 			return null;
 		}
-
-		rttr.addFlashAttribute("message", "로그인 성공");
+		
 		return "redirect:/";
 	}
 
