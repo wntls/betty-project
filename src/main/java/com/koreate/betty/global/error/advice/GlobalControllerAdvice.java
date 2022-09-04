@@ -1,11 +1,11 @@
 package com.koreate.betty.global.error.advice;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import com.koreate.betty.global.error.BettyNotFoundException;
 import com.koreate.betty.global.error.ErrorResult;
 import com.koreate.betty.global.error.exception.MessageException;
 import com.koreate.betty.global.error.exception.NotFoundISBNException;
@@ -14,8 +14,8 @@ import com.koreate.betty.global.error.exception.NotFoundIdException;
 @ControllerAdvice
 public class GlobalControllerAdvice {
 
-	@ExceptionHandler
-	public ModelAndView noHandlerMappingHandle(NoHandlerFoundException ex) {
+	@ExceptionHandler({NoHandlerFoundException.class, BettyNotFoundException.class})
+	public ModelAndView noHandlerMappingHandle(Exception ex) {
 		return new ModelAndView("error/404");
 	}
 	

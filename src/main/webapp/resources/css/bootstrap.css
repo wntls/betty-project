@@ -4228,7 +4228,7 @@ input[type="button"].btn-block {
 
 .nav-link {
   display: block;
-  padding: 0.5rem 0.3rem;
+  padding: 0.5rem 1rem;
   color: #fafafa;
   font-size: 0.8rem;
 }

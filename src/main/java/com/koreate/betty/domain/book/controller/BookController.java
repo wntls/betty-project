@@ -19,6 +19,7 @@ import com.koreate.betty.domain.book.dto.form.BookForm;
 import com.koreate.betty.domain.book.dto.form.NewBookForm;
 import com.koreate.betty.domain.book.service.BookService;
 import com.koreate.betty.domain.book.vo.Book;
+import com.koreate.betty.global.error.BettyNotFoundException;
 import com.koreate.betty.global.error.exception.NotFoundISBNException;
 import com.koreate.betty.global.util.BookCriteria;
 
@@ -45,7 +46,7 @@ public class BookController {
 	public String bookDetail(@PathVariable String isbn, Model model) { // key : book
 		Book book = bookService.bookDetail(isbn);
 		if(book == null) {
-			//throw new NoHandlerFoundException(isbn, isbn, null);
+			throw new BettyNotFoundException();
 		}
 		model.addAttribute("book", book);
 		return "book/book-detail";

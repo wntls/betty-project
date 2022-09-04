@@ -18,34 +18,36 @@
 						</a>
 
 					</div>
-					<div class="col-md">
-						<%@include file="home-mega-menu.jsp"%>
-					</div>
 				</div>
 			</div>
 			<!-- 가운데 메뉴바  .nav-link padding 나중에 1rem 으로 교체-->
-			<div class="col-md-4">
+			<div class="col-md-6">
 				<nav class="nav">
-					<a class="nav-link" href="${path}/library"><s:message
-							code="text.betty.info" /> |</a> <a class="nav-link"
-						href="${path}/books"><s:message code="nav.book.list" /> |</a> <a
-						class="nav-link" href="${path}/boards/notice"><s:message
-							code="text.board" /></a>
+					<a class="nav-link" href="${path}/library">
+						<s:message code="text.betty.info" />
+					</a>
+					 
+					<a class="nav-link" href="${path}/books">
+						<s:message code="nav.book.list" />
+					</a> 
+					<a class="nav-link" href="${path}/boards/notice">
+						<s:message code="text.board" />
+					</a>
 					<c:choose>
 						<c:when test="${user.rights == 0}">
-							<a class="nav-link" href="${path}/members/${user.id}/dashboard">|
+							<a class="nav-link" href="${path}/members/${user.id}/dashboard">
 								<s:message code="nav.member" />
 							</a>
-							<a class="nav-link" href="${path}/offline/${user.id}">| <s:message
+							<a class="nav-link" href="${path}/offline/${user.id}"><s:message
 									code="nav.offline" /></a>
 						</c:when>
 						<c:when test="${user.rights == 2}">
-							<a class="nav-link" href="${path}/staff/books">| <s:message
+							<a class="nav-link" href="${path}/staff/books"><s:message
 									code="nav.staff" /></a>
 
 						</c:when>
 						<c:when test="${user.rights == 3}">
-							<a class="nav-link" href="${path}/admin/members">| <s:message
+							<a class="nav-link" href="${path}/admin/members"><s:message
 									code="text.admin" /></a>
 						</c:when>
 					</c:choose>
@@ -57,9 +59,10 @@
 				<c:when test="${user == null}">
 					<div class="col-md-3 float-right">
 						<nav class="nav float-right">
-							<a class="nav-link" href="${path}/sign/in"><s:message
-									code="sign.in" /></a> <a class="nav-link" href="${path}/sign/up"><s:message
-									code="btn.sign.up" /></a>
+							<a class="nav-link" href="${path}/sign/in">
+							<s:message code="sign.in" /></a> 
+							<a class="nav-link" href="${path}/sign/up">
+							<s:message code="btn.sign.up" /></a>
 						</nav>
 					</div>
 				</c:when>

@@ -25,16 +25,15 @@ public class AuthInterceptor implements HandlerInterceptor{
 		HttpSession session = request.getSession(false);
 		Member user = (Member)session.getAttribute(SessionConst.USER);
 		
-		log.info("request board uri = {}", uri.split("/")[2]);
 		
 		if(session == null || user == null) {
-			log.info("session check = {},  = {}",session,user);
 			response.sendRedirect(path+"/sign/in?redirectURL="+uri);
 			return false;
 		}
 		
 		int right = user.getRights();
 		String area = uri.substring(path.length());
+		
 		
 		boolean memberPath = area.startsWith(PathConst.MEMBERS);  
 		boolean staffPath = area.startsWith(PathConst.STAFF);
@@ -44,31 +43,33 @@ public class AuthInterceptor implements HandlerInterceptor{
 		boolean isStaff = (right == 2);
 		boolean isAdmin = (right == 3);
 		
-		log.info("request board uri = {}", uri.split("/")[2]);
+		if(offlinePath || memberPath && isMember) {
+			String pathVariable = uri.split("/")[3];
+			if(!user.getId().equals(pathVariable)) {
+				request.setAttribute("message", "요청 실패");
+				response.sendRedirect(path);
+				return false;
+			}
+		}
 		
 		if(memberPath && !isMember) {
 			request.setAttribute("message", "일반회원만 접근할 수 있습니다.");
-			log.info("member uri = {}", uri.split("/")[3]);
 			response.sendRedirect(path);
 			return false;
 		} else if (staffPath && !isStaff) {
 			request.setAttribute("message", "직원회원만 접근할 수 있습니다.");
-			log.info("staff uri = {}", uri.split("/")[3]);
 			response.sendRedirect(path);
 			return false;
 		} else if(offlinePath && !isMember) {
 			request.setAttribute("message", "일반회원만 접근할 수 있습니다.");
-			log.info("member uri = {}", uri.split("/")[3]);
 			response.sendRedirect(path);
 			return false;
 		} else if(adminPath && !isAdmin) {
 			request.setAttribute("message", "관리자만 접근할 수 있습니다.");
-			log.info("admin uri = {}", uri.split("/")[3]);
 			response.sendRedirect(path);
 			return false;
 		}
 			
-		log.info("request board uri = {}", uri.split("/")[2]);
 		request.setAttribute("nav", uri.split("/")[2]);
 		return true;
 	}

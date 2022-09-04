@@ -5,9 +5,11 @@
 
 <section class="product spad">
 	<div class="container-md">
-		<div class="row">
-			<h1>404 Page</h1>
-			<a href="${path}/">메인화면으로 이동</a>
+		<div class="row justify-content-center spad">
+			<div class="col-md-8">
+				<img src="${path}/resources/img/assets/error404.png"/>
+				<h2>요청하신 페이지를 찾지 못했습니다.</h2>
+			</div>
 		</div>
 	</div>
 </section>

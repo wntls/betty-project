@@ -46,8 +46,6 @@ public class RentalController {
 	public String rental(String memberId, String isbn) {
 		Integer num = bs.findExistNum(isbn);
 		if (num == null) {
-			// provider에서 Integer 반환이 가능하고
-			// 아무값이 넘어오지 않았다면 대여 가능한 책이 없으니 예외처리 필요함
 			return "redirect:/"; // 일단 홈으로
 		}
 		int result = rs.rentalBook(memberId, isbn, num);
@@ -56,17 +54,8 @@ public class RentalController {
 	
 	@PostMapping("reserve")		// 예약을 /rentals/reserve로 하였음
 	@ResponseBody
-	public ReserveBook reserve(@RequestBody @Valid ReserveBookDto reserveBookDto, BindingResult bindingResult) {
-		log.info("reservDtd = {} ", reserveBookDto);
-		if(bindingResult.hasErrors()) {
-			log.info("binding error", bindingResult.getAllErrors());
-			throw new RuntimeException("잘못된 값이 넘어옴");
-		}
+	public ReserveBook reserve(@RequestBody ReserveBookDto reserveBookDto) {
 		Integer num = bs.findExistNum(reserveBookDto.getIsbn());
-		if (num == null) {
-			throw new NotFoundISBNException("해당 도서는 대여중입니다.");
-		}
-		
 		ReserveBook reserve = reserveBookDto.createReservBook(num);
 		int result = rs.reserveBook(reserve);
 		return reserve;
