@@ -22,6 +22,8 @@
 								</div>
 							</div>
 							<div class="col-auto">
+								<input type="button" class="btn btn-secondary" value="글작성"
+										id="free-write" />
 								<select id="perPageNum">
 									<option selected="selected">5</option>
 									<option>10</option>
@@ -41,10 +43,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:choose>
-									<c:when test="${!empty list}">
-										<c:forEach var="board" items="${list}">
-											<c:choose>
+										<c:choose>
 												<c:when test="${!empty list}">
 													<c:forEach var="board" items="${list}">
 														<c:choose>
@@ -82,21 +81,15 @@
 													</tr>
 												</c:otherwise>
 											</c:choose>
-										</c:forEach>
-									</c:when>
-								</c:choose>
-
+								
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<input type="button" class="btn btn-secondary" value="글작성"
-					id="free-write" />
-			</div>
-			<div class="row justify-content-center">
 
+			<div class="row justify-content-center">
+			
 				<div class="col-6">
 					<div class="form-row input-group mb-3">
 						<div class="input-group-prepend">
@@ -108,7 +101,7 @@
 						</div>
 						<input type="text" class="form-control" id="keyword">
 						<div class="input-group-append">
-							<button type="submit" id="searchBtn" class="btn btn-primary">검색하기</button>
+							<button id="searchBtn" class="btn btn-primary">검색하기</button>
 						</div>
 					</div>
 				</div>
@@ -135,7 +128,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 </section>
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
