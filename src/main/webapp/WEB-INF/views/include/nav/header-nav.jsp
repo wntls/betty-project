@@ -22,44 +22,39 @@
 						<!-- 가운데 메뉴바  .nav-link padding 나중에 1rem 으로 교체-->
 						<div class="col-md-4">
 							<nav class="nav">
-								<a class="nav-link" href="${path}/library">도서관 소개 |</a> 
-								<a class="nav-link" href="${path}/books">도서 목록 |</a> 
-								<a class="nav-link" href="${path}/boards/notice">게시판</a>
+								<a class="nav-link" href="${path}/library"><s:message code="text.betty.info"/> |</a> 
+								<a class="nav-link" href="${path}/books"><s:message code="nav.book.list"/> |</a> 
+								<a class="nav-link" href="${path}/boards/notice"><s:message code="text.board"/></a>
 								<c:choose>
 									<c:when test="${user.rights == 0}">
-										<a class="nav-link" href="${path}/members/${user.id}/dashboard">| 회원 공간</a>
-										<a class="nav-link" href="${path}/offline/${user.id}">| 오프라인</a>
-												
+										<a class="nav-link" href="${path}/members/${user.id}/dashboard">| <s:message code="nav.member"/></a>
+										<a class="nav-link" href="${path}/offline/${user.id}">| <s:message code="nav.offline"/></a>
 									</c:when>
 									<c:when test="${user.rights == 2}">
-										<a class="nav-link" href="${path}/staff/books">| 직원</a>
+										<a class="nav-link" href="${path}/staff/books">| <s:message code="nav.staff"/></a>
 									
 									</c:when>
 									<c:when test="${user.rights == 3}">
-										<a class="nav-link" href="${path}/admin/members">| 관리자</a>
-										
+										<a class="nav-link" href="${path}/admin/members">| <s:message code="text.admin"/></a>
 									</c:when>
 								</c:choose>
-								
-								<s:message code="test.test"/>
 							</nav>
 						</div>
 						<!-- 우측 회원관련 -->
-						
 						<c:choose>
 							<c:when test="${user == null}">
 								<div class="col-md-3 float-right">
 									<nav class="nav float-right">
-										<a class="nav-link" href="${path}/sign/in">로그인</a> <a
-											class="nav-link" href="${path}/sign/up">회원가입</a>
+										<a class="nav-link" href="${path}/sign/in"><s:message code="sign.in"/></a> 
+										<a class="nav-link" href="${path}/sign/up"><s:message code="btn.sign.up"/></a>
 									</nav>
 								</div>
 							</c:when>
 							<c:otherwise>
 								<div class="col-md-3 float-right">
 									<nav class="nav float-right">
-										<a class="nav-link" href="${path}/members/${user.id}">${user.nickname}님</a> 
-										<a class="nav-link" href="${path}/sign/logout">로그아웃</a>
+										<a class="nav-link" href="${path}/members/${user.id}">${user.nickname}</a> 
+										<a class="nav-link" href="${path}/sign/logout"><s:message code="sign.out"/></a>
 									</nav>
 								</div>
 							</c:otherwise>
@@ -78,15 +73,23 @@
 	</header>
 <div class="header-lantern-left"></div>
 <div class="header-lantern-right"></div>
-
-<c:if test="${ 
+<c:choose>
+	<c:when test="${ 
 			nav eq 'members' 	
-			or nav eq 'boards' 
 			or nav eq 'staff' 
 			or nav eq 'admin'}">
-	<jsp:include page="/WEB-INF/views/include/nav/${nav}-side-nav.jsp">
-		<jsp:param name="path" value="${path}"/>
-		<jsp:param name="user" value="${user}"/>
-	</jsp:include>
-</c:if>
-
+		<jsp:include page="/WEB-INF/views/include/nav/${nav}-side-nav.jsp">
+			<jsp:param name="path" value="${path}"/>
+			<jsp:param name="user" value="${user}"/>
+		</jsp:include>		
+	</c:when>
+	<c:otherwise>
+	 <c:set var="uri" value="${pageContext.request.requestURI}"/>
+      <c:if test = "${fn:contains(uri, 'board')}">
+      	<jsp:include page="/WEB-INF/views/include/nav/boards-side-nav.jsp">
+			<jsp:param name="path" value="${path}"/>
+			<jsp:param name="user" value="${user}"/>
+		</jsp:include>
+      </c:if>
+	</c:otherwise>
+</c:choose>

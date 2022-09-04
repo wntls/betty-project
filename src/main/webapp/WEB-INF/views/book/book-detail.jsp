@@ -51,12 +51,15 @@
 					</div>
 					<p>${book.intro}</p>
 				</div>
+				<div class="w-100 row justify-content-end">
+				 <button class="btn btn-danger" onclick="history.back()">목록</button>
+				</div>
 			</div>
-
 		</div>
 		<%@include file="/WEB-INF/views/book/fragment/book-detail-comment.jsp"%>
 	</div>
 </section>
+
 
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 
