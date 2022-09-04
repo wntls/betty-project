@@ -24,6 +24,7 @@ import com.koreate.betty.global.util.SearchCriteria;
 import com.koreate.betty.global.util.SearchPageMaker;
 
 import lombok.extern.slf4j.Slf4j;
+import net.bytebuddy.implementation.bind.annotation.Pipe;
 
 @Slf4j
 @Controller
@@ -46,8 +47,15 @@ public class FreeBoardController {
 	}
 	
 	@GetMapping("new")
-	public String freeBoardNew() {
+	public String freeBoardNew() {		
 		return "board/free/free-new";
+	}
+	
+	@PostMapping("new")
+	public String newFreeBoard(FreeBoardForm form) {
+		freeBoardService.write(form);
+		System.out.println(form);
+		return "redirect:/boards/free";
 	}
 	
 	@GetMapping("modifyPage")
@@ -56,14 +64,11 @@ public class FreeBoardController {
 		return "board/free/free-edit";
 	}
 	
-	
 	@PostMapping("modifyPage")
-	public String freeBoardEdit(FreeBoardForm form, RedirectAttributes rttr) {
+	public String freeBoardEdit(FreeBoardForm form) {
 		freeBoardService.update(form);
-		rttr.addAttribute("bno",form.getBno());
-		return "redirect:/board/free/free-detail";
+		return "redirect:/boards/free/" + form.getBno();
 	}
-	
 	
 	@PostMapping("remove")
 	public String remove(int bno) {
