@@ -8,7 +8,7 @@
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="board-detail board-title text-secondary mb-5">
-					<span>자유게시판 글 작성</span>
+					<span><s:message code="btn.board.write"/></span>
 				</div>
 				<div class="w-100"></div>
 				<input class="board-detail board-title" name="title" type="text" value="제목">
@@ -38,13 +38,13 @@
 				<div class="blog__details__btns">
 					<div class="row justify-content-between">
 						<div class="col-md float-left">
-							<button type="button" class="btn btn-danger">목록</button>
+							<button type="button" class="btn btn-danger"><s:message code="btn.list"/></button>
 
 						</div>
 						<div class="col-md">
 							<div class="btn-group float-right" role="group">
-								<button onclick="check()" class="btn btn-danger ml-3">작성</button>
-								<button class="btn btn-secondary ml-3">취소</button>
+								<button onclick="check()" class="btn btn-danger ml-3"><s:message code="btn.ok"/></button>
+								<button class="btn btn-secondary ml-3"><s:message code="btn.cancel"/></button>
 							</div>
 						</div>
 					</div>

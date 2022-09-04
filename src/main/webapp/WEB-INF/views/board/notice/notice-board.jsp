@@ -7,7 +7,7 @@
 				<form id="boardForm">
 					<div class="row justify-content-between">
 						<div class="col-auto">
-							<h2>공지사항</h2>
+							<h2><s:message code="text.board.notice"/></h2>
 						</div>
 						<div class="col-auto">
 							<select id="pageNumSelect" name="perPageNum">
@@ -23,11 +23,11 @@
 							<table class="table table-bordered">
 								<thead>
 									<tr>
-										<th>번호</th>
-										<th>제목</th>
-										<th>작성자</th>
-										<th>조회수</th>
-										<th>작성일</th>
+										<th><s:message code="text.num"/></th>
+										<th><s:message code="text.board.title"/></th>
+										<th><s:message code="text.writer"/></th>
+										<th><s:message code="text.views"/></th>
+										<th><s:message code="text.board.regdate"/></th>
 									</tr>
 								</thead>
 								<tbody id="tableBody">
