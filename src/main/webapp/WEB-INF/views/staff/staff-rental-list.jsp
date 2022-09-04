@@ -12,7 +12,7 @@
 					<div class="row">
 						<div class="col-md-8 col-md-8 col-md-6 title__align__center">
 							<div class="section-title">
-								<h4>대여 현황</h4>
+								<h4><s:message code="nav.rental.list"/></h4>
 							</div>
 						</div>
 					</div>
@@ -24,15 +24,15 @@
 						<tbody>
 							<!-- 1행 -->
 							<tr>
-								<th scope="row">대여 상태</th>
+								<th scope="row"><s:message code="text.rental.status"/></th>
 								<td colspan="2">
 									<div class="btn-group btn-group-toggle" data-toggle="buttons">
 										<label class="btn btn-secondary active"> <input
-											type="radio" name="rental" value="all" checked> 전체
+											type="radio" name="rental" value="all" checked> <s:message code="text.all"/>
 										</label> <label class="btn btn-secondary"> <input type="radio"
-											name="rental" value="rent"> 대여중인 도서
+											name="rental" value="rent"> <s:message code="text.rental.status.on"/>
 										</label> <label class="btn btn-secondary"> <input type="radio"
-											name="rental" value="reserv"> 예약중인 도서
+											name="rental" value="reserv"> <s:message code="text.rental.status.reserve"/>
 										</label>
 									</div>
 								</td>
@@ -40,15 +40,15 @@
 							</tr>
 							<!-- 2행 -->
 							<tr>
-								<th scope="row">도서 발행일 별</th>
+								<th scope="row"><s:message code="text.range.pubDate"/></th>
 								<td colspan="3">
 									<div class="input-group text-secondary">
 										<input type="date" id="pubDate" name="pubDate"
 											style="height: 37px" />
 										<div class="input-group-append">
 											<select id="pubDateOption">
-												<option value="before">-이전</option>
-												<option value="after">-이후</option>
+												<option value="before">-<s:message code="range.before"/></option>
+												<option value="after">-<s:message code="range.after"/></option>
 											</select>
 										</div>
 									</div>
@@ -56,15 +56,15 @@
 							</tr>
 							<!-- 3행 -->
 							<tr>
-								<th scope="row">검색</th>
+								<th scope="row"><s:message code="btn.search"/></th>
 								<td>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<select id="searchOption">
-												<option value="">키워드 선택</option>
-												<option value="title">도서명</option>
-												<option value="auth">작가</option>
-												<option value="pub">출판사</option>
+												<option value=""><s:message code="choose.keyword"/></option>
+												<option value="title"><s:message code="text.book.title"/></option>
+												<option value="auth"><s:message code="text.author"/></option>
+												<option value="pub"><s:message code="text.pub"/></option>
 											</select>
 										</div>
 										<input type="text" id="searchText" class="form-control"
@@ -72,14 +72,14 @@
 									</div>
 								</td>
 								<td></td>
-								<td><input class="btn btn-danger" id="submit" type="submit" value="검색" /></td>
+								<td><input class="btn btn-danger" id="submit" type="submit"/><s:message code="btn.search"/></td>
 							</tr>
 						</tbody>
 					</table>					
 				</form>
 
 				<!-- table -->
-				<h6 id="info">* 책 표지나 테이블 클릭시 해당 도서를 상세보기 할수 있습니다</h6>
+				<h6 id="info"><s:message code="text.warning.book.detail"/></h6>
 				<table id="blackTable"
 					class="table-data-list table-striped table-dark text-center">
 					
@@ -106,13 +106,13 @@ $(function() {
 function initData(){
 	
 	initBookStr = `<tr>
-		<td>번호</td>
-		<td>도서명</td>
+		<td><s:message code="text.num"/></td>
+		<td><s:message code="text.book.title"/></td>
 		<td>ISBN</td>
-		<td>대여여부</td>
-		<td>대여자</td>
-		<td>도서 대여일</td>
-		<td>반납 예정일</td>
+		<td><s:message code="text.rental.status"/></td>
+		<td><s:message code="text.rental.who"/></td>
+		<td><s:message code="text.rental.receive.date"/></td>
+		<td><s:message code="text.rental.return.date"/></td>
 	</tr>`;
 }
 
