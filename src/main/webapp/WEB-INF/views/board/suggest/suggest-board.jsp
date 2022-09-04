@@ -39,7 +39,7 @@
 								<c:choose>
 									<c:when test="${!empty list}">
 										<jsp:useBean id="n" class="java.util.Date" />
-										<f:formatDate var="now" value="${n}" pattern="yyyy-MM-dd" />
+										<f:formatDate var='now' value="${n}" pattern='yyyy-MM-dd' />
 										<!-- mav.addObject("list",list);  List<SuggestBoard> -->
 										<c:forEach var="sugBoard" items="${list}">
 											<c:if test="${sugBoard.showboard ne 'n'}">
@@ -80,6 +80,7 @@
 										</tr>
 									</c:otherwise>
 								</c:choose>
+								</tbody>
 						</table>
 					</div>
 				</div>

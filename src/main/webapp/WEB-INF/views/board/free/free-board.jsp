@@ -38,9 +38,6 @@
 							<tbody>
 
 						<tbody>
-						<c:choose>
-							<c:when test="${!empty list}">
-								<c:forEach var="board" items="${list}">
 								<c:choose>
 									<c:when test="${!empty list}">
 										<c:forEach var="board" items="${list}">
