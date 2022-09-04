@@ -315,7 +315,7 @@
 			dataType : "text",
 			success : function(result) {
 				console.log(result);
-				alert(result);
+				alert("삭제 완료.");
 				listPage(page);
 			}
 		});

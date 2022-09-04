@@ -11,8 +11,12 @@
 				<div class="board-detail board-title text-secondary mb-5">
 					<span>자유게시판 글 수정</span>
 				</div>
+				<form method="post">
+				<input type="hidden" name="memberId" value="${user.id}"/>
+				<input type="hidden" name="nickname" value="${user.nickname}"/>
+				<%-- <input type="hidden" name="content" value="${board.content}"/> --%>
 				<div class="w-100"></div>
-				<input class="board-detail board-title" type="text" value="${board.title}">
+				<input class="board-detail board-title" name="title" type="text" value="${board.title}">
 				<hr />
 				<div class="row">
 					<div class="col-md-6">
@@ -26,8 +30,15 @@
 				<div class="col-md-6 text-white"
 						style="line-height: 50px; text-align: right">${board.regdate}</div>
 				</div>
+				<div class="btn-group float-right">
+						<select class="form-control" name="tag">
+							<option value="일상" selected>일상</option>
+							<option value="질문">질문</option>
+							<option value="후기">후기</option>
+						</select>
+					</div>
 				<div class="spad">
-				<textarea id="editor" class="col-md-6 form-control"
+				<textarea id="editor" name="content" class="col-md-6 form-control"
 						style="resize: none;" placeholder="데이터 입력되어야함.">${board.content}
 				</textarea>
 				</div>
@@ -49,7 +60,7 @@
 						</div>
 					</div>
 				</div>
-				<!-- </form> -->
+				</form>
 			</div>
 		</div>
 	</div>
