@@ -21,6 +21,7 @@
 </style>
 <hr/>
 <div class="container-md spad-sm">
+	
 	<!-- 댓글 -->
 	<div class="anime__details__review">
 		<div class="section-title">
