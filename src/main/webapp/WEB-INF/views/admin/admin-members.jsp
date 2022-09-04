@@ -15,7 +15,7 @@
 					<div class="row">
 						<div class="col-md-8 col-md-8 col-md-6 title__align__center">
 							<div class="section-title">
-								<h4>회원 정보</h4>
+								<h4><s:message code="text.user.info"/></h4>
 							</div>
 						</div>
 					</div>
@@ -25,17 +25,17 @@
 					<table class="table table-borderless table-dark mb-5">
 						<tbody>
 							<tr>
-								<th scope="row">가입 승인</th>
+								<th scope="row"><s:message code="btn.sign.up.appoval"/></th>
 								<td colspan="2">
 									<div class="btn-group btn-group-toggle" data-toggle="buttons">
 										<label class="btn btn-secondary active"> 
-											<input type="radio" name="allow" value="all" checked> 전체
+											<input type="radio" name="allow" value="all" checked> <s:message code="text.all" />
 										</label> 
 										<label class="btn btn-secondary"> 
-											<input type="radio"	name="allow" value="allow"> 승인 
+											<input type="radio"	name="allow" value="allow"> <s:message code="btn.sign.up.appoval"/>
 										</label> 
 										<label class="btn btn-secondary"> 
-											<input type="radio" name="allow" value="disallow"> 미승인
+											<input type="radio" name="allow" value="disallow"> <s:message code="text.unapproval" />
 										</label>
 									</div>
 								</td>
@@ -44,17 +44,17 @@
 
 							<!-- 2행 -->
 							<tr>
-								<th scope="row">직원여부</th>
+								<th scope="row"><s:message code="text.staff" /></th>
 								<td colspan="2">
 									<div class="btn-group btn-group-toggle" data-toggle="buttons">
 										<label class="btn btn-secondary active"> 
-											<input type="radio" name="rank" value="all" checked> 전체
+											<input type="radio" name="rank" value="all" checked> <s:message code="text.all" />
 										</label> 
 										<label class="btn btn-secondary"> 
-											<input type="radio"	name="rank" value="member"> 일반회원
+											<input type="radio"	name="rank" value="member"> <s:message code="btn.sign.up.member" />
 										</label> 
 										<label class="btn btn-secondary"> 
-											<input type="radio" name="rank" value="staff"> 직원
+											<input type="radio" name="rank" value="staff"> <s:message code="text.staff"/>
 										</label>
 									</div>
 								</td>
@@ -62,13 +62,13 @@
 							</tr>
 							<!-- 3행 -->
 							<tr>
-								<th scope="row">회원 등급</th>
+								<th scope="row"><s:message code="text.membership" /></th>
 								<td colspan="3">
 									<div class="input-group text-secondary">
 										<select id="gradeOption">
-											<option value="all">전체</option>
-											<option value="Bronze">브론즈</option>
-											<option value="Silver">실버</option>
+											<option value="all"><s:message code="text.all" /></option>
+											<option value="Bronze">Bronze</option>
+											<option value="Silver">Silver</option>
 											<option value="VIP">VIP</option>
 										</select>
 									</div>
@@ -76,14 +76,14 @@
 							</tr>
 							<!-- 4행 -->
 							<tr>
-								<th scope="row">검색</th>
+								<th scope="row"><s:message code="btn.search" /></th>
 								<td>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<select id="searchOption">
-												<option value="id" selected>아이디</option>
-												<option value="name">이름</option>
-												<option value="addr">주소</option>
+												<option value="id" selected><s:message code="text.id" /></option>
+												<option value="name"><s:message code="text.name" /></option>
+												<option value="addr"><s:message code="text.address" /></option>
 											</select>
 										</div>
 										<input type="text" id="searchText" class="form-control"
@@ -91,7 +91,7 @@
 									</div>
 								</td>
 								<td></td>
-								<td><input id="submit" class="btn btn-danger" type="submit" value="검색" /></td>
+								<td><input id="submit" class="btn btn-danger" type="submit" value="검색" /><s:message code="btn.search" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -252,18 +252,18 @@ function printList(list) {
 								+ (regDate.getMonth() + 1) + "-"
 								+ regDate.getDate();
 								
-						initStr += `<tr class="text-center">
-							<td>번호</td>
+						initBookStr += `<tr class="text-center">
+							<td><s:message code="text.num" /></td>
 							<td>회원사진</td>
-							<td>아이디</td>
-							<td>닉네임</td>
-							<td>이름</td>
-							<td>성별</td>
-							<td>생년월일</td>
-							<td>전화번호</td>
-							<td>이메일</td>
-							<td colspan="2">주소</td>
-							<td>벌점 부과</td>
+							<td><s:message code="text.id" /></td>
+							<td><s:message code="text.nicname" /></td>
+							<td><s:message code="text.name" /></td>
+							<td><s:message code="text.gender" /></td>
+							<td><s:message code="text.birth" /></td>
+							<td><s:message code="text.phone" /></td>
+							<td><s:message code="text.email" /></td>
+							<td colspan="2"><s:message code="text.address" /></td>
+              <td>벌점 부과</td>
 							</tr>`;
 						
 						initStr += `						

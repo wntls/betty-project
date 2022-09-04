@@ -5,14 +5,14 @@
 	<div class="container-md spad">
 		<div class="row justify-content-center">
 			<div class="col-md-8">
-				<h2>자유게시판</h2>
+				<h2><s:message code="text.board.free"/></h2>
 				<div class="table-responsive">
 					<div class="table-wrapper">
 						<div class="row justify-content-between mb-2">
 							<div class="col-auto">
 								<div class="btn-group" id="subject">
 									<button type="button" class="btn btn-secondary mr-1" name="abc"
-										value="">전체</button>
+										value=""><s:message code="text.all"/></button>
 									<button type="button" class="btn btn-secondary mr-1" name="abc"
 										value="li">일상</button>
 									<button type="button" class="btn btn-secondary mr-1" name="abc"
@@ -34,10 +34,10 @@
 							<thead>
 								<tr>
 									<th>#</th>
-									<th>제목</th>
-									<th>작성자</th>
-									<th>조회수</th>
-									<th>작성일</th>
+									<th><s:message code="text.board.title"/></th>
+									<th><s:message code="text.writer"/></th>
+									<th><s:message code="text.views"/></th>
+									<th><s:message code="text.board.regdate"/></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -101,8 +101,8 @@
 					<div class="form-row input-group mb-3">
 						<div class="input-group-prepend">
 							<select>
-								<option value="t">제목</option>
-								<option value="w">작성자</option>
+								<option value="t"><s:message code="text.board.title"/></option>
+								<option value="w"><s:message code="text.writer"/></option>
 								<option value="c">내용</option>
 							</select>
 						</div>

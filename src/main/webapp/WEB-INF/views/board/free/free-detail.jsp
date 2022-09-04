@@ -12,7 +12,7 @@
 
 			<div class="col-md-8">
 				<div class="board-detail board-title text-secondary">
-					<span>자유 게시판</span>
+					<span><s:message code="text.board.free"/></span>
 				</div>
 				<div class="w-100"></div>
 
@@ -46,13 +46,13 @@
 				<div class="blog__details__btns">
 					<div class="row justify-content-between">
 						<div class="col-md float-left">
-							<button id="list" type="button" class="btn btn-danger">목록</button>
+							<button id="list" type="button" class="btn btn-danger"><s:message code="btn.list"/></button>
 						</div>
 						<c:if test="${board.memberId eq sessionScope.user.id}">
 						<div class="col-md">
 							<div class="btn-group float-right" role="group">
-								<button id="modify" class="btn btn-danger">수정</button>
-								<button id="removeBtn" class="btn btn-secondary ml-3">삭제</button>
+								<button id="modify" class="btn btn-danger"><s:message code="btn.modify"/></button>
+								<button id="removeBtn" class="btn btn-secondary ml-3"><s:message code="btn.delete"/></button>
 							</div>
 						</div>
 						</c:if>
@@ -86,7 +86,7 @@
 					</div> -->
 					
 					<div class="blog__details__form">
-						<h4>댓글 작성란</h4>
+						<h4><s:message code="textarea.comment"/></h4>
 						<form action="#">
 							<div class="row" style="display: block">
 								<div class="col-md-12">
