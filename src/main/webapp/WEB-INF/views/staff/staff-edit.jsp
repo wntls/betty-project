@@ -99,7 +99,7 @@
 									value="${user.post}"  />
 							</div>
 							<div class="col-md-3" style="padding-right: 0">
-								<input type="button" class="form-control btn btn-light" onclick="sample6_execDaumPostcode()" value="<s:message code="text.search.address/>"/>
+								<input type="button" class="form-control btn btn-light" onclick="sample6_execDaumPostcode()" value="<s:message code="text.search.address"/>"/>
 							</div>
 						</div>
 						<input type="text" class="form-control mb-4" name="addr" id="addr"
@@ -108,6 +108,7 @@
 							value="${user.addrDetail}"  />
 							<div class="result"></div> 
 					</div>
+					
 
 					<s:message code="text.phone"/>
 					<div class="input__item">
@@ -140,7 +141,7 @@
 		};
 
 		reader.readAsDataURL(event.target.files[0]);
-	})
+	});
 
 	$(function() {
 

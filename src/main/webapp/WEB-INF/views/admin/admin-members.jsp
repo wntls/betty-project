@@ -252,11 +252,11 @@ function printList(list) {
 								+ (regDate.getMonth() + 1) + "-"
 								+ regDate.getDate();
 								
-						initBookStr += `<tr class="text-center">
+						initStr += `<tr class="text-center">
 							<td><s:message code="text.num" /></td>
 							<td>회원사진</td>
 							<td><s:message code="text.id" /></td>
-							<td><s:message code="text.nicname" /></td>
+							<td><s:message code="text.nickname" /></td>
 							<td><s:message code="text.name" /></td>
 							<td><s:message code="text.gender" /></td>
 							<td><s:message code="text.birth" /></td>

@@ -154,9 +154,6 @@
 			hiddenPage.val(1);
 		}
 		
-		console.log('${cri}');		
-		console.log('${cri.genre}');
-		
 		if('${cri.genre}' != ''){
 			let genre = $("input:radio[name=genre][value='${cri.genre}']");
 			genre.parent().addClass('focus');

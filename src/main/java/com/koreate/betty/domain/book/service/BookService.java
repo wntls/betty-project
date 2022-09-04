@@ -73,7 +73,7 @@ public class BookService {
 	// 도서 정보 등록
 	public int bookRegister(NewBookForm form) {
 		boolean result = BookImgUpload(form.getCode(), form.getImg());
-		System.out.println("\n\n\n\nresult : " + result);
+		
 		if(result == false) {
 			return 0;
 		}
@@ -81,7 +81,9 @@ public class BookService {
 	}
 
 	// 도서 정보 수정
-	public int update(String targetCode, BookForm form) {
+	public int update(String targetCode, NewBookForm form) {
+		boolean result = BookImgUpload(form.getCode(), form.getImg());
+		
 		Book book = form.createBook();
 		return bookRepository.update(targetCode, book);
 	}
@@ -222,8 +224,31 @@ public class BookService {
 			BufferedImage thumbImg = Thumbnails.of(rawImg).size(50, 50).keepAspectRatio(false).asBufferedImage();
 			
 			File mFile = new File(originPath, imgName);
+			
+			if( mFile.exists() ){
+	    		if(mFile.delete()){
+	    			System.out.println("파일삭제 성공");
+	    		}else{
+	    			System.out.println("파일삭제 실패");
+	    		}
+	    	}else{
+	    		System.out.println("파일이 존재하지 않습니다.");
+	    	}
+	
+			
 			ImageIO.write(originImg, formatName, mFile);
 			File tFile = new File(thumbPath, imgName);
+			
+			if( tFile.exists() ){
+	    		if(tFile.delete()){
+	    			System.out.println("파일삭제 성공");
+	    		}else{
+	    			System.out.println("파일삭제 실패");
+	    		}
+	    	}else{
+	    		System.out.println("파일이 존재하지 않습니다.");
+	    	}
+	
 			ImageIO.write(thumbImg, formatName, tFile);
 			
 			uploaded = true;
