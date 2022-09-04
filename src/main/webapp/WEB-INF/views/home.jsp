@@ -22,7 +22,7 @@
 						<div class="input-group-prepend">
 						<input name="searchOption" value="title" hidden>
 							<input type="text" name="searchText" class="form-control"
-								placeholder="어떤 책을 찾으시나요?">
+								placeholder="<s:message code='text.search.book.what'/>">
 						</div>
 						<button type="submit" class="btn btn-outline-danger mr-3"><s:message code="btn.search"/></button>
 					</div>
@@ -131,7 +131,7 @@
 						<input type="text" class="form-control" name="pub" id="pub">
 					</div>
 					<div class="form-group">
-						<label for="pubDate"><s:message code="text.pubDate"/></label>
+						<label for="pubDate"><s:message code="text.pubdate"/></label>
 						<div class="w-100"></div>
 						<input type="date" class="form control mb-2" name="pubDate" id="pubDate">
 					</div>

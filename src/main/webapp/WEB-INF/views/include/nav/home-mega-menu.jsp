@@ -5,7 +5,7 @@
 	<!-- 펼치기위한 트리거 -->
 	<a class="nav-link dropdown-toggle" href="#"
 		id="servicesDropdown" role="button" data-toggle="dropdown"
-		aria-haspopup="true" aria-expanded="false">전체보기</a>
+		aria-haspopup="true" aria-expanded="false"><s:message code="text.megamenu"/></a>
 
 
 	<!-- 펼쳐져서 생긴 공간에 들어갈 것들 -->

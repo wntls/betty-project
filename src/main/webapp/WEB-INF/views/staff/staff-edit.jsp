@@ -109,13 +109,13 @@
 							<div class="result"></div> 
 					</div>
 
-					<s:message code="text.phone/>
+					<s:message code="text.phone"/>
 					<div class="input__item">
 						<span><i class="bi bi-phone"></i></span> <input type="text"
 							name="phone" id="phone" value="${user.phone}" readonly />
 					</div>
 
-					<s:message code="text.email/>
+					<s:message code="text.email"/>
 					<div class="input__item">
 						<span class="icon_mail"></span> <input type="text" name="email"
 							id="email" value="${user.email}" readonly />
