@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -50,6 +51,12 @@ public class AdminController {
 	public String memberListOfAdmin() {
 		return "admin/admin-members";
 	}
+	
+	@PostMapping("members/{id}")
+	public String updateDemerit(@PathVariable String id, Integer updateDemerit) {
+		as.updateDemerit(id, updateDemerit);
+		return "redirect:/admin/members";
+	}
 
 	@GetMapping("members/cond")
 	@ResponseBody
@@ -86,6 +93,14 @@ public class AdminController {
 	@ResponseBody
 	public String updateAllow(String id) {
 		int result = as.updateAllow(id);
+		
+		return result == 1 ? "Success" : "Failed";
+	}
+	
+	@PostMapping("members/release")
+	@ResponseBody
+	public String blackRelease(String id) {
+		int result = as.blackRelease(id);
 		
 		return result == 1 ? "Success" : "Failed";
 	}

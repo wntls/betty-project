@@ -249,7 +249,7 @@
 									+ "' data-now='"
 									+ nowCount
 									+ "'data-toggle='modal' data-target='#bookCount' value='추가' id='bookAdd' name='num' /></td>";
-							str += "<td><input type='button' class='btn btn-danger' data-code='"+code+"' data-toggle='modal' data-target='#exampleModalCenter' value='폐기' id='bookAdd' name='code' /></td>";
+							str += "<td><input type='button' class='btn btn-danger' data-code='"+code+"' data-toggle='modal' data-target='#exampleModalCenter' value='폐기' name='code' /></td>";
 							str += "</tr>";
 
 							i = i + 1;

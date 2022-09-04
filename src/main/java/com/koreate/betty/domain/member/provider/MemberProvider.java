@@ -77,7 +77,7 @@ public class MemberProvider {
 		String searchOption = form.getSearchOption();
 		String searchText = form.getSearchText().trim();		
 		
-		SQL sql = new SQL().SELECT("img, id, nickname, name, gender, birth, phone, email, addr, rights, premium_grade, point, reg_date").FROM(MEMBER_TBL).JOIN(MEMBER_CARD_TBL)
+		SQL sql = new SQL().SELECT("img, id, nickname, name, gender, birth, phone, email, addr, rights, premium_grade, point, reg_date, demerit").FROM(MEMBER_TBL).JOIN(MEMBER_CARD_TBL)
 				.WHERE("id = member_id");
 		if (allow != null) {
 			switch(allow) {
@@ -184,10 +184,18 @@ public class MemberProvider {
 				.WHERE("id = #{id}")
 				.toString();
 	}
+	
+	// 직원 승인
+	public String blackRelease(String id) {
+		return new SQL().DELETE_FROM(BLACK_LIST_TBL)
+				.WHERE("member_id = #{id}")
+				.toString();
+	}
+	
 
 	// 벌점 부과
 	public String updateDemerit(@Param("id")String id, @Param("demerit")Integer demerit) {
-		return new SQL().UPDATE(MEMBER_TBL).SET("demerit = demerit + #{demerit}")
+		return new SQL().UPDATE(MEMBER_CARD_TBL).SET("demerit = demerit + #{demerit}")
 				.WHERE("member_id = #{id}")
 				.toString();
 	}

@@ -2,6 +2,7 @@ package com.koreate.betty.domain.member.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -53,13 +54,19 @@ public interface MemberRepository {
 
 	@UpdateProvider(type=MemberProvider.class, method="updateAllow")
 	public int updateAllow(String id);
-
+	
 	@UpdateProvider(type=MemberProvider.class, method="updateDemerit")
-	public int updateDemerit(@Param("id")String id, @Param("demerit")Integer demerit); 	
+	public int updateDemerit(@Param("id")String id, @Param("demerit")Integer demerit);
+	
+	@DeleteProvider(type=MemberProvider.class, method="blackRelease")
+	public int blackRelease(String id);
+	
 	
 	@InsertProvider(type=MemberProvider.class, method="createInquiry")
 	@Options(useGeneratedKeys = true , keyProperty = "bno")
 	public int createInquiry(Inquiry inquiry);
+
+	
 
 	
 
