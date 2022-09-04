@@ -38,6 +38,9 @@
 										<a class="nav-link" href="${path}/admin/members">| <s:message code="text.admin"/></a>
 									</c:when>
 								</c:choose>
+
+								<!-- <s:message code="test.test"/> -->
+
 							</nav>
 						</div>
 						<!-- 우측 회원관련 -->
