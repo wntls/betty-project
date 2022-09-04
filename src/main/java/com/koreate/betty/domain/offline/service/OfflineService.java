@@ -34,7 +34,7 @@ public class OfflineService {
 	
 	// 멤버가 안에 있는지 확인한다
 	public boolean checkMember(String id) {
-		int result = offlineRepository.checkMember();
+		int result = offlineRepository.checkMember(id);
 		return result == 1 ? true : false;
 	}
 	

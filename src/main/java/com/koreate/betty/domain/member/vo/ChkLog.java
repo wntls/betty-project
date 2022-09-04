@@ -10,7 +10,7 @@ import lombok.ToString;
 public class ChkLog {
 
 	private final Integer num;
-	private final String id;
+	private final String memberId;
 	private final String checkTime;
 	private final String checkoutTime;
 	private final String seat;

@@ -13,7 +13,7 @@
 			<h5>John Smith</h5>
 			<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit
 				amet, consectetur, adipisci velit, sed quia non numquam eius modi</p>
-			<a href="#">답글</a> <a href="#">삭제</a>
+			<a href="#"><s:message code="btn.reply"/></a> <a href="#"><s:message code="delete"/></a>
 		</div>
 	</div>
 
@@ -27,17 +27,17 @@
 			<h5>Elizabeth Perry</h5>
 			<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit
 				amet, consectetur, adipisci velit, sed quia non numquam eius modi</p>
-			<a href="#">답글</a> <a href="#">삭제</a>
+			<a href="#"><s:message code="btn.reply"/></a> <a href="#"><s:message code="delete"/></a>
 		</div>
 	</div>
 
 	<div class="blog__details__form">
-		<h4>댓글 작성란</h4>
+		<h4><s:message code="textarea.comment"/></h4>
 		<form action="#">
 			<div class="row" style="display: block">
 				<div class="col-md-12">
 					<textarea placeholder="Message"></textarea>
-					<button type="submit" class="site-btn">작성</button>
+					<button type="submit" class="site-btn"><s:message code="btn.reply"/></button>
 				</div>
 			</div>
 		</form>

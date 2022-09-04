@@ -7,7 +7,7 @@
 				<form id="boardForm">
 					<div class="row justify-content-between">
 						<div class="col-auto">
-							<h2>공지사항</h2>
+							<h2><s:message code="text.board.notice"/></h2>
 						</div>
 						<div class="col-auto">
 							<select id="pageNumSelect" name="pageNumSelect">
@@ -31,6 +31,7 @@
 									</tr>
 								</thead>
 								<tbody id="tableBody">
+                
 								</tbody>
 							</table>
 						</div>

@@ -10,12 +10,12 @@
 <section>
 	<div class="container-md spad">
 		<div class="row justify-content-center">
-			<div class="col-md-8">
+			<div class="col-md-12">
 				<div class="product__page__title">
 					<div class="row">
 						<div class="col-md-8 col-md-8 col-md-6 title__align__center">
 							<div class="section-title">
-								<h4>회원 정보</h4>
+								<h4><s:message code="text.user.info"/></h4>
 							</div>
 						</div>
 					</div>
@@ -25,17 +25,17 @@
 					<table class="table table-borderless table-dark mb-5">
 						<tbody>
 							<tr>
-								<th scope="row">가입 승인</th>
+								<th scope="row"><s:message code="btn.sign.up.appoval"/></th>
 								<td colspan="2">
 									<div class="btn-group btn-group-toggle" data-toggle="buttons">
 										<label class="btn btn-secondary active"> 
-											<input type="radio" name="allow" value="all" checked> 전체
+											<input type="radio" name="allow" value="all" checked> <s:message code="text.all" />
 										</label> 
 										<label class="btn btn-secondary"> 
-											<input type="radio"	name="allow" value="allow"> 승인 
+											<input type="radio"	name="allow" value="allow"> <s:message code="btn.sign.up.appoval"/>
 										</label> 
 										<label class="btn btn-secondary"> 
-											<input type="radio" name="allow" value="disallow"> 미승인
+											<input type="radio" name="allow" value="disallow"> <s:message code="text.unapproval" />
 										</label>
 									</div>
 								</td>
@@ -44,17 +44,17 @@
 
 							<!-- 2행 -->
 							<tr>
-								<th scope="row">직원여부</th>
+								<th scope="row"><s:message code="text.staff" /></th>
 								<td colspan="2">
 									<div class="btn-group btn-group-toggle" data-toggle="buttons">
 										<label class="btn btn-secondary active"> 
-											<input type="radio" name="rank" value="all" checked> 전체
+											<input type="radio" name="rank" value="all" checked> <s:message code="text.all" />
 										</label> 
 										<label class="btn btn-secondary"> 
-											<input type="radio"	name="rank" value="member"> 일반회원
+											<input type="radio"	name="rank" value="member"> <s:message code="btn.sign.up.member" />
 										</label> 
 										<label class="btn btn-secondary"> 
-											<input type="radio" name="rank" value="staff"> 직원
+											<input type="radio" name="rank" value="staff"> <s:message code="text.staff"/>
 										</label>
 									</div>
 								</td>
@@ -62,13 +62,13 @@
 							</tr>
 							<!-- 3행 -->
 							<tr>
-								<th scope="row">회원 등급</th>
+								<th scope="row"><s:message code="text.membership" /></th>
 								<td colspan="3">
 									<div class="input-group text-secondary">
 										<select id="gradeOption">
-											<option value="all">전체</option>
-											<option value="Bronze">브론즈</option>
-											<option value="Silver">실버</option>
+											<option value="all"><s:message code="text.all" /></option>
+											<option value="Bronze">Bronze</option>
+											<option value="Silver">Silver</option>
 											<option value="VIP">VIP</option>
 										</select>
 									</div>
@@ -76,14 +76,14 @@
 							</tr>
 							<!-- 4행 -->
 							<tr>
-								<th scope="row">검색</th>
+								<th scope="row"><s:message code="btn.search" /></th>
 								<td>
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 											<select id="searchOption">
-												<option value="id" selected>아이디</option>
-												<option value="name">이름</option>
-												<option value="addr">주소</option>
+												<option value="id" selected><s:message code="text.id" /></option>
+												<option value="name"><s:message code="text.name" /></option>
+												<option value="addr"><s:message code="text.address" /></option>
 											</select>
 										</div>
 										<input type="text" id="searchText" class="form-control"
@@ -91,7 +91,7 @@
 									</div>
 								</td>
 								<td></td>
-								<td><input id="submit" class="btn btn-danger" type="submit" value="검색" /></td>
+								<td><input id="submit" class="btn btn-danger" type="submit" value="검색" /><s:message code="btn.search" /></td>
 							</tr>
 						</tbody>
 					</table>
@@ -117,17 +117,65 @@
 </section>
 <%@include file="/WEB-INF/views/include/footer.jsp"%>
 
+
+<div class="modal fade" id="demeritCount" data-backdrop="static"
+	tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-scrollable modal-dialog-centered"
+		role="document">
+		<div class="modal-content">
+			<form id="demerit-amount" method="post">
+				<div class="modal-header">
+					<h5 class="modal-title">벌점 부과</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="false">&times;</span>
+					</button>
+				</div>
+
+				<div class="modal-body">
+					<!-- 입력태그 하나 -->
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<div class="input-group-text">사용자 현재 벌점</div>
+						</div>
+						<input type="text" class="form-control" id="nowDemerit" name="nowDemerit"
+							readonly="readonly">
+					</div>
+					<br />
+					<!-- 입력태그 하나 -->
+					<!-- 입력태그 하나 -->
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<div class="input-group-text">부과할 벌점(음수 입력시 감산)</div>
+						</div>
+						<input type="number" name="updateDemerit" />
+					</div>
+					<br />
+					<!-- 입력태그 하나 -->
+				</div>
+
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary">부과</button>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">취소</button>
+				</div>
+			</form>
+
+		</div>
+	</div>
+</div>
+
 </html>
 
 <script>
-var initBookStr = null;
+var initStr = null;
 var num = 1;
 $(function() {
 	ajaxList(1);
 });
 
 function initData(){	
-	initBookStr = ``;
+	initStr = ``;
 }
 
 $("#submit").on("click", function(e) {
@@ -191,7 +239,7 @@ function printList(list) {
 						
 						let black = "NO";
 						if (this.black) {
-							black = "YES";
+							black = `YES <button onclick='blackRelease("\${this.id}")'>블랙 해제</button>`;
 						}
 						
 						let birth = new Date(this.birth);
@@ -205,19 +253,20 @@ function printList(list) {
 								+ regDate.getDate();
 								
 						initBookStr += `<tr class="text-center">
-							<td>번호</td>
+							<td><s:message code="text.num" /></td>
 							<td>회원사진</td>
-							<td>아이디</td>
-							<td>닉네임</td>
-							<td>이름</td>
-							<td>성별</td>
-							<td>생년월일</td>
-							<td>전화번호</td>
-							<td>이메일</td>
-							<td colspan="2">주소</td>
+							<td><s:message code="text.id" /></td>
+							<td><s:message code="text.nicname" /></td>
+							<td><s:message code="text.name" /></td>
+							<td><s:message code="text.gender" /></td>
+							<td><s:message code="text.birth" /></td>
+							<td><s:message code="text.phone" /></td>
+							<td><s:message code="text.email" /></td>
+							<td colspan="2"><s:message code="text.address" /></td>
+              <td>벌점 부과</td>
 							</tr>`;
 						
-						initBookStr += `						
+						initStr += `						
 							<tr>
 							<td rowspan="3">${num}</td>
 							<td rowspan="3" class="thumb-list-profile"><img
@@ -230,9 +279,10 @@ function printList(list) {
 							<td>\${this.phone}</td>
 							<td>\${this.email}</td>
 							<td colspan="2">\${this.addr}</td>
+							<td><input type='button' class='btn btn-secondary' onclick='throwData(this)' data-user='\${this.id}' data-demerit='\${this.demerit}' data-toggle='modal' data-target='#demeritCount' value='부과' name='num' /></td>
 							</tr>`;
 							
-						initBookStr += `
+						initStr += `
 							<tr>
 							<td>회원구분</td>
 							<td>회원등급</td>
@@ -241,11 +291,12 @@ function printList(list) {
 							<td>대여횟수</td>
 							<td>체크인여부</td>
 							<td>회원가입일</td>
-							<td>가입승인</td>
+							<td>가입승인</td>							
 							<td>블랙리스트</td>
+							<td>벌점</td>
 							</tr>`;
 							
-						initBookStr += `
+						initStr += `
 							<tr>
 							<td>\${rights}</td>
 							<td>\${this.premiumGrade}</td>
@@ -256,11 +307,12 @@ function printList(list) {
 							<td>\${formatRegDate}</td>
 							<td>\${allow}</td>
 							<td>\${black}</td>
+							<td>\${this.demerit}</td>
 							</tr>`;
 							
 						num = num + 1;
 					});
-	$("#tbody").html(initBookStr);
+	$("#tbody").html(initStr);
 }
 
 
@@ -308,7 +360,35 @@ function approve(e){
 			alert(allowId + '님이 가입승인 되었습니다.');
 			ajaxList(1);
 		}
-	});	
+	});
+}
+
+function blackRelease(e){
+	var blackId = e;
+	$.ajax({
+		type : 'post',
+		url : "${path}/admin/members/release",
+		data : {
+			id : blackId
+		},
+		dataType : 'text',
+		success : function(result) {
+			console.log(result);
+			alert(blackId + '님이 블랙 해제되었습니다.');
+			ajaxList(1);
+		}
+	});
+}
+
+
+
+function throwData(ev) {
+	console.log(ev.dataset);
+	var user = ev.dataset.user;
+	var demerit = ev.dataset.demerit;
+	$("#nowDemerit").val(demerit);
+	$("#demerit-amount").attr("action", "${path}/admin/members/" + user);
+	$("#demerit-amount").attr("method", "post");
 }
 
 </script>

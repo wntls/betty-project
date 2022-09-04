@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import com.koreate.betty.domain.book.dto.form.BookForm;
 import com.koreate.betty.domain.book.dto.form.NewBookForm;
@@ -43,8 +44,8 @@ public class BookController {
 	@GetMapping("{isbn}")
 	public String bookDetail(@PathVariable String isbn, Model model) { // key : book
 		Book book = bookService.bookDetail(isbn);
-		if (book == null) {
-			throw new NotFoundISBNException();
+		if(book == null) {
+			//throw new NoHandlerFoundException(isbn, isbn, null);
 		}
 		model.addAttribute("book", book);
 		return "book/book-detail";

@@ -183,6 +183,10 @@ public class BookService {
 		return find;
 	}
 	
+	public List<Book> findRecentBooks() {
+		return bookRepository.findRecentBooks();
+	}
+	
 	
 	public boolean BookImgUpload(String code, MultipartFile img) {
 				
@@ -219,7 +223,7 @@ public class BookService {
 			
 			File mFile = new File(originPath, imgName);
 			ImageIO.write(originImg, formatName, mFile);
-			File tFile = new File(thumbPath, imgName);			
+			File tFile = new File(thumbPath, imgName);
 			ImageIO.write(thumbImg, formatName, tFile);
 			
 			uploaded = true;
@@ -238,5 +242,7 @@ public class BookService {
 	public int insertByCrawler(Book book) {
 		return bookRepository.insertByCrawler(book);
 	}
+
+	
 
 }

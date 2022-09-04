@@ -63,10 +63,8 @@ public class MemberProvider {
 	
 	// 체크인 이력 (출결 이력 표기)
 	public String findMyChkLog(String loginId) {
-		return new SQL().SELECT("*").FROM(MEMBER_TBL)
-				.JOIN(CHK_LOG_TBL)
-				.WHERE("id = member_id")
-				.WHERE("id = #{loginId}")
+		return new SQL().SELECT("*").FROM(CHK_LOG_TBL)
+				.WHERE("member_id = #{loginId}")
 				.toString();
 	}
 	
@@ -79,7 +77,7 @@ public class MemberProvider {
 		String searchOption = form.getSearchOption();
 		String searchText = form.getSearchText().trim();		
 		
-		SQL sql = new SQL().SELECT("img, id, nickname, name, gender, birth, phone, email, addr, rights, premium_grade, point, reg_date").FROM(MEMBER_TBL).JOIN(MEMBER_CARD_TBL)
+		SQL sql = new SQL().SELECT("img, id, nickname, name, gender, birth, phone, email, addr, rights, premium_grade, point, reg_date, demerit").FROM(MEMBER_TBL).JOIN(MEMBER_CARD_TBL)
 				.WHERE("id = member_id");
 		if (allow != null) {
 			switch(allow) {
@@ -187,5 +185,27 @@ public class MemberProvider {
 				.toString();
 	}
 	
+	// 직원 승인
+	public String blackRelease(String id) {
+		return new SQL().DELETE_FROM(BLACK_LIST_TBL)
+				.WHERE("member_id = #{id}")
+				.toString();
+	}
+	
+
+	// 벌점 부과
+	public String updateDemerit(@Param("id")String id, @Param("demerit")Integer demerit) {
+		return new SQL().UPDATE(MEMBER_CARD_TBL).SET("demerit = demerit + #{demerit}")
+				.WHERE("member_id = #{id}")
+				.toString();
+	}
+	
+	// 수익 총계
+	public String findTotalProfit() {
+		return new SQL().SELECT("sum(spending)").FROM(MEMBER_CARD_TBL)
+				.toString();
+	}
+	
+
 }
 

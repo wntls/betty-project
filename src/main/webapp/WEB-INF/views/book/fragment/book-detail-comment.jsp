@@ -21,6 +21,7 @@
 </style>
 <hr/>
 <div class="container-md spad-sm">
+	
 	<!-- 댓글 -->
 	<div class="anime__details__review">
 		<div class="section-title">
@@ -118,8 +119,11 @@ function printList(list){
 		str += "<div class='anime__review__item__text'>";
 		str += "<h6>";
 		str += nickname + " - <span>" + formatDate + "</span>";
-		str += "</h6>";
-		str += "<p>" + comment + "</p>";
+		if (nickname == "${user.nickname}"){
+			str += "<button id='removeBtn' class='btn btn-secondary ml-3 float-right' onclick='delComment("+this.num+")'>삭제</button>";
+		}
+		str += "</h6>";		
+		str += "<p>" + comment + "</p>";		
 		str += "</div></div>";
 		str += "<br>"
 	});
@@ -154,6 +158,37 @@ $("#pa").on("click", "li a",function(e){
 	page = commentPage;
 	ajaxList(page);
 });
+
+function delComment(e) {
+	var delNum = e;
+	var userId = "${user.id}";
+	var pass = prompt('비밀번호를 입력해주세요', '');  
+	console.log(userId);
+	console.log(pass);
+	$.ajax({
+		type : 'delete',
+		url : "${path}/books/"+isbn+"/comment/" + delNum,
+		data : {
+			cno : delNum,
+			id : userId,
+			pw : pass
+		},
+		dataType : 'text',
+		success : function(result) {
+			console.log(result);
+			if(result == "Success"){
+				alert('해당 댓글이 삭제되었습니다.');
+				ajaxList(1);
+			} else {
+				alert('비밀번호를 확인해주세요.');
+			}			
+		},
+		error : function(result) {
+			alert('비밀번호를 확인해주세요.');
+			console.log('오류발생');
+		}
+	});
+}
 
 
 
