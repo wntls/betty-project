@@ -38,47 +38,50 @@
 							<tbody>
 
 						<tbody>
-						<c:choose>
-							<c:when test="${!empty list}">
-								<c:forEach var="board" items="${list}">
-								<c:choose>
-									<c:when test="${!empty list}">
-										<c:forEach var="board" items="${list}">
-											<c:choose>
-												<c:when test="${board.showboard eq 'y'}">
-													<tr>
-														<td>${board.bno}</td>
-														<td>
-															<a href="free/${board.bno}?${pm.makeQuery(pm.cri.page)}">${board.tag}&nbsp;&nbsp;${board.title}</a>
-														</td>
-														<td>${board.nickname}</td>
-														<td>${board.viewcnt}</td>
-														<td>
-															<f:formatDate value="${board.regdate}" pattern="yyyy-MM-dd (E) hh:mm" />
-														</td>
-													</tr>
-												</c:when>
-												<c:otherwise>
-													<tr>
-														<td></td>
-														<td>삭제된 게시물 입니다.</td>
-														<td></td>
-														<td></td>
-														<td></td>
-													</tr>
-												</c:otherwise>
+							<c:choose>
+								<c:when test="${!empty list}">
+									<c:forEach var="board" items="${list}">
+										<c:choose>
+											<c:when test="${!empty list}">
+												<c:forEach var="board" items="${list}">
+													<c:choose>
+														<c:when test="${board.showboard eq 'y'}">
+															<tr>
+																<td>${board.bno}</td>
+																<td>
+																	<a href="free/${board.bno}?${pm.makeQuery(pm.cri.page)}">${board.tag}&nbsp;&nbsp;${board.title}</a>
+																</td>
+																<td>${board.nickname}</td>
+																<td>${board.viewcnt}</td>
+																<td>
+																	<f:formatDate value="${board.regdate}" pattern="yyyy-MM-dd (E) hh:mm" />
+																</td>
+															</tr>
+														</c:when>
+														<c:otherwise>
+															<tr>
+																<td></td>
+																<td>삭제된 게시물 입니다.</td>
+																<td></td>
+																<td></td>
+																<td></td>
+															</tr>
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
+												<tr>
+													<td></td>
+													<td>등록된 게시물이 없습니다.</td>
+													<td></td>
+													<td></td>
+													<td></td>
+												</tr>
+											</c:otherwise>
 											</c:choose>
 										</c:forEach>
 									</c:when>
-									<c:otherwise>
-										<tr>
-											<td></td>
-											<td>등록된 게시물이 없습니다.</td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-									</c:otherwise>
 								</c:choose>
 							</tbody>
 						</table>

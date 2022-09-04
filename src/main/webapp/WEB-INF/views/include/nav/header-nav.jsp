@@ -41,7 +41,7 @@
 									</c:when>
 								</c:choose>
 								
-								<s:message code="test.test"/>
+								<!-- <s:message code="test.test"/> -->
 							</nav>
 						</div>
 						<!-- 우측 회원관련 -->
