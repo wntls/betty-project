@@ -91,7 +91,7 @@
 									</div>
 								</td>
 								<td></td>
-								<td><input id="submit" class="btn btn-danger" type="submit" value="검색" /><s:message code="btn.search" /></td>
+								<td><input id="submit" class="btn btn-danger" type="submit" value="<s:message code="btn.search"/>" /></td>
 							</tr>
 						</tbody>
 					</table>

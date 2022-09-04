@@ -56,7 +56,7 @@ public class MemberCardProvider {
 		} else {
 			sql.SET("spending = spending");
 		}
-		sql.WHERE("id = #{id}");
+		sql.WHERE("member_id = #{id}");
 		return sql.toString();
 	}
 	
