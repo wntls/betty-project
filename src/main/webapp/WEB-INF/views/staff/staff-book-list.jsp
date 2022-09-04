@@ -10,13 +10,12 @@
 					<div class="row justify-content-between">
 						<div class="col-auto">
 							<div class="section-title">
-								<h4>도서 현황</h4>
+								<h4><s:message code="nav.staff.book.list"/></h4>
 							</div>
 						</div>
 						<div class="col-auto">
 							<button class="btn btn-danger"
-								onclick="location.href='${path}/staff/books/new'">&#10009;
-								도서 등록</button>
+								onclick="location.href='${path}/staff/books/new'">&#10009;><s:message code="btn.book.new"/></button>
 						</div>
 					</div>
 				</div>
@@ -26,32 +25,32 @@
 						<tbody>
 							<!-- 1행 -->
 							<tr>
-								<th scope="row">장르지정</th>
+								<th scope="row"><s:message code="search.genre"/></th>
 								<td><select id="genre" name="genre">
-										<option selected value="">장르 선택</option>
-										<option value="100">철학(100)</option>
-										<option value="200">종교(200)</option>
-										<option value="300">사회(300)</option>
-										<option value="400">과학(400)</option>
-										<option value="500">공학(500)</option>
-										<option value="600">예술(600)</option>
-										<option value="700">외국어(700)</option>
-										<option value="800">소설(800)</option>
-										<option value="900">역사(900)</option>
+										<option selected value=""><s:message code="search.genre"/></option>
+										<option value="100"><s:message code="genre.100"/></option>
+										<option value="200"><s:message code="genre.200"/></option>
+										<option value="300"><s:message code="genre.300"/></option>
+										<option value="400"><s:message code="genre.400"/></option>
+										<option value="500"><s:message code="genre.500"/></option>
+										<option value="600"><s:message code="genre.600"/></option>
+										<option value="700"><s:message code="genre.700"/></option>
+										<option value="800"><s:message code="genre.800"/></option>
+										<option value="900"><s:message code="genre.900"/></option>
 								</select></td>
 								<td></td>
 							</tr>
 							<!-- 2행 -->
 							<tr>
-								<th scope="row">도서 발행일 별</th>
+								<th scope="row"><s:message code="text.range.pubDate"/></th>
 								<td colspan="2">
 									<div class="input-group text-secondary">
 										<input type="date" id="pubDate" name="pubDate"
 											style="height: 37px" />
 										<div class="input-group-append">
 											<select id="pubDateOption" name="pubDateOption">
-												<option value="before">-이전</option>
-												<option value="after">-이후</option>
+												<option value="before">-<s:message code="range.before"/></option>
+												<option value="after">-<s:message code="range.after"/></option>
 											</select>
 										</div>
 									</div>
