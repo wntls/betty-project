@@ -23,7 +23,6 @@
 							<div class="row">
 								<div class="col-md-6 col-md-6">
 									<ul>
-										<li><span>장르 : </span> ${book.genre}</li>
 										<li><span>작가 : </span> ${book.auth}</li>
 										<li><span>출판일 : </span> <f:formatDate value="${book.pubDate}" pattern="yyyy-MM-dd"/></li>
 										<li><span>출판사 : </span> ${book.pub}</li>
@@ -31,6 +30,7 @@
 								</div>
 								<div class="col-md-6 col-md-6">
 									<ul>
+										<li><span>장르 : </span> <s:message code="genre.${book.genre}"/></li>
 										<li><span>쪽수 :</span> ${book.page}쪽</li>
 										<li><span>ISBN :</span> ${book.code}</li>
 									</ul>
@@ -38,9 +38,8 @@
 							</div>
 						</div>
 						<div class="anime__details__btn float-right">
-							<button id="reservBtn" class="btn btn-danger">
-								<input id="reserv">
-							대여 예약</button>
+						<input id="reserv">
+							<button id="reservBtn" class="btn btn-danger">대여 예약</button>
 						</div>
 					</div>
 				</div>
@@ -77,24 +76,17 @@ $(function(){
 		if(date == ''){
 			return;
 		} else {
-			console.log(isbn);
-			console.log(memberId);
-			console.log(date);
 			$.ajax({
 				type: 'post',
 				url: '${path}/rentals/reserve',
 				contentType: 'application/json',
-				data: JSON.stringify(data),
+				data: JSON.stringify(data), // json 형태의 문자열로 변환함 @RequestBody에 넣기 위해
 				dataType: 'json',
 				success: function(data){
-					alert(data.date + ' 예약 완료');
-					console.log(data);
+					alert(data.id+ ' 님의 예약 완료');
 				},
 				error: function(request,status,error){
 					alert("fail");
-					console.log(request);
-					console.log(status);
-					console.log(error);
 				}	
 				
 			})

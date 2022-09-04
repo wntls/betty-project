@@ -10,7 +10,7 @@ section {
 }
 
 .card-body {
-	height: 300px
+	height: 300px;
 }
 
 table {
@@ -23,10 +23,13 @@ table th {
 
 table td {
 	overflow: hidden;
-	text-overflow: ellipsis;
 	white-space: nowrap;
 	text-align: center;
 	line-height: 1.8rem;
+}
+
+table td:nth-child(1) {
+	text-overflow: ellipsis;
 }
 
 .seat tr td {
@@ -212,10 +215,7 @@ table td {
 			let seat = this.innerText;
 			console.log(seat);
 			$(this).addClass('active');
-			hasActive = true;
-			
 			$('#checkInBtn').data('seat', seat);
-			//console.log($('#room .active'));
 		})
 		
 		$('#checkInBtn').on('click',function(){
@@ -269,6 +269,7 @@ table td {
 					}
 					row += cell;
 				}
+				
 				room = `<tr>\${row}</tr>`;
 				$('#room').append(room);
 				row = "";

@@ -18,6 +18,7 @@ import com.koreate.betty.domain.member.vo.Member;
 import com.koreate.betty.domain.member.vo.MemberCard;
 import com.koreate.betty.domain.offline.service.OfflineService;
 import com.koreate.betty.domain.rental.service.RentalService;
+import com.koreate.betty.global.error.BettyNotFoundException;
 import com.koreate.betty.global.resolver.User;
 
 import lombok.Data;
@@ -44,7 +45,6 @@ public class OfflineController {
 	@GetMapping
 	public String offline(@PathVariable String id, @User Member user, Model model) {
 		String userId = user.getId();
-		//model.addAttribute("seats", os.seatStatus());	// List<Integer>
 		model.addAttribute("reserves", rs.reserveByMemberId(userId));	// List<ReserveBook>
 		model.addAttribute("rentals", rs.rentalByMemberId(userId));		// List<RentalBook>
 		return "offline/offline";
@@ -58,7 +58,7 @@ public class OfflineController {
 	
 	@PostMapping("receipt")
 	@Transactional
-	public String rentalRecept(@PathVariable String id, rentalDto rsv) {
+	public String rentalReceipt(@PathVariable String id, rentalDto rsv) {
 		String code = rsv.getCode();
 		int result = rs.reserveCancle(id, code);
 		Integer num = bs.findExistNum(code);
