@@ -9,7 +9,7 @@
 			<div class="col-md-8">
 				<div class="section-title">
 					<br />
-					<h4>도서 입고</h4>
+					<h4><s:message code="btn.book.new"/></h4>
 					<br />
 				</div>
 
@@ -27,26 +27,26 @@
 								<div class="custom-file">
 									<input type="file" class="custom-file-input" name="img"
 										id="img" accept="image/*"> <label
-										class="custom-file-label" for="img">책 표지 삽입</label>
+										class="custom-file-label" for="img"><s:message code="text.book.cover"/></label>
 								</div>
 							</div>
 
 							<div class="staffInfoList">
 								<div class="input-group mb-3 flex-nowrap">
 									<div class="input-group-append">
-										<label class="input-group-text" for="inputGroupSelect01">장르</label>
+										<label class="input-group-text" for="inputGroupSelect01"><s:message code="text.book.ㅎ둑ㄷ"/></label>
 									</div>
 									<select class="custom-select" id="genre" name="genre">
-										<option selected value="">장르 선택</option>
-										<option value="100">철학(100)</option>
-										<option value="200">종교(200)</option>
-										<option value="300">사회(300)</option>
-										<option value="400">과학(400)</option>
-										<option value="500">공학(500)</option>
-										<option value="600">예술(600)</option>
-										<option value="700">외국어(700)</option>
-										<option value="800">소설(800)</option>
-										<option value="900">역사(900)</option>
+										<option selected value=""><s:message code="search.genre"/></option>
+										<option value="100"><s:message code="genre.100"/></option>
+										<option value="200"><s:message code="genre.200"/></option>
+										<option value="300"><s:message code="genre.300"/></option>
+										<option value="400"><s:message code="genre.400"/></option>
+										<option value="500"><s:message code="genre.500"/></option>
+										<option value="600"><s:message code="genre.600"/></option>
+										<option value="700"><s:message code="genre.700"/></option>
+										<option value="800"><s:message code="genre.800"/></option>
+										<option value="900"><s:message code="genre.900"/></option>
 									</select>
 								</div>
 
@@ -54,10 +54,10 @@
 								<!-- << input 태그 블럭 하나 . 추가시 복붙 -->
 								<div class="input-group flex-nowrap">
 									<div class="input-group-prepend">
-										<span class="input-group-text">도서 명</span>
+										<span class="input-group-text"><s:message code="text.book.title"/></span>
 									</div>
 									<input type="text" class="form-control" id="title" name="title"
-										placeholder="도서명 입력" aria-label="Username"
+										placeholder="책 제목 입력" aria-label="Username"
 										aria-describedby="addon-wrapping">
 								</div>
 								<br />
@@ -67,14 +67,14 @@
 										<span class="input-group-text">ISBN</span>
 									</div>
 									<input type="text" class="form-control" id="code" name="code"
-										placeholder="ISBN 입력" aria-label="Username"
+										placeholder="ISBN" aria-label="Username"
 										aria-describedby="addon-wrapping">
 								</div>
 								<br />
 
 								<div class="input-group flex-nowrap">
 									<div class="input-group-prepend">
-										<span class="input-group-text">작가 </span>
+										<span class="input-group-text"><s:message code="text.author"/></span>
 									</div>
 									<input type="text" class="form-control" id="auth" name="auth"
 										placeholder="작가 입력" aria-label="Username"
@@ -83,7 +83,7 @@
 								<br />
 								<div class="input-group flex-nowrap">
 									<div class="input-group-prepend">
-										<span class="input-group-text">출판사</span>
+										<span class="input-group-text"><s:message code="text.pub"/></span>
 									</div>
 									<input type="text" id="pub" class="form-control" name="pub"
 										placeholder="출판사 입력" aria-label="Username"
@@ -93,7 +93,7 @@
 
 								<div class="input-group flex-nowrap">
 									<div class="input-group-prepend">
-										<span class="input-group-text">출판일</span>
+										<span class="input-group-text"><s:message code="text.pubdate"/></span>
 									</div>
 									<input type="date" id="pubDate" class="form-control"
 										name="pubDate" placeholder="출판일 입력" aria-label="Username"
@@ -103,7 +103,7 @@
 
 								<div class="input-group flex-nowrap">
 									<div class="input-group-prepend">
-										<span class="input-group-text">페이지 수</span>
+										<span class="input-group-text"><s:message code="text.book.pages"/></span>
 									</div>
 									<input type="text" id="page" class="form-control" name="page"
 										placeholder="페이지 수 입력" aria-label="Username"
@@ -113,7 +113,7 @@
 
 								<div class="input-group flex-nowrap">
 									<div class="input-group-prepend">
-										<span class="input-group-text">책 소개</span>
+										<span class="input-group-text"><s:message code="text.intro"/></span>
 									</div>
 									<textarea rows="4" cols="50" id="intro" name="intro"
 										placeholder="책 소개 입력" aria-label="Username"
@@ -123,8 +123,7 @@
 							</div>
 							
 							<div class="col-md-4 anime__details__btn float-right">
-										<button type="submit" class="follow-btn float-right">작성
-											완료</button>
+										<button type="submit" class="follow-btn float-right"><s:message code="btn.ok"/></button>
 									</div>
 						</form>
 					</div>

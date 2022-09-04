@@ -10,14 +10,14 @@
 					<div class="section-title">
 						<div class="row justify-content-between">
 							<div class="col-auto">
-								<h4>회원 정보</h4>
+								<h4><s:message code="text.user.info"/></h4>
 							</div>
 							<div class="col-auto">
 								<button class="btn btn-danger"
-									onclick="location.href='${path}/members/${user.id}/edit'">수정</button>
+									onclick="location.href='${path}/members/${user.id}/edit'"><s:message code="btn.modify"/></button>
 								<button class="btn btn-secondary ml-3"
 								data-toggle="modal"
-								data-target="#withdrawMember" >탈퇴</button>
+								data-target="#withdrawMember" ><s:message code="btn.member.delete"/></button>
 							</div>
 						</div>
 					</div>
@@ -27,38 +27,38 @@
 					<div class="w-100 mb-5"></div>
 					<form id="info">
 						<input type="text" name="rights" value="0" hidden/>
-						아이디
+						<s:message code="text.id"/>
 						<div class="input__item">
 							<span><i class="bi bi-person-circle"></i></span>
 							<input type="text" name="id" id="id" value="${user.id}" readonly/> 
 						</div>
-						이름
+						<s:message code="text.name"/>
 						<div class="input__item">
 							<span class="icon_profile"></span> 
 							<input type="text" name="name" id="name" value="${user.name}" readonly/>
 						</div>
-						닉네임
+						<s:message code="text.nickname"/>
 						<div class="input__item">
 							<span><i class="bi bi-person-video2"></i></span> 
 							<input type="text" name="nickname" id="nickname" value="${user.nickname}" readonly/>
 						</div>
-						생년월일
+						<s:message code="text.birth"/>
 						<div class="input__item">
 							<span><i class="bi bi-calendar3"></i></span>
 							<input type="text" name="birth" value="<f:formatDate value="${user.birth}" pattern="yyyy-MM-dd"/>" readonly/> 
 						</div>
-						성별
+						<s:message code="text.gender"/>
 						<div class="btn-group btn-group-toggle w-100"  data-toggle="buttons">
 							<label class="btn btn-outline-secondary text-white radio-gender">
-								<input type="radio" name="gender" id="male" value="male" /> 남성
+								<input type="radio" name="gender" id="male" value="male" /> <s:message code="gender.male"/>
 							</label>
 							<label class="btn btn-outline-secondary ml-2 text-white radio-gender">
-								<input type="radio" name="gender" id="female" value="female" /> 여성
+								<input type="radio" name="gender" id="female" value="female" /> <s:message code="gender.female"/>
 							</label>
 						</div>
 							<div class="mb-3"></div>
 						
-						주소
+						<s:message code="text.address"/>
 						<div class="mb-4">
 							<div class="row addr-box">
 								<div class="col-md-8 mb-4 ">
@@ -71,13 +71,13 @@
 							<input type="text" class="form-control" name="addrDetail" id="addrDetail" value="${user.addrDetail}" readonly/>
 						</div>
 						
-						전화번호
+						 <s:message code="text.phone/>
 						<div class="input__item">
 							<span><i class="bi bi-phone"></i></span>
 							<input type="text" name="phone" id="phone"  value="${user.phone}" /> 
 						</div>
 						
-						이메일
+						<s:message code="text.email/>
 						<div class="input__item">
 							<span class="icon_mail"></span>
 							<input type="text" name="email" id="email"  value="${user.email}" /> 
@@ -96,18 +96,18 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">회원 탈퇴 확인란</h5>
+        <h5 class="modal-title"><s:message code="text.delete.modal.title"/></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body" >
-        <p id="modal-body" style="color:black">회원 아이디를 입력하세요</p>
+        <p id="modal-body" style="color:black"><s:message code="sign.id.req"/></p>
         <input class="form-control" name="id"/>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" id="withdrawMemberBtn">탈퇴 요청</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary" id="withdrawMemberBtn"><s:message code="btn.member.delete"/></button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><s:message code="btn.cancel"/></button>
       </div>
     </div>
   </div>
