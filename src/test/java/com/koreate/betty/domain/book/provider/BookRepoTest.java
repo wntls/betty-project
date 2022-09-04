@@ -45,8 +45,8 @@ public class BookRepoTest {
 						+ " \r\n"
 						+ " 브랜드의 이면에서 브랜드의 정체성을 쌓아올리고 있는 브랜드 디렉터를 만났다. 새로운 유기체의 페르소나를 빚어내는 사람. 인간 존재를 고민하며 정체성을 탐구하는 사람. 비즈니스가 단순 돈벌이에 그치지 않도록 알맹이를 채워 넣는 사람. 세상에 없던 정체성을 생성하며 우리에게 소구하는 국내 최고 브랜드 디렉터 9명을 만나보았다.");
 
-		int result = bs.update(targetCode, form);
-		log.info("result : " + result);
+//		int result = bs.update(targetCode, form);
+//		log.info("result : " + result);
 	}
 
 

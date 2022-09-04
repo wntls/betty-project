@@ -149,7 +149,7 @@ public class MemberService {
 	}
 	
 	public int updateLend(String id, String grade) {
-		return memberCardRepository.updateGrade(id, grade);
+		return memberCardRepository.updateLend(id, grade);
 	}
 	
 
