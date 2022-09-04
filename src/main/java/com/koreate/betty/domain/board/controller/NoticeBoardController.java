@@ -37,24 +37,27 @@ public class NoticeBoardController {
 			ModelAndView mav,
 			SearchCriteria cri) {
 		mav.setViewName("board/notice/notice-board");
-		log.info("mav setview : {}", mav);
-		List<NoticeBoard> noticeList = noticeBoardService.noticeList(cri); 
-		log.info("noticeList : {}", noticeList);
-		mav.addObject("noticeList" ,noticeList);
-		log.info("mav addList : {}", mav);
-		
 		SearchPageMaker pm = noticeBoardService.getPageMaker(cri);
 		mav.addObject("pm",pm);
-		log.info("pm : {}", pm);
-		log.info("mav 3 : {}", mav);
-		
 		return mav;
 	}
-	@PostMapping("boardList")
+	
+	@GetMapping("noticeList")
 	@ResponseBody
-	public Map<String, String> boardList(@RequestBody String json){
-	    System.out.println(json);
-	    Map<String, String> map = null ;
+	public Map<String, Object> boardList(String keyword, String searchType, Integer perPageNum, Integer page){
+	    System.out.printf("\n\n\n\n\n"+" keyword : "+keyword);
+	    
+	    System.out.println("searchType : "+searchType);
+	    System.out.println("page : "+page);
+	    System.out.println("perPageNum : "+perPageNum);
+	    
+	    SearchCriteria cri = new SearchCriteria();
+	    cri.setKeyword(keyword);
+	    cri.setSearchType(searchType);
+	    cri.setPage(page);
+	    cri.setPerPageNum(perPageNum);
+	    System.out.println("\n\n\n\n\n\n\n cri :"+cri);
+	    Map<String, Object> map = noticeBoardService.noticeList(cri) ;
 	    System.out.println(map);
 	    return map;
 	}

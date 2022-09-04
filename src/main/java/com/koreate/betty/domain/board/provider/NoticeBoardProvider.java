@@ -56,14 +56,10 @@ public class NoticeBoardProvider {
 	// 공지사항 목록 출력
 	public String noticeList(SearchCriteria cri) {
 		SQL sql = new SQL().SELECT("*");
-		log.info("sql 1 : {} ", sql);
 		sql.FROM(NOTICE_BOARD_TBL);
-		log.info("sql 2 : {} ", sql);
 		getSearchWhere(cri, sql);
 		sql.ORDER_BY("bno DESC");
-		log.info("sql 3 : {} ", sql);
 		sql.OFFSET(cri.getStartRow());
-		log.info("sql 4 : {} ", sql);
 		sql.LIMIT(cri.getPerPageNum());
 		return sql.toString();
 	}
