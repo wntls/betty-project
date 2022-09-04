@@ -36,6 +36,12 @@ public class SignProvider {
 					.WHERE("email = #{email}")
 					.toString();
 		}
+		
+		public String findPhoneByPhone(String phone) {
+			return new SQL().SELECT("phone").FROM(MEMBER_TBL)
+					.WHERE("phone = #{phone}")
+					.toString();
+		}
 			
 		public String findOneBySignIn(Member member) {
 			return new SQL().SELECT("*")

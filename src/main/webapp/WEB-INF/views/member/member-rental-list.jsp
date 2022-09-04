@@ -32,7 +32,7 @@
 										</label> <label class="btn btn-secondary"> <input type="radio"
 											id="rent" name="rental" value="rent"> 대여중인 도서
 										</label> <label class="btn btn-secondary"> <input type="radio"
-											id="reserv" name="rental" value="reserv"> 예약중인 도서
+											id="reserve" name="rental" value="reserv"> 예약중인 도서
 										</label>
 									</div>
 								</td>
@@ -82,7 +82,7 @@ $("#rent").on("click", function() {
 	ajaxList("rent");
 });
 
-$("#reserv").on("click", function() {
+$("#reserve").on("click", function() {
 	ajaxList("reserv");
 });
 

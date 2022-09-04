@@ -184,6 +184,20 @@ public class MemberProvider {
 				.WHERE("id = #{id}")
 				.toString();
 	}
+
+	// 벌점 부과
+	public String updateDemerit(@Param("id")String id, @Param("demerit")Integer demerit) {
+		return new SQL().UPDATE(MEMBER_TBL).SET("demerit = demerit + #{demerit}")
+				.WHERE("member_id = #{id}")
+				.toString();
+	}
 	
+	// 수익 총계
+	public String findTotalProfit() {
+		return new SQL().SELECT("sum(spending)").FROM(MEMBER_CARD_TBL)
+				.toString();
+	}
+	
+
 }
 
