@@ -72,7 +72,7 @@
 									</div>
 								</td>
 								<td></td>
-								<td><input class="btn btn-danger" id="submit" type="submit"/><s:message code="btn.search"/></td>
+								<td><input class="btn btn-danger" id="submit" type="submit" value="<s:message code="btn.search"/>"/></td>
 							</tr>
 						</tbody>
 					</table>					

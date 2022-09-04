@@ -71,8 +71,8 @@ public class BookController {
 	}
 	
 	// 도서 정보 수정
-	@PutMapping("{isbn}")
-	public String updateBook(BookForm form) {
+	@PostMapping("{isbn}")
+	public String updateBook(NewBookForm form) {
 		String code = form.getCode();
 		int result = bookService.update(code, form);
 		return "redirect:/books/" + code;

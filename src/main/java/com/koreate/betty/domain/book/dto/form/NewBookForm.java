@@ -1,10 +1,14 @@
 package com.koreate.betty.domain.book.dto.form;
 
+import java.sql.Timestamp;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.springframework.lang.Nullable;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.koreate.betty.domain.book.vo.Book;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,5 +49,19 @@ public class NewBookForm {
 	
 	@Nullable
 	MultipartFile img;
+
+	public Book createBook() {
+		
+		return Book.builder()
+				.code(code)
+				.title(title)
+				.auth(auth)
+				.pub(pub)
+				.pubDate(Timestamp.valueOf(pubDate + " 00:00:00"))
+				.page(page)
+				.genre(genre)
+				.intro(intro)
+				.build();
+	}
 	
 }

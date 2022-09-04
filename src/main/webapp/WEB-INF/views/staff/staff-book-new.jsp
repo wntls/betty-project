@@ -34,7 +34,7 @@
 							<div class="staffInfoList">
 								<div class="input-group mb-3 flex-nowrap">
 									<div class="input-group-append">
-										<label class="input-group-text" for="inputGroupSelect01"><s:message code="text.book.ㅎ둑ㄷ"/></label>
+										<label class="input-group-text" for="inputGroupSelect01"><s:message code="text.book.genre"/></label>
 									</div>
 									<select class="custom-select" id="genre" name="genre">
 										<option selected value=""><s:message code="search.genre"/></option>
@@ -113,7 +113,7 @@
 
 								<div class="input-group flex-nowrap">
 									<div class="input-group-prepend">
-										<span class="input-group-text"><s:message code="text.intro"/></span>
+										<span class="input-group-text"><s:message code="text.book.intro"/></span>
 									</div>
 									<textarea rows="4" cols="50" id="intro" name="intro"
 										placeholder="책 소개 입력" aria-label="Username"

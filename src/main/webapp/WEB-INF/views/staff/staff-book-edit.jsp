@@ -18,7 +18,6 @@
 					<div class="col-md-11 col-md-7 spad">					
 						<form id="book-edit" action="${path}/books/${isbn}" method="POST"
 							enctype="multipart/form-data">
-							<input type="hidden" name="_method" value="PUT" />							
 							<div class="product__page__title">							
 								<div class="row justify-content-center">									
 									<img src="${path}/resources/img/book/origin/${isbn}.jpg"/>

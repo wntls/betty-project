@@ -238,17 +238,17 @@
 							str += "<td style='min-width: 130px'>출판일</td>";
 							str += "<td style='min-width: 130px'>장르</td>";
 							str += "<td style='min-width: 130px'>재고 현황</td>";
-							str += "<td style='min-width: 130px'>도서 폐기</td>";
+							str += "<td style='min-width: 130px'>도서 수량</td>";
 							str += "</tr>";
 							str += "<tr id='tr4'>";
 							str += "<td>" + formatDate + "</td>";
 							str += "<td>" + genre + "</td>";
-							str += "<td><input type='button' class='btn btn-danger' onclick='throwData(this)' data-code='"
+							str += "<td><input type='button' class='btn btn-primary' onclick='throwData(this)' data-code='"
 									+ code
 									+ "' data-now='"
 									+ nowCount
 									+ "'data-toggle='modal' data-target='#bookCount' value='추가' id='bookAdd' name='num' /></td>";
-							str += "<td><input type='button' class='btn btn-danger' data-code='"+code+"' data-toggle='modal' data-target='#exampleModalCenter' value='폐기' name='code' /></td>";
+							str += "<td>" + count + "</td>";
 							str += "</tr>";
 
 							i = i + 1;
@@ -293,22 +293,15 @@
 		$("#book-amount").attr("action", "${path}/books/" + code + "/single");
 	}
 
-	/* 	
-	function temp (){
-			$.ajax({
-				url: '${path}/staff/books/plz',
-				type: 'put',
-				data: code,
-				contentType: "application/json",
-				dataType: 'json',
-				success: function(result){
-					$('.modal-title').text(result.title);
-					$('.bookName').val(result.content);
-				}
-			})
-		} 
+	function throwData2(ev) {
+		console.log(ev.dataset); // title, now
+		var now = ev.dataset.now;
+		var code = ev.dataset.code;
+		$("#nowCount2").val(now);
+		$("#book-amount2").attr("action", "${path}/books/" + code + "/single");
+	}
+
 	
-	 */
 </script>
 
 
