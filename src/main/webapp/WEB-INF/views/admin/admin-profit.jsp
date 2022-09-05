@@ -7,6 +7,8 @@
 		<div class="row">
 			<div class="col-md-8">
 				<h1><s:message code="nav.admin.profit"/></h1>
+				
+				<input value="${profit}">
 			</div>
 		</div>
 	</div>

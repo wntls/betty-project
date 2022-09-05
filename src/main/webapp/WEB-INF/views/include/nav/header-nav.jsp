@@ -123,7 +123,7 @@
 	</c:when>
 	<c:otherwise>
 		<c:set var="uri" value="${pageContext.request.requestURI}" />
-		<c:if test="${fn:contains(uri, 'board')}">
+		<c:if test="${fn:contains(uri, 'views/board')}">
 			<jsp:include page="/WEB-INF/views/include/nav/boards-side-nav.jsp">
 				<jsp:param name="path" value="${path}" />
 				<jsp:param name="user" value="${user}" />
