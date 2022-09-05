@@ -28,7 +28,7 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text">현재 포인트</span>
 						</div>
-						<input type="text" class="form-control" id="myPoint" value="0"
+						<input type="text" class="form-control" id="myPoint" value="${point}"
 							readonly />
 					</div>
 
@@ -65,7 +65,7 @@
 							</i></li>
 						</ul>
 						<button class="btn btn-danger vertical_bottom"
-							onclick="onMembershipModal(this)" data-fee="0" value="브론즈">브론즈
+							onclick="onMembershipModal(this)" data-fee="0" value="Bronze">브론즈
 							등급 가입</button>
 					</div>
 
@@ -89,7 +89,7 @@
 							</i></li>
 						</ul>
 						<button class="btn btn-danger vertical_bottom"
-							onclick="onMembershipModal(this)" data-fee="50,000" value="실버">실버
+							onclick="onMembershipModal(this)" data-fee="50,000" value="Silver">실버
 							등급 가입</button>
 					</div>
 
@@ -144,8 +144,9 @@
 				<p id="modal-body" style="color: black">Modal body text goes
 					here.</p>
 			</div>
+			<input id="hiddenGrade" value="" hidden>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary">확인</button>
+				<button type="button" id="updateBtn" class="btn btn-primary">확인</button>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 			</div>
 		</div>
@@ -180,9 +181,10 @@ $.ajax({
 	
 	
 	function onMembershipModal(event){
-		console.log(event.value);
+		console.log(event.value); // VIP
 		console.log(event.dataset.fee);
 		const grade = event.value;
+		$('#hiddenGrade').val(grade);
 		const title = grade + " 멤버십 가입 안내";
 		const fee = event.dataset.fee;
 		const content = grade + ' 등급의 월 요금제는 ' +fee+ '원 입니다. 결제하시겠습니까?'; 
@@ -192,7 +194,26 @@ $.ajax({
 		$('#modal-body').text(content);
 		$('.modal').modal('show');
 		
+		
+		
 	}
+	
+	$('#updateBtn').on('click',function(){
+		const grade = $('#hiddenGrade').val();
+		$.ajax({
+			type: 'post',
+			url: '${path}/members/${user.id}/grade/update',
+			data: { grade : grade},
+			success: function(data){
+				console.log(data);
+				alert(grade+"등급 가입 완료");
+				location.reload();
+			},
+			error: function(data){
+				console.log(data);
+			}
+		})
+	})
 	
 	
   

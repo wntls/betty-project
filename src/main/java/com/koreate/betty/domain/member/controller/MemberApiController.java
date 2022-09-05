@@ -22,10 +22,11 @@ import com.koreate.betty.domain.member.service.MemberService;
 import com.koreate.betty.domain.member.service.SignService;
 import com.koreate.betty.domain.member.util.SignHelper;
 import com.koreate.betty.domain.member.vo.Inquiry;
+import com.koreate.betty.domain.member.vo.Member;
 import com.koreate.betty.domain.rental.service.RentalService;
 import com.koreate.betty.global.error.BettyInvalidValueException;
 import com.koreate.betty.global.error.exception.NotFoundIdException;
-import com.koreate.betty.infra.email.EmailSender;
+import com.koreate.betty.global.resolver.User;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -96,6 +97,12 @@ public class MemberApiController {
 		memberService.addPoint(form);
 		
 		return memberService.findPointById(userId);
+	}
+	
+	@PostMapping("grade/update")
+	public int gradeUpdate(@User Member user, String grade) {
+		memberService.updateMembership(user.getId(), grade);
+		return 1;
 	}
 
 	

@@ -43,7 +43,7 @@
 				</form>
 				<!-- login form의 right 정렬 -->
 				<ul
-					class="list-group list-group-horizontal-md justify-content-center">
+					class="d-none list-group list-group-horizontal-md justify-content-center">
 					<li class="list-group-item"><a data-toggle="modal"
 						data-target="#idFindModal">아이디 찾기</a></li>
 					<li class="list-group-item"><a data-toggle="modal"

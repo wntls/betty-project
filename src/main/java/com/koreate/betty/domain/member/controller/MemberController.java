@@ -45,7 +45,11 @@ public class MemberController {
 	public String memberEdit() { return "member/member-edit"; }
 
 	@GetMapping("charge")
-	public String memberCharge() { return "member/member-charge"; }
+	public String memberCharge(@PathVariable String id, Model model) {
+		int result = memberService.findPointById(id);
+		model.addAttribute("point", result);
+		return "member/member-charge"; 
+	}
 
 	@GetMapping("rentals")
 	public String memberRental() { return "member/member-rental-list"; }
