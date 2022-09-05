@@ -4,11 +4,14 @@
 <%@include file="/WEB-INF/views/include/header.jsp"%>
 <section>
 	<div class="container-md spad">
-		<div class="row">
-			<div class="col-md-8">
-				<h1><s:message code="nav.admin.profit"/></h1>
-				
-				<input value="${profit}">
+		<div class="row spad justify-content-center">
+			<div class="col-md-6">
+				<div class="input-group input-group-lg">
+				  <div class="input-group-prepend">
+				    <span class="input-group-text"><s:message code="nav.admin.profit"/></span>
+				  </div>
+				  <input type="text" class="form-control" value="${profit}00">
+				</div>
 			</div>
 		</div>
 	</div>

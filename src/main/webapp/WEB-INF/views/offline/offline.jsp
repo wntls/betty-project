@@ -145,7 +145,7 @@ table td:nth-child(1) {
 													<c:forEach var="rental" items="${rentals}">
 														<tr>
 															<td colspan="3">${rental.title }</td>
-															<td colspan="2"><f:formatDate value="${rental.date}"
+															<td colspan="2"><f:formatDate value="${rental.returnDate}"
 																	pattern="yyyy-MM-dd" /></td>
 															<td>
 																<button class="btn btn-danger btn-sm" name="code"

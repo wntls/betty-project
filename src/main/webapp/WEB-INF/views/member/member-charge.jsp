@@ -163,7 +163,7 @@ $(function(){
 function playAjax(){
 	let amount = $('#chargeAmount').val();
 	let data = { point : amount };
-	if(amount <= 0)return;
+	if(amount < 0)return;
 $.ajax({
 		
 		url: '${path}/members/${user.id}/charge/add',
@@ -174,6 +174,7 @@ $.ajax({
 		success: function(result){
 			alert("성공");
 			$('#myPoint').val(result);
+			$('#chargeAmount').val("");
 		}
 		
 	});

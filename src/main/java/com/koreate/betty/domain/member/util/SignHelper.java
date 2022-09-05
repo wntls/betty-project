@@ -36,13 +36,13 @@ public class SignHelper {
 	
 	public static String makeCodeForSMS(HttpSession session) {
 		String code = generateForgetCode();
-		session.setAttribute(SessionConst.EMAIL_CODE, code);
+		session.setAttribute(SessionConst.SMS_CODE, code);
 		session.setMaxInactiveInterval(180);
 		return code;
 	}
 	public static String makeCodeForEmail(HttpSession session) {
 		String code = generateForgetCode();
-		session.setAttribute(SessionConst.SMS_CODE, code);
+		session.setAttribute(SessionConst.EMAIL_CODE, code);
 		session.setMaxInactiveInterval(180);
 		return code;
 	}

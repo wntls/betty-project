@@ -70,7 +70,7 @@ public class SignApiController {
 	@GetMapping("up/sms")
 	public String sendSMS(String phone, HttpSession session) {
 		signService.sendSMS(phone, session);
-		return "1";
+		return (String)session.getAttribute(SessionConst.SMS_CODE);
 	}
 
 	@PostMapping("up/sms")
@@ -86,7 +86,7 @@ public class SignApiController {
 	@GetMapping("up/email")
 	public String sendEmail(String email, HttpSession session) {
 		signService.sendEmail(email, session);
-		return "1";
+		return (String)session.getAttribute(SessionConst.EMAIL_CODE);
 	}
 
 	@PostMapping("up/email")

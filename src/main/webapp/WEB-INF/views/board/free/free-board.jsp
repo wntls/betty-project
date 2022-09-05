@@ -90,7 +90,7 @@
 
 			<div class="row justify-content-center">
 			
-				<div class="col-6">
+				<div class="col-10">
 					<div class="form-row input-group mb-3">
 						<div class="input-group-prepend">
 							<select>

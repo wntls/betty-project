@@ -8,7 +8,7 @@
 				<h2>도서관 이용 시간 안내</h2>
 			</div>
 			<table class="table margin_bottom text-white">
-				<tr class="table_뭐시깽이">
+				<tr class="">
 					<th class="table_th">구역</th>
 					<th class="table_th">월~금요일</th>
 					<th class="table_th">토~일요일</th>
@@ -43,7 +43,7 @@
 						일요일을 제외한 관공서의 공휴일(단, 일요일이 공휴일 경우에는 휴관)
 					</li>
 					<li>
-						<i class="bi bi-pencil-square"></i>> &nbsp;
+						<i class="bi bi-pencil-square"></i> &nbsp;
 						도서관장이 도서관의 정리 및 기타 사유로 휴관이 필요하다고 인정하는 날
 					</li>
 				</ul>

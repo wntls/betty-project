@@ -45,7 +45,7 @@
 					<div class="row">
 						<div class="col-md-8">
 							<div class="section-title">
-								<h4><s:message code="btn.search"/><s:message code="text.book.new.list"/></h4>
+								<h4><s:message code="text.book.new.list"/></h4>
 							</div>
 						</div>
 					</div>
