@@ -26,7 +26,7 @@
             <div class="col-md-3" style="margin-bottom:0.3rem">
                 <p style="font-size:0.8rem; line-height:15px"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                   Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <br/> 
-                  This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                  This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Betty</a>
             </div>
         </div>
     </div>
@@ -70,7 +70,7 @@
 
 	$(function (){
 		let lang = $.cookie('lang');
-		if(lang == 'ko'){
+		if(lang == null || lang == '' ||lang == 'ko'){
 			langToKo();
 		} else {
 			langToEn();

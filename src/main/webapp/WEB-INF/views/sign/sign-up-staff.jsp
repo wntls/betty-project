@@ -174,8 +174,15 @@ $(function(){
 				data :{
 					phone : $("#phone").val()
 				},
-				success : function(){
-					alert("전화번호로 인증 코드가 전송되었습니다.");
+				beforeSend : function(){
+					$('.custom-Loader').delay(100).fadeIn("slow");
+				},
+				complete : function(){
+				    $(".custom-Loader").delay(100).fadeOut("slow");
+				},
+				success : function(data){
+					alert("전화번호로 인증 코드가 전송되었습니다."  + data);
+					$("#codeWrap").show();
 				},
 				error : function(){
 					$("#sendSMS").attr("disabled", false);
@@ -237,8 +244,9 @@ $(function(){
 				complete : function(){
 				    $(".custom-Loader").delay(100).fadeOut("slow");
 				},
-				success : function(){
-					alert(`\${userEmail}로 인증 코드가 전송되었습니다.`);
+				success : function(data){
+					alert(`\${userEmail}로 인증 코드가 전송되었습니다.` + data);
+					
 					$("#emailCodeWrap").show();
 				},
 				error : function(){
