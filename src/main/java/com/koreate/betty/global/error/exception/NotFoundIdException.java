@@ -1,8 +1,8 @@
 package com.koreate.betty.global.error.exception;
 
-import com.koreate.betty.global.error.BettyException;
+import com.koreate.betty.global.error.BettyNotFoundException;
 
-public class NotFoundIdException extends BettyException {
+public class NotFoundIdException extends BettyNotFoundException {
 
 	public NotFoundIdException() {
 		super();

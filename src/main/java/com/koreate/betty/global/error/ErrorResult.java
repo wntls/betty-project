@@ -2,10 +2,10 @@ package com.koreate.betty.global.error;
 
 import java.util.List;
 
-import lombok.AccessLevel;
+import org.springframework.validation.FieldError;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data
@@ -15,6 +15,6 @@ public class ErrorResult {
 
 	private String code;
 	private String message;
-	
+	private List<FieldError> bindingError;
 	
 }

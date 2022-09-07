@@ -1,11 +1,8 @@
 package com.koreate.betty.global.error.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import com.koreate.betty.global.error.BettyNotFoundException;
 
-import com.koreate.betty.global.error.BettyException;
-
-public class NotFoundISBNException extends BettyException {
+public class NotFoundISBNException extends BettyNotFoundException {
 
 	public NotFoundISBNException() {
 		super();
