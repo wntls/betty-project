@@ -3,16 +3,16 @@
 프로젝트 한줄 소개 : **도서관과 독서실을 결합한 유료 시스템**
 
 
-개발 환경
+## 개발 환경
 
-STS
-Java 8
-Spring Legacy Project
-MySql
-MyBatis
-HikariCP
-Notion
-Github
+- STS
+- Java 8
+- Spring Legacy Project
+- MySql
+- MyBatis
+- HikariCP
+- Notion
+- Github
 
 
 
