@@ -2,6 +2,20 @@
 
 프로젝트 한줄 소개 : **도서관과 독서실을 결합한 유료 시스템**
 
+
+개발 환경
+
+STS
+Java 8
+Spring Legacy Project
+MySql
+MyBatis
+HikariCP
+Notion
+Github
+
+
+
 ## 핵심 프로세스
 
 1. 도서 입고 - 직원은 도서를 등록하고 재고를 수정할 수 있음
